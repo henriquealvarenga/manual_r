@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 14&nbsp; Análises Estatísticas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./14-Distributions.html" rel="next">
+<link href="./12-Ploting_graphics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#testes-de-normalidade" id="toc-testes-de-normalidade" class="nav-link active" data-scroll-target="#testes-de-normalidade"><span class="toc-section-number">14.1</span>  Testes de Normalidade</a>
+  <ul class="collapse">
+  <li><a href="#qq-plot" id="toc-qq-plot" class="nav-link" data-scroll-target="#qq-plot"><span class="toc-section-number">14.1.1</span>  QQ plot</a></li>
+  <li><a href="#teste-de-shapiro-wilk" id="toc-teste-de-shapiro-wilk" class="nav-link" data-scroll-target="#teste-de-shapiro-wilk"><span class="toc-section-number">14.1.2</span>  Teste de Shapiro-Wilk</a></li>
+  <li><a href="#teste-de-kolmogorov-smirnov" id="toc-teste-de-kolmogorov-smirnov" class="nav-link" data-scroll-target="#teste-de-kolmogorov-smirnov"><span class="toc-section-number">14.1.3</span>  Teste de Kolmogorov-Smirnov</a></li>
+  </ul></li>
+  <li><a href="#correlação-linear" id="toc-correlação-linear" class="nav-link" data-scroll-target="#correlação-linear"><span class="toc-section-number">14.2</span>  Correlação Linear</a>
+  <ul class="collapse">
+  <li><a href="#cor-e-cor.test" id="toc-cor-e-cor.test" class="nav-link" data-scroll-target="#cor-e-cor.test"><span class="toc-section-number">14.2.1</span>  cor() e cor.test()</a></li>
+  <li><a href="#pairs-e-ggpairs" id="toc-pairs-e-ggpairs" class="nav-link" data-scroll-target="#pairs-e-ggpairs"><span class="toc-section-number">14.2.2</span>  pairs() e ggpairs()</a></li>
+  <li><a href="#scatter-plot-gráficos-de-dispersão" id="toc-scatter-plot-gráficos-de-dispersão" class="nav-link" data-scroll-target="#scatter-plot-gráficos-de-dispersão"><span class="toc-section-number">14.2.3</span>  Scatter plot (gráficos de dispersão)</a></li>
+  </ul></li>
+  <li><a href="#teste-t-de-student" id="toc-teste-t-de-student" class="nav-link" data-scroll-target="#teste-t-de-student"><span class="toc-section-number">14.3</span>  Teste t de Student</a>
+  <ul class="collapse">
+  <li><a href="#os-3-tipos-de-teste-t-de-student" id="toc-os-3-tipos-de-teste-t-de-student" class="nav-link" data-scroll-target="#os-3-tipos-de-teste-t-de-student"><span class="toc-section-number">14.3.1</span>  Os 3 tipos de teste t de Student</a></li>
+  <li><a href="#extraindo-os-resultados-do-teste-t" id="toc-extraindo-os-resultados-do-teste-t" class="nav-link" data-scroll-target="#extraindo-os-resultados-do-teste-t"><span class="toc-section-number">14.3.2</span>  Extraindo os resultados do teste t</a></li>
+  </ul></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="toc-section-number">14.4</span>  ANOVA</a></li>
+  <li><a href="#wilcoxon-rank-sum-test-man-whitney-test" id="toc-wilcoxon-rank-sum-test-man-whitney-test" class="nav-link" data-scroll-target="#wilcoxon-rank-sum-test-man-whitney-test"><span class="toc-section-number">14.5</span>  Wilcoxon rank sum test (Man-Whitney test)</a></li>
+  <li><a href="#teste-do-chi-quadrado" id="toc-teste-do-chi-quadrado" class="nav-link" data-scroll-target="#teste-do-chi-quadrado"><span class="toc-section-number">14.6</span>  Teste do Chi Quadrado</a></li>
+  <li><a href="#teste-exato-de-fisher" id="toc-teste-exato-de-fisher" class="nav-link" data-scroll-target="#teste-exato-de-fisher"><span class="toc-section-number">14.7</span>  Teste exato de Fisher</a></li>
+  <li><a href="#analise-de-regressão" id="toc-analise-de-regressão" class="nav-link" data-scroll-target="#analise-de-regressão"><span class="toc-section-number">14.8</span>  Analise de Regressão</a>
+  <ul class="collapse">
+  <li><a href="#regressão-linear-modelos-lineares" id="toc-regressão-linear-modelos-lineares" class="nav-link" data-scroll-target="#regressão-linear-modelos-lineares"><span class="toc-section-number">14.8.1</span>  Regressão linear (modelos Lineares)</a></li>
+  <li><a href="#regressão-logística" id="toc-regressão-logística" class="nav-link" data-scroll-target="#regressão-logística"><span class="toc-section-number">14.8.2</span>  Regressão Logística</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>A análise estatística dos dados é uma etapa fundamental em qualquer pesquisa científica. A estatística é uma ferramenta que permite a interpretação dos dados, a identificação de padrões e a tomada de decisões.</p>
+<p>Inicialmente vamos apresentar como avaliar a normalidade de um conjunto de dados, etapa fundamental para a escolha da técnica estatística a ser utilizada. Em seguida, vamos apresentar a análise de correlação, que permite avaliar a relação entre duas variáveis. Em seguida, vamos apresentar o teste t de Student, que permite avaliar a diferença entre as médias de dois grupos. Em seguida, vamos apresentar a análise de variância (ANOVA), que permite avaliar a diferença entre as médias de três ou mais grupos. Em seguida, vamos apresentar o teste de Wilcoxon, que permite avaliar a diferença entre as medianas de dois grupos. Em seguida, vamos apresentar o teste do qui-quadrado e o teste exato de Fisher, que permitem avaliar a associação entre duas variáveis categóricas. Por fim, vamos apresentar a análise de regressão, que permite avaliar a relação entre uma variável dependente e uma ou mais variáveis independentes.</p>
+<section id="testes-de-normalidade" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="testes-de-normalidade"><span class="header-section-number">14.1</span> Testes de Normalidade</h2>
+<p>A normalidade dos dados é uma das premissas dos testes estatísticos paramétricos. A normalidade dos dados pode ser avaliada visualmente através de gráficos de densidade e de histograma, através de gráficos como o QQ plot (quantile–quantile plot), ou através de testes estatísticos. Neste capítulo vamos apresentar como fazer os gráficos Q-Q plot e como implementar no R os testes de normalidade de Shapiro-Wilk e Kolmogorov-Smirnov.</p>
+<section id="qq-plot" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="qq-plot"><span class="header-section-number">14.1.1</span> QQ plot</h3>
+<p>Um <em>QQ plot</em>, abreviação de “<em>quantile-quantile plot</em>”, é geralmente usado para avaliar se um conjunto de dados segue ou não uma distribuição normal. Um QQ plot é um gráfico de dispersão (scatter plot) criado plotando dois conjuntos de quantis um contra o outro. Os gráficos QQ classificam os dados da amostra em ordem crescente e, em seguida, plotam esses pontos contra quantis calculados a partir de uma distribuição teórica. Embora os gráficos QQ normais sejam os mais usados na prática devido a tantos métodos estatísticos que assumem normalidade, os gráficos QQ podem ser usados para qualquer distribuição. Se ambos os conjuntos de quantis vieram da mesma distribuição, devemos ver os pontos formando uma linha que é aproximadamente reta.</p>
+<p>Num gráfico <em>QQ plot normal</em> os pontos fornecem uma indicação da normalidade do conjunto de dados. Se os dados forem normalmente distribuídos, os pontos cairão na linha de diagonal de 45 graus. Por outro lado, quanto mais os pontos se desviam dessa diagonal, menor a probabilidade de o conjunto de dados seguir uma distribuição normal.</p>
+<p>O código abaixo mostra como fazer um gráfico Q-Q plot no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o gráfico <em>QQ plot normal</em>. Observe como os pontos se aproximam da linha de referência.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma normal </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico Q-Q plot  </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dados) <span class="co"># Gráfico Q-Q plot</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dados) <span class="co"># Adiciona a linha de referência</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o gráfico Q-Q plot. Veja como os pontos se desviam da linha de referência.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma não normal</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dados_nao_normais <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico Q-Q plot</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dados_nao_normais) <span class="co"># Gráfico Q-Q plot</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dados_nao_normais) <span class="co"># Adiciona a linha de referência</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="teste-de-shapiro-wilk" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="teste-de-shapiro-wilk"><span class="header-section-number">14.1.2</span> Teste de Shapiro-Wilk</h3>
+<p>O teste de Shapiro-Wilk é um teste estatístico utilizado para avaliar a normalidade dos dados. A hipótese nula do teste é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.</p>
+<p>O argumento principal do teste de Shapiro-Wilk é o conjunto de dados que queremos testar. O resultado do teste é a estatística <span class="math inline">\(W\)</span> e o valor-p.&nbsp;<span class="math inline">\(W\)</span> indica o quão bem os dados se ajustam a uma distribuição normal. O valor <span class="math inline">\(W\)</span> próximo a 1 indica que os dados provavelmente serão distribuídos normalmente, enquanto um valor significativamente menor que 1 sugere afastamento da normalidade. O valor-p é a probabilidade de obter um valor de W tão extremo quanto o observado, sob a hipótese nula de que os dados seguem uma distribuição normal.</p>
+<p>O código abaixo mostra como implementar o teste de Shapiro-Wilk no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Shapiro-Wilk. Como já sabemos que nossos dados tem uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma normal</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Shapiro-Wilk</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  dados
+W = 0.9956, p-value = 0.9876</code></pre>
+</div>
+</div>
+<p>Observe que o valor-p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.</p>
+<p>Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Shapiro-Wilk. Observe que o valor-p desse teste deve ser menor que o nível de significância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma não normal</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dados_nao_normais <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Shapiro-Wilk</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note que o valor de p do teste de shapiro é mostrado em notação científica</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados_nao_normais)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  dados_nao_normais
+W = 0.82218, p-value = 1.263e-09</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extraindo o valor de p do teste de shapiro</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pvalue<span class="ot">=</span><span class="fu">shapiro.test</span>(dados_nao_normais)<span class="sc">$</span>p.value</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimindo o valor de p por extenso</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"p-value ="</span>, <span class="fu">format</span>(pvalue, <span class="at">scientific =</span> <span class="cn">FALSE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "p-value = 0.000000001262599"</code></pre>
+</div>
+</div>
+<p>Como previsto, o valor-p foi menor que o nível de significância, indicando que os dados não seguem uma distribuição normal.</p>
+</section>
+<section id="teste-de-kolmogorov-smirnov" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="teste-de-kolmogorov-smirnov"><span class="header-section-number">14.1.3</span> Teste de Kolmogorov-Smirnov</h3>
+<p>O teste de Kolmogorov-Smirnov é um outro teste estatístico utilizado para avaliar a normalidade dos dados. Da mesma forma que o teste de Shapiro-Wilki, a hipótese nula do teste de de Kolmogorov-Smirnov é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.</p>
+<p>O teste te Kolmorov-Smirnov também pode ser usado para testar se os dados vem de outras distribuições, pois o teste na verdade verifica se duas distribuições são iguais, ou seja, se uma amostra vem de uma distribuição em particular. Quando desejamos saber se a amostra tem uma distribuiçao normal, o teste de Kolmogorov-Smirnov compara a distribuição empírica dos dados com a distribuição teórica normal.</p>
+<p>O argumento principal do teste de Kolmogorov-Smirnov também é o conjunto de dados que queremos testar. Mas também precisamos especificar a distribuição teórica que queremos testar. No nosso caso isso será feito com a string “pnorm”, que indica que queremos testar se os dados seguem uma distribuição normal. Além disso precisamos também especificar os parâmetros da distribuição teórica, que no caso da distribuição normal são a média e o desvio padrão. O mais indicado é usar a média e o desvio padrão dos dados, como fizemos no exemplo abaixo.</p>
+<p>O resultado do teste é a estatística <span class="math inline">\(D\)</span> e o valor-p.&nbsp;<span class="math inline">\(D\)</span> é a maior diferença entre a função de distribuição acumulada empírica dos dados e a função de distribuição acumulada teórica. O valor-p é a probabilidade de obter um valor de <span class="math inline">\(D\)</span> tão extremo quanto o observado, sob a hipótese nula de que os dados seguem uma distribuição normal.</p>
+<p>O código abaixo mostra como implementar o teste de Kolmogorov-Smirnov no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Kolmogorov-Smirnov. Como já sabemos que nossos dados tem uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma normal</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Kolmogorov-Smirnov</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(dados, <span class="st">"pnorm"</span>, <span class="at">mean =</span> <span class="fu">mean</span>(dados), <span class="at">sd =</span> <span class="fu">sd</span>(dados))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Asymptotic one-sample Kolmogorov-Smirnov test
+
+data:  dados
+D = 0.047014, p-value = 0.9799
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+<p>Observe que o valor de p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.</p>
+<p>Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Kolmogorov-Smirnov. Observe que o valor-p desse teste deve ser menor que o nível de significância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando os dados distribuidos de forma não normal</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dados_nao_normais <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste de Kolmogorov-Smirnov</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(dados_nao_normais, <span class="st">"pnorm"</span>, <span class="at">mean =</span> <span class="fu">mean</span>(dados_nao_normais), <span class="at">sd =</span> <span class="fu">sd</span>(dados_nao_normais))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Asymptotic one-sample Kolmogorov-Smirnov test
+
+data:  dados_nao_normais
+D = 0.15964, p-value = 0.01223
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+<p>Observe que o valor-p foi menor que o nível de significância, indicando que os dados não seguem uma distribuição normal.</p>
+</section>
+</section>
+<section id="correlação-linear" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="correlação-linear"><span class="header-section-number">14.2</span> Correlação Linear</h2>
+<p>Frequentemente precisamos calcular numericamente a força e a direção da correlação entre duas variáveis. A medida estatística mais comum para mensurar a força e a direção da correlação entre duas variáveis numéricas é o Coeficiente de Correlação Linear de Pearson - denotado por r. Vale ressaltar que esse coeficiente só serve para analisar correlações lineares.</p>
+<section id="cor-e-cor.test" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="cor-e-cor.test"><span class="header-section-number">14.2.1</span> cor() e cor.test()</h3>
+<p>A linguagem R tem uma função específica para calcular o coeficiente de correlação linear de Pearson (r) entre duas variáveis numéricas: a função <code>cor()</code>. Para usar essa função basta inserir como argumentos as duas variáveis numéricas para as quais se deseja calcular o coeficiente. A ordem em que as variáveis são inseridas não faz diferença nesse cálculo.</p>
+<p>Vamos testar essas funções no dataset <code>mpg</code> que já foi discutido em capítulos anteriores (<a href="09-R-Packages.html"><span>Chapter&nbsp;10</span></a>). O código abaixo calcula o coeficiente de correlação linear de Pearson entre as cilindradas (<code>displ</code>) e o número de milhas percorridas com um galão na cidade (<code>cty</code>). A ordem da inserção desses argumentos não importa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># necessário para usar o dataset mpg</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mpg<span class="sc">$</span>displ, mpg<span class="sc">$</span>cty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.798524</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mpg<span class="sc">$</span>cty,mpg<span class="sc">$</span>displ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.798524</code></pre>
+</div>
+</div>
+<p>O valor encontrado <code>cor(mpg$cty,mpg$displ)</code> indica que essa é uma correlação negativa e forte. A mensagem é clara, quanto maior as cilindradas, menor a distância percorrida com 1 galão de gasolina, ou seja, carros 1.0 são mais econômicos mesmo.</p>
+<p>O valor coeficiente de determinação <span class="math inline">\(r^2\)</span> pode ser obtido elevando-se a função <code>cor()</code> ao quadrado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(mpg<span class="sc">$</span>displ, mpg<span class="sc">$</span>cty)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6376405</code></pre>
+</div>
+</div>
+<p>O intervalo de confiança e o valor de p associado ao coeficiente de correlação podem ser obtidos com a função <code>cor.test()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mpg<span class="sc">$</span>cty,mpg<span class="sc">$</span>displ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mpg$cty and mpg$displ
+t = -20.205, df = 232, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8406782 -0.7467508
+sample estimates:
+      cor 
+-0.798524 </code></pre>
+</div>
+</div>
+<p>Frequentemente existem valores <code>NA</code> no conjunto de dados. Nesses casos a função <code>cor()</code> não conseguirá computar o valor do coeficiente de correlação, pois, por padrão, essa função só faz os cálculos se todos os pares de dados estiverem completos. Para calcular a correlação omitindo os pares incompletos é necessário ajustar o parâmetro <code>use =</code>, incluindo <code>use = complete.obs</code>.</p>
+<p>Para ilustrar essa situação, usaremos o dataset <code>airquality</code> do R, que contém dados <code>NA</code> em algumas de suas medições. Esse dataset contém dados de medições diárias da qualidade do ar em Nova Iorque de maio a setembro de 1973. São cerca de 154 observações e 6 variáveis numéricas: - Ozone (quantidade de ozônio)<br>
+- Solar.R (radiação solar)<br>
+- Wind (velocidade do vento)<br>
+- Temp (temperatura - F)<br>
+- Month (mês) - Day (dia)</p>
+<p>Podemos verificar a existência de valores NA com o comando <code>summary()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Ozone           Solar.R           Wind             Temp      
+ Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+ 1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+ Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+ Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+ 3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+ Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+ NA's   :37       NA's   :7                                       
+     Month            Day      
+ Min.   :5.000   Min.   : 1.0  
+ 1st Qu.:6.000   1st Qu.: 8.0  
+ Median :7.000   Median :16.0  
+ Mean   :6.993   Mean   :15.8  
+ 3rd Qu.:8.000   3rd Qu.:23.0  
+ Max.   :9.000   Max.   :31.0  
+                               </code></pre>
+</div>
+</div>
+<p>Devido as valores <code>NA</code> nas variáveis <code>Ozone</code> e <code>Solar.R</code>, a função <code>cor()</code> não calcula o coeficiente de correlação:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Solar.R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>Para obter o resultado desejado, precisamos incluir o argumento <code>use = "complete.obs"</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Solar.R, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3483417</code></pre>
+</div>
+</div>
+<p>A inclusão desse argumento faz com que a função <code>cor()</code> exclua dos cálculos os valores <code>NA</code>. O mesmo resultado pode ser obtido se excluirmos esses valores antes de usar a função.</p>
+<p>Para demonstrar isso, vamos excluir esses valores com a função <code>drop_na()</code>do pacote <code>tidyr</code>, parte do <code>tidyverse.</code> Criaremos um novo data frame com o nome <code>air2.</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>air2 <span class="ot">&lt;-</span> airquality <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">drop_na</span>()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(air2<span class="sc">$</span>Ozone, air2<span class="sc">$</span>Solar.R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3483417</code></pre>
+</div>
+</div>
+<p>A função <code>cor.test()</code> já faz essa exclusão dos dados <code>NA</code> por padrão, não sendo necessária sua exclusão nem o uso do argumento <code>use = "complete.obs"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Solar.R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  airquality$Ozone and airquality$Solar.R
+t = 3.8798, df = 109, p-value = 0.0001793
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.173194 0.502132
+sample estimates:
+      cor 
+0.3483417 </code></pre>
+</div>
+</div>
+</section>
+<section id="pairs-e-ggpairs" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="pairs-e-ggpairs"><span class="header-section-number">14.2.2</span> pairs() e ggpairs()</h3>
+<p>Podemos usar a função <code>pairs()</code> para visualizar rapidamente todas as correlações entre as variáveis de um dataset. Vamos testar essa função no dataset iris do <code>ggplot</code>.</p>
+<p>Este conjunto de dados fornece as medidas em centímetros das variáveis comprimento e largura da sépala e comprimento e largura da pétala, respectivamente, para 50 flores de cada uma das 3 espécies de íris. As espécies são Iris setosa, versicolor e virginica.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Flores_de_Iris.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Flores de Iris, Por Diego Marianom}</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O pacote <code>GGally</code> possui uma função similar à função <code>pairs()</code> do R, mas com muito mais funcionalidades. Para usá-la, é necessário instalar o pacote <code>GGally</code> através do comando <code>install.packages("GGally")</code> no console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos também pedir à função <code>ggpairs()</code> que use cores diferentes para cada espécie.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(iris, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos obter o mesmo resultado usando o operador pipe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">color =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="scatter-plot-gráficos-de-dispersão" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="scatter-plot-gráficos-de-dispersão"><span class="header-section-number">14.2.3</span> Scatter plot (gráficos de dispersão)</h3>
+<p>A forma mais simples de visualizar a correlação entre duas variáveis é através de um gráfico de scatter plot. Essa relação pode ser mostrada de forma ainda mais explícita quando inserimos no gráfico uma reta que representa a correlação linear entre essas variáveis. Essa reta, chamada de reta de regressão linear, representa o modelo matemático de correlação entre essas duas variáveis.</p>
+<p>A função básica do R para criar um scatterplot e simplesmente <code>plot()</code> e a inserção da linha de regressão é feita com a função <code>abline()</code> e <code>lm()</code>, de linear model. Vejamos como plotar um gráfico de correlação entre os níveis de ozônio e a radiação solar com esses comandos, usando o dataset <code>airquality</code> do R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Solar.R <span class="sc">~</span> Ozone, <span class="at">data =</span> airquality)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(Solar.R <span class="sc">~</span> Ozone, <span class="at">data =</span> airquality))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Apesar dos comandos do R base serem simples, não são nada elegantes. Os gráficos com o ggplot são muito mais profissionais e bem mais flexíveis para ajustes dos detalhes. Vamos plotar esse mesmo gráfico com o <code>ggplot</code>, usando o <code>geom_point()</code> para plotar o scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality)  <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Para plotar a reta de regressão basta incluir uma nova camada, uma nova geometria, nesse caso geom_smooth(), indicando como argumentos os mesmos dados e o método linear model <code>lm</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality)  <span class="sc">+</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R)) <span class="sc">+</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R), <span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Observe entretanto que o código acima repete duas vezes a expressão <code>aes(x=Solar.R, y=Ozone)</code>. Podemos reduzir esse código, inserindo essa expressão na primeira linha, o que deixa o código mais limpo, como feito abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R))  <span class="sc">+</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O ggplot tem também inúmeras outras possibilidades de ajustes. No código a seguir irei inserir um título, subtítulo, nota de rodapé, mudar os nomes dos eixos e usar um tema pré-definido para estilização do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R))  <span class="sc">+</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlação entre níveis de Ozônio e Radiaçao solar"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Nova Iorque de maio a setembro de 1973"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset airquality"</span>) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Radiação Solar"</span>) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Niveis de Ozônio"</span>) <span class="sc">+</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="teste-t-de-student" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="teste-t-de-student"><span class="header-section-number">14.3</span> Teste t de Student</h2>
+<p>O test t de Student foi criado em 1908 por William Sealy Gosset <span class="citation" data-cites="Student">(<a href="references.html#ref-Student" role="doc-biblioref">Student 1908</a>)</span>, matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de pequeno tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.</p>
+<p>A importância dada ao departamento científico da Guinness era tamanha que o uso de métodos estatísticos na fabricação da cerveja era considerado um segredo industrial. Alguns autores argumentam que foi esse o motivo pelo qual Gosset publicou o artigo sobre o teste t em 1908 sob o pseudônimo “Student” e o teste t passou a ser conhecido como teste t de Student.</p>
+<p>O teste t de Student (ou simplesmente teste t) compara as médias de dois conjuntos numéricos e avalia se as diferenças entre essas médias são significativas. Quando existem mais de 3 grupos o test t não pode ser usado e nesse caso podemos usar o Anova, discutido no capítulo seguinte.</p>
+<p>A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes de depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.</p>
+<section id="os-3-tipos-de-teste-t-de-student" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="os-3-tipos-de-teste-t-de-student"><span class="header-section-number">14.3.1</span> Os 3 tipos de teste t de Student</h3>
+<p>Existem 3 tipos comuns de teste t:<br>
+- Teste t para duas amostras independentes (ou não pareadas), para comparar as médias de duas amostras independentes.<br>
+- Teste t para duas amostras dependentes (ou pareadas), para comparar as médias de duas amostras pareadas.<br>
+- Teste t para uma amostra, para comparar a média de uma amostra com a média de uma população.</p>
+<section id="teste-t-para-amostras-independentes" class="level4" data-number="14.3.1.1">
+<h4 data-number="14.3.1.1" class="anchored" data-anchor-id="teste-t-para-amostras-independentes"><span class="header-section-number">14.3.1.1</span> Teste t para amostras independentes</h4>
+<p>O Teste t para amostras independentes é o teste padrão, ou default do test t do R.</p>
+<p>O R tem uma função muito simples de usar para realizar o teste t: <code>t.test()</code>. Para usar essa função basta incluir como argumentos os valores obtidos de cada grupo da pesquisa e essa função do R já calcula a média de cada grupo e faz a comparação estatística.</p>
+<p>Veja o exemplo a seguir, no qual existem dois grupos diferentes de pacientes (<code>controle</code> e <code>experimental</code>), com os valores de uma medida fictícia. Vamos primeiro criar dois conjuntos de dados numéricos, representando os valores individuais de alguma medida de um Ensaio Clínico Randomizado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando os vetores com os dados:</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>controle     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">26</span>, <span class="dv">26</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>experimental <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">36</span>, <span class="dv">23</span>, <span class="dv">32</span>, <span class="dv">22</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma tibble para armazenar os vetores.</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">tibble</span>(controle, experimental)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   controle experimental
+      &lt;dbl&gt;        &lt;dbl&gt;
+ 1       21           26
+ 2       28           27
+ 3       24           23
+ 4       23           25
+ 5       23           25
+ 6       19           29
+ 7       28           30
+ 8       20           31
+ 9       22           36
+10       20           23
+11       26           32
+12       26           22</code></pre>
+</div>
+</div>
+<p>Muitas vezes antes de algumas análises, teremos de fazer uma transformação em nosso data frame (ou tibble), transformando o data frame do tipo wide em long como explicado no capítulo do pacote <code>tidyr</code> @ref(tidyr).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o pacote tidyr</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># criando um data frame do tipo long</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>result.long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> result,</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"controle"</span>, <span class="st">"experimental"</span>),</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">"grupo"</span>, </span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">"scores"</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>result.long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 2
+   grupo        scores
+   &lt;chr&gt;         &lt;dbl&gt;
+ 1 controle         21
+ 2 experimental     26
+ 3 controle         28
+ 4 experimental     27
+ 5 controle         24
+ 6 experimental     23
+ 7 controle         23
+ 8 experimental     25
+ 9 controle         23
+10 experimental     25
+# ℹ 14 more rows</code></pre>
+</div>
+</div>
+<p>Um gráfico de boxplot pode nos mostrar que o grupo experimental tem uma média maior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(result.long) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>grupo, <span class="at">y=</span>scores, <span class="at">fill=</span>grupo)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Mas um gráfico não é suficiente.</p>
+<p>Para comparar a média de cada um desses dois grupos, usamos a função <code>t.test()</code> como mostrado a seguir. Podemos fazer o test t de várias formas.</p>
+<ol type="1">
+<li>Podemos usar os vetores numéricos comom argumentos.<br>
+</li>
+<li>Podemos usar o data frame wide (ou tibble), selecionando as colunas como argumentos usando o operador <code>$</code>.<br>
+</li>
+<li>podemos usar o data frame (ou tibble) no formato long.</li>
+</ol>
+<p><strong>1. Teste t com vetores numéricos</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste t de Student para amostras independentes, padrão do R</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># usando os vetores com os dados como argumentos.</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(controle, experimental)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  controle and experimental
+t = -2.6837, df = 20.163, p-value = 0.01421
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.2555305 -0.9111362
+sample estimates:
+mean of x mean of y 
+ 23.33333  27.41667 </code></pre>
+</div>
+</div>
+<p><strong>2. Teste t com data frame wide</strong></p>
+<p>Se o data frame com os dados está no formaro wide (tidy format), ou seja, se há uma coluna para cada amostra, para realizar o test t, basta usar o operador <code>$</code> para acessar as variáveis do data frame a serem comparadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(result<span class="sc">$</span>controle, result<span class="sc">$</span>experimental)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  result$controle and result$experimental
+t = -2.6837, df = 20.163, p-value = 0.01421
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.2555305 -0.9111362
+sample estimates:
+mean of x mean of y 
+ 23.33333  27.41667 </code></pre>
+</div>
+</div>
+<p>Podemos também informar o dataset primeiro e depois incluir os nomes das colunas/variáveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">data=</span>result, controle,experimental)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  controle and experimental
+t = -2.6837, df = 20.163, p-value = 0.01421
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.2555305 -0.9111362
+sample estimates:
+mean of x mean of y 
+ 23.33333  27.41667 </code></pre>
+</div>
+</div>
+<p><strong>3. Teste t com data frame long</strong></p>
+<p>Se os dados das duas amostras estão numa mesma coluna (long format), e se há uma outra coluna para identificar os grupos, o argumento para o teste t é um pouco diferente. Nesse caso, precisamos usar o operador <code>~</code> para informar ao teste que desejamos usar os dados de uma coluna (ex: scores), estratificados em dois grupos segundo os dados de uma outra coluna (ex. grupos)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># teste t com data frame do tipo long</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># explicação: os dados numéricos estão na coluna "score", a informação sobre os grupos está na variável "grupos".</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(scores<span class="sc">~</span>grupo, <span class="at">data=</span>result.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  scores by grupo
+t = -2.6837, df = 20.163, p-value = 0.01421
+alternative hypothesis: true difference in means between group controle and group experimental is not equal to 0
+95 percent confidence interval:
+ -7.2555305 -0.9111362
+sample estimates:
+    mean in group controle mean in group experimental 
+                  23.33333                   27.41667 </code></pre>
+</div>
+</div>
+</section>
+<section id="teste-t-para-amostras-dependentes-ou-pareadas" class="level4" data-number="14.3.1.2">
+<h4 data-number="14.3.1.2" class="anchored" data-anchor-id="teste-t-para-amostras-dependentes-ou-pareadas"><span class="header-section-number">14.3.1.2</span> Teste t para amostras dependentes ou pareadas</h4>
+<p>Se as amostras são dependentes, ou pareadas, precisamos incluir essa informação nos argumentos no teste. Vamos usar o mesmo data frame criado anteriormente, supondo que as medidas numéricas fossem de uma mesma amostra em dois momentos do tempo. Nesse caso o teste t deve ser um test pareado. Basta inserir o argumento <code>paired = TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(controle, experimental, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  controle and experimental
+t = -2.6353, df = 11, p-value = 0.02319
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -7.493713 -0.672954
+sample estimates:
+mean difference 
+      -4.083333 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(result<span class="sc">$</span>controle, result<span class="sc">$</span>experimental, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  result$controle and result$experimental
+t = -2.6353, df = 11, p-value = 0.02319
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -7.493713 -0.672954
+sample estimates:
+mean difference 
+      -4.083333 </code></pre>
+</div>
+</div>
+<p>Entretanto, quando usamos a sintaxe do teste com o operador <code>~</code> não podemos inserir o argumento <code>paired = TRUE</code>, senão teremos um erro. Esse Parece ser um bug de algumas versões do R, que talvez seja corrigido no futuro.</p>
+</section>
+<section id="teste-t-para-uma-amostra." class="level4" data-number="14.3.1.3">
+<h4 data-number="14.3.1.3" class="anchored" data-anchor-id="teste-t-para-uma-amostra."><span class="header-section-number">14.3.1.3</span> Teste t para uma amostra.</h4>
+<p>No caso de uma amostras, para comparar a média de uma amostra com uma média já conhecida, basta inserir nos argumentos do teste t a amostras e o valor da média a ser comparada, como mostrado abaixo.</p>
+<p>Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e usar o conjunto de dados chamdo experimental como se fosse nossa única amostra. E vamos inserir um valor arbitrário da média a ser comparada (<code>mu = 30</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(result<span class="sc">$</span>experimental, <span class="at">mu=</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  result$experimental
+t = -2.1044, df = 11, p-value = 0.05915
+alternative hypothesis: true mean is not equal to 30
+95 percent confidence interval:
+ 24.71479 30.11854
+sample estimates:
+mean of x 
+ 27.41667 </code></pre>
+</div>
+</div>
+<p>Podemos também informar o dataset primeiro e depois incluir o nome da coluna/variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">data =</span> result, experimental, <span class="at">mu=</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  experimental
+t = -2.1044, df = 11, p-value = 0.05915
+alternative hypothesis: true mean is not equal to 30
+95 percent confidence interval:
+ 24.71479 30.11854
+sample estimates:
+mean of x 
+ 27.41667 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="extraindo-os-resultados-do-teste-t" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="extraindo-os-resultados-do-teste-t"><span class="header-section-number">14.3.2</span> Extraindo os resultados do teste t</h3>
+<p>O output dos testes estatísticos no R é uma lista com diversos resultados, que podem ser acessados com o operador <code>$</code>, tal como elementos de um data frame. Podemos verificar a estrutura dessa lista com o comando <code>str()</code>. Mas para isso é preciso armazenar o resultado do test num objeto. Chamaremos aqui esse objeto de <code>test.results</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># armazemando os resultados do test num objeto chamado test.results</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>test.results <span class="ot">&lt;-</span> <span class="fu">t.test</span>(scores<span class="sc">~</span>grupo, <span class="at">data=</span>result.long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando o objeto test.results com str</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(test.results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 10
+ $ statistic  : Named num -2.68
+  ..- attr(*, "names")= chr "t"
+ $ parameter  : Named num 20.2
+  ..- attr(*, "names")= chr "df"
+ $ p.value    : num 0.0142
+ $ conf.int   : num [1:2] -7.256 -0.911
+  ..- attr(*, "conf.level")= num 0.95
+ $ estimate   : Named num [1:2] 23.3 27.4
+  ..- attr(*, "names")= chr [1:2] "mean in group controle" "mean in group experimental"
+ $ null.value : Named num 0
+  ..- attr(*, "names")= chr "difference in means between group controle and group experimental"
+ $ stderr     : num 1.52
+ $ alternative: chr "two.sided"
+ $ method     : chr "Welch Two Sample t-test"
+ $ data.name  : chr "scores by grupo"
+ - attr(*, "class")= chr "htest"</code></pre>
+</div>
+</div>
+<p>podemos extrair o valor de p, ou qualquer outro valor usando o operador <code>$</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> test.results<span class="sc">$</span>p.value</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01421353</code></pre>
+</div>
+</div>
+<p>Veja que cada informação do teste está armazenada numa variável que podemos agora acessar. Isso é útil para escrevermos relatórios dinâmicos. Veja a seguinte frase abaixo:</p>
+<blockquote class="blockquote">
+<p>A diferença entre as médias foi estatisticamente significativa (p=0.0142135).</p>
+</blockquote>
+<p>Nessa frase eu não digitei o valor de p, mas inseri a variável <code>p_value</code>. Isso é o que torna os relatórios dinâmicos, pois se houver alguma mudança nos dados, basta rodar novamente o código e o valor de p no texto vai ser automaticamente corrigido.</p>
+<p>Essa foi a frase que eu digitei:</p>
+<blockquote class="blockquote">
+<p>A diferença entre as médias foi estatisticamente significativa (p= <code>`r p_value`</code>).</p>
+</blockquote>
+<p>O backtick (backquote ou acento grave) informa o início e o fim de um código, a letra <code>r</code> logo no início informa que o código a seguir é um código da linguagem R e <code>p_value</code> vai ser então interpretado como a variável <code>p_value</code> e seu valor é que será mostrado no texto.</p>
+<p>Atente-se para o detalhe de que as médias estão numa mesma variável <code>estimate</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>test.results<span class="sc">$</span>estimate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    mean in group controle mean in group experimental 
+                  23.33333                   27.41667 </code></pre>
+</div>
+</div>
+<p>Para acessar cada um desses valores individualmente é necessário indicar isso explicitamente usando o operador <code>[]</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>test.results<span class="sc">$</span>estimate[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean in group controle 
+              23.33333 </code></pre>
+</div>
+</div>
+<p>Veja que da forma como fizemos acima o resultado foi a média do grupo controle, mas o texto veio junto. Para extrair apenas o valor numérico devemos incluir mais um elemento no código, a função <code>as.mumeric()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(test.results<span class="sc">$</span>estimate[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.33333</code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="anova" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="anova"><span class="header-section-number">14.4</span> ANOVA</h2>
+<p>O teste Anova (Análise de Variância) foi criado pelo estatístico britânico Ronald Fisher no início do século XX, para comparar as médias de três ou mais grupos independentes, para determinar se há diferenças estatisticamente significativas entre eles.</p>
+<p>A ideia central do teste Anova é decompor a variabilidade total dos dados em duas partes: a variabilidade entre os grupos e a variabilidade dentro dos grupos. Se as médias dos grupos forem estatisticamente diferentes, espera-se que a variabilidade entre os grupos seja maior do que a variabilidade dentro dos grupos.</p>
+<p>Para exemplificarmos o uso do teste ANOVA vamo usar o dataset PlantGrowth do R. Esse dataset contém o peso das plantas cultivadas sob duas condições de tratamento diferentes e um grupo controle. São, portanto, 3 grupos diferentes de tratamento. Para ter mais informações sobre esse dataset basta digitar <code>?PlantGrowth</code> no console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># armazenando o dataset num objeto chamado mydata.</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> PlantGrowth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando o dataset</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  weight group
+1   4.17  ctrl
+2   5.58  ctrl
+3   5.18  ctrl
+4   6.11  ctrl
+5   4.50  ctrl
+6   4.61  ctrl</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando o dataset</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mydata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   30 obs. of  2 variables:
+ $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...
+ $ group : Factor w/ 3 levels "ctrl","trt1",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<p>Observe que esse dataset já está no formato long, conforme explicado no capítulo sobre data frames @ref(Dataframes).</p>
+<p>Podemos inicialmente computar as estatísticas básicas com a função <code>summarise()</code> do pacote <code>dplyr</code>, conforme explicado no capítulo sobre esse pacote @ref(dplyr).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(mydata, group) <span class="sc">%&gt;%</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  group count  mean    sd
+  &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 ctrl     10  5.03 0.583
+2 trt1     10  4.66 0.794
+3 trt2     10  5.53 0.443</code></pre>
+</div>
+</div>
+<p>Podemos também visualizar esses conjuntos com um boxplot, conforme explicado no capítulo sobre <code>ggplot</code> @ref(ggplot).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>weight, <span class="at">fill=</span>group)) <span class="sc">+</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"peso"</span>) <span class="sc">+</span> </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"grupo"</span>) <span class="sc">+</span> </span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Finalmente, para realizar o teste ANOVA usamos a função <code>aov()</code>. A função <code>summary()</code> será usada em seguida para resumir os dados do modelo de variância. Vamos ver como isso é feito.</p>
+<p>Inicialmente precisamos colocar o modelo ANOVA num objeto e indicar nos argumentos da função anova que o peso das plantas será uma função do tratamento. Lembre-se que o peso está na variável <code>weight</code> e o tipo de tratamento na variável <code>group</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>modelo_ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight <span class="sc">~</span> group, <span class="at">data =</span> mydata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Depois de armazenar o modelo ANOVA na variável que denominamos <code>modelo_ANOVA</code>, podemos então usar a função <code>summary()</code>. Essa função tem como argumento justamente o objeto criado anteriormente para armazenar o modelo ANOVA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_ANOVA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>A coluna Pr(&gt;F) indica o valor de p do teste ANOVA. Como o valor foi menor que 0.05 podemos interpretar que algumas das média dos grupo são estatisticamente diferentes, mas não sabemos que pares são estatisticamente diferentes.</p>
+<p>Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences, para realizar comparações múltiplas de pares entre as médias dos grupos.</p>
+<p>A função <code>TukeyHD()</code> usa o modelo ANOVA que já criamos como argumento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(modelo_ANOVA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = weight ~ group, data = mydata)
+
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
+</div>
+</div>
+<p>Explicando o resultado:</p>
+<p><strong>diff</strong>: mostra a diferença entre as médias dos dois grupos.<br>
+<strong>lwr</strong>: o ponto final inferior do intervalo de confiança em 95% (padrão).<br>
+<strong>upr</strong>: o ponto final superior do intervalo de confiança em 95% (padrão).<br>
+<strong>p adj</strong>: p-valor após ajuste para as comparações múltiplas.</p>
+<p>Pode ser visto no resultado acima que apenas a diferença entre <code>trt2</code> e <code>trt1</code> é significativa com um valor p ajustado de 0,012.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="wilcoxon-rank-sum-test-man-whitney-test" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="wilcoxon-rank-sum-test-man-whitney-test"><span class="header-section-number">14.5</span> Wilcoxon rank sum test (Man-Whitney test)</h2>
+<p>Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. Os testes Wilcoxon rank sum test (Mann-Whitney test) é o equivalentes não paramétricos do teste t.</p>
+<p>O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento <code>PAIRED=TRUE</code>.</p>
+<p>Veja como realizar os Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no test t realizado anteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando os vetores com os dados:</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>controle     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">26</span>, <span class="dv">26</span>)</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>experimental <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">36</span>, <span class="dv">23</span>, <span class="dv">32</span>, <span class="dv">22</span>)</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">tibble</span>(controle, experimental)</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>result.long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> result,</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"controle"</span>, <span class="st">"experimental"</span>),</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">"grupo"</span>, </span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">"scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Fazendo o teste de Wilcoxon rank sum test quando os dados estão em colunas distintas, ou seja, um data frame no formato wide:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(result<span class="sc">$</span>controle, result<span class="sc">$</span>experimental)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(result$controle, result$experimental): cannot
+compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  result$controle and result$experimental
+W = 32.5, p-value = 0.02379
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Fazendo o Wilcoxon rank sum test quando os dados estão em uma única coluna, ou seja, um data frame no formato long. Nesse caso, assim como fizemos no teste t, indicamos a variável numérica e a variável dos grupos separadas pelo operador <code>~</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(<span class="at">data=</span>result.long, scores<span class="sc">~</span>grupo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
+compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  scores by grupo
+W = 32.5, p-value = 0.02379
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>Na mensagem de aviso acima o termo “ties” significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de “empates” ou ties”. Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="teste-do-chi-quadrado" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="teste-do-chi-quadrado"><span class="header-section-number">14.6</span> Teste do Chi Quadrado</h2>
+<p>O teste do chi-quadrado compara as frequências observadas em tabelas de contingência com as frequências esperadas se a hipótese nula fosse verdadeira.</p>
+<p>O argumento para a realização desse teste no R é, portanto, uma tabela de contingência.</p>
+<p>Vamos usar os dados de uma pesquisa sobre a efetividade dos capacetes de bicicleta na prevenção de trauma crânio-encefálico (TCE), tal como exemplificado por Pagano e Gauvreau <span class="citation" data-cites="Pagano2022">(<a href="references.html#ref-Pagano2022" role="doc-biblioref">Pagano, Gauvreau, and Mattie 2022</a>)</span>. O objetivo aqui é avaliar, num estudo de caso controle, se o uso de capacetes reduz o risco de Trauma Crânio Encefálico.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Tabela2x2_Capacete.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">mtabela chi quadrado</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O testo do chi-quadrado pode ser usado para avaliar se o uso do capacete reduziu o nº de casos de TCE entre os ciclistas. Precisamos apenas construir uma tabela com esses dados no R, o que pode ser feito através da função <code>matrix()</code>, ou com as funções <code>data.frame()</code> ou <code>tibble()</code>. Veremos como fazer das duas formas.</p>
+<p>Usando a função <code>matrix()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">218</span>,<span class="dv">130</span>,<span class="dv">428</span>), </span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow=</span><span class="dv">2</span>, </span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>tab1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   17  218
+[2,]  130  428</code></pre>
+</div>
+</div>
+<p>O argumento <code>nrow=2</code> indica que a tabela terá 2 linhas e o argumento <code>byrow = TRUE</code> indica que as células da tabela serão preenchidas linha a linha.</p>
+<p>Usando a função <code>data.frame()</code> ou <code>tibble()</code></p>
+<p>De forma simples, sem legendas. Observe que a função <code>data.frame()</code> cria colunas com cada vetor. Assim a primeira coluna conterá os valores 17 e 130, e a segunda coluna os valores 218 e 428.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">130</span>), <span class="fu">c</span>(<span class="dv">218</span>,<span class="dv">428</span>))</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>dat1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  c.17..130. c.218..428.
+1         17         218
+2        130         428</code></pre>
+</div>
+</div>
+<p>Podemos melhorar o data frame dicionando legendas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">comCapacete  =</span> <span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">130</span>), </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">semCapacete  =</span> <span class="fu">c</span>(<span class="dv">218</span>,<span class="dv">428</span>), </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="fu">c</span>(<span class="st">"comTCE"</span>, <span class="st">"semTCE"</span>))</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>dat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       comCapacete semCapacete
+comTCE          17         218
+semTCE         130         428</code></pre>
+</div>
+</div>
+<p>Vamos agora fazer os testes usando essas tabelas criadas, para verificarmos que o resultado é o mesmo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tab1
+X-squared = 27.202, df = 1, p-value = 1.833e-07</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(dat1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  dat1
+X-squared = 27.202, df = 1, p-value = 1.833e-07</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(dat2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  dat2
+X-squared = 27.202, df = 1, p-value = 1.833e-07</code></pre>
+</div>
+</div>
+<p>Observe que em todos os casos o resultado foi idêntico. Observe também que o teste fez a correção de Yates automaticamente. É possível alterar esse comportamento padrão com o argumento <code>correct = FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(dat2, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  dat2
+X-squared = 28.255, df = 1, p-value = 1.063e-07</code></pre>
+</div>
+</div>
+<p>Para aplicar o teste do chi quadrado em dados armazenados em data frames precisamos, da mesma forma, primeiro tabular os dados para depois fazer o teste.</p>
+<p>Como exemplo vamos usar o dataset “Arthritis” disponível no pacote vcd (visualizing categorical data). Esse dataset contém informações de 84 pacientes, 41 dos quais usaram um medicamento e 43 usaram um placebo. O uso do medicamento ou placebo está registrado numa variável categórica (Treatment) de dois níveis (treated, placebo). O resultado está registrado em uma variável categórica ordinal (Improved) de 3 níveis (None &lt; Some &lt; Marked).</p>
+<p>Para instalar o pacote vcd use o comando install.packages no console.</p>
+<blockquote class="blockquote">
+<p>install.packages(“vcd”)</p>
+</blockquote>
+<p>Para usar esse pacote é necessário carregá-lo com o comando <code>library()</code> no início do código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+</div>
+<p>Carregando o dataset Arthritis</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Arthritis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Verificando o dataset Arthritis com o comando <code>str()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Arthritis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   84 obs. of  5 variables:
+ $ ID       : int  57 46 77 17 36 23 75 39 33 55 ...
+ $ Treatment: Factor w/ 2 levels "Placebo","Treated": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Sex      : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Age      : int  27 29 30 32 46 58 59 59 63 63 ...
+ $ Improved : Ord.factor w/ 3 levels "None"&lt;"Some"&lt;..: 2 1 1 3 3 3 1 3 1 1 ...</code></pre>
+</div>
+</div>
+<p>A primeira etapa para verificar a associação entre o tratamento e a melhora é criar uma tabela com as variáveis (categóricas) de interesse: Treatment e Improved.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>tab5 <span class="ot">&lt;-</span> <span class="fu">table</span>(Arthritis<span class="sc">$</span>Treatment, Arthritis<span class="sc">$</span>Improved)</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>tab5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         
+          None Some Marked
+  Placebo   29    7      7
+  Treated   13    7     21</code></pre>
+</div>
+</div>
+<p>Agora que já construímos a tabela a partir das duas variáveis de interesse do data frame, podemos então usar o teste do chi quadrado para verificar a associação entre o tratamento e o resultado. Basta aplicar o teste na tabela criada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tab5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  tab5
+X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
+</div>
+</div>
+<p>O resultado indica haver uma associação entre o tipo de tratamento realizado e o resultado, ou seja, o uso do medicamento parece ter sido melhor que o placebo.</p>
+<p>Podemos também inserir as variáveis de interesse diretamente na função <code>chisq.test()</code>, tal como no exemplo abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Arthritis<span class="sc">$</span>Treatment, Arthritis<span class="sc">$</span>Improved)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  Arthritis$Treatment and Arthritis$Improved
+X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
+</div>
+</div>
+<p>Podemos da mesma forma extrair os resultados do teste armazenando os resultado do teste num objeto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>result_chi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tab5)</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(result_chi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ statistic: Named num 13.1
+  ..- attr(*, "names")= chr "X-squared"
+ $ parameter: Named int 2
+  ..- attr(*, "names")= chr "df"
+ $ p.value  : num 0.00146
+ $ method   : chr "Pearson's Chi-squared test"
+ $ data.name: chr "tab5"
+ $ observed : 'table' int [1:2, 1:3] 29 13 7 7 7 21
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "Placebo" "Treated"
+  .. ..$ : chr [1:3] "None" "Some" "Marked"
+ $ expected : num [1:2, 1:3] 21.5 20.5 7.17 6.83 14.33 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "Placebo" "Treated"
+  .. ..$ : chr [1:3] "None" "Some" "Marked"
+ $ residuals: 'table' num [1:2, 1:3] 1.6175 -1.6565 -0.0623 0.0638 -1.937 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "Placebo" "Treated"
+  .. ..$ : chr [1:3] "None" "Some" "Marked"
+ $ stdres   : 'table' num [1:2, 1:3] 3.2742 -3.2742 -0.0976 0.0976 -3.3956 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "Placebo" "Treated"
+  .. ..$ : chr [1:3] "None" "Some" "Marked"
+ - attr(*, "class")= chr "htest"</code></pre>
+</div>
+</div>
+<p>O valor de p pode ser extraido com o comando <code>result_chi$pvalue</code>, como feito abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>result_chi<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.001462643</code></pre>
+</div>
+</div>
+</section>
+<section id="teste-exato-de-fisher" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="teste-exato-de-fisher"><span class="header-section-number">14.7</span> Teste exato de Fisher</h2>
+<p>O teste exato de Fisher é utilizado na análise de tabelas de contingência quando a amostra é pequena, embora seja válido para todo tamanho de amostra. Foi desenvolvido por Ronald Fisher. Fisher disse ter concebido o teste depois de um comentário da Dra. Muriel Bristol, que afirmou ser capaz de detectar se o chá ou o leite foi adicionado primeiro em sua xícara. Ele testou seu pedido no experimento “dama apreciadora de chá”, contado em diversos livros de história da estatística, inclusive num livro com esse mesmo título: “The Lady Tasting Tea” de David Salsburg <span class="citation" data-cites="Salsburg2001">(<a href="references.html#ref-Salsburg2001" role="doc-biblioref">Salsburg 2001</a>)</span>.</p>
+<p>Fisher projetou um experimento em que a senhora recebia 8 xícaras de chá, 4 com leite primeiro, 4 com chá primeiro, em ordem aleatória. Ela então provou cada xícara e relatou quais quatro ela achava que tinham leite adicionado primeiro. <strong>Ela acertou todas as 8 chícaras</strong>.</p>
+<p>A pergunta que Fisher fez foi: “como testamos se ela realmente é habilidosa nisso ou se está apenas adivinhando?”</p>
+<p>Vamos construir uma tabela de contingência, com os valores VERDADEIROS nas colunas e as resultados nas linhas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>tea_tasting <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Leite_Primeiro  =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">0</span>), </span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Cha_Primeiro    =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>), </span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">row.names =</span> <span class="fu">c</span>(<span class="st">"Respondeu que era Leite Primeiro"</span>, <span class="st">"Respondeu que era Chá Primeiro"</span>))</span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>tea_tasting</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 Leite_Primeiro Cha_Primeiro
+Respondeu que era Leite Primeiro              4            0
+Respondeu que era Chá Primeiro                0            4</code></pre>
+</div>
+</div>
+<p>Para usar o teste de Fisher no R basta inserirmos a tabela de contingência como argumento da função <code>fisher.test()</code>.</p>
+<p>Entretanto, há mais um detalhe a ser analisado. Um dos parâmetros do teste é se ele é bicaudal ou unicaldal. O padrão é que o R realize um teste bicaudal (<code>two.sided</code>). Entretanto, Fisher testou se a senhora Muriel era <strong>melhor</strong> do que o acaso e não se sua habilidade era <strong>diferente</strong> do acaso e, portanto, ele usou um teste unilateral.</p>
+<p>Para encontrarmos o mesmo resultado, precisamos ajustar esse argumento, inserindo <code>alternative = "greater"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tea_tasting, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  tea_tasting
+p-value = 0.01429
+alternative hypothesis: true odds ratio is greater than 1
+95 percent confidence interval:
+ 2.003768      Inf
+sample estimates:
+odds ratio 
+       Inf </code></pre>
+</div>
+</div>
+<p>É possível fazer o teste de Fisher diretamente com os dados de um data frame, sem necessidade de tabulação previa dos dados. Vamos usar novamente o data frame <code>Arthritis</code>, do pacote <code>vcd</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tab5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  tab5
+p-value = 0.001393
+alternative hypothesis: two.sided</code></pre>
+</div>
+</div>
+</section>
+<section id="analise-de-regressão" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="analise-de-regressão"><span class="header-section-number">14.8</span> Analise de Regressão</h2>
+<p>A análise de regressão é um conjunto de processos estatísticos usados para estimar relações entre variáveis. Mais especificamente, para modelar e analisar relações entre uma variável dependente (de desfecho ou de resposta) e uma ou mais variáveis independentes (preditoras). A análise de regressão quantifica a mudança da variável dependente de acordo com a mudança de de cada uma das variáveis independentes.</p>
+<p>A regressão linear é usada quando a variável de resposta é numérica. Através da regressão linear podemos quantificar quanto uma variável (de desfecho) se modifica quando outra ou outras (preditoras) se modificam. Por exemplo, podemos criar um modelo linear simples para predizer o quanto a glicemia aumenta de acordo com a quantidade calórica ingerida, ou podemos criar modelos lineares complexos, com mais de uma variável preditora, tal como para analisar o quanto a pressão arterial depende do peso, do sexo e da idade.</p>
+<p>A regressão logística (também conhecida como regressão logit ou modelo logit) é usada quando a variável de resposta é categórica, mais especificamente, categórica e binária (dicotômica). Por exemplo para predizer o óbito (sim ou não), ou um diagnóstico (diabético ou não diabético), ou qualquer evento dicotômico a partir de uma um mais variáveis preditoras (independentes).</p>
+<section id="regressão-linear-modelos-lineares" class="level3" data-number="14.8.1">
+<h3 data-number="14.8.1" class="anchored" data-anchor-id="regressão-linear-modelos-lineares"><span class="header-section-number">14.8.1</span> Regressão linear (modelos Lineares)</h3>
+<p>A correlação linear informa se você tem uma associação forte, moderada ou fraca entre duas variáveis numéricas, mas não descreve as relações de causalidade. A análise de regressão vai um pouco mais além disso, pois o interesse é não apenas na intensidade ou direção da correlação, mas também na natureza dessa relação. Isto é, na análise de regressão o pesquisador estabelece qual ou quais são as variáveis independentes (preditoras) e qual a variável de dependente (de desfecho). A análise de regressão busca construir um modelo matemático que possa servir para predizer o desfecho a partir das variáveis preditoras. Na regressão linear o modelo criado é simplesmente uma reta. A equação da reta que mais se ajusta aos dados é o modelo gerado pela regressão linear.</p>
+<p>A etapa fundamental é a definição de qual ou quais são as variáveis preditoras (as causas) e qual é o desfecho (a consequência). Após essas definições é que podemos então começar a tentar criar esse modelo no R.</p>
+<p>Nunca é demais ressaltar que a análise de regressão não garante que as variáveis preditoras sejam realmente a causa das mudanças da variável de desfecho. Mas não se esqueça de que, para que seu modelo seja válido, existem três principais suposições que precisam ser satisfeitas: _ Linearidade entre as variáveis de desfecho e as preditoras; - A variável de resultado é distribuída de forma normal ao longo dos valores das variáveis preditoras; - A variação do resultado é a mesma ao longo dos valores das preditoras.</p>
+<section id="modelo-linear-simples" class="level4" data-number="14.8.1.1">
+<h4 data-number="14.8.1.1" class="anchored" data-anchor-id="modelo-linear-simples"><span class="header-section-number">14.8.1.1</span> Modelo linear simples</h4>
+<p>Como exemplo vamos usar o dataset <code>mpg</code> do R. Iniciamos com a hipótese de que a distância percorrida por um carro com um galão (<code>cty</code>) dependa das cilindradas do carro(<code>displ</code>). Para fins de ilustração, o gráfico abaixo mostra a relação entre a distância percorrida na cidade com um galão de combustível (variável de desfecho) e as cilindradas do carro. Pode-se ver que quanto maior as cilindradas menor a distância percorrida com um galão. A faixa cinza ao redor da linha de regressão representa o intervalo de confiança.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Vejamos então como criar um modelo linear entre as variáveis distância percorrida na cidade (<code>cty</code>) como desfecho e cilindradas (<code>displ</code>) como preditora. O primeiro passo é criar um objeto para armazenar o modelo (ex. modelo1), depois atribuir (<code>&lt;-</code>) um modelo linear a esse objeto usando a função <code>lm()</code>. As letras lm significam simplesmente “linear model”.</p>
+<p>Para criar a relação entre as variáveis iremos usar também o operador ~ (til), já descrito anteriormente. Esse operador irá servir para indicar a relação entre variável de desfecho e preditora e é usado na seguinte sequencia:</p>
+<p><span class="math inline">\(\text{variável de desfecho} \text{ ~ } \text{variável preditora}\)</span></p>
+<p>O que no nosso caso será: <code>cty</code>~<code>displ.</code> E que se lê da seguinte forma: <code>cty</code> depende de <code>displ</code> ou distância percorrida depende das cilindradas. O formato final do código será:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cty<span class="sc">~</span>displ, <span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para visualizar os valores das estatísticas calculas, usamos a função <code>summary()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cty ~ displ, data = mpg)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.3109 -1.4695 -0.2566  1.1087 14.0064 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  25.9915     0.4821   53.91   &lt;2e-16 ***
+displ        -2.6305     0.1302  -20.20   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.567 on 232 degrees of freedom
+Multiple R-squared:  0.6376,    Adjusted R-squared:  0.6361 
+F-statistic: 408.2 on 1 and 232 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Para poder obter individualmente cada estatística calculada pela função lm() é conveniente atribuir o resumo - summary() - do modelo a um outro objeto, que irei chamar de ms.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>ms <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Observe a estrutura desse objeto:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 11
+ $ call         : language lm(formula = cty ~ displ, data = mpg)
+ $ terms        :Classes 'terms', 'formula'  language cty ~ displ
+  .. ..- attr(*, "variables")= language list(cty, displ)
+  .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+  .. .. ..- attr(*, "dimnames")=List of 2
+  .. .. .. ..$ : chr [1:2] "cty" "displ"
+  .. .. .. ..$ : chr "displ"
+  .. ..- attr(*, "term.labels")= chr "displ"
+  .. ..- attr(*, "order")= int 1
+  .. ..- attr(*, "intercept")= int 1
+  .. ..- attr(*, "response")= int 1
+  .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+  .. ..- attr(*, "predvars")= language list(cty, displ)
+  .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+  .. .. ..- attr(*, "names")= chr [1:2] "cty" "displ"
+ $ residuals    : Named num [1:234] -3.257 -0.257 -0.731 0.269 -2.626 ...
+  ..- attr(*, "names")= chr [1:234] "1" "2" "3" "4" ...
+ $ coefficients : num [1:2, 1:4] 25.991 -2.63 0.482 0.13 53.908 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "(Intercept)" "displ"
+  .. ..$ : chr [1:4] "Estimate" "Std. Error" "t value" "Pr(&gt;|t|)"
+ $ aliased      : Named logi [1:2] FALSE FALSE
+  ..- attr(*, "names")= chr [1:2] "(Intercept)" "displ"
+ $ sigma        : num 2.57
+ $ df           : int [1:3] 2 232 2
+ $ r.squared    : num 0.638
+ $ adj.r.squared: num 0.636
+ $ fstatistic   : Named num [1:3] 408 1 232
+  ..- attr(*, "names")= chr [1:3] "value" "numdf" "dendf"
+ $ cov.unscaled : num [1:2, 1:2] 0.03527 -0.00893 -0.00893 0.00257
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "(Intercept)" "displ"
+  .. ..$ : chr [1:2] "(Intercept)" "displ"
+ - attr(*, "class")= chr "summary.lm"</code></pre>
+</div>
+</div>
+<p>Podemos utilizar o operador $, tal como usamos num data frame, para obter os valores individuais de cada estatística. Obtendo o valor do coeficiente de determinação (r2)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>ms<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6376405</code></pre>
+</div>
+</div>
+<p>Obtendo o valor do coeficiente de determinação (r2) ajustado</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>ms<span class="sc">$</span>adj.r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6360786</code></pre>
+</div>
+</div>
+<p>Os principais gráficos de uma modelo linear podem ser facilmente plotados com o comando <code>plot(modelo1)</code> como demonstrado abaixo. Esse comando plot automaticamente os gráficos Residuals vs Fitted, Q-Q Residuals, Scale Location e Residuals vs Leverage. O comando <code>par(mfrow = c(2, 2))</code> serve apenas para colocar os gráficos num grid 2x2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Statistical_Analysis_files/figure-html/unnamed-chunk-83-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="regressão-linear-com-o-pacote-broom" class="level4" data-number="14.8.1.2">
+<h4 data-number="14.8.1.2" class="anchored" data-anchor-id="regressão-linear-com-o-pacote-broom"><span class="header-section-number">14.8.1.2</span> Regressão Linear com o pacote broom</h4>
+<p>Como vimos acima, as informações de um modelo estatístico criado com a função <code>lm()</code> podem ser acessadas criando um objeto com a função <code>summary()</code>. Entretanto, essas informações não estão organizadas num data frame e é difícil manipular e comparar resultados de diversos modelos. É também muito difícil combinar resultados de diversos modelos. O pacote <code>broom</code> resume as principais informações sobre estatísticas de objetos em data frames organizados facilitando sua análise, comparação e visualização.</p>
+<p>Este pacote fornece três métodos que organizam as informações de um modelo estatístico.</p>
+<p><code>tidy()</code>: constrói um quadro de dados que resume as estatísticas do modelo. Isso inclui coeficientes e valores p para cada termo em uma regressão, informações por cluster em aplicativos de armazenamento em cluster ou informações por teste para funções de teste múltiplo.</p>
+<p><code>glance()</code>: constrói um resumo conciso de uma linha do modelo. Isso normalmente contém valores como R ^ 2, R ^ 2 ajustado e erro padrão residual que são computados uma vez para o modelo inteiro.</p>
+<p><code>augment()</code>: adiciona colunas aos dados originais que foram modelados. Isso inclui previsões, resíduos e atribuições de cluster.</p>
+<p>Como veremos adiante, A função <code>tidy()</code> também pode ser aplicada a objetos <code>htest</code>, como aqueles produzidos por funções internas populares como <code>t.test()</code>, <code>cor.test()</code> e <code>wilcox.test()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(modelo1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)    26.0      0.482      53.9 3.30e-133
+2 displ          -2.63     0.130     -20.2 4.74e- 53</code></pre>
+</div>
+</div>
+<p>Note que os dados estatísticos do modelo agora são variáveis (colunas)</p>
+<p>A função <code>glance()</code> computa as estatísticas do modelo, tais como r^2, sigma, p-values, AIC e BIC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(modelo1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.638         0.636  2.57      408. 4.74e-53     1  -552. 1109. 1120.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Com a função <code>augment()</code>, adicionamos colunas aos dados originais que foram modelados. Isso inclui previsões, resíduos e atribuições de cluster.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(modelo1, <span class="at">data=</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 17
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows
+# ℹ 6 more variables: .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;, .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;,
+#   .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="modelo-linear-múltiplo" class="level4" data-number="14.8.1.3">
+<h4 data-number="14.8.1.3" class="anchored" data-anchor-id="modelo-linear-múltiplo"><span class="header-section-number">14.8.1.3</span> Modelo Linear múltiplo</h4>
+<p>Frequentemente uma única variável preditora não será capaz de explicar toda variação da variável de desfecho. Na verdade, na medicina é raro que uma resposta dependa de apenas uma única variável. Com o R podemos facilmente inserir mais de uma variável preditora em nosso modelo de regressão linear.</p>
+<p>Com duas variáveis nossa reta de regressão se transforma num plano, e nosso modelo que antes era uma simples equação da reta se transforma numa equação de um plano. Com mais de 2 variáveis preditoras não há mais uma visualização possível, mas isso não impede que sejam usadas mais de duas variáveis.</p>
+<p>O formato básico do modelo é bastante simples, tal como no modelo simples, usando o operador <code>~</code> para separar a variável de desfecho das preditoras e usando o operador <code>+</code> para somar as variáveis preditoras:</p>
+<p>Podemos expandir nosso modelo anterior inserindo como variáveis preditoras tanto as cilindradas do motor (<code>displ</code>) como também a quantidade de cilindros (<code>cyl</code>).</p>
+<p>E que se lê da seguinte forma: <code>cty</code> depende de <code>displ</code> e de <code>cyl</code>, ou distância percorrida depende das cilindradas e do número de cilindros. O formato final do código será:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cty<span class="sc">~</span>displ <span class="sc">+</span> cyl, <span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para visualizar os valores das estatísticas calculas, usamos mais uma vez função <code>summary()</code>, dessa vez atribuindo o resultado a um objeto que nomeamos de <code>ms2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>ms2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo2)</span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>ms2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cty ~ displ + cyl, data = mpg)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9276 -1.4750 -0.0891  1.0686 13.9261 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  28.2885     0.6876  41.139  &lt; 2e-16 ***
+displ        -1.1979     0.3408  -3.515 0.000529 ***
+cyl          -1.2347     0.2732  -4.519 9.91e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.466 on 231 degrees of freedom
+Multiple R-squared:  0.6671,    Adjusted R-squared:  0.6642 
+F-statistic: 231.4 on 2 and 231 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="regressão-logística" class="level3" data-number="14.8.2">
+<h3 data-number="14.8.2" class="anchored" data-anchor-id="regressão-logística"><span class="header-section-number">14.8.2</span> Regressão Logística</h3>
+<p>A ser escrito</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Pagano2022" class="csl-entry" role="doc-biblioentry">
+Pagano, Marcello, Kimberlee Gauvreau, and Heather Mattie. 2022. <em>Principles of Biostatistics</em>. Book. CRC Press.
+</div>
+<div id="ref-Salsburg2001" class="csl-entry" role="doc-biblioentry">
+Salsburg, David. 2001. <em>The Lady Tasting Tea. How Statistics Revolutionized Science in the Twentieth Century</em>. Book. 1º ed. New York: Holt Paperbacks.
+</div>
+<div id="ref-Student" class="csl-entry" role="doc-biblioentry">
+Student. 1908. <span>“The Probable Error of a Mean.”</span> Journal Article. <em>Biometrika</em> 6 (1): 1–25. <a href="https://doi.org/10.2307/2331554">https://doi.org/10.2307/2331554</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./12-Ploting_graphics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./14-Distributions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

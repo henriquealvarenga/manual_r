@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 5&nbsp; Projetos do R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-R-Objects-Variables-Vectors.html" rel="next">
+<link href="./03-RStudio.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#conceitos-e-vantagens" id="toc-conceitos-e-vantagens" class="nav-link active" data-scroll-target="#conceitos-e-vantagens"><span class="toc-section-number">5.1</span>  Conceitos e Vantagens</a></li>
+  <li><a href="#diretórios-de-trabalho-working-directories" id="toc-diretórios-de-trabalho-working-directories" class="nav-link" data-scroll-target="#diretórios-de-trabalho-working-directories"><span class="toc-section-number">5.2</span>  Diretórios de Trabalho (Working Directories)</a></li>
+  <li><a href="#projetos-no-r" id="toc-projetos-no-r" class="nav-link" data-scroll-target="#projetos-no-r"><span class="toc-section-number">5.3</span>  Projetos no R</a>
+  <ul class="collapse">
+  <li><a href="#vantagens-dos-projetos-no-r" id="toc-vantagens-dos-projetos-no-r" class="nav-link" data-scroll-target="#vantagens-dos-projetos-no-r"><span class="toc-section-number">5.3.1</span>  Vantagens dos Projetos no R</a></li>
+  <li><a href="#criando-um-projeto-no-rstudio" id="toc-criando-um-projeto-no-rstudio" class="nav-link" data-scroll-target="#criando-um-projeto-no-rstudio"><span class="toc-section-number">5.3.2</span>  Criando um Projeto no RStudio</a></li>
+  <li><a href="#estrutura-de-pastas-de-um-projeto" id="toc-estrutura-de-pastas-de-um-projeto" class="nav-link" data-scroll-target="#estrutura-de-pastas-de-um-projeto"><span class="toc-section-number">5.3.3</span>  Estrutura de pastas de um projeto</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-projects" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="conceitos-e-vantagens" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="conceitos-e-vantagens"><span class="header-section-number">5.1</span> Conceitos e Vantagens</h2>
+<p>Projetos no R são uma maneira organizada e eficiente de gerenciar seu trabalho de análise de dados. Um projeto no R cria um ambiente isolado onde todos os arquivos relacionados ao seu trabalho específico são armazenados juntos, facilitando o gerenciamento e a reprodução de análises. Isso é especialmente útil quando se trabalha em múltiplos projetos ou quando se colabora com outras pessoas.</p>
+</section>
+<section id="diretórios-de-trabalho-working-directories" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="diretórios-de-trabalho-working-directories"><span class="header-section-number">5.2</span> Diretórios de Trabalho (Working Directories)</h2>
+<p>Para entender melhor o que é um projeto no R, é essencial compreender o conceito de diretório de trabalho ou working directories.</p>
+<p>O diretório de trabalho é a pasta no seu computador onde o R lê e grava arquivos por padrão. Quando você inicia uma sessão do R, ele define um diretório de trabalho inicial. Se você não especificar um caminho completo para um arquivo, o R procurará esse arquivo no diretório de trabalho atual.</p>
+<p>Os diretórios de trabalho são importantes porque:</p>
+<ul>
+<li><p><strong>Organização</strong>: Eles ajudam a manter seus arquivos organizados.</p></li>
+<li><p><strong>Facilidade de Acesso</strong>: Simplificam o acesso a arquivos, sem a necessidade de especificar caminhos completos.</p></li>
+<li><p><strong>Reprodutibilidade</strong>: Facilita a reprodução do trabalho, garantindo que todos os arquivos necessários estejam no mesmo lugar.</p></li>
+</ul>
+<p>O Working Directory (diretório de trabalho) é o local padrão onde o R procurará os arquivos que você deseja carregar e onde colocará todos os arquivos salvos. Toda sessão de trabalho com R tem uma diretório de trabalho associado. Para que o R possa ler um arquivo, é necessário que esse arquivo esteja na pasta do diretório de trabalho da sessão do R.</p>
+<p>Se o arquivo a ser lido estiver em outra pasta, será invisível para o RStudio.</p>
+<p>Então uma das coisas mais importantes quando trabalhamos no RStudio é sabermos exatamente qual o diretório de trabalho estamos usando.</p>
+<p>O R tem duas funções básicas para lidar com o working directory:</p>
+<ul>
+<li><code>getwd()</code></li>
+<li><code>setwd(dir)</code></li>
+</ul>
+<p>A função <code>getwd()</code> indica qual o working directory atual, ou seja, indica qual folder o R está usando no momento.</p>
+<p>A função <code>setwd()</code> muda o working directory para o folder indicado como argumento.</p>
+<p>Além dessas funções, você pode mudar o diretório de trabalho diretamente no menu do RStudio.</p>
+<p>Podemos indicar ao R que diretório da sessão de trabalho seja o diretório aberto naa aba Files. Para isso:</p>
+<ol type="1">
+<li>clique em <code>Session</code> (no menu do RStudio)</li>
+<li>Em seguida em <code>Set Working Directory</code></li>
+<li>Escolha a opção <code>To Files Pane Location</code>.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/SetWorkingDirectory.png" class="img-fluid figure-img" width="928"></p>
+<p></p><figcaption class="figure-caption">Criando um Projeto</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Entretanto, esse é um método muito desajeitado e trabalhoso para fazer toda vez que se usar o RStudio. A melhor forma de resolver esse problema é usar sempre um Project do RStudio.</p>
+</section>
+<section id="projetos-no-r" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="projetos-no-r"><span class="header-section-number">5.3</span> Projetos no R</h2>
+<p>Um projeto no R é essencialmente um diretório de trabalho bem organizado. Quando você cria um projeto no RStudio (um ambiente de desenvolvimento integrado para R), ele cria uma pasta específica para o projeto e define essa pasta como o diretório de trabalho sempre que você abre o projeto. Isso significa que todos os arquivos e scripts que você criar ou usar no projeto serão armazenados nessa pasta.</p>
+<section id="vantagens-dos-projetos-no-r" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="vantagens-dos-projetos-no-r"><span class="header-section-number">5.3.1</span> Vantagens dos Projetos no R</h3>
+<ul>
+<li><p><strong>Isolamento</strong>: Cada projeto tem seu próprio diretório de trabalho, isolando os arquivos e pacotes específicos para esse projeto. Isso evita conflitos entre diferentes projetos.</p></li>
+<li><p><strong>Organização</strong>: Facilita a organização dos seus arquivos, scripts, dados e resultados em um único lugar.</p></li>
+<li><p><strong>Facilidade de Compartilhamento</strong>: Você pode facilmente compartilhar o diretório do projeto com outras pessoas, garantindo que elas tenham acesso a todos os arquivos necessários para reproduzir sua análise.</p></li>
+<li><p><strong>Gerenciamento de Pacotes</strong>: Projetos no R podem ter seu próprio conjunto de pacotes, o que garante que todas as dependências necessárias estão disponíveis e na versão correta.</p></li>
+<li><p><strong>Reprodutibilidade</strong>: Mantém um ambiente consistente, o que é crucial para a reprodutibilidade das análises.</p></li>
+</ul>
+<p>A grande importância de criar um Projeto no RStudio é que um projeto define automaticamente seu diretório de trabalho.</p>
+<p>O nome do seu projeto aparece na barra na parte superior RStudio, e o caminho completo do diretório de trabalho aparece na barra superior do painel Console, como mostra a figura abaixo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/RStudio_Project.png" class="img-fluid figure-img" width="1353"></p>
+<p></p><figcaption class="figure-caption">Criando um Projeto</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="criando-um-projeto-no-rstudio" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="criando-um-projeto-no-rstudio"><span class="header-section-number">5.3.2</span> Criando um Projeto no RStudio</h3>
+<p>Antes de criar um projeto, é necessário criar primeiro a pasta que servirá de diretório de trabalho em seu computador e salvar nessa pasta os arquivos com os dados a serem analisados.</p>
+<p>Para criar um projeto (project) clique em <code>Project</code> (na parte superior à direta do RStudio) e em seguida em <code>New Project</code>.</p>
+<p>A seguir, escolha a opção <code>Existing Directory - Associate a project with an existing directory</code>.<br>
+Em seguida, clique em <code>Browse</code> para encontrar a pasta existente e associá-la ao seu projeto.</p>
+<p><strong>Video de Criação de Projetos no RStudio</strong> <a href="https://youtu.be/YYRb_7yJSlQ" class="uri">https://youtu.be/YYRb_7yJSlQ</a></p>
+</section>
+<section id="estrutura-de-pastas-de-um-projeto" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="estrutura-de-pastas-de-um-projeto"><span class="header-section-number">5.3.3</span> Estrutura de pastas de um projeto</h3>
+<p>Em geral uma pesquisa possui um monte de arquivos. Temos arquivos com os dados brutos, arquivos com dados modificados, arquivos em formatos específicos tal como Excel, Word, PDFs, artigos de referências, imagens, gráficos etc. Colocar tudo isso numa única pasta do projeto não é uma boa prática. A pasta do projeto fica caótica.</p>
+<p>A técnica ideal é criar um conjunto de subpastas dentro da pasta principal do projeto. Uma dessas pastas, talvez a mais importante, é a pasta de dados. Escolha um nome adequado, tal como <code>dados</code>, <code>dataset</code>, etc. E use essa pasta para armazenar o banco de dados de sua pesquisa.</p>
+<p>Um projeto no R geralmente inclui:</p>
+<ul>
+<li><p><strong>Scripts</strong>: arquivos .R contendo seu código, no formato Scripts, Notebooks, Quarto etc.</p></li>
+<li><p><strong>Dados</strong>: arquivos de dados que você está analisando (por exemplo, arquivos .csv, .xlsx).</p></li>
+<li><p><strong>Resultados</strong>: resultados das análise, gráficos e tabelas, criadas pelo seus scripts.</p></li>
+<li><p><strong>Documentação</strong>: arquivos de texto ou markdown documentando seu trabalho.</p></li>
+<li><p><strong>Configurações do Projeto</strong>: arquivos específicos do RStudio, como .Rproj, que armazena as configurações do projeto.</p></li>
+</ul>
+<p>Veja abaixo um exemplo de como organizar sua pasta do projeto:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Project_file_structure.png" class="img-fluid figure-img" width="782"></p>
+<p></p><figcaption class="figure-caption">Estrutura de Diretórios de um Projeto</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-RStudio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-R-Objects-Variables-Vectors.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

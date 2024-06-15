@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 7&nbsp; Data Frames e Tibbles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-Operators.html" rel="next">
+<link href="./05-R-Objects-Variables-Vectors.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link active" data-scroll-target="#data-frames"><span class="toc-section-number">7.1</span>  Data frames</a></li>
+  <li><a href="#tidy-wide-x-long" id="toc-tidy-wide-x-long" class="nav-link" data-scroll-target="#tidy-wide-x-long"><span class="toc-section-number">7.2</span>  tidy: wide x long</a></li>
+  <li><a href="#tibbles-os-dataframes-do-tidyverse" id="toc-tibbles-os-dataframes-do-tidyverse" class="nav-link" data-scroll-target="#tibbles-os-dataframes-do-tidyverse"><span class="toc-section-number">7.3</span>  <code>Tibbles</code>, os dataframes do tidyverse</a>
+  <ul class="collapse">
+  <li><a href="#o-que-são-tibbles" id="toc-o-que-são-tibbles" class="nav-link" data-scroll-target="#o-que-são-tibbles"><span class="toc-section-number">7.3.1</span>  O que são Tibbles?</a></li>
+  <li><a href="#vantagens-das-tibbles" id="toc-vantagens-das-tibbles" class="nav-link" data-scroll-target="#vantagens-das-tibbles"><span class="toc-section-number">7.3.2</span>  Vantagens das Tibbles</a></li>
+  <li><a href="#criando-e-usando-tibbles" id="toc-criando-e-usando-tibbles" class="nav-link" data-scroll-target="#criando-e-usando-tibbles"><span class="toc-section-number">7.3.3</span>  Criando e Usando Tibbles</a></li>
+  <li><a href="#transformando-data-frames-em-tibbles" id="toc-transformando-data-frames-em-tibbles" class="nav-link" data-scroll-target="#transformando-data-frames-em-tibbles"><span class="toc-section-number">7.3.4</span>  transformando data frames em <code>tibbles</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-dataframes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base o R, os data frames e as tibbles são o coração do R.</p>
+<section id="data-frames" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">7.1</span> Data frames</h2>
+<p>Data frames são a forma usual do R para armazenar dados. Veremos depois que as tibbles são a versão mais nova dos data frames, com melhorias em vários aspectos.</p>
+<p>Superficialmente os data frames e as tibbles são como planilhas do Excel, com colunas e linhas, onde cada coluna é uma variável da pesquisa (ex: sexo, idade, peso) e cada linha uma observação (ex: um paciente ou um caso).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/diabetes_datasetScreenShot.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Exemplo de data frame</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O R possui vários datasets (conjuntos de dados) para facilitar o aprendizado. Para saber mais sobre os datasets inclusos no R digite no console o comando abaixo: &gt; data()</p>
+<p>Podemos carregar os datasets já inclusos no R com a função mesma função <code>data()</code>, bastando incluir como argumento o nome do dataset desejado. No exemplo a seguir iremos carregar o dataset <code>USArrests</code>. Este dataset contém estatísticas das prisões por 100.000 habitantes por assalto, assassinato e estupro em cada um dos 50 estados dos EUA em 1973, como também a porcentagem da população urbana.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(USArrests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como esse dataset carregado podemos agora visualizar os dados simplesmente digitando o nome do dataset no console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USArrests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Murder Assault UrbanPop Rape
+Alabama      13.2     236       58 21.2
+Alaska       10.0     263       48 44.5
+Arizona       8.1     294       80 31.0
+Arkansas      8.8     190       50 19.5
+California    9.0     276       91 40.6
+Colorado      7.9     204       78 38.7</code></pre>
+</div>
+</div>
+<p>Experimente também usar a função <code>str()</code>, que mostra a estrutura dos dados de um objeto.</p>
+<p>Você verá que o dataset <code>USArrests</code> é um data frame com 50 observações (50 linhas) e 4 variáveis (Murder, Assault, UrbanPop, Rape), como mostrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(USArrests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   50 obs. of  4 variables:
+ $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+ $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
+ $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
+ $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...</code></pre>
+</div>
+</div>
+<p>Vejamos a estrutura de um dataset com 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhasa e 19 colunas. Esse dataset foi obtido no site da universidade de Vanderbilt no link a seguir:</p>
+<p><a href="https://hbiostat.org/data/repo/diabetes.csv" class="uri">https://hbiostat.org/data/repo/diabetes.csv</a></p>
+<p>Para usar esse dataset é necessário fazer o download desse arquivo e depois carregar esse arquivo no R. Veremos mais tarde como fazer isso.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  n   id colesterol glicose hdl ratio glicohemoglobina     cidade idade   sexo
+1 1 1000        203      82  56   3.6             4.31 Buckingham    46 female
+2 2 1001        165      97  24   6.9             4.44 Buckingham    29 female
+3 3 1002        228      92  37   6.2             4.64 Buckingham    58 female
+4 4 1003         78      93  12   6.5             4.63 Buckingham    67   male
+5 5 1005        249      90  28   8.9             7.72 Buckingham    64   male
+6 6 1008        248      94  69   3.6             4.81 Buckingham    34   male
+  altura      peso biotipo sistolica diastolica cintura quadril time.ppn
+1 157.48  54.88463  medium       118         59      29      38      720
+2 162.56  98.88306   large       112         68      46      48      360
+3 154.94 116.11955   large       190         92      49      57      180
+4 170.18  53.97745   large       110         50      33      38      480
+5 172.72  83.00734  medium       138         80      44      41      300
+6 180.34  86.18248   large       132         86      36      42      195</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   403 obs. of  18 variables:
+ $ n               : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ id              : int  1000 1001 1002 1003 1005 1008 1011 1015 1016 1022 ...
+ $ colesterol      : int  203 165 228 78 249 248 195 227 177 263 ...
+ $ glicose         : int  82 97 92 93 90 94 92 75 87 89 ...
+ $ hdl             : int  56 24 37 12 28 69 41 44 49 40 ...
+ $ ratio           : num  3.6 6.9 6.2 6.5 8.9 ...
+ $ glicohemoglobina: num  4.31 4.44 4.64 4.63 7.72 ...
+ $ cidade          : chr  "Buckingham" "Buckingham" "Buckingham" "Buckingham" ...
+ $ idade           : int  46 29 58 67 64 34 30 37 45 55 ...
+ $ sexo            : chr  "female" "female" "female" "male" ...
+ $ altura          : num  157 163 155 170 173 ...
+ $ peso            : num  54.9 98.9 116.1 54 83 ...
+ $ biotipo         : chr  "medium" "large" "large" "large" ...
+ $ sistolica       : int  118 112 190 110 138 132 161 NA 160 108 ...
+ $ diastolica      : int  59 68 92 50 80 86 112 NA 80 72 ...
+ $ cintura         : int  29 46 49 33 44 36 46 34 34 45 ...
+ $ quadril         : int  38 48 57 38 41 42 49 39 40 50 ...
+ $ time.ppn        : int  720 360 180 480 300 195 720 1020 300 240 ...</code></pre>
+</div>
+</div>
+<p>Podemos criar um data frame com a função <code>data.frame()</code>, como a seguir:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nome  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Henrique"</span>, <span class="st">"Antônio"</span>, <span class="st">"Fabiano"</span>) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>idade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">40</span>, <span class="dv">48</span>) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>staff  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(nome, idade) </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>staff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade
+1 Henrique    45
+2  Antônio    40
+3  Fabiano    48</code></pre>
+</div>
+</div>
+<p>A última linha acima criou o data frame, com as as duas colunas (nome e idade) e as 3 linhas, uma para cada participante da pesquisa e armazenou esse data frame no objeto <code>staff</code>. Veja que o objeto <code>staff</code> é um <code>data.frame</code> do R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(staff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+<p>Podemos visualizarmos a estrutura desse data frame com a função <code>str(staff)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(staff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  2 variables:
+ $ nome : chr  "Henrique" "Antônio" "Fabiano"
+ $ idade: num  45 40 48</code></pre>
+</div>
+</div>
+<p>Para visualizarmos o data frame basta digitar seu nome <code>staff</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>staff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade
+1 Henrique    45
+2  Antônio    40
+3  Fabiano    48</code></pre>
+</div>
+</div>
+</section>
+<section id="tidy-wide-x-long" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="tidy-wide-x-long"><span class="header-section-number">7.2</span> tidy: wide x long</h2>
+<p>A palavra data frame pode ser traduzida grosseiramente por quadro de dados e se refere a dados dispostos numa estrutura com linhas e colunas. Ou seja, um data frame é um objeto com estrutura bidimensional, composto de linhas e colunas, tais como uma matriz de dados.</p>
+<p>A forma de organização mais comum de dados num data frame é chamada de tidy <span class="citation" data-cites="Hadley2014">(<a href="references.html#ref-Hadley2014" role="doc-biblioref">Wickham 2014</a>)</span> que significa, segundo o dicionário Cambridge, <strong>“having everything ordered and arranged in the right place”</strong>.</p>
+<p>Um dataset ou um data frame organizado (tidy data) as informações estão dispostas da seguinte forma:</p>
+<ol type="1">
+<li>Cada variável é uma coluna (ou cada coluna é uma variável).</li>
+<li>Cada observação é uma linha (ou cada linha é uma observação).</li>
+<li>Cada célula é um valor de uma variável em uma determinada observação.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Tidy.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Tidy Data</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Existem duas formas de organizar os dados numa tabela: <strong>wide</strong> e <strong>long</strong>. Vamos ver cada uma dessas formas a seguir.</p>
+<p>Vamos primeiro criar um pequeno data frame para exemplo, no qual 3 pacientes se submeteram a dois tipos de tratamento, obtendo um determinado resultado para cada tratamento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando os vetores do data frame simulado</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pacientes   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"João"</span>, <span class="st">"José"</span>, <span class="st">"Maria"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>tratamentoA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">16</span>,<span class="dv">20</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>tratamentoB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">8</span>,<span class="dv">9</span>) </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># criando o data frame a partir dos vetores já criados</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pacientes, tratamentoA, tratamentoB)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrando o data frame criado</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  pacientes tratamentoA tratamentoB
+1      João          25          12
+2      José          16           8
+3     Maria          20           9</code></pre>
+</div>
+</div>
+<p>Esse data frame é um exemplo de dados no formado wide (largo). E é muitas vezes a forma usual de um conjunto de dados.</p>
+<p>Entretanto, frequentemente, precisamos colocar esses dados numa outra disposição que facilita a análise dos dados. O formato long (comprido) é essa outra forma.</p>
+<p>Podemos ajustar esse data frame no formato long, colocando o tipo de tratamento numa coluna e o resultado noutra coluna. Ou seja, as duas colunas anteriores chamadas <code>tratamentoA</code> e <code>tratamentoB</code> serão juntadas em uma única coluna, chamada <code>tratamento</code> e os resultados passarão a ser uma única coluna.</p>
+<p>Veja no exemplo abaixo a transformação desse conjunto de dados para o formato long:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>result <span class="sc">|&gt;</span>  </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>pacientes,  </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"tratamento"</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"resultado"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  pacientes tratamento  resultado
+  &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;
+1 João      tratamentoA        25
+2 João      tratamentoB        12
+3 José      tratamentoA        16
+4 José      tratamentoB         8
+5 Maria     tratamentoA        20
+6 Maria     tratamentoB         9</code></pre>
+</div>
+</div>
+<p>Não se preocupe com o código usado aqui para fazer essa transformação. O objetivo aqui é entender que existem dois tipos de formatação do data frame, wide e long e que existem ferramentas para essa transformação num sentido e no outro.</p>
+<p>Sugiro a leitura do artigo <strong>Tidy Data</strong> de Hadley Wickham, publicado no Journal of Statistical Software, Vol VV, Issue 2, no link a seguir: <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a></p>
+</section>
+<section id="tibbles-os-dataframes-do-tidyverse" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="tibbles-os-dataframes-do-tidyverse"><span class="header-section-number">7.3</span> <code>Tibbles</code>, os dataframes do tidyverse</h2>
+<p>Tibbles são data frames mais amigáveis. As <code>tiblles</code> foram criadas para resolver alguns problemas dos data frames e fazem parte do pacote <code>tibble</code> do <code>tidyverse</code>. Veremos nos capítulos adiante o que são pacotes, o que é o <code>tidyverse</code>.</p>
+<p>Tibbles são a versão moderna dos data frames do R. Um dataframe é uma estrutura de dados em R que organiza dados em uma tabela, onde cada coluna pode conter um tipo diferente de dados (como números, texto, ou datas). Cada linha do dataframe representa uma observação.</p>
+<p>Por exemplo, imagine que você tem uma tabela com informações sobre pacientes:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Nome</th>
+<th>Idade</th>
+<th>Tipo Sanguíneo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>João</td>
+<td>30</td>
+<td>A+</td>
+</tr>
+<tr class="even">
+<td>Maria</td>
+<td>25</td>
+<td>B-</td>
+</tr>
+<tr class="odd">
+<td>Ana</td>
+<td>40</td>
+<td>O+</td>
+</tr>
+</tbody>
+</table>
+<p>Essa tabela pode ser representada como um dataframe em R.</p>
+<section id="o-que-são-tibbles" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="o-que-são-tibbles"><span class="header-section-number">7.3.1</span> O que são Tibbles?</h3>
+<p>Tibbles são uma versão moderna dos dataframes, oferecida pelo pacote <code>tibble</code>, parte do tidyverse. Eles são projetados para serem mais simples e robustos do que os dataframes tradicionais. Embora sejam semelhantes aos dataframes, as tibbles trazem várias vantagens que facilitam o trabalho com dados em R.</p>
+</section>
+<section id="vantagens-das-tibbles" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="vantagens-das-tibbles"><span class="header-section-number">7.3.2</span> Vantagens das Tibbles</h3>
+<ol type="1">
+<li><p><strong>Exibição Melhorada</strong>:</p>
+<ul>
+<li>Quando você exibe uma tibble, ela é formatada de forma amigável. Apenas as primeiras 10 linhas e as colunas que cabem na tela são mostradas, evitando sobrecarregar a tela com informações.</li>
+<li>Dataframes tradicionais podem mostrar grandes quantidades de dados de uma só vez, o que pode ser confuso.</li>
+</ul></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo um dataframe tradicional</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">"João"</span>, <span class="st">"Maria"</span>, <span class="st">"Ana"</span>, <span class="st">"Marcos"</span>, <span class="st">"Antônio"</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Pedro"</span>, <span class="st">"José"</span>, <span class="st">"Gustavo"</span>, <span class="st">"Carlos"</span>, <span class="st">"Rafaela"</span>, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Luiza"</span>, <span class="st">"Lucas"</span>, <span class="st">"Laura"</span>, <span class="st">"Lavinia"</span>, <span class="st">"Carla"</span>), </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                           <span class="dv">75</span>, <span class="dv">27</span>, <span class="dv">54</span>, <span class="dv">59</span>, <span class="dv">12</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                           <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">65</span>, <span class="dv">87</span>, <span class="dv">90</span>), </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tipoSanguineo =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>,<span class="st">"B-"</span>, </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade tipoSanguineo
+1     João    30            A+
+2    Maria    25            B-
+3      Ana    40            O+
+4   Marcos    35            A+
+5  Antônio    60            B-
+6    Pedro    75            O+
+7     José    27            A+
+8  Gustavo    54            B-
+9   Carlos    59            O+
+10 Rafaela    12            B-
+11   Luiza    19            O+
+12   Lucas    22            A+
+13   Laura    65            A+
+14 Lavinia    87            B-
+15   Carla    90            O+</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo uma tibble</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">"João"</span>, <span class="st">"Maria"</span>, <span class="st">"Ana"</span>, <span class="st">"Marcos"</span>, <span class="st">"Antônio"</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Pedro"</span>, <span class="st">"José"</span>, <span class="st">"Gustavo"</span>, <span class="st">"Carlos"</span>, <span class="st">"Rafaela"</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Luiza"</span>, <span class="st">"Lucas"</span>, <span class="st">"Laura"</span>, <span class="st">"Lavinia"</span>, <span class="st">"Carla"</span>), </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">75</span>, <span class="dv">27</span>, <span class="dv">54</span>, <span class="dv">59</span>, <span class="dv">12</span>, </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">65</span>, <span class="dv">87</span>, <span class="dv">90</span>), </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">tipoSanguineo =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>,<span class="st">"B-"</span>, </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+   nome    idade tipoSanguineo
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;        
+ 1 João       30 A+           
+ 2 Maria      25 B-           
+ 3 Ana        40 O+           
+ 4 Marcos     35 A+           
+ 5 Antônio    60 B-           
+ 6 Pedro      75 O+           
+ 7 José       27 A+           
+ 8 Gustavo    54 B-           
+ 9 Carlos     59 O+           
+10 Rafaela    12 B-           
+11 Luiza      19 O+           
+12 Lucas      22 A+           
+13 Laura      65 A+           
+14 Lavinia    87 B-           
+15 Carla      90 O+           </code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p><strong>Colunas Consistentes</strong>:</p>
+<ul>
+<li>As tibbles sempre mantêm as colunas como os tipos de dados corretos. Por exemplo, se você tiver uma coluna de números, ela não será automaticamente convertida em caracteres, mesmo se houver um valor de texto nela.</li>
+<li>Dataframes tradicionais às vezes convertem automaticamente os tipos de dados de colunas, o que pode causar problemas.</li>
+</ul></li>
+<li><p><strong>Facilidade de Subsetting (Subconjuntos)</strong>:</p>
+<ul>
+<li>Subsetting em tibbles é mais intuitivo. Você pode usar colchetes <code>[]</code>, <code>$</code> ou funções específicas do <code>tidyverse</code> sem surpresas.</li>
+<li>Dataframes tradicionais podem se comportar de maneiras inesperadas ao fazer subsetting, especialmente com colunas de uma única linha.</li>
+</ul></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting com tibble</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tib<span class="sc">$</span>nome  <span class="co"># Acesso à coluna 'Nome'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "João"    "Maria"   "Ana"     "Marcos"  "Antônio" "Pedro"   "José"   
+ [8] "Gustavo" "Carlos"  "Rafaela" "Luiza"   "Lucas"   "Laura"   "Lavinia"
+[15] "Carla"  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting com tibble</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tib[<span class="dv">1</span>, ]  <span class="co"># Acesso à primeira linha</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  nome  idade tipoSanguineo
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        
+1 João     30 A+           </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting com dataframe tradicional pode causar problemas se não tomar cuidado</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>nome <span class="co"># Acesso à coluna 'Nome'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "João"    "Maria"   "Ana"     "Marcos"  "Antônio" "Pedro"   "José"   
+ [8] "Gustavo" "Carlos"  "Rafaela" "Luiza"   "Lucas"   "Laura"   "Lavinia"
+[15] "Carla"  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting com dataframe tradicional pode causar problemas se não tomar cuidado</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span>, ] <span class="co"># Acesso à primeira linha</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  nome idade tipoSanguineo
+1 João    30            A+</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p><strong>Mensagens de Erro Mais Úteis</strong>:</p>
+<ul>
+<li>As tibbles fornecem mensagens de erro mais claras e informativas, ajudando a entender o que deu errado e como corrigir.</li>
+</ul></li>
+<li><p><strong>Melhor Compatibilidade com o Tidyverse</strong>:</p>
+<ul>
+<li>As tibbles são projetadas para funcionar perfeitamente com outras ferramentas do <code>tidyverse</code> (como <code>dplyr</code> e <code>ggplot2</code>), facilitando operações de manipulação de dados e visualização.</li>
+</ul></li>
+</ol>
+</section>
+<section id="criando-e-usando-tibbles" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="criando-e-usando-tibbles"><span class="header-section-number">7.3.3</span> Criando e Usando Tibbles</h3>
+<p>Aqui está um exemplo de como criar e usar tibbles no R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instale e carregue o pacote tibble</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tibble")</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma tibble</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>dados_pacientes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">"João"</span>, <span class="st">"Maria"</span>, <span class="st">"Ana"</span>, <span class="st">"Marcos"</span>, <span class="st">"Antônio"</span>, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Pedro"</span>, <span class="st">"José"</span>, <span class="st">"Gustavo"</span>, <span class="st">"Carlos"</span>, <span class="st">"Rafaela"</span>, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Luiza"</span>, <span class="st">"Lucas"</span>, <span class="st">"Laura"</span>, <span class="st">"Lavinia"</span>, <span class="st">"Carla"</span>), </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">60</span>, </span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="dv">75</span>, <span class="dv">27</span>, <span class="dv">54</span>, <span class="dv">59</span>, <span class="dv">12</span>, </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">65</span>, <span class="dv">87</span>, <span class="dv">90</span>), </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tipoSanguineo =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>,<span class="st">"B-"</span>, </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">"O+"</span>, <span class="st">"A+"</span>, <span class="st">"A+"</span>, <span class="st">"B-"</span>, <span class="st">"O+"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo a tibble</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dados_pacientes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+   nome    idade tipoSanguineo
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;        
+ 1 João       30 A+           
+ 2 Maria      25 B-           
+ 3 Ana        40 O+           
+ 4 Marcos     35 A+           
+ 5 Antônio    60 B-           
+ 6 Pedro      75 O+           
+ 7 José       27 A+           
+ 8 Gustavo    54 B-           
+ 9 Carlos     59 O+           
+10 Rafaela    12 B-           
+11 Luiza      19 O+           
+12 Lucas      22 A+           
+13 Laura      65 A+           
+14 Lavinia    87 B-           
+15 Carla      90 O+           </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando colunas</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dados_pacientes<span class="sc">$</span>nome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "João"    "Maria"   "Ana"     "Marcos"  "Antônio" "Pedro"   "José"   
+ [8] "Gustavo" "Carlos"  "Rafaela" "Luiza"   "Lucas"   "Laura"   "Lavinia"
+[15] "Carla"  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrando dados com o dplyr (do tidyverse)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>pacientes_mais_jovens <span class="ot">&lt;-</span> dados_pacientes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(idade <span class="sc">&lt;</span> <span class="dv">35</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>pacientes_mais_jovens</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  nome    idade tipoSanguineo
+  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;        
+1 João       30 A+           
+2 Maria      25 B-           
+3 José       27 A+           
+4 Rafaela    12 B-           
+5 Luiza      19 O+           
+6 Lucas      22 A+           </code></pre>
+</div>
+</div>
+</section>
+<section id="transformando-data-frames-em-tibbles" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="transformando-data-frames-em-tibbles"><span class="header-section-number">7.3.4</span> transformando data frames em <code>tibbles</code></h3>
+<p>Caso você tenha um data frame, é fácil transformá-lo numa <code>tibble</code> usando a função <code>as.tibble()</code>.</p>
+<p>O código a seguir lê um banco de dados chamado <code>diabetes.csv</code> que está na pasta <code>dataset</code> do projeto. A leitura será feita através da função base do R <code>read.csv()</code>, que coloca os dados lidos num data frame. Em seguida, usaremos a função <code>as.tibble()</code> para transformar o data frame numa <code>tibble</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lendo os dados com a função read.csv do R Base</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dataset/diabetes.csv"</span>) </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando que os dados foram armazenados num data frame</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   403 obs. of  18 variables:
+ $ n               : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ id              : int  1000 1001 1002 1003 1005 1008 1011 1015 1016 1022 ...
+ $ colesterol      : int  203 165 228 78 249 248 195 227 177 263 ...
+ $ glicose         : int  82 97 92 93 90 94 92 75 87 89 ...
+ $ hdl             : int  56 24 37 12 28 69 41 44 49 40 ...
+ $ ratio           : num  3.6 6.9 6.2 6.5 8.9 ...
+ $ glicohemoglobina: num  4.31 4.44 4.64 4.63 7.72 ...
+ $ cidade          : chr  "Buckingham" "Buckingham" "Buckingham" "Buckingham" ...
+ $ idade           : int  46 29 58 67 64 34 30 37 45 55 ...
+ $ sexo            : chr  "female" "female" "female" "male" ...
+ $ altura          : num  157 163 155 170 173 ...
+ $ peso            : num  54.9 98.9 116.1 54 83 ...
+ $ biotipo         : chr  "medium" "large" "large" "large" ...
+ $ sistolica       : int  118 112 190 110 138 132 161 NA 160 108 ...
+ $ diastolica      : int  59 68 92 50 80 86 112 NA 80 72 ...
+ $ cintura         : int  29 46 49 33 44 36 46 34 34 45 ...
+ $ quadril         : int  38 48 57 38 41 42 49 39 40 50 ...
+ $ time.ppn        : int  720 360 180 480 300 195 720 1020 300 240 ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transformando o data frame numa tibble</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(diabetes)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando que os dados agora esão armazenados numa tibble</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [403 × 18] (S3: tbl_df/tbl/data.frame)
+ $ n               : int [1:403] 1 2 3 4 5 6 7 8 9 10 ...
+ $ id              : int [1:403] 1000 1001 1002 1003 1005 1008 1011 1015 1016 1022 ...
+ $ colesterol      : int [1:403] 203 165 228 78 249 248 195 227 177 263 ...
+ $ glicose         : int [1:403] 82 97 92 93 90 94 92 75 87 89 ...
+ $ hdl             : int [1:403] 56 24 37 12 28 69 41 44 49 40 ...
+ $ ratio           : num [1:403] 3.6 6.9 6.2 6.5 8.9 ...
+ $ glicohemoglobina: num [1:403] 4.31 4.44 4.64 4.63 7.72 ...
+ $ cidade          : chr [1:403] "Buckingham" "Buckingham" "Buckingham" "Buckingham" ...
+ $ idade           : int [1:403] 46 29 58 67 64 34 30 37 45 55 ...
+ $ sexo            : chr [1:403] "female" "female" "female" "male" ...
+ $ altura          : num [1:403] 157 163 155 170 173 ...
+ $ peso            : num [1:403] 54.9 98.9 116.1 54 83 ...
+ $ biotipo         : chr [1:403] "medium" "large" "large" "large" ...
+ $ sistolica       : int [1:403] 118 112 190 110 138 132 161 NA 160 108 ...
+ $ diastolica      : int [1:403] 59 68 92 50 80 86 112 NA 80 72 ...
+ $ cintura         : int [1:403] 29 46 49 33 44 36 46 34 34 45 ...
+ $ quadril         : int [1:403] 38 48 57 38 41 42 49 39 40 50 ...
+ $ time.ppn        : int [1:403] 720 360 180 480 300 195 720 1020 300 240 ...</code></pre>
+</div>
+</div>
+<p>Veremos mais adiante que a função <code>read_csv()</code> do <code>readr</code> já lê os dados como uma tibble.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lendo os dados com a função read.csv do R Base</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/diabetes.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 403 Columns: 18
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): cidade, sexo, biotipo
+dbl (15): n, id, colesterol, glicose, hdl, ratio, glicohemoglobina, idade, a...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando que os dados foram armazenados num data frame</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [403 × 18] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ n               : num [1:403] 1 2 3 4 5 6 7 8 9 10 ...
+ $ id              : num [1:403] 1000 1001 1002 1003 1005 ...
+ $ colesterol      : num [1:403] 203 165 228 78 249 248 195 227 177 263 ...
+ $ glicose         : num [1:403] 82 97 92 93 90 94 92 75 87 89 ...
+ $ hdl             : num [1:403] 56 24 37 12 28 69 41 44 49 40 ...
+ $ ratio           : num [1:403] 3.6 6.9 6.2 6.5 8.9 ...
+ $ glicohemoglobina: num [1:403] 4.31 4.44 4.64 4.63 7.72 ...
+ $ cidade          : chr [1:403] "Buckingham" "Buckingham" "Buckingham" "Buckingham" ...
+ $ idade           : num [1:403] 46 29 58 67 64 34 30 37 45 55 ...
+ $ sexo            : chr [1:403] "female" "female" "female" "male" ...
+ $ altura          : num [1:403] 157 163 155 170 173 ...
+ $ peso            : num [1:403] 54.9 98.9 116.1 54 83 ...
+ $ biotipo         : chr [1:403] "medium" "large" "large" "large" ...
+ $ sistolica       : num [1:403] 118 112 190 110 138 132 161 NA 160 108 ...
+ $ diastolica      : num [1:403] 59 68 92 50 80 86 112 NA 80 72 ...
+ $ cintura         : num [1:403] 29 46 49 33 44 36 46 34 34 45 ...
+ $ quadril         : num [1:403] 38 48 57 38 41 42 49 39 40 50 ...
+ $ time.ppn        : num [1:403] 720 360 180 480 300 195 720 1020 300 240 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   n = col_double(),
+  ..   id = col_double(),
+  ..   colesterol = col_double(),
+  ..   glicose = col_double(),
+  ..   hdl = col_double(),
+  ..   ratio = col_double(),
+  ..   glicohemoglobina = col_double(),
+  ..   cidade = col_character(),
+  ..   idade = col_double(),
+  ..   sexo = col_character(),
+  ..   altura = col_double(),
+  ..   peso = col_double(),
+  ..   biotipo = col_character(),
+  ..   sistolica = col_double(),
+  ..   diastolica = col_double(),
+  ..   cintura = col_double(),
+  ..   quadril = col_double(),
+  ..   time.ppn = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Hadley2014" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 23.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-R-Objects-Variables-Vectors.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-Operators.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

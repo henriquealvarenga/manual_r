@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 10&nbsp; Pacotes do R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10-Reading_data.html" rel="next">
+<link href="./08-R-Functions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link active" data-scroll-target="#tidyverse"><span class="toc-section-number">10.1</span>  Tidyverse</a></li>
+  <li><a href="#instalando-o-tidyverse" id="toc-instalando-o-tidyverse" class="nav-link" data-scroll-target="#instalando-o-tidyverse"><span class="toc-section-number">10.2</span>  Instalando o tidyverse</a></li>
+  <li><a href="#carrregando-pacotes" id="toc-carrregando-pacotes" class="nav-link" data-scroll-target="#carrregando-pacotes"><span class="toc-section-number">10.3</span>  Carrregando pacotes</a></li>
+  <li><a href="#datasets-do-ggplot2" id="toc-datasets-do-ggplot2" class="nav-link" data-scroll-target="#datasets-do-ggplot2"><span class="toc-section-number">10.4</span>  Datasets do ggplot2</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Uma das maiores forças da linguagem R é o seu excelente conjunto de pacotes (packages) <span class="citation" data-cites="Hornik2012">(<a href="references.html#ref-Hornik2012" role="doc-biblioref">Hornik 2012</a>)</span>. Pacotes são conjuntos de funções criadas por outras pessoas que contribuem para o desenvolvimento da linguagem R. Como o R é uma linguagem aberta, qualquer pessoa pode contribuir criando pacotes. Atualmente o R é um dos mais importantes repositórios de funções estatísticas, sendo muito comum que teses de mestrado na área da estatística se tornem pacotes do R.</p>
+<p>Uma das principais razões do sucesso do R são os pacotes extremamente versáteis que a linguagem hoje dispõe. Até dezembro de 2018 o R tinha mais de 13 mil pacotes só no site do CRAN, além de milhares de outros em diferentes sites. Em maio de 2024, esse número já ultrapassava 20.000 pacotes.</p>
+<p>Dentre esses tantos pacotes, alguns se destacam pela sua extrema versatilidade e um nome se destaca no universo da estatística: Hadley Wickham, um estatístico neozelandês, é o responsável pela criação dos pacotes mais famosos do R, entre eles o <code>ggplot2</code> para geração de gráficos é o <code>dplyr</code> para manipulação de dados. O pacote <code>ggplot2</code> é o pacote gráfico mais importante do R, já tendo sido baixado mais de 10 milhões de vezes do site do CRAN. O pacote <code>dplyr</code>, por sua vez, já foi baixado mais de 6 milhões de vezes do site do CRAN, sendo um dos pacotes mais usados para manipulação de dados.</p>
+<p>Esses dois pacotes e vários outros podem ser instalados mais facilmente através da instalação do pacote <code>tidyverse</code>. O <code>tidyverse</code> é uma coleção de pacotes, instalando automaticamente uma série de pacotes úteis em análises de dados, entres eles o <code>dplyr</code>, <code>ggplot2</code> e outros, sendo o modo mais prático de instalar esses pacotes, pois com um único comando são instalados diversos pacotes. Mais informações sobre o pacote <code>tidyverse</code> podem ser encontradas em <a href="https://www.tidyverse.org" class="uri">https://www.tidyverse.org</a>.</p>
+<section id="tidyverse" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">10.1</span> Tidyverse</h2>
+<p>O <code>tidyverse</code> é uma coleção de pacotes R projetados para ciência de dados, para manipulação, exploração e visualização de dados, inicialmente desenvolvidos por Hadley Wickham, mas que continuam sendo expandidos por vários colaboradores.</p>
+<p>Entre os pacotes mais importantes estão:</p>
+<p><strong>1.readr</strong><br>
+O pacote <code>readr</code> fornece uma maneira rápida e amigável de ler dados tabulados (como .csv, .tsv e fwf). Veremos as funções <code>read_csv()</code> e <code>readcsv2()</code> para leitura de dados em formato <code>csv</code>.</p>
+<p><strong>2.tibble</strong><br>
+o pacote <code>tibble</code> atualiza o objeto data frame para a <code>tibble</code>, uma versão mais moderna dos data frames.</p>
+<p><strong>3.tidyr</strong><br>
+O pacote <code>tidyr</code> fornece um conjunto de funções que ajudam você a organizar os dados. Veremos como transformar data frames no formato wide em formato long e vice versa com as funções <code>pivot_longer()</code> e <code>pivot_wider()</code>; veremos como retirar observações com valores <code>NA</code> com a função <code>drop_na()</code> e como substituir observações com valores <code>NA</code> com a função <code>replace_na()</code>.</p>
+<p><strong>4.dplyr</strong><br>
+O pacote <code>dplyr</code> fornece uma gramática de manipulação de dados, fornecendo um conjunto consistente de funções que resolvem os desafios mais comuns de manipulação de dados. Veremos como extrair linhas que preencham certos critérios com a função <code>filter()</code>; seleciona uma ou um conjunto de colunas (variáveis) com a função <code>select()</code>; extrair os valores de uma coluna na forma de um vetor com a função <code>pull()</code>; agrupa dados segundo as categorias de uma variável categórica com a função <code>group_by()</code>; criar novas colunas (variáveis) a partir de outras já existentes com a função <code>mutate()</code> e como modifica valores de variáveis, numérica ou categóricas com a função <code>recode()</code>.</p>
+<p><strong>5.forcats</strong><br>
+O pacote <code>forcats</code> fornecer um conjunto de ferramentas que resolve problemas comuns com variáveis categóricas.</p>
+<p><strong>6.ggplot2</strong> O pacote <code>ggplot2</code> é um sistema para criação declarativa de gráficos, baseado em <strong>The Grammar of Graphics</strong>. Você fornece os dados, diz ao ggplot2 como mapear variáveis, quais tipos de gráficos usar e ele cuida dos detalhes.</p>
+<p>O <code>tidyverse</code> tem diversos outros pacotes para funções mais complexas que estão fora do escopo desse livro, tais como o pacote <code>purrr</code> de programação funcional (FP) do R, para trabalhar com funções e vetores; o pacote pacote <code>stringr</code> para trabalhar com strings dentre vários outros.</p>
+</section>
+<section id="instalando-o-tidyverse" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="instalando-o-tidyverse"><span class="header-section-number">10.2</span> Instalando o tidyverse</h2>
+<p>Para instalar um pacote, você pode usar a função <code>install.packages()</code> no console. É importante salientar que um pacote deve ser sempre instalado a partir do console e nunca a partir de um script ou de qualquer outro documento de texto. Além disso, vale a pena lembrar que um pacote só precisa ser instalado uma única vez.</p>
+<p>Por outro lado, sempre que desejamos usar o pacote precisamos carregar esse pacote na memória (na sessão do R) com o comando <code>library()</code>. Esse carregamento do pacote na sessão deve ser feito toda vez que formos usar o pacote, de preferência no início da sessão. Em geral o comando <code>library()</code> deve ser um dos primeiros comandos de um script ou de um documento RNotebook ou Quarto. Frequentemente você verá que as primeiras linhas de um código contém diversos comandos <code>library()</code> cada um carregando um dos pacotes a serem usados naquela sessão.</p>
+<p>Para instalar o tidyverse usamos o comando <code>install.packages()</code> no console, como mostrado abaixo:<br>
+<code>&gt; install.packages("tidyverse")</code></p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Install-tidyverse.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Installing the tidyvese package</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ao executar esse comando você verá que o R instala diversos pacotes do <code>tidyverse.</code> Será necessária uma conexão com a internet para que esses pacotes sejam todos instalados. Dependendo da velocidade de sua conexão isso pode levar alguns minutos.</p>
+<blockquote class="blockquote">
+<p>Atenção, isso só precisa ser feito uma vez!! Se você já instalou esse pacote, passe para a próxima etapa. Lembre-se, que um pacote só precisa ser instalado uma única vez.</p>
+</blockquote>
+</section>
+<section id="carrregando-pacotes" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="carrregando-pacotes"><span class="header-section-number">10.3</span> Carrregando pacotes</h2>
+<p>A segunda etapa é carregar o pacote na sessão. Isso é feito com o comando <code>library()</code>. O carregamento dos pacotes necessários deve ser feito sempre no início de seu código.</p>
+<p>Para carregar o pacote tidyverse em sua sessão R, use o comando <code>library()</code> no início de seu script ou de seu R Notebook ou documento Quarto, como mostrado abaixo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Libray-at-begining.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Loading the tidyvese package</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observe que no comando <code>library()</code> o nome do pacote não precisa ser escrito entre aspas.</p>
+</section>
+<section id="datasets-do-ggplot2" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="datasets-do-ggplot2"><span class="header-section-number">10.4</span> Datasets do ggplot2</h2>
+<p>O pacote <code>ggplot2</code> também possui vários datasets (conjuntos de dados) para facilitar o aprendizado. Podemos carregar os datasets já inclusos no <code>ggplot2</code> com a função mesma função <code>data()</code>, bastando incluir como argumento o nome do dataset desejado, desde que que o <code>ggplot2</code> ou o <code>tidyverse</code> já tenham sido previamente carregados.</p>
+<p>Para acessar o <code>dataset</code> mpg use o código abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># necessário para acessar os datasets do ggplot2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Experimente usar a função <code>str()</code>, que mostra a estrutura dos dados de um objeto. Você verá que o dataset <code>mpg</code> é um data frame com 234 observações (234 linhas) e 11 variáveis, como mostrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [234 × 11] (S3: tbl_df/tbl/data.frame)
+ $ manufacturer: chr [1:234] "audi" "audi" "audi" "audi" ...
+ $ model       : chr [1:234] "a4" "a4" "a4" "a4" ...
+ $ displ       : num [1:234] 1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+ $ year        : int [1:234] 1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+ $ cyl         : int [1:234] 4 4 4 4 6 6 6 4 4 4 ...
+ $ trans       : chr [1:234] "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+ $ drv         : chr [1:234] "f" "f" "f" "f" ...
+ $ cty         : int [1:234] 18 21 20 21 16 18 18 18 16 20 ...
+ $ hwy         : int [1:234] 29 29 31 30 26 26 27 26 25 28 ...
+ $ fl          : chr [1:234] "p" "p" "p" "p" ...
+ $ class       : chr [1:234] "compact" "compact" "compact" "compact" ...</code></pre>
+</div>
+</div>
+<p>O acrônimo <code>mpg</code> significa <strong>Miles Per Gallon</strong> - uma medida de quantas milhas um carro pode viajar se você colocar apenas um galão de gasolina ou diesel em seu tanque (1 galão equivale a 3.79 litros e uma milha equivale a 1.6km). Esta medida padronizada serve comparar carros com base na sua eficiência. O conjunto de dados mpg que vem junto com o ggplot2 é apenas um subconjunto dos dados de economia de combustível que a EPA (Enviroment Protection Agency - USA) disponibiliza em <a href="http://fueleconomy.gov." class="uri">http://fueleconomy.gov.</a> O conjunto completo dos dados podem ser obtidos nesse site, no link seguir: <a href="http://fueleconomy.gov/feg/download.shtml" class="uri">http://fueleconomy.gov/feg/download.shtml</a>.</p>
+<p>Esse dataset possui 243 linhas (observações) com 11 variáveis. O significado de cada variável está descrito na documentação de ajuda do dataset mpg e pode ser visualizado com o comando <code>?mpg</code> no console. A tabela a seguir mostra o significado de cada variável desse dataset.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mpg-dictionary.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">dicionário de variáveis do dataset mpg</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Hornik2012" class="csl-entry" role="doc-biblioentry">
+Hornik, Kurt. 2012. <span>“Are There Too Many r Packages?”</span> Journal Article. <em>Austrian Journal of Statistics</em> 41 (1): 59-66-59-66.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-R-Functions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10-Reading_data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 13&nbsp; Gráficos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./13-Statistical_Analysis.html" rel="next">
+<link href="./11-Manipulating_data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gráficos-fom-ggplot" id="toc-gráficos-fom-ggplot" class="nav-link active" data-scroll-target="#gráficos-fom-ggplot"><span class="toc-section-number">13.1</span>  Gráficos fom ggplot</a>
+  <ul class="collapse">
+  <li><a href="#etapas-da-construção-de-um-gráfico-no-ggplot2" id="toc-etapas-da-construção-de-um-gráfico-no-ggplot2" class="nav-link" data-scroll-target="#etapas-da-construção-de-um-gráfico-no-ggplot2"><span class="toc-section-number">13.1.1</span>  Etapas da construção de um gráfico no ggplot2</a></li>
+  <li><a href="#gráfico-de-barras" id="toc-gráfico-de-barras" class="nav-link" data-scroll-target="#gráfico-de-barras"><span class="toc-section-number">13.1.2</span>  Gráfico de Barras</a></li>
+  <li><a href="#histograma" id="toc-histograma" class="nav-link" data-scroll-target="#histograma"><span class="toc-section-number">13.1.3</span>  Histograma</a></li>
+  <li><a href="#gráfico-de-densidade" id="toc-gráfico-de-densidade" class="nav-link" data-scroll-target="#gráfico-de-densidade"><span class="toc-section-number">13.1.4</span>  Gráfico de densidade</a></li>
+  <li><a href="#boxplot-ou-diagrama-de-caixas" id="toc-boxplot-ou-diagrama-de-caixas" class="nav-link" data-scroll-target="#boxplot-ou-diagrama-de-caixas"><span class="toc-section-number">13.1.5</span>  Boxplot ou diagrama de caixas</a></li>
+  <li><a href="#gráfico-de-dispersão-ou-scatter-plot" id="toc-gráfico-de-dispersão-ou-scatter-plot" class="nav-link" data-scroll-target="#gráfico-de-dispersão-ou-scatter-plot"><span class="toc-section-number">13.1.6</span>  Gráfico de dispersão ou Scatter Plot</a></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão"><span class="toc-section-number">13.1.7</span>  Conclusão</a></li>
+  </ul></li>
+  <li><a href="#gráficos-do-r-base" id="toc-gráficos-do-r-base" class="nav-link" data-scroll-target="#gráficos-do-r-base"><span class="toc-section-number">13.2</span>  Gráficos do R Base</a>
+  <ul class="collapse">
+  <li><a href="#gráficos-com-plot" id="toc-gráficos-com-plot" class="nav-link" data-scroll-target="#gráficos-com-plot"><span class="toc-section-number">13.2.1</span>  Gráficos com <code>plot()</code></a></li>
+  <li><a href="#histograma-com-hist" id="toc-histograma-com-hist" class="nav-link" data-scroll-target="#histograma-com-hist"><span class="toc-section-number">13.2.2</span>  Histograma com <code>hist()</code></a></li>
+  <li><a href="#boxplot-com-boxplot" id="toc-boxplot-com-boxplot" class="nav-link" data-scroll-target="#boxplot-com-boxplot"><span class="toc-section-number">13.2.3</span>  Boxplot com <code>boxplot()</code></a></li>
+  <li><a href="#gráfico-de-barras-com-barplot" id="toc-gráfico-de-barras-com-barplot" class="nav-link" data-scroll-target="#gráfico-de-barras-com-barplot"><span class="toc-section-number">13.2.4</span>  Gráfico de barras com <code>barplot()</code></a></li>
+  <li><a href="#gráfico-de-pizza-com-pie" id="toc-gráfico-de-pizza-com-pie" class="nav-link" data-scroll-target="#gráfico-de-pizza-com-pie"><span class="toc-section-number">13.2.5</span>  Gráfico de pizza com <code>pie()</code></a></li>
+  <li><a href="#customizando-gráficos-do-r-base" id="toc-customizando-gráficos-do-r-base" class="nav-link" data-scroll-target="#customizando-gráficos-do-r-base"><span class="toc-section-number">13.2.6</span>  Customizando Gráficos do R Base</a></li>
+  <li><a href="#conclusão-1" id="toc-conclusão-1" class="nav-link" data-scroll-target="#conclusão-1"><span class="toc-section-number">13.2.7</span>  Conclusão</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-ggplot" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Gráficos são uma linguagem sem palavras. E como toda linguagem, possui uma gramática para ordenar sua construção. Leland Wilkinson (2005) idealizou essa gramática em seu livro “The Grammar of Graphics”, tentando responder à pergunta “o que é um gráfico?”. De acordo com Wilkinson, um gráfico é estruturado por um conjunto de dados (data), um relacionamento/mapeamento estéticos (aesthetics) desses dados através de formas geométricas (geometrics) num sistema de coordenadas (coord). Essa gramática se tornou a base do pacote gráfico <code>ggplot2</code>, criado por Hadley Wickham. Devida a sua enorme flexibilidade, o uso do <code>ggplot2</code> se tornou um dos pacotes mais populares do R.</p>
+<p>Apesar do R ter funções básicas para geração de gráficos, o pacote <code>ggplot2</code> possibilita a construção de gráficos mais elaborados, com maior facilidade de ajustes, maior integração com as outras funções do <code>tidyverse</code>.</p>
+<p>No <code>ggplot2</code> cada tipo de gráfico é tem seu nome iniciado com o termo <code>geom_</code>, seguido da forma geométrica usada. Os gráficos mais comuns são os seguintes: <code>geom_bar()</code>, <code>geom_histogram()</code>, <code>geom_density()</code>, <code>geom_boxplot()</code>, <code>geom_point()</code>.</p>
+<p>Um importante conceito desenvolvido por Wilkinson foi o de camadas (layers) de um gráfico. O conjunto formado por dados, mapeamento, formas geométricas e seus elementos estéticos formam uma camada. A grande flexibilidade do <code>ggplot2</code> é justamente permitir a inclusão de várias camadas com o simples sinal de <code>+</code>.</p>
+<p>Os gráficos do ggplot são inegavelmente mais bonitos e mais fáceis de ajustar do que os gráficos padrão do R. No entanto, a curva de aprendizado é um pouco mais íngreme. Mas, com um pouco de prática, você verá que o <code>ggplot2</code> é uma ferramenta poderosa e flexível para a criação de gráficos. Nesse livro iremos seguir uma abordagem um pouco diferente, vamos primeiro ver como construir os gráficos como pacote ggplot e depois veremos como construir gráficos com o R base. A idéia é que você aprenda a usar o ggplot para suas análises, mas conheça também as funcionalidades gráficas do R base para que possa usá-las quando necessário.</p>
+<p>Vamos inicialmente analisar as etapas genéricas da construção de gráficos com o ggplot e usando como exemplo a construção de um gráfico de barras, em seguida, veremos como construir os gráficos mais comuns: histograma, de densidade, box plot e de dispersão (scatter plot).</p>
+<section id="gráficos-fom-ggplot" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="gráficos-fom-ggplot"><span class="header-section-number">13.1</span> Gráficos fom ggplot</h2>
+<section id="etapas-da-construção-de-um-gráfico-no-ggplot2" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="etapas-da-construção-de-um-gráfico-no-ggplot2"><span class="header-section-number">13.1.1</span> Etapas da construção de um gráfico no ggplot2</h3>
+<p>A primeira etapa da criação e um gráfico com o <code>ggplot2</code> é a definição do conjunto de dados. Em seguida são definidas as formas geométricas a serem plotadas (linhas, pontos, barras, etc.). Cada forma geométrica é plotada por uma função específica, cujo nome se inicia sempre com <code>geom_xxx</code>, onde xxx será o tipo de geometria usada (barras: geom_bar; pontos: geom_point; boxplot: geom_boxplot, etc). Em seguida podemos ajustar o sistema de coordenadas, os eixos, as legendas, as paletas de cores, e muitos outros ajustes. Finalmente, podemos também escolher temas pre-definidos para a estética de apresentação dos gráficos. Existem temas para tornar os gráficos no estilo de diversos jornais.</p>
+<p>Uma observação importante: o <code>ggplot2</code> só cria gráficos a partir de dados armazenados em <code>data frames</code> ou <code>tibbles.</code> Portanto, se seus dados não estão num data frame ou <code>tibbles</code>, será necessário primeiro transformá-los nesse tipo de objeto, usando a função <code>data.frame()</code> ou <code>tibble()</code>. Os exemplos a seguir irão usar o dataset <code>mpg</code>, que já é um objeto do tipo data frame e faz parte do conjunto de datasets do próprio <code>ggplot2</code>.</p>
+<p>Antes de usar o conjunto de dados do mpg, vamos ver primeiro lembrar o que existe nesse data frame. Podemos fazer isso usando o comando <code>?mpg</code> no console, o resultado será mostrado na aba Help, no canto inferior direito do RStudio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o pacote ggplot2, necessário para usar o dataset mpg</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>?mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Description</strong> This dataset contains a subset of the fuel economy data that the EPA makes available on <a href="https://fueleconomy.gov/" class="uri">https://fueleconomy.gov/</a>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car.</p>
+<p><strong>Usage</strong> mpg - A data frame with 234 rows and 11 variables:</p>
+<p><strong>Variables</strong> manufacturer - manufacturer name<br>
+model - model name<br>
+displ - engine displacement, in litres<br>
+year - year of manufacture<br>
+cyl - number of cylinders<br>
+trans - type of transmission<br>
+drv - the type of drive train,<br>
+where f = front-wheel drive, r = rear wheel drive, 4 = 4wd<br>
+cty - city miles per gallon<br>
+hwy - highway miles per gallon<br>
+fl - fuel type, r=regular, p=premium, d=diesel, e=ethanol, c=CNG (gas)<br>
+class - “type” of car</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mpg.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">mpg dictionary</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="definindo-os-dados" class="level4" data-number="13.1.1.1">
+<h4 data-number="13.1.1.1" class="anchored" data-anchor-id="definindo-os-dados"><span class="header-section-number">13.1.1.1</span> Definindo os dados</h4>
+<p>Para isso definir qual data frame ou <code>tibble</code> vamos usar, basta usar a função <code>ggplot()</code>, inserindo como argumento o data frame ou <code>tibble</code> com os dados, como mostrado nos exemplos a seguir, usando o data frame <code>mpg</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o pacote ggplot2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># começando a criar um gráfico</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O resultado do código acima foi a geração de um plano em branco. O <code>ggplot</code> já sabe que queremos usar o data frame <code>mpg</code>, mas ainda não informamos quais variáveis queremos plotar, nem os eixos de cada variável e nem qual o tipo de gráfico desejamos.</p>
+</section>
+<section id="definindo-o-tipo-de-gráfico-mapeamento" class="level4" data-number="13.1.1.2">
+<h4 data-number="13.1.1.2" class="anchored" data-anchor-id="definindo-o-tipo-de-gráfico-mapeamento"><span class="header-section-number">13.1.1.2</span> Definindo o tipo de gráfico (mapeamento)</h4>
+<p>Já informamos ao <code>ggplot</code> que iremos trabalhar com o data frame <code>mpg</code> na primeira linha do código. As próximas linhas vão acrescentar as outras camadas. Vamos incluir aos poucos outras camada nesse plano. A primeira camada será a forma geométrica que queremos usar. O <code>ggplot2</code> denomina de <code>geom</code> as formas geométricas que podem ser usadas. Essas geometrias, ou geoms, são funções específicas para cada tipo de gráfico.</p>
+<p>Por exemplo, para um gráfico de barras usamos a função <code>geom_bar()</code>, para um gráfico de pontos (scatter plot) usamos a função <code>geom_point()</code>, para um histograma usamos a função <code>geom_histogram()</code>, para um gráfico de densidade usamos a função <code>geom_density()</code>, para um boxplot usamos a função <code>geom_boxplot()</code>, para um gráfico de linhas usamos a função <code>geom_line()</code> e assim por diante.</p>
+<p>Essas geometrias, todas bidimensionais, necessitam de dataframe ou tibble de onde os dados serão obtidos e um <strong>mapeamento estético</strong> (<em>aesthetics</em>) para indicar quais variáveis desse dataframe ou tibgle serão usadas para mapear as coordenadas <code>x</code> e <code>y</code>, que é feito com o argumento <code>aes()</code>.</p>
+<p>Vamos construir um gráfico de barras com a função <code>geom_bar()</code>. O <code>ggplot</code> usa o sistema de acrescentar gradualmente camadas com o operador <code>+</code>. Se você se esquecer do mapeamento estético o RStudio irá gerar um erro.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ggplot-error.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">ggplot-error</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O RStudio indicou um erro, faltou indicar qual a variável no eixo x. Vamos incluir essa variável com o argumento <code>aes(x=nome.da.variável)</code>. Lembre-se que um gráfico de barras exige que a variável seja categórica, pois irá plotar as frequencias absolutas de cada um dos elementos dessa categoria. Então, teremos de usar algumas das variáveis categóricas do data frame <code>mpg.</code></p>
+<p>Vamos informar ao R que a variável a ser plotada será <code>drv</code>, que é uma variável categórica, que indica o tipo de tração do carro.</p>
+<p>f = front-wheel drive - tração dianteira<br>
+r = rear wheel drive - tração traseira<br>
+4 = 4wd - tração 4x4.</p>
+<p>Veja que essa informação tem que vir dentro do argumento <code>aes</code> (aesthetics). É interessante inserir esse argumento logo na primeira linha do código, como mostrado abaixo, dentro da função <code>ggplot</code>, logo depois do nome do dataset a ser usado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Se deserjamos plotar as frequencias de cada tipo de combustivel usado, basta usar a variável <code>fl</code> (r=regular, p=premium, d=diesel, e=ethanol, c=CNG (gas)).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>fl)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="título-subtítulo-e-notas-de-rodapé" class="level4" data-number="13.1.1.3">
+<h4 data-number="13.1.1.3" class="anchored" data-anchor-id="título-subtítulo-e-notas-de-rodapé"><span class="header-section-number">13.1.1.3</span> Título, subtítulo e notas de rodapé</h4>
+<p>Podemos incluir título, subtitulo, notas de rodapé no gráfico do ggplot simplesmente adicionando uma camada a mais com o operador <code>+</code>. A função para incluir esses elementos é <code>labs()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="legendasnomes-dos-eixos" class="level4" data-number="13.1.1.4">
+<h4 data-number="13.1.1.4" class="anchored" data-anchor-id="legendasnomes-dos-eixos"><span class="header-section-number">13.1.1.4</span> Legendas(nomes) dos eixos</h4>
+<p>A função <code>labs</code> permite também incluir no gráfico os nomes dos eixos. O argumento para isso deve ser inserido dentro da função labs, como mostrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="temas" class="level4" data-number="13.1.1.5">
+<h4 data-number="13.1.1.5" class="anchored" data-anchor-id="temas"><span class="header-section-number">13.1.1.5</span> Temas</h4>
+<p>Com a função <code>theme</code> do ggplot é possível ajustar a fonte, o tamanho das fontes, as cores do fundo do gráfico. Todos esses elementos podem ser precisamente ajustados para adequar o gráfico ao estilo da revista onde será feita a publicação. Os detalhes precisos desses ajustes são um pouco mais complexos mas podem ser facilmente aprendidos na internet. O site do ggplot explica cada uma das diversas possibilidades. Para maiores detalhes consulte esse site: <a href="https://ggplot2.tidyverse.org/reference/theme.html" class="uri">https://ggplot2.tidyverse.org/reference/theme.html</a></p>
+<p>Para facilitar nos ajustes, existem uma série de temas pré-definidos que podem ser usados bastando incluir no código mais uma linha com o nome do tema desejado.</p>
+<p>Temas disponíveis:</p>
+<ul>
+<li>theme_grey()</li>
+<li>theme_gray()</li>
+<li>theme_bw()</li>
+<li>theme_linedraw()</li>
+<li>theme_light()</li>
+<li>theme_dark()</li>
+<li>theme_minimal()</li>
+<li>theme_classic()</li>
+<li>theme_void()</li>
+<li>theme_test()</li>
+</ul>
+<p>Eu gosto muito do tema clássico: <code>theme_classic()</code>. Para usar esse tema, basta incluir essa linha no código, como mostrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O <code>theme_minimal()</code> inclui algumas linhas horizontais e verticais para facilitar a visualização.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O <code>theme_linedraw()</code> incluir linhas dentro do gráfico e uma caixa ao redor do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O <code>theme_void()</code> retira os eixos e os nomes dos eixos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Existem pacotes com mais temas, por exemplo, o pacote <code>ggthemes</code> disponibiliza temas pre-definidos para gráficos do tipo do Wall Street Journal, The Economist, etc. Há pacotes também para deixar os gráficos no estilo do New York Times e vários outros jornais.</p>
+<p>Agora que já estudamos as etapas genéricas de construção de gráficos com o ggplot, vamos ver os detalhes específicos de como construir cada um dos gráficos mais comuns: gráfico de barras, histograma, gráficos de densidade, box plot e diagrama de dispersão (scatter plot).</p>
+</section>
+<section id="rotacionando-o-gráfico" class="level4" data-number="13.1.1.6">
+<h4 data-number="13.1.1.6" class="anchored" data-anchor-id="rotacionando-o-gráfico"><span class="header-section-number">13.1.1.6</span> Rotacionando o gráfico</h4>
+<p>Com o ggplot é fácil rotacionar o gráfico, bastando para isso incluir uma linha no código: <code>coord_flip()</code>. Vejamos como rotacionar o gráfico de barras acima:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="agrupando-os-gráficos" class="level4" data-number="13.1.1.7">
+<h4 data-number="13.1.1.7" class="anchored" data-anchor-id="agrupando-os-gráficos"><span class="header-section-number">13.1.1.7</span> Agrupando os gráficos</h4>
+<p>Uma técnica para facilitar a visualização de dados é criar gráficos separados para cada subgrupo. Isso é facilmente implementado no ggplot com uma linha a mais no código, através dos comandos <code>facet_wrap()</code> ou <code>facet_grid()</code>.</p>
+<p>Como exemplo, vamos criar diversos desses gráficos de barras, de acordo com o número de cilindros dos carros, informação que está na variável <code>cyl</code>. Serão criados gráficos para os carros com 4 cilindros, 5 cilindros, 6 cilindros e 8 cilindros. Observe que o argumento da função <code>facet_wrap()</code> e <code>facet_grid()</code> é precedido pelo operador <code>~</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>É possível também criar uma grade, estratificando o gráfico com duas variáveis. Nesse caso as variáveis serão inseridas com o operador <code>~</code> entre elas nos argumentos dessas funções. por exemplo: <code>facet_grid(cyl~yearl)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 e 2008"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(cyl<span class="sc">~</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="estratificando-os-dados" class="level4" data-number="13.1.1.8">
+<h4 data-number="13.1.1.8" class="anchored" data-anchor-id="estratificando-os-dados"><span class="header-section-number">13.1.1.8</span> Estratificando os dados</h4>
+<p>O ggplot permite também incluir duas variáveis categóricas num mesmo gráfico de barras. Podemos pedir ao ggplot que use cores diferentes para distinguir os elementos de uma variável dentro da barra.</p>
+<p>Podemos por exemplo, fazer barras com a variável <code>drv</code> e usar cores para distinguir os tipos de combustível dentro de cada barra.</p>
+<p>Veja como é simples incluir isso no código do ggplot, basta usar o argumento <code>fill</code>, que indica como preencher as barras, e indicar que esse preenchimento deve ser feito com base numa outra variável categórica, por exemplo, o tipo de combustível, que está na variável <code>fl</code>. As cores serão automaticamente escolhidas pelo R.</p>
+<p><strong>Um detalhe importante aqui: o argumento <code>fill</code> funciona de forma diferente quando está dentro ou fora da estética (<code>aes</code>). Nesse caso, precisamos que o argumento fill esteja dentro da estética, ou seja, dentro do parenteses do argumento <code>aes</code>.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Se você não estiver satisfeito com as cores escolhidas, é possível ajustar isso. O R tem diversas paletas de cores e você pode indicar que deseja usar alguma outra. Além disso, há também vários pacotes com outras paletas de cores que podem ser carregados e usados. Uma rápida busca na internet será suficiente para conhecer sobre todas as possibilidades de cores no R. O R tem algumas paletas pré-definidas (rainbow, heat.colors, cm.colors). Alguns dos pacotes mais famosos com paletas de cores são:</p>
+<ul>
+<li>Viridis color scales [viridis package].</li>
+<li>Colorbrewer palettes [RColorBrewer package]</li>
+<li>Grey color palettes [ggplot2 package]</li>
+<li>Scientific journal color palettes [ggsci package]</li>
+<li>Wes Anderson color palettes [wesanderson package]</li>
+</ul>
+</section>
+<section id="transparência" class="level4" data-number="13.1.1.9">
+<h4 data-number="13.1.1.9" class="anchored" data-anchor-id="transparência"><span class="header-section-number">13.1.1.9</span> Transparência</h4>
+<p>Podemos ajustar a transparência das cores usadas com o argumento <code>alpha</code>. Preste atenção no fato que esse argumento deve ficar fora da estética do gráfico, ou seja fora do parênteses do <code>aes()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">fill=</span>fl)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Nos gráficos nos quais há uma superposição de elementos essa transparência pode ser muito útil para facilitar a visualização.</p>
+<p>Veja no gráfico abaixo que há uma superposição entre as tres distribuições de densidade, o que atrapalha a análise. Podemos ajustar a transparência com o argumento alpha. Preste atenção no fato que esse argumento deve ficar fora da estética do gráfico, ou seja fora do parênteses do <code>aes()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill=</span>drv), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="gráfico-de-barras" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="gráfico-de-barras"><span class="header-section-number">13.1.2</span> Gráfico de Barras</h3>
+<p>Já vimos comos construir um gráfico de barras nas seções anteriores. Vamos ver agora apenas alguns ajustes que podem ser feitos nesse tipo de gráfico.</p>
+<section id="alterando-a-ordenação-das-barras" class="level4" data-number="13.1.2.1">
+<h4 data-number="13.1.2.1" class="anchored" data-anchor-id="alterando-a-ordenação-das-barras"><span class="header-section-number">13.1.2.1</span> Alterando a ordenação das barras</h4>
+<p>Lembre-se, como discutido na seção dobre variáveis categóricas, que os gráficos ggplot por padrão usam uma sequencia alfabética para dispor os elementos. Se desejarmos mudar isso, basta usar a função <code>fct_infreq()</code> do pacote <code>forcats</code>. Depois basta plotar novamente o gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando os pacotes</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># necessário para usar o dataset mpg</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># necessário para usar a função fct_infreq</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># necessário para usar mutate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicando que a variável drv deverá ser plotada com de acordo com a frequencia</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">drv =</span> <span class="fu">fct_infreq</span>(drv))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotando novamente o gráfico</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>E, se desejar que as frequencias seja mostradas de forma crescente, basta incluir a função <code>fct_rev</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicando que a variável drv deverá ser plotada com de acordo com a frequencia crescente</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">drv =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_infreq</span>(drv)))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotando novamente o gráfico</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv)) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="alterando-a-largura-das-barras" class="level4" data-number="13.1.2.2">
+<h4 data-number="13.1.2.2" class="anchored" data-anchor-id="alterando-a-largura-das-barras"><span class="header-section-number">13.1.2.2</span> Alterando a largura das barras</h4>
+<p>O argumento width da função geom_bar() permite alterar a largura das barras do gráfico. Os valores desse argumento podem variar de 0 a 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>drv)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="criando-um-eixo-de-percentual" class="level4" data-number="13.1.2.3">
+<h4 data-number="13.1.2.3" class="anchored" data-anchor-id="criando-um-eixo-de-percentual"><span class="header-section-number">13.1.2.3</span> Criando um eixo de percentual</h4>
+<p>Podemos também mudar o eixo vertical para percentual ao inves de números absolutos.</p>
+<p>Para que o gráfico de barras use percentuais é preciso:<br>
+1. calcular os percentuais.<br>
+2. colocar esses percentuais num novo dataset. 3. usar esse dataset como argumento da função ggplot 4. incluir a variável com os percentuais nos argumentos do <code>ggplot</code>.<br>
+5. finalmente, será preciso incluir o argumento <code>stat = "identity"</code> dentro da função <code>geom_bar()</code>, como mostrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma dataset com os dados percentuais:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>newdataset <span class="ot">&lt;-</span>  mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">count</span>(drv) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">nrow</span>(mpg)) </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>newdataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  drv       n  perc
+  &lt;fct&gt; &lt;int&gt; &lt;dbl&gt;
+1 r        25 0.107
+2 4       103 0.440
+3 f       106 0.453</code></pre>
+</div>
+</div>
+<p>Veja que o novo dataset (<code>newdataset</code>) tem apenas 3 variáveis agora, drv, n e perc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># observe que os resultados foram colocados num outro dataset, chamado newdataset, para não alterar o dataset original.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># no código abaixo foi usado o novo dataset, newdataset, que contém a nova variável "perc".</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(newdataset, <span class="fu">aes</span>(<span class="at">x=</span>drv, <span class="at">y=</span>perc)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tipo de tração e Tipo de combustível"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo de tração"</span>, </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentual de carros"</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="histograma" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="histograma"><span class="header-section-number">13.1.3</span> Histograma</h3>
+<p>Vamos agora ver como criar um histograma, um gráfico comum para analisar visualmente a distribuição de uma variável numérica, útil para visualizar a forma, centro e dispersão dos dados, além de identificar quaisquer valores discrepantes ou lacunas.</p>
+<p>Um histograma representa a distribuição dos valores de dados dividindo a faixa de valores em intervalos ou <strong>bins</strong> de tamanho igual, exibindo a frequência ou contagem em cada intervalo, geralmente representada pela altura ou comprimento das barras. A largura dos bins pode afetar a aparência do histograma e a interpretação dos dados. Bins estreitos podem criar uma visão mais detalhada, enquanto bins mais largos podem suavizar a distribuição.</p>
+<p>A função do ggplot para plotar um histograma é o <code>geom_histogram()</code>.</p>
+<p>Como exemplo, vamos continuar usando o dataset <code>mpg</code>, analisando agora as variáveis <code>hwy</code> (quantidade de milhas percorridas com 1 galão de combustível quando rodando em estradas) e <code>cty</code> (quantidade de milhas percorridas com 1 galão de combustível quando rodando na cidade).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O R mostrou um aviso indicando que usou 30 barras (<code>bins=30</code>) e que você pode ajustar isso conforme achar melhor.</p>
+<section id="número-de-barras" class="level4" data-number="13.1.3.1">
+<h4 data-number="13.1.3.1" class="anchored" data-anchor-id="número-de-barras"><span class="header-section-number">13.1.3.1</span> Número de barras</h4>
+<p>Podemos melhorar esse gráfico ajustando para 15 barras, e também inserindo o título, subtítulo, notas de rodapé e usando o tema clássico, como já discutimos anteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="cores-das-barras" class="level4" data-number="13.1.3.2">
+<h4 data-number="13.1.3.2" class="anchored" data-anchor-id="cores-das-barras"><span class="header-section-number">13.1.3.2</span> Cores das barras</h4>
+<p>Podemos mudar as cores usadas com os argumentos <code>col</code> e <code>fill</code>. O argumento <code>col</code> indica a cor do contorno das barras e o argumento <code>fill</code> indica a cor interna das barras. Vamos refazer o gráfico com barras azul escuras e contornos azul claros. Observe também que os nomes das cores vem entre aspas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col=</span><span class="st">"darkblue"</span>, <span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="agrupando-histogramas" class="level4" data-number="13.1.3.3">
+<h4 data-number="13.1.3.3" class="anchored" data-anchor-id="agrupando-histogramas"><span class="header-section-number">13.1.3.3</span> Agrupando histogramas</h4>
+<p>Podemos, assim como fizemos com gráficos de barras, plotar diversos histogramas, um para cada grupo de carros, conforme desejarmos. Por exemplo, se desejarmos plotar histogramas separados para cada tipo de tração (variável <code>drv</code>) basta usarmos uma linha no código.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col=</span><span class="st">"darkblue"</span>, <span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>drv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="gráfico-de-densidade" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="gráfico-de-densidade"><span class="header-section-number">13.1.4</span> Gráfico de densidade</h3>
+<p>Vamos agora ver como criar um gráfico de densidade, um gráfico também comum para analisar visualmente a distribuição de uma variável numérica, útil para visualizar a forma, centro e dispersão dos dados, além de identificar quaisquer valores discrepantes ou lacunas.</p>
+<p>Um gráfico de densidade, também conhecido como gráfico de densidade de kernel, representa a distribuição dos valores de dados criando uma curva suave que aproxima a função de densidade de probabilidade subjacente, mostrando a concentração ou densidade de pontos de dados em diferentes valores, em vez da frequência ou contagem como num histograma. Gráficos de densidade não utilizam bins fixos como os histogramas, mas estimam a densidade usando técnicas matemáticas, como a estimativa de densidade do kernel. Sua vantagem é que fornecem uma visualização contínua da distribuição, permitindo uma compreensão mais detalhada da forma, picos e vales dos dados.</p>
+<p>Eles são especialmente úteis para visualizar padrões em dados contínuos, identificar modas ou agrupamentos e comparar distribuições entre diferentes grupos.</p>
+<p>A função do ggplot para plotar um gráfico de densidade é o <code>geom_density()</code>.</p>
+<p>Como exemplo, vamos continuar usando o dataset <code>mpg</code>, analisando agora as variáveis <code>hwy</code> (quantidade de galões o carro consome quando rodando em estradas) e <code>cty</code> (quantidade de galões o carro consome quando rodando na cidade).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="estratificando-com-col-e-fill" class="level4" data-number="13.1.4.1">
+<h4 data-number="13.1.4.1" class="anchored" data-anchor-id="estratificando-com-col-e-fill"><span class="header-section-number">13.1.4.1</span> Estratificando com col e fill</h4>
+<p>Podemos estratificar o gráfico através do argumento <code>col</code> e <code>fill</code>. O argumento <code>col</code> indica a cor do contorno das linhas e o argumento <code>fill</code> indica a cor interna das linhas. Preste atenção que esses argumentos estão dentro da estética do <code>geom_density</code>, ou seja, dentro do argumento <code>aes()</code>.</p>
+<p>Usando o argumento <code>col=drv</code>, para colorir as linhas de acordo com o tipo de tração.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">col=</span>drv)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Usando o argumento <code>fill=drv</code>, para colorir preencher a densidade de acordo com o tipo de tração.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill=</span>drv), <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="agrupando-gráficos-de-densidade" class="level4" data-number="13.1.4.2">
+<h4 data-number="13.1.4.2" class="anchored" data-anchor-id="agrupando-gráficos-de-densidade"><span class="header-section-number">13.1.4.2</span> Agrupando gráficos de densidade</h4>
+<p>Podemos, assim como fizemos com gráficos de barras e histogramas, plotar diversos gráficos de densidade um para cada grupo de carros, conforme desejarmos. Por exemplo, se desejarmos plotar separados para cada tipo de tração (variável <code>drv</code>) basta usarmos uma linha no código.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">c</span>(hwy))) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill=</span>drv), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>, </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Número de carros"</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>drv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="boxplot-ou-diagrama-de-caixas" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="boxplot-ou-diagrama-de-caixas"><span class="header-section-number">13.1.5</span> Boxplot ou diagrama de caixas</h3>
+<p>Um boxplot, também conhecido como diagrama de caixa, é uma maneira de visualizar a distribuição de dados numéricos e identificar medidas estatísticas importantes, numa representação gráfica simples e compacta <span class="citation" data-cites="Massart2005">(<a href="references.html#ref-Massart2005" role="doc-biblioref">Massart et al. 2005</a>)</span>.</p>
+<p>Um boxplot é composto por um retângulo, conhecido como “caixa”, dividido em três partes: a mediana (valor que divide o conjunto de dados em duas partes iguais), o primeiro quartil (Q1) e o terceiro quartil (Q3). Além disso, o boxplot possui “hastes” que se estendem a partir da caixa. Essas hastes mostram a dispersão dos dados fora da faixa interquartil (Q1 a Q3). Elas são representadas por segmentos de linha que terminam em “pontos” ou “outliers”, que são valores que estão significativamente distantes dos demais.</p>
+<p>O boxplot permite identificar rapidamente informações estatísticas como a mediana, a amplitude interquartil, os valores mínimo e máximo e a presença de valores discrepantes. Ele também ajuda a entender a simetria ou assimetria da distribuição dos dados e se existem valores discrepantes que podem afetar a interpretação geral.</p>
+<p>Um Boxplot também facilita a comparação entre diferentes conjuntos numéricos dada a simplicidade do gráfico.</p>
+<p>A função do <code>ggplot</code> para construir um boxplot é o <code>geom_boxplot()</code>.</p>
+<p>Como exemplo, vamos continuar usando o dataset <code>mpg</code>, analisando agora as variáveis <code>hwy</code> (quantidade de galões o carro consome quando rodando em estradas) e, em seguida, <code>cty</code> (quantidade de galões o carro consome quando rodando na cidade).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Da mesma forma que fizemos antes, podemos incluir facilmente o título, subtítulo, notas de rodapé e legendas dos eixos e indicar o tema clássico para o gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="colorindo-um-boxplot" class="level4" data-number="13.1.5.1">
+<h4 data-number="13.1.5.1" class="anchored" data-anchor-id="colorindo-um-boxplot"><span class="header-section-number">13.1.5.1</span> Colorindo um boxplot</h4>
+<p>Podemos definir a cor de um boxplot com os argumentos col e fill, como mostrado abaixo. Observe que os argumentos <code>col</code> e <code>fill</code> no exemplo abaixo não estão dentro da estética do boxplot, ou seja, não estão dentro do parenteses do <code>aes()</code>. Observe também que os nomes das cores vem entre aspas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">col=</span><span class="st">"darkblue"</span>, <span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"234 Carros populares de 1998 a 2008"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="estratificando-um-boxplot" class="level4" data-number="13.1.5.2">
+<h4 data-number="13.1.5.2" class="anchored" data-anchor-id="estratificando-um-boxplot"><span class="header-section-number">13.1.5.2</span> Estratificando um boxplot</h4>
+<p>Podemos estratificar o boxplot através de duas formas:</p>
+<ol type="1">
+<li>Indicando uma variável categórica para o eixo y.</li>
+<li>Com os argumentos <code>col</code> e <code>fill</code> dentro da estética do boxplot.</li>
+</ol>
+<p>No exemplo abaixo, foi acrescentado o eixo y sendo o tipo de tração do carro: <code>y=drv</code>. Veja o código e o resultado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy, <span class="at">y=</span>drv)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos estratificar o boxplot através do argumento <code>col</code> e <code>fill</code> dentro da estética do boxplot. O argumento <code>col</code> indica a cor do contorno das linhas e o argumento <code>fill</code> indica a cor interna das linhas. Preste atenção que esses argumentos estão dentro da estética do <code>geom_boxplot</code>, ou seja, dentro do argumento <code>aes()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>drv)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Milhas percorridas na estrada com um galão de combustível"</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"de acordo com o tipo de tração do carro"</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset mgp do ggplot2"</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Milhas"</span>) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="gráfico-de-dispersão-ou-scatter-plot" class="level3" data-number="13.1.6">
+<h3 data-number="13.1.6" class="anchored" data-anchor-id="gráfico-de-dispersão-ou-scatter-plot"><span class="header-section-number">13.1.6</span> Gráfico de dispersão ou Scatter Plot</h3>
+<p>Um scatter plot, também conhecido como gráfico de dispersão ou gráfico de pontos, é uma representação visual que mostra a relação entre duas variáveis numéricas, plotando pontos em um gráfico cartesiano, onde cada ponto representa uma observação das duas variáveis.</p>
+<p>No eixo horizontal do scatter plot, geralmente é representada a variável independente, também chamada de variável explicativa ou preditora. No eixo vertical, é representada a variável dependente, também conhecida como variável resposta ou resultado.</p>
+<p>Cada ponto no scatter plot representa um par de valores das duas variáveis. A posição do ponto no gráfico é determinada pelos valores correspondentes das variáveis nos eixos horizontal e vertical. Dessa forma, é possível visualizar a relação entre as variáveis e identificar padrões ou tendências.</p>
+<p>É possível também acrescentar uma linha que melhor se ajusta aos pontos, para facilitar a leitura da tendência dos dados.</p>
+<p>a função para esse tipo de gráfico e <code>geom_point()</code>.</p>
+<p>Vamos mudar um pouco o conjunto de dados e analisar o dataset <code>diamonds</code> do ggplot.</p>
+<p>O dataset <code>diamonds</code> é um conjunto de dados da biblioteca <code>ggplot2</code>, contendo informações sobre características e preços de quase 54.000 diamantes. Esse dataset é frequentemente utilizado para demonstrar e exemplificar técnicas de visualização de dados, como a criação de scatter plots, boxplots e outras representações gráficas. Ele permite explorar relações entre as características dos diamantes, como seu peso, qualidade do corte, cor, clareza e preço.</p>
+<p>As variáveis desse dataset são:</p>
+<p><strong>carat</strong>: Peso do diamante em quilates.</p>
+<p><strong>cut</strong>: Qualidade do corte do diamante, representada por categorias como:<br>
+“Fair” (ruim), “Good” (bom), “Very Good” (muito bom), “Premium” (premium) e “Ideal” (ideal).</p>
+<p><strong>color</strong>: Cor do diamante, representada por letras de “D” (incolor) a “J” (ligeiramente amarelado).</p>
+<p><strong>clarity</strong>: Clareza do diamante, representada por categorias como:<br>
+“I1” (inclusões visíveis)<br>
+“SI2” (inclusões pequenas visíveis)<br>
+“SI1” (inclusões pequenas)<br>
+“VS2” (inclusões muito pequenas)<br>
+“VS1” (inclusões muito pequenas difíceis de ver)<br>
+“VVS2” (inclusões muito, muito pequenas difíceis de ver) e<br>
+“VVS1” (inclusões muito, muito pequenas quase impossíveis de ver)<br>
+“IF” (sem inclusões visíveis).</p>
+<p><strong>depth</strong>: Profundidade total do diamante, calculada como a divisão da altura pelo diâmetro médio.</p>
+<p><strong>table</strong>: Largura da parte superior do diamante em relação à parte mais larga.</p>
+<p><strong>price</strong>: Preço do diamante em dólares.</p>
+<p><strong>x, y, z</strong>: Dimensões do diamante em milímetros.</p>
+<p>Vamos criar um gráfico de dispersão para analisar as relação entre o peso do diamante (variável <code>carat</code>) e seu preço (variável <code>price</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x=</span>price, <span class="at">y=</span>carat)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos inserir a reta de regressão num scatter plot com o seguinte comando</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x=</span>price, <span class="at">y=</span>carat)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y<span class="sc">~</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="conclusão" class="level3" data-number="13.1.7">
+<h3 data-number="13.1.7" class="anchored" data-anchor-id="conclusão"><span class="header-section-number">13.1.7</span> Conclusão</h3>
+<p>Neste capítulo, exploramos a poderosa funcionalidade do pacote <code>ggplot2</code> para a criação de gráficos no R. Aprendemos sobre a gramática dos gráficos proposta por Leland Wilkinson e como essa gramática é implementada no <code>ggplot2</code> para permitir a construção de visualizações complexas e customizáveis.</p>
+<p>Vimos como definir um conjunto de dados, mapear variáveis estéticas e adicionar diferentes camadas geométricas para criar uma variedade de gráficos, incluindo gráficos de barras, histogramas, gráficos de densidade, boxplots e scatter plots. Também abordamos como personalizar esses gráficos, ajustando cores, títulos, legendas e temas, para que eles possam ser adaptados às necessidades específicas de análise e apresentação.</p>
+<p>A flexibilidade do <code>ggplot2</code> e sua integração com o <code>tidyverse</code> tornam-no uma ferramenta indispensável para qualquer cientista de dados ou estatístico que trabalhe com o R. Espero que os exemplos e explicações fornecidos aqui tenham proporcionado uma base sólida para você explorar ainda mais as capacidades deste pacote e criar visualizações informativas e visualmente agradáveis para os seus dados.</p>
+<p>Com a compreensão dos conceitos e práticas abordadas, você estará bem equipado para utilizar o <code>ggplot2</code> em suas análises e comunicações de dados, contribuindo para uma interpretação mais clara e eficaz dos seus resultados.</p>
+</section>
+</section>
+<section id="gráficos-do-r-base" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="gráficos-do-r-base"><span class="header-section-number">13.2</span> Gráficos do R Base</h2>
+<p>O R base é um sistema de gráficos mais simples com diversas funções para criar visualizações de forma simples e rápida, sendo uma alternativa ao <code>ggplot2</code> para a criação de gráficos, especialmente para usuários que preferem uma abordagem mais direta e menos detalhada.</p>
+<p>As principais funções do R base para a criação de gráficos são:<br>
+- <code>plot()</code> - uma função genérica e versátil para criar uma variedade de gráficos, incluindo scatter plots, line plots, bar plots, box plots e outros tipos de gráficos.<br>
+- <code>hist()</code> - para criar histogramas.<br>
+- <code>boxplot()</code> - para criar boxplots.<br>
+- <code>barplot()</code> - para criar gráficos de barras.<br>
+- <code>pie()</code> - para criar gráficos de pizza (também chamado de gráfico de setores ou de torta).<br>
+</p>
+<p>Vamos ver como criar gráficos com essas funções.</p>
+<section id="gráficos-com-plot" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="gráficos-com-plot"><span class="header-section-number">13.2.1</span> Gráficos com <code>plot()</code></h3>
+<p>A função <code>plot()</code> é uma função genérica que pode ser usada para criar uma variedade de gráficos, dependendo dos argumentos fornecidos. Ela é uma das funções mais versáteis do R base e pode ser usada para criar bar plots, density plots, scatter plots, boxplots e line plots. Vamos ver como plot funciona dependendo do tipo de argumentos fornecidos. Para exemplificar o uso de <code>plot()</code> vamos usar o dataset <code>diamonds</code> do pacote <code>ggplot2</code>.</p>
+<p>Digite <code>?diamonds</code> no console para ter informações sobrbe esse dataset</p>
+<section id="gráfico-de-barras-com-plot" class="level4" data-number="13.2.1.1">
+<h4 data-number="13.2.1.1" class="anchored" data-anchor-id="gráfico-de-barras-com-plot"><span class="header-section-number">13.2.1.1</span> Gráfico de barras com <code>plot()</code></h4>
+<p>Para construir um gráfico de barras com a função <code>plot()</code>, basta fornecer um vetor categórico como argumento. Por exemplo, vamos criar um gráfico de barras para analisar a distribuição das cores dos diamantes (variável <code>color</code>). As cores dos diamentes variam de D (melhores) to J (piores).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um gráfico de barras</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="gráfico-de-densidade-com-plot" class="level4" data-number="13.2.1.2">
+<h4 data-number="13.2.1.2" class="anchored" data-anchor-id="gráfico-de-densidade-com-plot"><span class="header-section-number">13.2.1.2</span> Gráfico de Densidade com <code>plot()</code></h4>
+<p>Para criar um gráfico de densidade com a função <code>plot()</code>, precisamos primeiro calcular a densidade dos dados usando a função <code>density()</code>. Em seguida, podemos plotar a densidade dos dados usando a função <code>plot()</code>. Ao fornecer como argumento a densidade dos pontos, a função plot automaticamente irá gerar um gráfico de densidade. Por exemplo, vamos criar um gráfico de densidade para analisar a distribuição dos preços dos diamantes (variável <code>price</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a densidade dos preços dos diamantes</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">density</span>(diamonds<span class="sc">$</span>price)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um gráfico de densidade</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="scatter-plot-com-plot" class="level4" data-number="13.2.1.3">
+<h4 data-number="13.2.1.3" class="anchored" data-anchor-id="scatter-plot-com-plot"><span class="header-section-number">13.2.1.3</span> Scatter plot com <code>plot()</code></h4>
+<p>Para criar um scatter plot com a função <code>plot()</code>, basta fornecer <strong>duas</strong> variáveis numéricas como argumentos para os eixos <code>x</code> e <code>y</code>. Por exemplo, vamos criar um scatter plot para analisar a relação entre o preço do diamante (variável <code>price</code>) e seu peso em quilates (variável <code>carat</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="boxplot-com-plot" class="level4" data-number="13.2.1.4">
+<h4 data-number="13.2.1.4" class="anchored" data-anchor-id="boxplot-com-plot"><span class="header-section-number">13.2.1.4</span> Boxplot com <code>plot()</code></h4>
+<p>Para criar um boxplot com a função <code>plot()</code>, basta fornecer uma variável numérica e uma categórica como argumento. Podemos usar o operador de fórmula <code>~</code> ou então inserir as duas variáveis separadamente. Por exemplo, vamos criar um boxplot para analisar a distribuição dos preços dos diamantes (variável <code>price</code>) em cada grupo tipo de corte do diamante (variável <code>cut</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot usando inserindo os argumentos separadamente para cada eixo.</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># eixo x com variáveis categórica cut</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># eixo y com variável numérica price</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>diamonds<span class="sc">$</span>price,<span class="at">x=</span>diamonds<span class="sc">$</span>cut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot usando plot() usando a notação de formula ~</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pode ser lido como "price" em função de "cut"</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(price <span class="sc">~</span> cut, <span class="at">data =</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="line-plot-com-plot" class="level4" data-number="13.2.1.5">
+<h4 data-number="13.2.1.5" class="anchored" data-anchor-id="line-plot-com-plot"><span class="header-section-number">13.2.1.5</span> Line plot com <code>plot()</code></h4>
+<p>Para criar um line plot com a função <code>plot()</code>, basta fornecer dois vetores numéricos como argumentos para os eixos x e y. Para exemplo, vamos criar uma função <span class="math inline">\(y=x^2\)</span> e criar um conjunto de valores numéricos para x e y. Podemos então criar um line plot para visualizar a relação entre x e y usando o operador de função <code>~</code> com a sintaxe <code>y ~ x</code>, ou seja, <code>y</code> em função de <code>x</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um vetor de valores para x</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um vetor de valores para y</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um line plot</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">type =</span> <span class="st">"l"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="histograma-com-hist" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="histograma-com-hist"><span class="header-section-number">13.2.2</span> Histograma com <code>hist()</code></h3>
+<p>A função <code>hist()</code> é usada para criar histogramas no R, que são gráficos que mostram a distribuição de uma variável numérica em intervalos ou bins. A função <code>hist()</code> divide os valores da variável em intervalos e conta o número de observações em cada intervalo, criando barras que representam a frequência ou contagem de observações em cada intervalo.</p>
+<p>Vamos ver como criar um histograma para analisar a distribuição dos preços dos diamantes (variável <code>price</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um histograma</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diamonds<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="boxplot-com-boxplot" class="level3" data-number="13.2.3">
+<h3 data-number="13.2.3" class="anchored" data-anchor-id="boxplot-com-boxplot"><span class="header-section-number">13.2.3</span> Boxplot com <code>boxplot()</code></h3>
+<p>A função <code>boxplot()</code> é usada para criar boxplots no R, que são gráficos que mostram a distribuição de uma variável numérica em relação a uma variável categórica. Os boxplots são úteis para visualizar a mediana, quartis, valores mínimos e máximos, e identificar valores discrepantes ou outliers.</p>
+<p>Vamos ver como criar um boxplot para analisar a distribuição dos preços dos diamantes (variável <code>price</code>) em cada grupo tipo de corte do diamante (variável <code>cut</code>). Vamos usar a mesma notação de fórmula <code>~</code> para indicar a relação entre as variáveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um boxplot</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(price <span class="sc">~</span> cut, <span class="at">data =</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="gráfico-de-barras-com-barplot" class="level3" data-number="13.2.4">
+<h3 data-number="13.2.4" class="anchored" data-anchor-id="gráfico-de-barras-com-barplot"><span class="header-section-number">13.2.4</span> Gráfico de barras com <code>barplot()</code></h3>
+<p>A função <code>barplot()</code> é usada para criar gráficos de barras no R, que são gráficos que mostram a distribuição de uma variável categórica em relação a uma variável numérica. Os gráficos de barras são úteis para visualizar a frequência ou contagem de observações em cada categoria da variável categórica. Vamos ver como estão distribuídas os diamantes de acoerd com a cor. Lembre-se que as cores dos diamentes variam de D (melhores) to J (piores). Observe que ao usar <code>barplot()</code> e necessário inserir como argumento a função <code>table()</code> para contar a frequência de cada cor, o R automaticamente ordena as cores em ordem alfabética. Compare com o gráfico de barras criado com <code>plot()</code> e veja como foi mais simples usar <code>plot()</code>, pois nõa foi preciso usar a função <code>table()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um gráfico de barras</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(diamonds<span class="sc">$</span>color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="gráfico-de-pizza-com-pie" class="level3" data-number="13.2.5">
+<h3 data-number="13.2.5" class="anchored" data-anchor-id="gráfico-de-pizza-com-pie"><span class="header-section-number">13.2.5</span> Gráfico de pizza com <code>pie()</code></h3>
+<p>A função <code>pie()</code> é usada para criar gráficos de pizza no R, que são gráficos circulares que mostram a distribuição de uma variável categórica em relação ao todo. Os gráficos de pizza são úteis para visualizar a proporção de cada categoria em relação ao total. Vamos ver como criar um gráfico de pizza para analisar a distribuição das cores dos diamantes (variável <code>color</code>). Lembre-se que as cores dos diamentes variam de D (melhores) to J (piores).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um gráfico de pizza</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(diamonds<span class="sc">$</span>color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="customizando-gráficos-do-r-base" class="level3" data-number="13.2.6">
+<h3 data-number="13.2.6" class="anchored" data-anchor-id="customizando-gráficos-do-r-base"><span class="header-section-number">13.2.6</span> Customizando Gráficos do R Base</h3>
+<p>Os gráficos do R base são altamente customizáveis e permitem ajustar diversos aspectos visuais, como cores, títulos, legendas, eixos, margens, fontes e muito mais. Para ajustar um gráfico do R base, é necessário usar uma combinação de funções para alterar diferentes aspectos do gráfico. Isso geralmente é realizado de forma muito mais intuitiva com o ggplot2. Ou seja, se você pretende customizar seus gráfico, sugiro usar o pacote ggplot2.</p>
+<p>Entretanto, se você desejar usar o R base, é possível customizar os gráficos de várias maneiras, como mostrado abaixo.</p>
+<section id="cores" class="level4" data-number="13.2.6.1">
+<h4 data-number="13.2.6.1" class="anchored" data-anchor-id="cores"><span class="header-section-number">13.2.6.1</span> Cores</h4>
+<p>Para alterar as cores de um gráfico do R base, você pode usar o argumento <code>col</code> ou <code>col.axis</code> para alterar a cor dos pontos, linhas, eixos, rótulos e outros elementos do gráfico. Por exemplo, vamos alterar a cor dos pontos de um scatter plot para vermelho. Digite <code>colors()</code> no console para ver a lista das 667 cores disponíveis no R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Além dessas cores, é possível instalar pacotes de paletas de cores no R. Existem vários pacotes disponíveis no CRAN que fornecem paletas de cores adicionais para uso em gráficos. Alguns exemplos populares incluem os pacotes <code>RColorBrewer</code>, <code>viridis</code>, <code>ggsci</code> e <code>ggthemes</code>. Para instalar um pacote de paletas de cores, você pode usar a função <code>install.packages()</code> e depois carregar o pacote com a função <code>library()</code>.</p>
+</section>
+<section id="títulos-e-rótulos-dos-eixos" class="level4" data-number="13.2.6.2">
+<h4 data-number="13.2.6.2" class="anchored" data-anchor-id="títulos-e-rótulos-dos-eixos"><span class="header-section-number">13.2.6.2</span> Títulos e rótulos dos eixos</h4>
+<p>Para adicionar títulos e legendas a um gráfico do R base, usamos as funções <code>main()</code>, <code>sub()</code>, <code>xlab()</code> e <code>ylab()</code> para adicionar títulos, subtítulos e rótulos aos eixos x e y. Por exemplo, vamos adicionar um título e rótulos aos eixos x e y de um scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat, </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Relação entre preço e peso do diamante"</span>, <span class="co"># adiciona um título</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"usando dataset diamond do ggpplot2"</span>,      <span class="co"># adiciona um subtítulo</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Preço do diamante"</span>,                        <span class="co"># adiciona um nome ao eixo x</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Peso do diamante"</span>)                         <span class="co"># adiciona um nome ao eixo y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="tamanho-forma-e-cores-dos-pontos" class="level4" data-number="13.2.6.3">
+<h4 data-number="13.2.6.3" class="anchored" data-anchor-id="tamanho-forma-e-cores-dos-pontos"><span class="header-section-number">13.2.6.3</span> Tamanho, forma e cores dos pontos</h4>
+<p>Para ajustar o tamanho, forma e cores dos pontos de um gráfico do R base, podemos usar os argumentos <code>cex</code>, <code>pch</code> e <code>col</code>. Por exemplo, vamos alterar o tipo de ponto para um círculo preenchido (<code>pch=20</code>), reduzir o tamanho dos pontos para 50% (<code>cex = 0.5</code>) e definir a cor dos pontos para azul (<code>col = "blue"</code>) em um scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat, </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">6</span>,                                           <span class="co"># altera o tipo de ponto</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.5</span>,                                       <span class="co"># ajusta o tamanho dos pontos</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,                                    <span class="co"># altera a cor dos pontos para azul</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Relação entre preço e peso do diamante"</span>, <span class="co"># adiciona um título</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"usando dataset diamond do ggpplot2"</span>,      <span class="co"># adiciona um subtítulo</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Preço do diamante"</span>,                        <span class="co"># adiciona um nome ao eixo x</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Peso do diamante"</span>)                         <span class="co"># adiciona um nome ao eixo y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O argumento <code>pch</code> é usado para alterar o tipo de ponto, onde <code>pch=20</code> representa um círculo preenchido. A tabela abaixo mostra os tipos possíveis e os valores correspondentes para <code>pch</code>. Experimente alterar os valores entre 1 e 25 para ver os diferentes tipos de pontos.</p>
+</section>
+<section id="espessura-e-tipo-de-linha" class="level4" data-number="13.2.6.4">
+<h4 data-number="13.2.6.4" class="anchored" data-anchor-id="espessura-e-tipo-de-linha"><span class="header-section-number">13.2.6.4</span> Espessura e tipo de linha</h4>
+<p>Para alterar a espessura e o tipo de linha de um gráfico do R base, podemos usar os argumentos <code>lwd</code> e <code>lty</code>. O argumento <code>lwd</code> é usado para alterar a largura da linha, enquanto o argumento <code>lty</code> é usado para alterar o tipo de linha. Por exemplo, vamos alterar a espessura da linha para 2 e o tipo de linha para tracejado (<code>lty=2</code>). VAmos usar o gráfico de linhas que tínhamos feito anteriormente. Experimente alterar os valores de <code>lwd</code> e <code>lty</code> para ver os diferentes tipos de linhas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um vetor de valores para x</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um vetor de valores para y</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um line plot</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>,    <span class="co"># cria um gráfico de linhas   </span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,  <span class="co"># altera a cor da linha para azul</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,       <span class="co"># altera a espessura da linha</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>)       <span class="co"># altera o tipo de linha para tracejado)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="legendas-e-margens" class="level4" data-number="13.2.6.5">
+<h4 data-number="13.2.6.5" class="anchored" data-anchor-id="legendas-e-margens"><span class="header-section-number">13.2.6.5</span> Legendas e margens</h4>
+<p>Para adicionar legendas e ajustar as margens de um gráfico do R base, podemos usar as funções <code>legend()</code> e <code>par()</code>. A função <code>legend()</code> é usada para adicionar uma legenda ao gráfico, enquanto a função <code>par()</code> é usada para ajustar os parâmetros gráficos, como as margens internas e externas do gráfico. Por exemplo, vamos adicionar uma legenda ao canto superior direito de um scatter plot e ajustar as margens do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">20</span>,                                           <span class="co"># altera o tipo de ponto</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.5</span>,                                       <span class="co"># ajusta o tamanho dos pontos</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,                                    <span class="co"># altera a cor dos pontos para azul</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Relação entre preço e peso do diamante"</span>, <span class="co"># adiciona um título</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"usando dataset diamond do ggpplot2"</span>,      <span class="co"># adiciona um subtítulo</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Preço do diamante"</span>,                        <span class="co"># adiciona um nome ao eixo x</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Peso do diamante"</span>)                         <span class="co"># adiciona um nome ao eixo y</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando uma legenda ao canto superior direito</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="st">"Diamantes"</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">pch =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustando as margens do gráfico</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="estratificando-os-dados-de-acordo-com-uma-variável-categórica" class="level4" data-number="13.2.6.6">
+<h4 data-number="13.2.6.6" class="anchored" data-anchor-id="estratificando-os-dados-de-acordo-com-uma-variável-categórica"><span class="header-section-number">13.2.6.6</span> Estratificando os dados de acordo com uma variável categórica</h4>
+<p>Para estratificar os dados de acordo com uma variável categórica em um gráfico do R base, podemos especificar as cores ou tipos de pontos de acordo com a variável categórica. Por exemplo, vamos criar um scatter plot para analisar a relação entre o preço do diamante (variável <code>price</code>) e seu peso em quilates (variável <code>carat</code>), estratificando os dados de acordo com a qualidade do corte do diamante (variável <code>cut</code>). Para isso precisamos definir o argumento <code>col</code> como a variável <code>cut</code>. Será preciso usar <code>diamonds$cut</code> para que o R entenda que <code>cut</code> é uma variável do dataset diamonds.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">20</span>,                                          <span class="co"># altera o tipo de ponto</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.5</span>,                                       <span class="co"># ajusta o tamanho dos pontos</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> diamonds<span class="sc">$</span>cut,                              <span class="co"># altera a cor dos pontos para azul</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Relação entre preço e peso do diamante"</span>, <span class="co"># adiciona um título</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"usando dataset diamond do ggpplot2"</span>,      <span class="co"># adiciona um subtítulo</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Preço do diamante"</span>,                        <span class="co"># adiciona um nome ao eixo x</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Peso do diamante"</span>)                         <span class="co"># adiciona um nome ao eixo y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="agrupando-gráficos" class="level4" data-number="13.2.6.7">
+<h4 data-number="13.2.6.7" class="anchored" data-anchor-id="agrupando-gráficos"><span class="header-section-number">13.2.6.7</span> Agrupando gráficos</h4>
+<p>O R permite agrupar diversos gráficos numa única janela, facilitando a comparação entre diferentes visualizações. O comando <code>par()</code> define parâmetros gerais do agrupamento. O argumento <code>mfrow=c(2,2)</code> define como serão exibidos os gráficos. Nesse caso, serão 2 linhas e 2 colunas. Vamos criar um boxplot, um histograma, um scatter plot e um gráfico de pizza para analisar diferentes aspectos dos dados dos diamantes e agrupá-los em um único gráfico emparelhado numa matrix 2x2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrregando o pacote ggplot2</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># usado par para que os gráficos sejam exibidos emparelhados, 2 linhas, 2 colunas</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um boxplot</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(price <span class="sc">~</span> cut, <span class="at">data =</span> diamonds)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um histograma</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diamonds<span class="sc">$</span>price)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um scatter plot</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(diamonds<span class="sc">$</span>price, diamonds<span class="sc">$</span>carat)  </span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um gráfico de pizza</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(diamonds<span class="sc">$</span>color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12-Ploting_graphics_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusão-1" class="level3" data-number="13.2.7">
+<h3 data-number="13.2.7" class="anchored" data-anchor-id="conclusão-1"><span class="header-section-number">13.2.7</span> Conclusão</h3>
+<p>Como vimos o R possui dois grandes sistemas de gráficos: o R base e o ggplot2. O R base é um sistema de gráficos mais simples e direto, com funções simples para gerar gráficos de forma rápida com o R base. Entretanto, essas as funções básicas são menos customizáveis e menos flexíveis do que os gráficos gerados com o pacote <code>ggplot2</code>. O <code>ggplot2</code> é um sistema bastante sofisticado, possibilitando a criação de gráficos complexos e customizáveis, sendo baseado numa gramática de gráficos que permite a construção de camadas de visualizações, detalhadas e informativas.</p>
+<p>A forma de construir gráficos com o <code>ggplot2</code> é bastante intuitiva e, com pouco de prática, você certamente irá preferir o <code>ggplot2</code> para a criação de seus gráficos.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Massart2005" class="csl-entry" role="doc-biblioentry">
+Massart, Desire, Johanna Verbeke, Xavier Capron, and Karin Schlesier. 2005. <span>“Visual Presentation of Data by Means of Box Plots.”</span> Journal Article. <em>Lc-Gc Europe</em> 18: 2–5.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./11-Manipulating_data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./13-Statistical_Analysis.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

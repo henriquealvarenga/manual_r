@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 15&nbsp; Distribuições de Probabilidade</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./15-Simulations.html" rel="next">
+<link href="./13-Statistical_Analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios" id="toc-definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios" class="nav-link active" data-scroll-target="#definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios"><span class="toc-section-number">15.1</span>  Definindo o ponto de partida para a geração de números aleatórios</a></li>
+  <li><a href="#distribuição-uniforme" id="toc-distribuição-uniforme" class="nav-link" data-scroll-target="#distribuição-uniforme"><span class="toc-section-number">15.2</span>  Distribuição Uniforme</a>
+  <ul class="collapse">
+  <li><a href="#runif" id="toc-runif" class="nav-link" data-scroll-target="#runif"><span class="toc-section-number">15.2.1</span>  <code>runif</code></a></li>
+  <li><a href="#dunif" id="toc-dunif" class="nav-link" data-scroll-target="#dunif"><span class="toc-section-number">15.2.2</span>  <code>dunif</code></a></li>
+  <li><a href="#punif" id="toc-punif" class="nav-link" data-scroll-target="#punif"><span class="toc-section-number">15.2.3</span>  <code>punif</code></a></li>
+  <li><a href="#qunif" id="toc-qunif" class="nav-link" data-scroll-target="#qunif"><span class="toc-section-number">15.2.4</span>  <code>qunif</code></a></li>
+  </ul></li>
+  <li><a href="#distribuição-normal" id="toc-distribuição-normal" class="nav-link" data-scroll-target="#distribuição-normal"><span class="toc-section-number">15.3</span>  Distribuição Normal</a>
+  <ul class="collapse">
+  <li><a href="#rnorm" id="toc-rnorm" class="nav-link" data-scroll-target="#rnorm"><span class="toc-section-number">15.3.1</span>  <code>rnorm</code></a></li>
+  <li><a href="#dnorm" id="toc-dnorm" class="nav-link" data-scroll-target="#dnorm"><span class="toc-section-number">15.3.2</span>  <code>dnorm</code></a></li>
+  <li><a href="#pnorm" id="toc-pnorm" class="nav-link" data-scroll-target="#pnorm"><span class="toc-section-number">15.3.3</span>  <code>pnorm</code></a></li>
+  <li><a href="#qnorm" id="toc-qnorm" class="nav-link" data-scroll-target="#qnorm"><span class="toc-section-number">15.3.4</span>  <code>qnorm</code></a></li>
+  </ul></li>
+  <li><a href="#distribuiçao-t-de-student" id="toc-distribuiçao-t-de-student" class="nav-link" data-scroll-target="#distribuiçao-t-de-student"><span class="toc-section-number">15.4</span>  Distribuiçao t de Student</a>
+  <ul class="collapse">
+  <li><a href="#rt" id="toc-rt" class="nav-link" data-scroll-target="#rt"><span class="toc-section-number">15.4.1</span>  <code>rt()</code></a></li>
+  <li><a href="#dt" id="toc-dt" class="nav-link" data-scroll-target="#dt"><span class="toc-section-number">15.4.2</span>  <code>dt()</code></a></li>
+  <li><a href="#pt" id="toc-pt" class="nav-link" data-scroll-target="#pt"><span class="toc-section-number">15.4.3</span>  <code>pt()</code></a></li>
+  <li><a href="#qt" id="toc-qt" class="nav-link" data-scroll-target="#qt"><span class="toc-section-number">15.4.4</span>  <code>qt()</code></a></li>
+  </ul></li>
+  <li><a href="#distribuição-chi-quadrado" id="toc-distribuição-chi-quadrado" class="nav-link" data-scroll-target="#distribuição-chi-quadrado"><span class="toc-section-number">15.5</span>  Distribuição Chi-quadrado</a>
+  <ul class="collapse">
+  <li><a href="#rchisq" id="toc-rchisq" class="nav-link" data-scroll-target="#rchisq"><span class="toc-section-number">15.5.1</span>  <code>rchisq()</code></a></li>
+  <li><a href="#dchisq" id="toc-dchisq" class="nav-link" data-scroll-target="#dchisq"><span class="toc-section-number">15.5.2</span>  <code>dchisq()</code></a></li>
+  <li><a href="#pchisq" id="toc-pchisq" class="nav-link" data-scroll-target="#pchisq"><span class="toc-section-number">15.5.3</span>  <code>pchisq()</code></a></li>
+  <li><a href="#qchisq" id="toc-qchisq" class="nav-link" data-scroll-target="#qchisq"><span class="toc-section-number">15.5.4</span>  <code>qchisq()</code></a></li>
+  </ul></li>
+  <li><a href="#distribuição-de-poisson" id="toc-distribuição-de-poisson" class="nav-link" data-scroll-target="#distribuição-de-poisson"><span class="toc-section-number">15.6</span>  Distribuição de Poisson</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="toc-section-number">15.7</span>  Resumo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="distribuicoes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Distribuições teóricas são modelos matemáticos que descrevem como os dados se comportam. Elas são importantes porque permitem a modelagem e previsão de fenômenos naturais, fazendo inferências sobre uma população a partir de uma amostra e testando hipóteses para determinar a significância dos resultados observados.</p>
+<p>Na medicina, esses conceitos são aplicados de várias maneiras. Ensaios clínicos utilizam distribuições teóricas para determinar a significância dos resultados dos testes de tratamento, por exemplo, modelando a distribuição dos resultados com a distribuição normal. Estudos epidemiológicos usam distribuições para modelar a incidência e prevalência de doenças, como a distribuição de Poisson para modelar o número de novos casos em um determinado período. A análise de sobrevivência utiliza a distribuição exponencial para modelar o tempo de sobrevivência dos pacientes após um tratamento ou o tempo até a ocorrência de um evento específico, como a recaída de uma doença. Distribuições teóricas de probabilidade são, portanto, elementos fundamentais da análise estatística.</p>
+<p>O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantiles (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.</p>
+<p><img src="images/distributions_table.png" class="img-fluid"></p>
+<section id="definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios"><span class="header-section-number">15.1</span> Definindo o ponto de partida para a geração de números aleatórios</h2>
+<p>A função <code>set.seed()</code> do R é utilizada para definir a semente (ou seed, em inglês) de geração de números aleatórios, ou seja, o ponto de partida para a geração de números aleatórios. Isso é particularmente útil quando você precisa garantir que seus resultados sejam reprodutíveis. Ao definir uma semente específica, qualquer operação subsequente que envolva a geração de números aleatórios produzirá os mesmos resultados em diferentes execuções, desde que a mesma semente seja usada.</p>
+<p>Sem definir uma semente, os resultados da simulação mudarão a cada execução. No entanto, ao usar <code>set.seed()</code>, você pode garantir que os resultados sejam consistentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará em uma sequência diferente de 5 números.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.7819179 -1.1387334 -0.1326681  0.7352568 -1.3003365</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará sempre em na mesma sequencia de 5 números.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterar o argumento da função set.seed irá mudar a sequencia de números.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
+</div>
+</div>
+<p>A semente deve ser sempre um número inteiro. Diferentes números de sementes levarão a diferentes sequências de números aleatórios. Observe que <code>set.seed()</code> não altera os números gerados globalmente para toda a sessão R, mas garante que a sequência de números aleatórios gerados após definir a semente seja a mesma.</p>
+</section>
+<section id="distribuição-uniforme" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="distribuição-uniforme"><span class="header-section-number">15.2</span> Distribuição Uniforme</h2>
+<section id="runif" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="runif"><span class="header-section-number">15.2.1</span> <code>runif</code></h3>
+<p>A função <code>runif()</code> gera um conjunto randomizado de números a partir de um distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.</p>
+<p>Veja abaixo como criar um conjunto randomizado de 20 números distribuídos de forma uniforme entre 0 e 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ru1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.20597457 0.17655675 0.68702285 0.38410372 0.76984142 0.49769924
+ [7] 0.71761851 0.99190609 0.38003518 0.77744522 0.93470523 0.21214252
+[13] 0.65167377 0.12555510 0.26722067 0.38611409 0.01339033 0.38238796
+[19] 0.86969085 0.34034900</code></pre>
+</div>
+</div>
+<p>podemos arrendondar esses valores com a função round().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arredondando para 2 casas decimais</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ru1, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.21 0.18 0.69 0.38 0.77 0.50 0.72 0.99 0.38 0.78 0.93 0.21 0.65 0.13 0.27
+[16] 0.39 0.01 0.38 0.87 0.34</code></pre>
+</div>
+</div>
+<p>Podemos visualizar um histograma dessa distribuição com a função <code>hist()</code>. Veja que com poucos elementos a distribuição ainda não parece uniforme.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Entretanto, a medida que aumentando o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função <code>runif(</code>) e os histogramas dessas distribuições.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ru2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ru3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ru4 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># cria uma matrix 2x2 para plotar os gráficos</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru2)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru3)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="dunif" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="dunif"><span class="header-section-number">15.2.2</span> <code>dunif</code></h3>
+<p>A função <code>dunif()</code> calcula a função de densidade de probabilidade (PDF) da distribuição uniforme, ou seja, a probabilidade de que uma variável aleatória seja igual a um determinado valor. A função <code>dunif()</code> tem três argumentos:</p>
+<ul>
+<li>x: o valor no qual calcular o PDF</li>
+<li>min: o limite inferior da distribuição</li>
+<li>max: o limite superior da distribuição</li>
+</ul>
+<p>Veja como usar a função <code>dunif()</code> para calcular o PDF de uma distribuição uniforme entre 0 e 100 no valor 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01</code></pre>
+</div>
+</div>
+<p>Isso significa que a probabilidade de uma variável aleatória dessa distribuição ser igual a 5 é 0.01.</p>
+</section>
+<section id="punif" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="punif"><span class="header-section-number">15.2.3</span> <code>punif</code></h3>
+<p>A função <code>punif()</code> calcula a função de densidade de probabilidade cumulativa (CDF) da distribuição uniforme, ou seja, a probabilidade de que uma variável aleatória seja menor ou igual a um determinado valor.</p>
+<p>A função <code>punif()</code> requer três argumentos:</p>
+<ul>
+<li>x: o valor no qual calcular o CDF<br>
+</li>
+<li>min: o limite inferior da distribuição<br>
+</li>
+<li>max: o limite superior da distribuição</li>
+</ul>
+<p>Veja um exemplo de como usar a função <code>punif()</code> para calcular o CDF de uma distribuição uniforme entre 0 e 100 no valor 5:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05</code></pre>
+</div>
+</div>
+</section>
+<section id="qunif" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="qunif"><span class="header-section-number">15.2.4</span> <code>qunif</code></h3>
+<p>A função <code>quinf()</code> calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.</p>
+<p>A função <code>quinf()</code> requer três argumentos:</p>
+<ul>
+<li>p: a probabilidade<br>
+</li>
+<li>min: o limite inferior da distribuição<br>
+</li>
+<li>max: o limite superior da distribuição</li>
+</ul>
+<p>Veja exemplo de como usar a função <code>quinf()</code> para calcular o quantil de uma distribuição uniforme entre 0 e 100 na probabilidade de 0.05:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qunif</span>(<span class="fl">0.05</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="distribuição-normal" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="distribuição-normal"><span class="header-section-number">15.3</span> Distribuição Normal</h2>
+<p>A mais importante das distribuições de probabilidade teóricas é a distribuição normal. Diversos fenômenos na natureza seguem um padrão de distribuição simétrico e em forma de sino. Devido a essa forma, essa distribuição de frequências ficou conhecida como distribuição em sino (bell shaped). Como tantos fenômenos são distribuídos dessa forma, a busca por um modelo matemático para modelar essa distribuição tem uma longa e interessante trajetória na ciência, envolvendo diversos grandes matemáticos. O modelo matemático dessa curva se começou a ser construído por volta do ano de 1733 com o trabalho do matemático Abraham Demoivre, quando buscava modelos para prever resultados de jogos de azar e em 1786 por Pierre Laplace, um astrônomo e matemático. No entanto, a curva normal como modelo para a distribuição de erros na teoria científica é mais comumente associada a um astrônomo e matemático alemão, Karl Friedrich Gauss, que encontrou uma nova derivação da fórmula para a curva em 1809 <span class="citation" data-cites="gordon2006normal">(<a href="references.html#ref-gordon2006normal" role="doc-biblioref">Gordon 2006</a>)</span>. Por esse motivo, a curva normal às vezes é referida como a curva “Gaussiana”. Em 1835, outro matemático e astrônomo, Lambert Quetelet, usou o modelo para descrever características fisiológicas e sociais humanas. Quetelet acreditava que “normal” significava média e que os desvios da média eram os erros da natureza. Apesar da visão distorcida de Quetelet, ele foi o primeiro matemático a estender o uso da curva de distribuição normal para os campos das ciências sociais e biomédicas <span class="citation" data-cites="stahl2006evolution">(<a href="references.html#ref-stahl2006evolution" role="doc-biblioref">Stahl 2006</a>)</span>.</p>
+<section id="rnorm" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="rnorm"><span class="header-section-number">15.3.1</span> <code>rnorm</code></h3>
+<p>A função <code>rnorm()</code> gera um conjunto de números randomizados a partir de um distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função <code>rnorm()</code> utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.</p>
+<p>Gerando um conjunto randomizado de 1000 números distribuídos de forma normal com média = 0 e desvio padrão = 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Poderíamos também escrever a função acima com os argumentos pela ordem:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserindo apenas o número de valores a serem gerados</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nesse caso a função rnorm usa os valores default para media e desvio padrão</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># media = 0 e desvio padrão = 1 (curva normal padrão)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="dnorm" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="dnorm"><span class="header-section-number">15.3.2</span> <code>dnorm</code></h3>
+<p>A função <code>dnorm()</code> é a função de densidade de probabilidade (PDF) de uma distribuição normal e retorna o valor da densidade de probabilidade de um valor x, ou seja, a altura da curva normal naquele ponto. Tem como argumentos o valor x e a média e o desvio padrão da curva. O primeiro argumento é o ponto no eixo x do qual se pretende saber o valor da densidade de probabilidade, o segundo argumento é a média e o terceiro argumento é o desvio padrão.</p>
+<p>Por exemplo, para saber o valor da densidade de probabilidade de x=2, numa curva normal padrão (média =0 e desvio padrão =1), o código seria:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05399097</code></pre>
+</div>
+</div>
+<p>Numa curva normal padrão não precisamos informar os valores da média e do desvio padrão, bastando inserir o ponto do eixo x.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05399097</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A função <code>dnorm(x)</code> pode ser usada também para gerar todos os pontos da curva normal. Isso pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean=</span> <span class="dv">100</span>, <span class="at">sd=</span> <span class="dv">10</span>), <span class="dv">50</span>, <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos inserir várias curvas num mesmo gráfico com o argumento <code>add=TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"brown"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">3</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">4</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"σ = 1"</span>,   <span class="st">"σ = 2"</span>,   <span class="st">"σ = 3"</span>,  <span class="st">"σ = 4"</span>,  <span class="st">"σ = 5"</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(<span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,   <span class="st">"red"</span>,    <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="pnorm" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="pnorm"><span class="header-section-number">15.3.3</span> <code>pnorm</code></h3>
+<p>A função <code>pnorm(x)</code> é utilizada para calcular a função de distribuição acumulada (CDF) de uma distribuição normal. Em outras palavras, ela fornece a probabilidade de que uma variável aleatória com distribuição normal padrão seja menor ou igual a um determinado valor x. Do ponto de vista gráfico, essa função calcula área abaixo da curva normal, à esquerda de x, ou seja, a probabilidade de dados menores que x. O gráfico abaixo mostra a interpretação visual da função <code>pnorm(x)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculando pnorm de x=2 na curva normal padrão</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9772499</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Observe que a função <code>pnorm(x)</code> usou os valores padrões de media = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().</p>
+<p>Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) <span class="citation" data-cites="Silva2009">(<a href="references.html#ref-Silva2009" role="doc-biblioref">Silva and Monteiro 2009</a>)</span> como exemplo. Nesse estudo foi a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9896954</code></pre>
+</div>
+</div>
+<p>A função <code>pnorm(x)</code> calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, Para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01030459</code></pre>
+</div>
+</div>
+<p>Ou seja, aproximadamente 1% dos homens brasileiros dessa amostra tem altura superior a 190cm.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="qnorm" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="qnorm"><span class="header-section-number">15.3.4</span> <code>qnorm</code></h3>
+<p>A função <code>qnorm()</code> faz o calculo inverso da função <code>pnorm()</code>. é utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p.&nbsp;O argumento da função <code>qnorm(p)</code> é extamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.</p>
+<p>Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo do qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.99</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 190.0823</code></pre>
+</div>
+</div>
+<p>Essa análise pode ser visualizada no gráfico abaixo:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="distribuiçao-t-de-student" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="distribuiçao-t-de-student"><span class="header-section-number">15.4</span> Distribuiçao t de Student</h2>
+<p>A distribuição t de Student (também conhecida como distribuição t) foi introduzida por William Sealy Gosset em 1908, sento usada para estimar a média de variáveis aleatórias normalmente distribuídas para as quais o tamanho da amostra é pequeno e o desvio padrão é desconhecido. A distribuição t parece muito semelhante à distribuição normal, e converge para a curva normal à medida que o tamanho da amostra aumenta.</p>
+<section id="rt" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="rt"><span class="header-section-number">15.4.1</span> <code>rt()</code></h3>
+<p>A função <code>rt()</code> cria conjunto randomizado de números a partir de um distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (<em>degrees of freedom</em> - df).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="dt" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="dt"><span class="header-section-number">15.4.2</span> <code>dt()</code></h3>
+<p>As funções <code>dt()</code>, <code>pt()</code>, <code>qt()</code> funcionam da mesma forma que suas correspondentes na distribuição normal, como já discutido anteriormente, com a diferença de que o parâmetro da distribuição t são os graus de liberdade (degrees of freedom - df) e não a média e o desvio padrão.</p>
+<p>A função <code>dt()</code> é a função de densidade de probabilidade (PDF) na curva de distribuição t. Tem como argumento o ponto no eixo x e os graus de liberdade e seu resultado é o valor da densidade de probabilidade, ou a altura da curva t nesse ponto.</p>
+<p>Por exemplo, para saber o valor da densidade de probabilidade de x=2, numa curva de distribuição t com 5 graus de liberdade (df = 5), o código seria:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">df=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06509031</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A função <code>dt()</code> pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">5</span>), </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos inserir várias curvas num mesmo gráfico, usando o argumento add=TRUE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),   <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">20</span>),<span class="at">col=</span><span class="st">"brown"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"normal curve"</span>,<span class="st">"t, df=20"</span>,<span class="st">"t, df=5"</span>,<span class="st">"t, df=2"</span>,<span class="st">"t, df=1"</span>),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(       <span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,    <span class="st">"red"</span>,  <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="pt" class="level3" data-number="15.4.3">
+<h3 data-number="15.4.3" class="anchored" data-anchor-id="pt"><span class="header-section-number">15.4.3</span> <code>pt()</code></h3>
+<p>A função <code>pt(q)</code> é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantile).</p>
+<p>Os argumentos dessa função são o quantile (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função <code>pt()</code> e a a interpretação visual da função.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9490303</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="qt" class="level3" data-number="15.4.4">
+<h3 data-number="15.4.4" class="anchored" data-anchor-id="qt"><span class="header-section-number">15.4.4</span> <code>qt()</code></h3>
+<p>A função <code>qt()</code>, faz o inverso da função <code>pt()</code>: dada uma área abaixo da curva de distribuição t, a função retorna o quantile (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantile.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.9490303</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.000001</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="distribuição-chi-quadrado" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="distribuição-chi-quadrado"><span class="header-section-number">15.5</span> Distribuição Chi-quadrado</h2>
+<p>A distribuição qui-quadrado é frequentemente usada em testes estatísticos, como o teste de independência em tabelas de contingência ou o teste de ajuste (goodness-of-fit).</p>
+<section id="rchisq" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="rchisq"><span class="header-section-number">15.5.1</span> <code>rchisq()</code></h3>
+<p>A função <code>rchisq()</code> cria conjunto randomizado de números a partir de um distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="dchisq" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="dchisq"><span class="header-section-number">15.5.2</span> <code>dchisq()</code></h3>
+<p>A função <code>dchisq()</code> é utilizada para calcular a função densidade de probabilidade (PDF) de uma distribuição qui-quadrado (<span class="math inline">\(\chi^2\)</span>). Ela retorna a densidade da função qui-quadrado para um dado valor x, ou seja, a altura da curva de densidade qui-quadrado naquele ponto específico.</p>
+<p>Podemos usar a função <code>dchisq()</code> para construir gráficos da distribuição chi-quadrado, da mesma forma como fizemos com a curva normal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span>), </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"black"</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>E também podemos usar a o argumento add=TRUE para inserir várias curvas no mesmo gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">1</span> ),<span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">2</span> ),<span class="at">col=</span><span class="st">"red"</span>,         <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span> ),<span class="at">col=</span><span class="st">"blue"</span>,        <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">5</span> ),<span class="at">col=</span><span class="st">"dark green"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">10</span>),<span class="at">col=</span><span class="st">"brown"</span>,       <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="fl">0.55</span>, </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"df=1"</span>,<span class="st">"df=2"</span>,<span class="st">"df=3"</span>,<span class="st">"df=5"</span>,<span class="st">"df=10"</span>),</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col    =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"dark green"</span>,<span class="st">"brown"</span>),</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As funções <code>pchisq()</code>, <code>qchisq()</code> funcionam da mesma forma que suas correspondentes na distribuição normal e t de Student, como já discutido anteriormente, lembrando que o parâmetro da distribuição chi-quadrado são os graus de liberdade (degrees of freedom - df).</p>
+</section>
+<section id="pchisq" class="level3" data-number="15.5.3">
+<h3 data-number="15.5.3" class="anchored" data-anchor-id="pchisq"><span class="header-section-number">15.5.3</span> <code>pchisq()</code></h3>
+<p>A função pchisq em R é usada para calcular a distribuição acumulada (CDF) da distribuição qui-quadrado (<span class="math inline">\(\chi^2\)</span>). Os principais argumentos da função <code>pchisq()</code> são:</p>
+<ul>
+<li><code>q</code> é o valor da estatística qui-quadrado para o qual você deseja calcular a probabilidade acumulada.</li>
+<li><code>df</code> é o número de graus de liberdade da distribuição.</li>
+</ul>
+<p>Por padrão a funçõa retorna probabilidade acumulada do valor da estatística ser menor ou igual a <code>q</code>. Caso deseje a probabilidade de ser <strong>maior ou igual</strong> a <code>q</code> é necessário acrescentar o argumento <code>lower.tail=FALSE</code></p>
+<p>Suponha que você tenha uma estatística qui-quadrado de 5.991 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 5.991)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="at">q =</span> <span class="dv">6</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9502129</code></pre>
+</div>
+</div>
+<p>O gráfico abaixo visualiza o uso da função <code>pchisq(q = 5.991, df = 2)</code></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="qchisq" class="level3" data-number="15.5.4">
+<h3 data-number="15.5.4" class="anchored" data-anchor-id="qchisq"><span class="header-section-number">15.5.4</span> <code>qchisq()</code></h3>
+<p>A função <code>qchisq()</code> é o oposto da <code>pchisq()</code>. É usada para calcular o quantil da distribuição qui-quadrado. Em outras palavras, ela encontra o valor <code>q</code> tal que a probabilidade acumulada até <code>q</code> seja igual a um dado valor de probabilidade <code>p</code>. Isso é útil em testes de hipóteses e intervalos de confiança onde se deseja encontrar os pontos críticos da distribuição qui-quadrado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="at">p =</span><span class="fl">0.9502129</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.999999</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="distribuição-de-poisson" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="distribuição-de-poisson"><span class="header-section-number">15.6</span> Distribuição de Poisson</h2>
+<p>As funções para distribuição de Poisson seguem o mesmo padrão das anteriores:</p>
+<ul>
+<li><code>rpois()</code> cria conjunto randomizado de números numa distribuição de Poisson.</li>
+<li><code>dpois()</code> calcula a função de densidade de probabilidade (PDF) da distribuição Poisson. O primeiro argumento é o ponto no eixo x do qual se pretende saber o valor da densidade de probabilidade, o segundo argumento é o parâmetro lambda.</li>
+<li><code>ppois()</code> calcula a função de distribuição acumulada (CDF) da distribuição de Poisson, ou seja, calcula a probabilidade de que uma variável aleatória com uma distribuição de Poisson seja menor ou igual a um determinado valor x.</li>
+<li><code>qpois()</code> calcula o quantil de uma distribuição de Poisson, ou seja, retorna o valor x tal que a probabilidade acumulada P(X≤x)seja igual a uma probabilidade especificada p.</li>
+</ul>
+</section>
+<section id="resumo" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="resumo"><span class="header-section-number">15.7</span> Resumo</h2>
+<p>O R possui essas funções de densidade, densidade cumulativa, quantil e numeros randomizados para diversas funções. O quadro abaixo resume esse capítulo.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribuição</th>
+<th>PDF (<code>d</code>)</th>
+<th>CDF (<code>p</code>)</th>
+<th>Quantil (<code>q</code>)</th>
+<th>Aleatório (<code>r</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Normal</td>
+<td><code>dnorm</code></td>
+<td><code>pnorm</code></td>
+<td><code>qnorm</code></td>
+<td><code>rnorm</code></td>
+</tr>
+<tr class="even">
+<td>Binomial</td>
+<td><code>dbinom</code></td>
+<td><code>pbinom</code></td>
+<td><code>qbinom</code></td>
+<td><code>rbinom</code></td>
+</tr>
+<tr class="odd">
+<td>Poisson</td>
+<td><code>dpois</code></td>
+<td><code>ppois</code></td>
+<td><code>qpois</code></td>
+<td><code>rpois</code></td>
+</tr>
+<tr class="even">
+<td>Qui-quadrado</td>
+<td><code>dchisq</code></td>
+<td><code>pchisq</code></td>
+<td><code>qchisq</code></td>
+<td><code>rchisq</code></td>
+</tr>
+<tr class="odd">
+<td>t de Student</td>
+<td><code>dt</code></td>
+<td><code>pt</code></td>
+<td><code>qt</code></td>
+<td><code>rt</code></td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td><code>df</code></td>
+<td><code>pf</code></td>
+<td><code>qf</code></td>
+<td><code>rf</code></td>
+</tr>
+<tr class="odd">
+<td>Exponencial</td>
+<td><code>dexp</code></td>
+<td><code>pexp</code></td>
+<td><code>qexp</code></td>
+<td><code>rexp</code></td>
+</tr>
+<tr class="even">
+<td>Gamma</td>
+<td><code>dgamma</code></td>
+<td><code>pgamma</code></td>
+<td><code>qgamma</code></td>
+<td><code>rgamma</code></td>
+</tr>
+<tr class="odd">
+<td>Beta</td>
+<td><code>dbeta</code></td>
+<td><code>pbeta</code></td>
+<td><code>qbeta</code></td>
+<td><code>rbeta</code></td>
+</tr>
+<tr class="even">
+<td>Geométrica</td>
+<td><code>dgeom</code></td>
+<td><code>pgeom</code></td>
+<td><code>qgeom</code></td>
+<td><code>rgeom</code></td>
+</tr>
+<tr class="odd">
+<td>Hipergeométrica</td>
+<td><code>dhyper</code></td>
+<td><code>phyper</code></td>
+<td><code>qhyper</code></td>
+<td><code>rhyper</code></td>
+</tr>
+<tr class="even">
+<td>Binomial Negativa</td>
+<td><code>dnbinom</code></td>
+<td><code>pnbinom</code></td>
+<td><code>qnbinom</code></td>
+<td><code>rnbinom</code></td>
+</tr>
+<tr class="odd">
+<td>Uniforme</td>
+<td><code>dunif</code></td>
+<td><code>punif</code></td>
+<td><code>qunif</code></td>
+<td><code>runif</code></td>
+</tr>
+<tr class="even">
+<td>Weibull</td>
+<td><code>dweibull</code></td>
+<td><code>pweibull</code></td>
+<td><code>qweibull</code></td>
+<td><code>rweibull</code></td>
+</tr>
+<tr class="odd">
+<td>Log-normal</td>
+<td><code>dlnorm</code></td>
+<td><code>plnorm</code></td>
+<td><code>qlnorm</code></td>
+<td><code>rlnorm</code></td>
+</tr>
+<tr class="even">
+<td>Multinomial</td>
+<td><code>dmultinom</code></td>
+<td>-</td>
+<td>-</td>
+<td><code>rmultinom</code></td>
+</tr>
+<tr class="odd">
+<td>Cauchy</td>
+<td><code>dcauchy</code></td>
+<td><code>pcauchy</code></td>
+<td><code>qcauchy</code></td>
+<td><code>rcauchy</code></td>
+</tr>
+<tr class="even">
+<td>Beta-Binomial</td>
+<td><code>dbetabinom</code> (MASS)</td>
+<td><code>pbetabinom</code> (MASS)</td>
+<td><code>qbetabinom</code> (MASS)</td>
+<td><code>rbetabinom</code> (MASS)</td>
+</tr>
+<tr class="odd">
+<td>Normal Inversa</td>
+<td><code>dinvgauss</code> (statmod)</td>
+<td><code>pinvgauss</code> (statmod)</td>
+<td><code>qinvgauss</code> (statmod)</td>
+<td><code>rinvgauss</code> (statmod)</td>
+</tr>
+<tr class="even">
+<td>Pareto</td>
+<td><code>dpareto</code> (VGAM)</td>
+<td><code>ppareto</code> (VGAM)</td>
+<td><code>qpareto</code> (VGAM)</td>
+<td><code>rpareto</code> (VGAM)</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-gordon2006normal" class="csl-entry" role="doc-biblioentry">
+Gordon, Sue. 2006. <em>The Normal Distribution</em>. <em>Sydney: Mathematics Learning Centre, University of Sydney</em>.
+</div>
+<div id="ref-Silva2009" class="csl-entry" role="doc-biblioentry">
+Silva, SC d, and WD Monteiro. 2009. <span>“Levantamento Do Perfil Antropométrico Da População Brasileira Usuária Do Transporte Aéreo Nacional–Projeto Conhecer.”</span> Journal Article. <em>Publicação Técnica Do Acervo Da Anac</em>.
+</div>
+<div id="ref-stahl2006evolution" class="csl-entry" role="doc-biblioentry">
+Stahl, Saul. 2006. <span>“The Evolution of the Normal Distribution.”</span> <em>Mathematics Magazine</em> 79 (2): 96–113.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./13-Statistical_Analysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./15-Simulations.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

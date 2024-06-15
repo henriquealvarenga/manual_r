@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Manual Basico da Linguagem R - 2&nbsp; Introdução</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-Instalation.html" rel="next">
+<link href="./00-prefacio.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Manual Basico da Linguagem R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">Prefácio <strong>da Segunda Edição</strong></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-R-Projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-R-Objects-Variables-Vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Objetos do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Dataframes-and-Tibbles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Frames e Tibbles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Operators.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operadores no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-R-Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funções no R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-R-Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Pacotes do R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Reading_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lendo dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Manipulating_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Manipulando dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Ploting_graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Statistical_Analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Análises Estatísticas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simulações</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Conclusão</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#r---uma-linguagem-para-análise-de-dados-e-gráficos" id="toc-r---uma-linguagem-para-análise-de-dados-e-gráficos" class="nav-link active" data-scroll-target="#r---uma-linguagem-para-análise-de-dados-e-gráficos"><span class="toc-section-number">2.1</span>  R - Uma linguagem para análise de dados e gráficos</a></li>
+  <li><a href="#r-para-análise-exploratória-de-dados" id="toc-r-para-análise-exploratória-de-dados" class="nav-link" data-scroll-target="#r-para-análise-exploratória-de-dados"><span class="toc-section-number">2.2</span>  R para Análise Exploratória de dados</a></li>
+  <li><a href="#a-importância-da-estatística-na-medicina" id="toc-a-importância-da-estatística-na-medicina" class="nav-link" data-scroll-target="#a-importância-da-estatística-na-medicina"><span class="toc-section-number">2.3</span>  A importância da Estatística na Medicina</a></li>
+  <li><a href="#breve-história-do-r" id="toc-breve-história-do-r" class="nav-link" data-scroll-target="#breve-história-do-r"><span class="toc-section-number">2.4</span>  Breve História do R</a></li>
+  <li><a href="#cran-comprehensive-r-archive-network" id="toc-cran-comprehensive-r-archive-network" class="nav-link" data-scroll-target="#cran-comprehensive-r-archive-network"><span class="toc-section-number">2.5</span>  CRAN (Comprehensive R Archive Network)</a></li>
+  <li><a href="#bioconductor" id="toc-bioconductor" class="nav-link" data-scroll-target="#bioconductor"><span class="toc-section-number">2.6</span>  Bioconductor</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="toc-section-number">2.7</span>  RStudio</a>
+  <ul class="collapse">
+  <li><a href="#funcionalidades-do-rstudio" id="toc-funcionalidades-do-rstudio" class="nav-link" data-scroll-target="#funcionalidades-do-rstudio"><span class="toc-section-number">2.7.1</span>  Funcionalidades do RStudio:</a></li>
+  <li><a href="#por-que-escolher-o-rstudio" id="toc-por-que-escolher-o-rstudio" class="nav-link" data-scroll-target="#por-que-escolher-o-rstudio"><span class="toc-section-number">2.7.2</span>  Por que escolher o RStudio?</a></li>
+  </ul></li>
+  <li><a href="#leituras-complementares-sobre-a-linguagem-r" id="toc-leituras-complementares-sobre-a-linguagem-r" class="nav-link" data-scroll-target="#leituras-complementares-sobre-a-linguagem-r"><span class="toc-section-number">2.8</span>  Leituras complementares sobre a linguagem R</a>
+  <ul class="collapse">
+  <li><a href="#livros-sobre-progamação-em-r" id="toc-livros-sobre-progamação-em-r" class="nav-link" data-scroll-target="#livros-sobre-progamação-em-r"><span class="toc-section-number">2.8.1</span>  Livros sobre progamação em R</a></li>
+  <li><a href="#livros-sobre-a-gráficos-no-r" id="toc-livros-sobre-a-gráficos-no-r" class="nav-link" data-scroll-target="#livros-sobre-a-gráficos-no-r"><span class="toc-section-number">2.8.2</span>  livros sobre a gráficos no R</a></li>
+  <li><a href="#sites" id="toc-sites" class="nav-link" data-scroll-target="#sites"><span class="toc-section-number">2.8.3</span>  Sites</a></li>
+  <li><a href="#cursos" id="toc-cursos" class="nav-link" data-scroll-target="#cursos"><span class="toc-section-number">2.8.4</span>  Cursos</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introdução</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Esse manual foi desenvolvido para ser usado em cursos introdutórios de estatística e análise de dados na área de saúde que utilizem o R e o RStudio como ambiente de programação.</p>
+<p>Faz parte de um projeto de incentivo à utilização da linguagem R e do ambiente RStudio como ferramentas nas aulas de estatística em cursos das áreas de saúde, tendo sido desenvolvido com o propósito de auxiliar o aprendizado e o uso desses softwares por estudantes sem nenhuma formação em ciência da computação ou linguagens de programação.</p>
+<p>Não se pretende fazer uma imersão profunda na linguagem R e de todas suas potencialidades, pelo contrário, o que esse manual almeja é fazer uma introdução à linguagem R de forma simples e, na medida do possível, agradável, sem sobrecarregar o estudante.</p>
+<p>Também não se pretende aqui discutir ou analisar fórmulas estatísticas, mas sim desenvolver os conceitos básicos da análise descritiva e inferencial com o uso da linguagem R.</p>
+<p>Esse é um trabalho em construção, ainda em um estágio inicial, sugestões e correções são muito bem vindas.</p>
+<section id="r---uma-linguagem-para-análise-de-dados-e-gráficos" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="r---uma-linguagem-para-análise-de-dados-e-gráficos"><span class="header-section-number">2.1</span> R - Uma linguagem para análise de dados e gráficos</h2>
+<p>R é um sistema para computação estatística e gráficos. Consiste em uma linguagem mais um ambiente de execução com gráficos, um depurador, acesso a determinadas funções do sistema e a capacidade de executar programas armazenados em arquivos de script <span class="citation" data-cites="Hornik2017">(<a href="references.html#ref-Hornik2017" role="doc-biblioref">Hornik 2017</a>)</span>.</p>
+<p>Aprender uma linguagem computacional de estatística pode parecer inicialmente assustador para alunos de graduação da área da saúde. Entretanto, estamos aprendendo novas línguas a todo momento e uma linguagem computacional nada mais é do que uma nova língua.</p>
+<p>Todo ramo da ciência tem sua língua própria, muitas vezes incompreensível para quem não foi iniciado naquela disciplina. A medicina tem seu próprio vocabulário, com inúmeros termos obscuros até mesmo para médicos de especialidades diferentes. Todos os ramos do conhecimento têm seu próprio vocabulário e seu modo próprio de fazer a comunicação da informação. A linguagem de sinais tem em seus gestos a forma de expressar a linguagem, a música tem uma notação gráfica para expressar toda suas notas, melodias, ritmos. Até mesmo jogos tem uma linguagem própria. O xadrez tem vários sistemas de notação para expressar os movimentos do jogo.</p>
+<p>Não apenas os ramos da ciência têm sua língua, mas também cada equipamento, cada máquina, seja um carro, um microondas, um computador ou um smartphone, tem também sua própria linguagem. Cada aparelho só compreende aquilo que foi projetado para compreender. Uma torradeira só sabe esquentar e a forma de comunicarmos a ela o momento de fazer isso é apertando um botão. Um microondas é capaz de se aquecer de várias formas, dependendo da informação que é inserida em seu painel. Um smartphone consegue fazer uma infinidade de procedimentos, todos dependentes das informação que é inserida na tela pelo seu proprietário. Quanto mais sofisticado um equipamento, mais funções ele pode realizar, maior vocabulário necessário para essa interação.</p>
+<p>Mas, então, como pode alguém sem nenhuma formação em engenharia ou computação, conseguir fazer um equipamento tão sofisticado como um smartphone encontrar a localização de uma cidade, mostrar na tela a imagem de uma rua da cidade, traçar uma rota de sua posição até esse local? Conseguimos isso porque a forma como os seres humanos se comunicam com os equipamentos evoluiu de forma impressionante no último século. Há alguns poucos anos era preciso aprender um código morse para transmitir uma informação pelo telégrafo, hoje com um conhecimento muito mais simples podemos nos comunicar com todo o planeta através da internet num smartphone. Da mesma forma, as linguagem computacionais evoluíram substancialmente desde sua criação. As primeiras linguagens de programação eram tão obscuras que só apenas umas poucos iniciados eram capazes de usar um computador. Mas cada ano surgem novas linguagens, cada vez mais simples de serem usadas. Atualmente, até mesmo crianças se tornam exímias programadoras. As linguagens computacionais modernas permitem a comunicação entre um ser humano e um computador de uma forma que cada vez mais simples. E a linguagem R é justamente a ponte entre a linguagem da estatística e a linguagem humana. O R foi criado para ser justamente uma uma linguagem para análise de dados e produção de gráficos <span class="citation" data-cites="Ihaka1996">(<a href="references.html#ref-Ihaka1996" role="doc-biblioref">R. Ihaka and Gentleman 1996</a>)</span>. A linguagem R tornou possível executarmos complexos cálculos matemáticos de forma fácil e rápida e criarmos gráficos complexos com simples comandos.</p>
+</section>
+<section id="r-para-análise-exploratória-de-dados" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r-para-análise-exploratória-de-dados"><span class="header-section-number">2.2</span> R para Análise Exploratória de dados</h2>
+<p>A Análise Exploratória de Dados (EDA - Exploratory Data Analysis) é uma etapa inicial crítica no processo de análise de dados que ajuda a descobrir padrões, tendências e anomalias nos conjuntos de dados, através do uso sistemático de várias técnicas de visualização e estatísticas descritivas. John W. Tukey, o pioneiro da Análise Exploratória de Dados (EDA), desempenhou um papel significativo ao enfatizar a importância da EDA no campo da estatística e análise de dados. Tukey defendia uma exploração mais intuitiva e flexível, em vez de simplesmente confiar em um conjunto predeterminado de suposições e modelos. Em seu livro “Exploratory Data Analysis”, Tukey enfatizou a importância de “aprender com os dados” e considerar vários aspectos dos dados para formar um entendimento abrangente<span class="citation" data-cites="tukey1977">(<a href="references.html#ref-tukey1977" role="doc-biblioref">Tukey et al. 1977</a>)</span>.</p>
+<p>Tukey também destacou a importância da visualização e das técnicas gráficas em EDA, mostrando o valor de usar representações visuais para descobrir padrões, tendências e relacionamentos que podem não ser facilmente discerníveis por meio de métodos estatísticos tradicionais. Nesse sentido, a EDA permite que os pesquisadores interajam com os dados de forma mais direta, fomentando a curiosidade e promovendo uma investigação mais aprofundada. Uma exploração mais flexível e aberta, pode levar a novos insights e descobertas inesperadas e gerar novas questões e hipóteses a serem analisadas.</p>
+<p>A linguagem R emergiu como uma escolha popular para EDA devido à sua versatilidade, biblioteca abrangente de pacotes e forte suporte da comunidade. Aproveitando os recursos do R e os pacotes do tidyverse, é possível realizar um EDA eficaz e estabelecer uma base sólida para análises subsequentes, levando a uma melhor tomada de decisão e insights.</p>
+<p>De acordo com Hadley Wickham,</p>
+<blockquote class="blockquote">
+<p>Não há regra sobre quais perguntas você deve fazer para orientar sua pesquisa. No entanto, dois tipos de perguntas sempre serão úteis para fazer descobertas em seus dados. Que tipo de variação ocorre dentro de minhas variáveis? Que tipo de covariação ocorre entre minhas variáveis?<br>
+Hadley Wickham, R for Data Science.</p>
+</blockquote>
+</section>
+<section id="a-importância-da-estatística-na-medicina" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="a-importância-da-estatística-na-medicina"><span class="header-section-number">2.3</span> A importância da Estatística na Medicina</h2>
+<p>A estatística é uma das áreas fundamentais das ciências da saúde. Em um dos primeiros artigos sobre o ensino da estatística para estudantes de medicina, num editorial do British Medical Journal de 1937, Bradford Hill já salientava que para poder ler de forma crítica a literatura científica o médico precisava dominar os conceitos estatísticos <span class="citation" data-cites="Hill1937">(<a href="references.html#ref-Hill1937" role="doc-biblioref">Hill 1937</a>)</span>. Entretanto, o ensino da estatística só se tornou compulsório nas escolas médicas de Londres a partir de 1975 e em muitos países europeus apenas dez anos mais tarde <span class="citation" data-cites="Altman1991">(<a href="references.html#ref-Altman1991" role="doc-biblioref">Altman and Bland 1991</a>)</span>. Nas últimas duas décadas a Organização Mundial de Saúde tem buscado estratégias para melhorar o ensino da estatística para os profissionais de saúde, tendo em vista que essas habilidades são úteis não apenas para aqueles que desejam se tornar pesquisadores, mas para todos que trabalham com a saúde, pois favorecem o pensamento crítico, lógico e científico, facilitando os processos de tomada de decisão, de análise de riscos e de avaliação das evidências científicas <span class="citation" data-cites="Lwanga1999">(<a href="references.html#ref-Lwanga1999" role="doc-biblioref">Lwanga, Tye, and Ayeni 1999</a>)</span>. A falta do conhecimento estatístico coloca em risco todo o projeto de uma prática baseada em evidências, cujo ponto fundamental é justamente a capacidade de uma leitura crítica da literatura científica <span class="citation" data-cites="Sackett1995">(<a href="references.html#ref-Sackett1995" role="doc-biblioref">Sackett and Rosenberg 1995</a>)</span>.</p>
+<p>A importância desse conhecimento se torna ainda mais relevante quando levamos em conta a imensa quantidade de erros estatísticos básicos na literatura médica <span class="citation" data-cites="Altman1991">(<a href="references.html#ref-Altman1991" role="doc-biblioref">Altman and Bland 1991</a>)</span> e baixa qualidade da literatura científica que, infelizmente, é muito menos confiável do que nossa intuição imagina. Em um dos artigos mais citados de 2005, Ioannidis alerta que cerca de metade dos resultados da literatura científica médica não são verdadeiros <span class="citation" data-cites="Ioannidis2005">(<a href="references.html#ref-Ioannidis2005" role="doc-biblioref">Ioannidis 2005</a>)</span> e, mais recentemente, que a maioria dos estudos clínicos não são úteis <span class="citation" data-cites="Ioannidis2016">(<a href="references.html#ref-Ioannidis2016" role="doc-biblioref">Ioannidis 2016</a>)</span>. Ou seja, não apenas a maioria dos resultados são falsos, como a maioria dos resultados verdadeiros não são úteis <span class="citation" data-cites="Ioannidis2016">(<a href="references.html#ref-Ioannidis2016" role="doc-biblioref">Ioannidis 2016</a>)</span>. O médico, consumidor principal dessa literatura, precisa mais do que nunca saber analisar de forma crítica esses artigos e, para tanto, a formação sólida em métodos estatísticos é de suma importância.</p>
+<p>Entretanto, existem barreiras reais ao ensino da estatística para estudantes das áreas da saúde. A mera menção da palavra “estatística” é suficiente para evocar fortes reações emocionais de rejeição na maioria das pessoas <span class="citation" data-cites="Hill1947">(<a href="references.html#ref-Hill1947" role="doc-biblioref">Hill 1947</a>)</span>. Estudantes de medicina muitas vezes preferem evitar disciplinas com conteúdo matemático e, via de regra, os cursos de estatística ou bioestatística não são muito populares entre esses alunos <span class="citation" data-cites="Altman1991">(<a href="references.html#ref-Altman1991" role="doc-biblioref">Altman and Bland 1991</a>)</span>. Além disso, alunos das áreas de saúde usualmente tem dificuldade em perceber a importância dessa disciplina, não veem razão para estudar metodologia da pesquisa científica e não se sentem motivados para aprender os difíceis conceitos matemáticos fundamentais <span class="citation" data-cites="Altman1991 Clarke1980">(<a href="references.html#ref-Altman1991" role="doc-biblioref">Altman and Bland 1991</a>; <a href="references.html#ref-Clarke1980" role="doc-biblioref">Clarke, Clayton, and Donaldson 1980</a>)</span>. Essas barreiras podem comprometer seriamente o aprendizado da estatística pelos estudantes de medicina e, como resultado disso, fazer com que muitos médicos sejam incapazes de uma leitura crítica da literatura científica.</p>
+<p>A performance do aprendizado de um estudante está diretamente relacionada a diversos fatores, tais como o seu grau de engajamento, ao prazer em estudar o conteúdo, ao seu sentimento de confiança na capacidade de aprender, a sua determinação para aprender. Assim, devem ser buscados mecanismos que possibilitem aumentar esses fatores. Um desses fatores é o uso de softwares estatísticos adequados. O uso de um software em cursos introdutórios de estatística deve levar em consideração uma série de fatores: disponibilidade, custo, facilidade de uso, possibilidade de geração de gráficos e imagens, facilidade de acesso a literatura sobre o software, documentação do software, disponibilidades de pacotes auxiliares, utilidade futura do software na vida acadêmica.</p>
+<p>A linguagem estatística R associada à interface do RStudio preenchem da melhor forma possível os requisitos necessários para essa função.</p>
+</section>
+<section id="breve-história-do-r" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="breve-história-do-r"><span class="header-section-number">2.4</span> Breve História do R</h2>
+<p>A origem do R remonta à Linguagem S, desenvolvida por John Chambers em 1976 nos laboratórios da AT&amp;T Bell Labs. No início da década de 1990, a linguagem S foi aprimorada com uma notação para modelos estatísticos, o que resultou em uma significativa economia de esforço de programação para a análise estatística de dados. No final da década de 1990, o S foi revisado e transformado em uma linguagem de alto padrão, totalmente baseada em programação orientada a objetos. Esta versão revisada da linguagem S foi o ponto de partida para o desenvolvimento do R.</p>
+<p>A linguagem R foi criada em 1993 por Robert Gentleman e Ross Ihaka, na Universidade de Auckland, na Nova Zelândia. Inicialmente, o R foi desenvolvido como uma ferramenta para o ensino em cursos introdutórios de estatística ministrados por esses professores<span class="citation" data-cites="Ihaka1998">(<a href="references.html#ref-Ihaka1998" role="doc-biblioref">Ross Ihaka 1998</a>)</span>.</p>
+<p>O R é o resultado de uma colaboração entre estatísticos, visando criar um ambiente computacional poderoso, programável, portátil e aberto. Este ambiente é adequado para resolver problemas complexos e sofisticados, bem como para realizar análises rotineiras, sem restrições de acesso ou uso. O R é executável em diversos sistemas operacionais, incluindo macOS, Windows e Linux.</p>
+<p>O R é uma linguagem de código aberto e livre, publicada sob a licença pública GNU e mantida pela R Foundation. Sua estrutura de código aberto e software gratuito atraiu um grande número de desenvolvedores ao longo dos anos. Este modelo colaborativo de desenvolvimento permitiu que o R crescesse rapidamente em termos de funcionalidades e popularidade, tornando-se uma das principais ferramentas para análise de dados e estatísticas em todo o mundo.</p>
+<p>Além disso, o R é altamente extensível, com milhares de pacotes disponíveis que expandem suas capacidades para praticamente qualquer tipo de análise de dados. Esses pacotes são armazenados e distribuídos através do Comprehensive R Archive Network (CRAN), o repositório oficial de pacotes do R.</p>
+<p>O sucesso do R também se deve à sua capacidade de criar visualizações de dados de alta qualidade. Com pacotes como o ggplot2, os usuários podem gerar visualizações complexas e esteticamente agradáveis com apenas algumas linhas de código.</p>
+<p>A popularidade do R continua a crescer, especialmente entre cientistas de dados e estatísticos. Sua capacidade de lidar com grandes conjuntos de dados, a comunidade ativa e os abundantes recursos de aprendizado são alguns dos motivos pelos quais o R é uma escolha popular para análise de dados estatísticos.</p>
+</section>
+<section id="cran-comprehensive-r-archive-network" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="cran-comprehensive-r-archive-network"><span class="header-section-number">2.5</span> CRAN (Comprehensive R Archive Network)</h2>
+<p>O CRAN (Comprehensive R Archive Network) é um repositório central onde qualquer pessoa pode contribuir com extensões para o R, conhecidas como “pacotes” (packages), desde que atendam aos requisitos de qualidade e licenciamento estabelecidos pelos mantenedores do CRAN <span class="citation" data-cites="HornikCRAN">(<a href="references.html#ref-HornikCRAN" role="doc-biblioref">Hornik 2012</a>)</span>. Em janeiro de 2017, graças à comunidade extremamente ativa de desenvolvedores que contribuem para o R diariamente, o CRAN já tinha atingido a marca de 10.000 pacotes disponíveis para download <span class="citation" data-cites="Smith2008">(<a href="references.html#ref-Smith2008" role="doc-biblioref">Smith 2008</a>)</span>. Em maio de 2024, esse número já ultrapassava 20.000 pacotes.</p>
+<p>O CRAN não apenas armazena pacotes, mas também fornece documentação extensa e exemplos de uso, facilitando a aprendizagem e implementação das ferramentas. Os pacotes no CRAN são frequentemente atualizados para incluir novas funcionalidades, corrigir bugs e melhorar a eficiência, refletindo o rápido progresso na comunidade de desenvolvedores do R. A comunidade de desenvolvedores e usuários do R é vibrante e colaborativa, com inúmeros fóruns, blogs e conferências dedicados à troca de conhecimentos e melhores práticas.</p>
+<p>Esses pacotes são fundamentais para a força e a versatilidade do R. Entre os milhares de pacotes disponíveis, alguns dos mais famosos foram desenvolvidos por Hadley Wickham. Eles desempenharam um papel crucial no aumento da popularidade do R nos últimos anos. O conjunto de pacotes desenvolvidos por Wickham se tornou tão importante e abrangente que foram reunidos em um grande pacote chamado <code>tidyverse</code>, uma analogia ao termo universo, que sugere um universo organizado de ferramentas para análise de dados.</p>
+<p>O <code>tidyverse</code> inclui pacotes essenciais como <code>ggplot2</code> para visualização de dados, <code>dplyr</code> para manipulação de dados, <code>tidyr</code> para arrumação de dados, entre outros. Estes pacotes foram desenvolvidos com a filosofia de tornar a programação e a análise de dados no R mais simples, intuitiva e eficiente.</p>
+<p>Este livro se baseia principalmente nos pacotes do <code>tidyverse</code>, que facilitam a programação e as análises no R. Ao utilizar o <code>tidyverse</code>, os usuários podem realizar tarefas complexas com menos esforço e maior clareza, aproveitando a consistência e integração entre os pacotes.</p>
+<p>O crescimento exponencial do CRAN e a influência de pacotes como o <code>tidyverse</code> ilustram como a comunidade do R continua a expandir e inovar, consolidando o R como uma das principais linguagens para análise de dados e estatísticas.</p>
+</section>
+<section id="bioconductor" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="bioconductor"><span class="header-section-number">2.6</span> Bioconductor</h2>
+<p>Além do CRAN, diversos pacotes específicos para análise de gens e biologia molecular, são mantidos e distribuidos por um projeto chamado <code>Bioconductor</code>, totalmente desenvolvido com base na liguagem R <span class="citation" data-cites="Tippmann2015">(<a href="references.html#ref-Tippmann2015" role="doc-biblioref">Tippmann 2015</a>)</span>. <code>Bioconductor</code> é um projeto de software de código aberto para a análise genômica e biologia molecular, feito com a contrição de uma comunidade grande e diversificada de cientistas <span class="citation" data-cites="Huber2015">(<a href="references.html#ref-Huber2015" role="doc-biblioref">Huber et al. 2015</a>)</span>.Em junho de 2024 o Bioconductor já tinha cerca de 2300 pacotes.</p>
+<p><strong>Popularidade do R</strong></p>
+<p>O R tem se tornado cada vez mais popular na pesquisa científica. Em 2009, o jornal New York Times publicou uma reportagem destacando a crescente popularidade do R entre os cientistas. Segundo o New York Times, o R tem se tornado a segunda língua dos pesquisadores. Em uma pesquisa realizada em 2015 pela Rexer Analytics Survey, o R foi o software mais utilizado entre os 1.220 cientistas avaliados <span class="citation" data-cites="Rexer2015">(<a href="references.html#ref-Rexer2015" role="doc-biblioref">Rexer, Gearan, and Allen 2015</a>)</span>.</p>
+<p>A popularidade do R tem crescido ininterruptamente, especialmente nos últimos anos <span class="citation" data-cites="Robinson2017">(<a href="references.html#ref-Robinson2017" role="doc-biblioref">Robinson 2017</a>)</span>. Atualmente, o R é um dos principais softwares estatísticos utilizados em pesquisas acadêmicas, particularmente na área médica, onde é “a ferramenta de escolha para muitos métodos estatísticos necessários nos estudos clínicos” <span class="citation" data-cites="Robinson2017">(<a href="references.html#ref-Robinson2017" role="doc-biblioref">Robinson 2017</a>)</span>. No Canadá, cerca de metade das universidades tem pelo menos um curso que utiliza a linguagem R <span class="citation" data-cites="CanadianR">(<a href="references.html#ref-CanadianR" role="doc-biblioref">Carson and Basiliko 2016</a>)</span>. O R também é reconhecido como o principal repositório de funções estatísticas validadas <span class="citation" data-cites="Smith2008">(<a href="references.html#ref-Smith2008" role="doc-biblioref">Smith 2008</a>)</span>.</p>
+<p>Conforme destacado por um especialista: “R has really become the second language for people coming out of grad school now, and there’s an amazing amount of code being written for it” <span class="citation" data-cites="Vance2009">(<a href="references.html#ref-Vance2009" role="doc-biblioref">Vance 2009</a>)</span>.</p>
+<p>Nos últimos anos, o uso do R como ferramenta em aulas de estatística cresceu substancialmente. Diversos pacotes específicos foram desenvolvidos para uso educacional, como o mosaic, TeachingDemos, simpleR e uwIntroStats. Além disso, foram lançados diversos livros didáticos introdutórios baseados no uso do R, incluindo “Introductory Statistics with R”, “Discovering Statistics Using R”, “Learn Statistics Using R”, “An R Introduction to Statistics”, “Introduction to Probability and Statistics Using R”, “OpenIntro Statistics” e muitos outros manuais disponíveis gratuitamente na internet. Em 2014, durante o New England Statistics Symposium, foi lançado o site StatsTeachR, um repositório de módulos de ensino de estatística usando o R, acessível gratuitamente.</p>
+<p>O R possui uma rica documentação e uma vasta quantidade de tutoriais gratuitos disponíveis online <span class="citation" data-cites="Piboonrungroj2012">(<a href="references.html#ref-Piboonrungroj2012" role="doc-biblioref">Piboonrungroj 2012</a>)</span>. A comunidade de usuários e desenvolvedores do R é grande e está em constante crescimento, proporcionando um suporte valioso para novos usuários. Estudos recentes têm mostrado que o uso do R tem crescido exponencialmente nas últimas décadas, sendo atualmente o software estatístico com a maior projeção de crescimento no futuro.</p>
+<p>Além disso, a linguagem R continua a se adaptar e inovar, incorporando novos pacotes e funcionalidades que atendem às demandas emergentes em diversas áreas de pesquisa e indústria. Muitas instituições acadêmicas e organizações de pesquisa têm adotado o R como sua ferramenta principal para análise de dados, contribuindo para sua disseminação e evolução contínua.</p>
+<p>Com todas essas vantagens, o R solidifica sua posição como uma ferramenta indispensável para cientistas de dados, estatísticos e pesquisadores em todo o mundo.</p>
+</section>
+<section id="rstudio" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.7</span> RStudio</h2>
+<p>RStudio é um Ambiente de Desenvolvimento Integrado (IDE - Integrated Development Environment) projetado especificamente para a linguagem estatística R, mas que atualmente suporta também python e outras linguagens. Um IDE é um software que oferece um conjunto de ferramentas que facilitam e aprimoram o processo de desenvolvimento, tornando o trabalho com R muito mais eficiente e produtivo.</p>
+<p>Lançado ao público em 2011, o RStudio rapidamente se tornou uma das ferramentas preferidas para programação em R, devido à sua interface amigável e rica em funcionalidades. O RStudio oferece um ambiente unificado para escrita de código, execução de scripts, visualização de gráficos e gerenciamento de pacotes, entre outras funcionalidades.</p>
+<section id="funcionalidades-do-rstudio" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="funcionalidades-do-rstudio"><span class="header-section-number">2.7.1</span> Funcionalidades do RStudio:</h3>
+<ul>
+<li><strong>Editor de Código Avançado</strong>: Com destaque de sintaxe, autocompletar e suporte a múltiplas linguagens.</li>
+<li><strong>Console Interativo</strong>: Permite a execução de comandos R em tempo real.</li>
+<li><strong>Visualização de Gráficos</strong>: Ferramentas integradas para visualização e exportação de gráficos.</li>
+<li><strong>Gerenciamento de Pacotes</strong>: Instalação, atualização e carregamento de pacotes diretamente do IDE.</li>
+<li><strong>Painéis de Ajuda e Documentação</strong>: Acesso rápido à documentação e ajuda sobre funções e pacotes.</li>
+<li><strong>Integração com Versionamento</strong>: Suporte integrado para Git e outros sistemas de controle de versão.</li>
+</ul>
+<p>O RStudio é amplamente utilizado por organizações de renome mundial, incluindo NASA, Eli Lilly, AstraZeneca, Samsung, Honda, Hyundai, Walmart, Nestlé, General Electric, Santander, Universidade de Oxford, Universidade de Toronto e muitas outras instituições. Essas organizações confiam no RStudio para suas análises estatísticas e visualizações de dados devido à sua robustez e facilidade de uso.</p>
+<p>A versão gratuita do RStudio é perfeitamente adequada para uso acadêmico e pessoal, eliminando a necessidade de softwares pagos caros. Para usuários que necessitam de funcionalidades adicionais, como suporte avançado para servidores e integração com plataformas empresariais, a RStudio PBC oferece versões comerciais com recursos ampliados.</p>
+</section>
+<section id="por-que-escolher-o-rstudio" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="por-que-escolher-o-rstudio"><span class="header-section-number">2.7.2</span> Por que escolher o RStudio?</h3>
+<ul>
+<li><strong>Interface Intuitiva</strong>: Design simplificado que facilita a navegação e uso eficiente do R.</li>
+<li><strong>Ferramentas Integradas</strong>: Todas as ferramentas necessárias para desenvolvimento, análise e visualização em um único lugar.</li>
+<li><strong>Comunidade Ativa</strong>: Grande comunidade de usuários e desenvolvedores que compartilham recursos, tutoriais e suporte.</li>
+<li><strong>Atualizações Constantes</strong>: Lançamentos regulares com novas funcionalidades e melhorias de desempenho.</li>
+</ul>
+<p>O RStudio é, sem dúvida, uma ferramenta essencial para qualquer pessoa que trabalhe com a linguagem R, seja em ambientes acadêmicos, de pesquisa ou industriais. Seu impacto no campo da análise de dados é significativo, proporcionando uma plataforma robusta e acessível para todos os níveis de usuários.</p>
+</section>
+</section>
+<section id="leituras-complementares-sobre-a-linguagem-r" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="leituras-complementares-sobre-a-linguagem-r"><span class="header-section-number">2.8</span> Leituras complementares sobre a linguagem R</h2>
+<p>Para quem desejar aprofundar o aprendizado do R, segue abaixo uma lista de livros, sites e cursos sobre a linguagem R:</p>
+<section id="livros-sobre-progamação-em-r" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="livros-sobre-progamação-em-r"><span class="header-section-number">2.8.1</span> Livros sobre progamação em R</h3>
+<ul>
+<li>The R Book, de Michael J. Crawley. Publicado pela Editora Willey (2º ed, 2013.)</li>
+<li>R for Everyone. Advanced Analytics and Graphics, de Jared P. Lander. Publicado pela Editora Pearson (2014).</li>
+<li>Biostatistics with R. An Introduction to Statistics Through Biological Data, de Babak Shahbaba. Publicado pela editora Springer (2012).</li>
+<li>Introduction to Probability and Statistics Using R, de G. Jay Kerns. Disponível no site do CRAN no link: <a href="https://cran.r-project.org/web/packages/IPSUR/vignettes/IPSUR.pdf" class="uri">https://cran.r-project.org/web/packages/IPSUR/vignettes/IPSUR.pdf</a></li>
+<li>An Introduction to Statistical and Data Sciences via R, de Chester Ismay e Albert Y. Kim. Online book. (2018). <a href="https://moderndive.com" class="uri">https://moderndive.com</a>.</li>
+<li>A Beginner’s Guide to R, de Alain F. Zuur, Elena N. Ieno e Erik H. W. G. Meesters. Publicado pela Editora Springer (2009).</li>
+<li>The Art of R Programming. A tour of Statistical Software Design, de Norman Matloff. Publicado pela Editora no Starch Press (2011).</li>
+<li>R for Data Science. Import, tidy, transform, visualize and model data, de Hadley Wickham e Garret Grolemund. Publicado pela Editora O’Reilly (2016). Disponível online em: <a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a>.</li>
+<li>Data Analysis for the Life Sciences with R, de Rafael A Irizarry and Michael I Love. Ebook gratuito no site leanpub: <a href="https://leanpub.com/dataanalysisforthelifesciences" class="uri">https://leanpub.com/dataanalysisforthelifesciences</a></li>
+<li>Hands-On Programming with R, de Garrett Grolemund, publicado pela editora O’Reilly (2014).</li>
+<li>Introductory Statistics with R, de Peter Dalgaard. Publicado pela Editora Springer (2º ed, 2008).</li>
+<li>Advanced R, de Hadley Wickham. Publicado pela Editora Chapman and Hall/CRC (2ª ed, 2019). Disponível online em: adv-r.hadley.nz</li>
+<li>Efficient R Programming, de Colin Gillespie e Robin Lovelace. Publicado pela Editora O’Reilly (2016). Disponível online em: efficientr.programming</li>
+</ul>
+</section>
+<section id="livros-sobre-a-gráficos-no-r" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="livros-sobre-a-gráficos-no-r"><span class="header-section-number">2.8.2</span> livros sobre a gráficos no R</h3>
+<ul>
+<li>“ggplot2: Elegant Graphics for Data Analysis” de Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. <a href="https://ggplot2-book.org" class="uri">https://ggplot2-book.org</a>.</li>
+<li>R Graphics Cookbook, de Winston Chang. <a href="https://r-graphics.org/index.html" class="uri">https://r-graphics.org/index.html</a><br>
+</li>
+<li>ggplot2 Essentials. Explore the full range of ggplot plotting capabilities to create meaningful and spectacular graphs, de Donato Teutonico. Publicado pela editora Packt Publishing (2015).</li>
+<li>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures, de Claus O. Wilke. Publicado pela Editora O’Reilly (2019). Disponível online em: &lt;<a href="clauswilke.com/dataviz">clauswilke.com/dataviz</a>&gt;</li>
+</ul>
+</section>
+<section id="sites" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="sites"><span class="header-section-number">2.8.3</span> Sites</h3>
+<ul>
+<li><p>RStudio. <a href="https://www.rstudio.com/online-learning" class="uri">https://www.rstudio.com/online-learning</a></p></li>
+<li><p>The R Project for Statistical Computing. <a href="https://www.r-project.org" class="uri">https://www.r-project.org</a></p></li>
+<li><p>r-bloggers. <a href="https://www.r-bloggers.com" class="uri">https://www.r-bloggers.com</a></p></li>
+<li><p>Stackoverflow. <a href="https://stackoverflow.com/questions/tagged/r" class="uri">https://stackoverflow.com/questions/tagged/r</a></p></li>
+</ul>
+<p>O site the Big Book of R tem uma lista com mais de 300 livros sobre o R nas mais áreas da ciência. <a href="https://www.bigbookofr.com" class="uri">https://www.bigbookofr.com</a></p>
+</section>
+<section id="cursos" class="level3" data-number="2.8.4">
+<h3 data-number="2.8.4" class="anchored" data-anchor-id="cursos"><span class="header-section-number">2.8.4</span> Cursos</h3>
+<ul>
+<li>Coursera. <a href="https://www.coursera.org" class="uri">https://www.coursera.org</a> (inúmeros cursos sobre a linguagem R)</li>
+<li>edX. <a href="https://www.edx.org" class="uri">https://www.edx.org</a> (inúmeros cursos sobre a linguagem R)</li>
+<li>Datacamp. <a href="https://www.datacamp.com" class="uri">https://www.datacamp.com</a></li>
+</ul>
+<p>Essa é só uma lista resumida sobre onde encontrar informações sobre o R. Buscando na internet você poderá encontrar uma infinidade de outros livros, manuais, cursos e sites sobre o R.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Altman1991" class="csl-entry" role="doc-biblioentry">
+Altman, Douglas G, and J Martin Bland. 1991. <span>“Improving Doctors’ Understanding of Statistics.”</span> Journal Article. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em> 154 (2): 223–48.
+</div>
+<div id="ref-CanadianR" class="csl-entry" role="doc-biblioentry">
+Carson, M. A., and N. Basiliko. 2016. <span>“Approaches to r Education in Canadian Universities.”</span> Journal Article. <em>F1000Res</em> 5: 2802. <a href="https://doi.org/10.12688/f1000research.10232.1">https://doi.org/10.12688/f1000research.10232.1</a>.
+</div>
+<div id="ref-Clarke1980" class="csl-entry" role="doc-biblioentry">
+Clarke, M, DG Clayton, and LJ Donaldson. 1980. <span>“Teaching Epidemiology and Statistics to Medical Students the Leicester Experience.”</span> Journal Article. <em>International Journal of Epidemiology</em> 9 (2): 179–85.
+</div>
+<div id="ref-Hill1937" class="csl-entry" role="doc-biblioentry">
+Hill, A Bradford. 1937. <span>“I.—the Aim of the Statistical Method.”</span> Journal Article. <em>The Lancet</em> 229 (5914): 41–43.
+</div>
+<div id="ref-Hill1947" class="csl-entry" role="doc-biblioentry">
+———. 1947. <span>“Statistics in the Medical Curriculum?”</span> Journal Article. <em>British Medical Journal</em> 2 (4522): 366.
+</div>
+<div id="ref-HornikCRAN" class="csl-entry" role="doc-biblioentry">
+Hornik, Kurt. 2012. <span>“The Comprehensive r Archive Network.”</span> Journal Article. <em>Wiley Interdisciplinary Reviews: Computational Statistics</em> 4 (4): 394–98. <a href="https://doi.org/doi:10.1002/wics.1212">https://doi.org/doi:10.1002/wics.1212</a>.
+</div>
+<div id="ref-Hornik2017" class="csl-entry" role="doc-biblioentry">
+———. 2017. <span>“The r FAQ.”</span> Web Page. <a href="https://CRAN.R-project.org/doc/FAQ/R-FAQ.html">https://CRAN.R-project.org/doc/FAQ/R-FAQ.html</a>.
+</div>
+<div id="ref-Huber2015" class="csl-entry" role="doc-biblioentry">
+Huber, Wolfgang, Vincent J. Carey, Robert Gentleman, Simon Anders, Marc Carlson, Benilton S. Carvalho, Hector Corrada Bravo, et al. 2015. <span>“Orchestrating High-Throughput Genomic Analysis with Bioconductor.”</span> Journal Article. <em>Nature Methods</em> 12 (2): 115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.
+</div>
+<div id="ref-Ihaka1996" class="csl-entry" role="doc-biblioentry">
+Ihaka, R, and R Gentleman. 1996. <span>“R: A Language for Data Analysis and Graphics. Journal of Computational and Graphical Statistics 5: 299.”</span> Journal Article. <em>Doi: 10.2307/1390807</em>.
+</div>
+<div id="ref-Ihaka1998" class="csl-entry" role="doc-biblioentry">
+Ihaka, Ross. 1998. <span>“R: Past and Future History.”</span> Journal Article. <em>Computing Science and Statistics</em> 392396.
+</div>
+<div id="ref-Ioannidis2005" class="csl-entry" role="doc-biblioentry">
+Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> Journal Article. <em>PLoS Medicine</em> 2 (8): e124.
+</div>
+<div id="ref-Ioannidis2016" class="csl-entry" role="doc-biblioentry">
+———. 2016. <span>“Why Most Clinical Research Is Not Useful.”</span> Journal Article. <em>PLoS Medicine</em> 13 (6): e1002049.
+</div>
+<div id="ref-Lwanga1999" class="csl-entry" role="doc-biblioentry">
+Lwanga, S Kaggwa, Cho-Yook Tye, and O Ayeni. 1999. <em>Teaching Health Statistics: Lesson and Seminar Outlines</em>. Book. World Health Organization.
+</div>
+<div id="ref-Piboonrungroj2012" class="csl-entry" role="doc-biblioentry">
+Piboonrungroj, Pairach. 2012. <span>“R-Uni (a List of 100 Free r Tutorials and Resources in University Webpages).”</span> Web Page. <a href="https://pairach.com/2012/02/26/r-tutorials-from-universities-around-the-world/">https://pairach.com/2012/02/26/r-tutorials-from-universities-around-the-world/</a>.
+</div>
+<div id="ref-Rexer2015" class="csl-entry" role="doc-biblioentry">
+Rexer, Karl, Paul Gearan, and Heather Allen. 2015. <span>“Rexer Analytics’ 2015 Data Science Survey.”</span> Data Science Survey Report. Rexer Analytics.
+</div>
+<div id="ref-Robinson2017" class="csl-entry" role="doc-biblioentry">
+Robinson, David. 2017. <span>“The Impressive Growth of r.”</span> <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">https://stackoverflow.blog/2017/10/10/impressive-growth-r/</a>.
+</div>
+<div id="ref-Sackett1995" class="csl-entry" role="doc-biblioentry">
+Sackett, D. L., and W. M. Rosenberg. 1995. <span>“The Need for Evidence-Based Medicine.”</span> Journal Article. <em>JR Soc Med</em> 88: 620–24.
+</div>
+<div id="ref-Smith2008" class="csl-entry" role="doc-biblioentry">
+Smith, D. 2008. <span>“CRAN Now Has 10,000 r Packages. Here’s How to Find the Ones You Need.”</span> Journal Article. <em>Revolutions. Daily News about Using Open Source R for Big Data Analysis, Predictive Modeling, Data Science, and Visualization Since</em> 2017.
+</div>
+<div id="ref-Tippmann2015" class="csl-entry" role="doc-biblioentry">
+Tippmann, S. 2015. <span>“Programming Tools: Adventures with r.”</span> Journal Article. <em>Nature</em> 517 (7532): 109–10. <a href="https://doi.org/10.1038/517109a">https://doi.org/10.1038/517109a</a>.
+</div>
+<div id="ref-tukey1977" class="csl-entry" role="doc-biblioentry">
+Tukey, John Wilder et al. 1977. <em>Exploratory Data Analysis</em>. Vol. 2. Springer.
+</div>
+<div id="ref-Vance2009" class="csl-entry" role="doc-biblioentry">
+Vance, Ashlee. 2009. <span>“Data Analysts Captivated by r’s Power.”</span> Journal Article. <em>New York Times</em> 6 (5.4).
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./00-prefacio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio <strong>da Segunda Edição</strong></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-Instalation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
