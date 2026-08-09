@@ -31,10 +31,10 @@ book:
     - 11-Manipulating-data.qmd
     - 12-Ploting-graphics.qmd
     - 13-Statistical-Analysis.qmd
-    - 15-Distributions.qmd
-    - 16-Simulations.qmd
-    - 17-Datasets.qmd
-    - 18-Conclusion.qmd
+    - 14-Distributions.qmd
+    - 15-Simulations.qmd
+    - 16-Datasets.qmd
+    - 17-Conclusion.qmd
     - references.qmd
 
 bibliography: references.bib

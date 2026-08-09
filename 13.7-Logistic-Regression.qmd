@@ -1,4 +1,4 @@
-# Regressão Logística
+## Regressão Logística
 
 A regressão logística é um algoritmo usado para resolver problemas de classificação, ou seja, quando o resultado a ser previsto é categórico. Ela serve para prever a probabilidade de um evento pertencer a uma determinada categoria. Por exemplo, suponha que temos um conjunto de dados de pacientes com tumores e queremos prever se um tumor é maligno (canceroso) ou benigno (não canceroso). A regressão logística nos ajuda a fazer essa classificação. Ela é amplamente utilizada em várias áreas, como medicina, finanças e marketing, para fazer previsões e tomar decisões com base em probabilidades. O algoritmo da regressão logística se baseia em um modelo matemático que relaciona as variáveis de entrada (como tamanho do tumor, idade do paciente, etc.) com a variável de saída (se o tumor é maligno ou benigno).
 
@@ -72,11 +72,11 @@ $$
 
 Onde $\frac{p}{1 - p}$ representa as odds do evento ocorrer. Essa forma logarítmica lineariza a relação, permitindo que os coeficientes sejam estimados usando métodos estatísticos apropriados, como a máxima verossimilhança.
 
-## Passo a passo da regressão logística no R
+### Passo a passo da regressão logística no R
 
 Vamos explorar a regressão logística usando o dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
 
-### SAheart
+#### SAheart
 
 O dataset SAheart contém 462 observações e 10 variáveis:
 
@@ -91,7 +91,7 @@ O dataset SAheart contém 462 observações e 10 variáveis:
 **age**: Idade do paciente (em anos)\
 **chd**: Doença coronariana (0 = ausente, 1 = presente) - variável de resposta ou desfecho\
 
-## Etapas da análise de regressão
+### Etapas da análise de regressão
 
 1.  **Instalação e Carregamento do Pacote**: O pacote `bestglm` deve ser instalado e carregado para acessar o dataset SAheart.
 2.  **Visualização Inicial**: Visualize as primeiras linhas do dataset para entender sua estrutura.
@@ -102,7 +102,7 @@ O dataset SAheart contém 462 observações e 10 variáveis:
 7.  **Predições e Avaliação**: Faça predições no conjunto de teste e avalie a performance do modelo.
 8.  **Curva ROC**: Utilize o pacote `pROC` para gerar e visualizar a curva ROC.
 
-### Instalação, Carregamento do Pacote e Visualização do dataset
+#### Instalação, Carregamento do Pacote e Visualização do dataset
 
 ```{r, warning=FALSE, message=FALSE}
 # Instalando e carregando o pacote necessário
@@ -124,7 +124,7 @@ head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart antes da no
   row_spec(row = 0, color = "white", background = "#FF5733", font_size = 15)
 ```
 
-### Preparação dos dados
+#### Preparação dos dados
 
 Na regressão logística, a normalização dos dados é um passo crucial no pré-processamento que garante que todas as variáveis do conjunto de dados contribuam de maneira equilibrada para o modelo. A função sigmoide utilizada na regressão logística é **sensível às escalas das variáveis de entrada**; variáveis com valores numéricos maiores podem ter um impacto desproporcional no processo de otimização, influenciando a convergência e o ajuste dos coeficientes.
 
@@ -165,7 +165,7 @@ Além disso, um outro passo geralmente é necessário. É preciso que as variáv
 SAheart$famhist <- as.factor(SAheart$famhist)
 ```
 
-## Escolhendo das variáveis para o modelo
+### Escolhendo das variáveis para o modelo
 
 Um elemento fundamdental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.
 
@@ -183,7 +183,7 @@ cor.test(SAheart$adiposity, SAheart$obesity)
 
 Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade tem uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.
 
-## Divisão do Dataset
+### Divisão do Dataset
 
 Uma etapa importante é dividir os dados em conjuntos de treino e teste. Isso é necessário para podermos avaliar a performance do modelo em dados não usados no treinamento. O conjunto de treino é usado para ajustar o modelo, enquanto o conjunto de teste é usado para avaliar a capacidade de generalização do modelo.
 
@@ -205,7 +205,7 @@ SAheart_train_data  <- SAheart[train_indices, ]
 SAheart_test_data   <- SAheart[-train_indices, ]
 ```
 
-## Ajustando o modelo com a função `glm`
+### Ajustando o modelo com a função `glm`
 
 Lembre-se que nessa etapa, para treinar nosso modelo, não usamos o dataset completo, mas apenas uma parte dele, que denominamos `SAheart_train_data`.
 
@@ -222,7 +222,7 @@ summary(SAheart_model)
 
 Nesse modelo de regressão logística, conforme indicado pelos seus coeficientes e p-valores, algumas variáveis foram estatisticamente significativas para prever a presença de doença coronariana (marcadas com asteriscos): Consumo de tabaco (`tobacco`), Níveis de LDL (`ldl`), Histórico familiar de doença coronariana (`famhistPresent`), Pontuação de comportamento tipo A (`typea`), Idade (`age`). Além disso, nesse modelo, variáveis como pressão arterial sistólica (`sbp`), adiposidade (`adiposity`) e consumo de álcool (`alcohol`) não mostraram significância estatística. É sempre preciso ter em mente que os modelos não representam a realidade e muitas vezes não podem ser generalizados. Então, é sempre interessante analisar a acurácia do modelo gerado.
 
-## Calculando a acurácia do modelo
+### Calculando a acurácia do modelo
 
 Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma e não há como calcular o valor de $r$ ou $r^2$.
 
@@ -329,7 +329,7 @@ Nesta parte, estamos avaliando o quão bem o modelo performou ao comparar as pre
 
 Comparação das Previsões com os Resultados Reais: `SAheart_test_data$predictedclass == SAheart_test_data$chd`: Compara a classe prevista pelo modelo (predictedclass) com a classe real (chd) para cada paciente. O resultado é um vetor de valores lógicos: TRUE se as classes forem iguais e FALSE se forem diferentes. Cálculo da Acurácia: `mean()`: Calcula a média dos valores no vetor. Em R, TRUE é tratado como 1 e FALSE como 0. Portanto, `mean(SAheart_test_data$predictedclass == test_data$chd)` calcula a proporção de previsões corretas. O resultado é a acurácia do modelo, ou seja, a porcentagem de vezes que o modelo acertou. Exibição do Resultado: `round(accuracy, 2)`: Arredonda a acurácia para duas casas decimais. `print()`: Exibe a acurácia calculada no console.
 
-## Plotando a curva ROC
+### Plotando a curva ROC
 
 ```{r}
 # Gerando a matriz de confusão
@@ -344,7 +344,7 @@ A Curva ROC (Receiver Operating Characteristic) é uma ferramenta gráfica usada
 
 Taxa de Verdadeiros Positivos (True Positive Rate - TPR), também conhecida como Sensibilidade ou Recall, representa a proporção de positivos corretamente identificados pelo modelo. Taxa de Falsos Positivos (False Positive Rate - FPR), é o número de verdadeiros negativos. Representa a proporção de negativos incorretamente classificados como positivos.
 
-## Avaliação da Curva ROC
+### Avaliação da Curva ROC
 
 **Forma da Curva ROC**
 

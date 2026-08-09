@@ -1,4 +1,4 @@
-# Regressão Linear
+## Regressão Linear
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Configurando o ambiente
@@ -50,7 +50,7 @@ Embora a análise de regressão seja uma ferramenta poderosa, é importante tamb
 
 Por fim, a análise de regressão também facilita a comunicação de resultados complexos de forma acessível. Ao utilizar modelos de regressão, é possível traduzir dados estatísticos em informações práticas, que podem ser facilmente compreendidas por profissionais de saúde, gestores e até mesmo pacientes. Isso faz da regressão uma ferramenta poderosa não apenas para análise e pesquisa, mas também para a implementação de práticas e políticas de saúde baseadas em evidências sólidas. A clareza e a objetividade proporcionadas pelos modelos de regressão tornam possível transformar dados em ações, ajudando a promover melhores resultados de saúde e bem-estar para a população.
 
-## Aspectos Históricos
+### Aspectos Históricos
 
 A ideia de correlação entre duas variáveis numéricas surgiu pela primeira vez no século XIX com os trabalhos de Francis Galton sobre hereditariedade. Motivado pelas teorias evolucionárias de Darwin, Galton acreditava que a hereditariedade desempenhava um papel crucial na formação das habilidades e traços humanos. Para testar suas hipóteses, Galton coletou extensos dados sobre características físicas, como a altura, em famílias. Em um de seus estudos mais famosos, Galton analisou a relação entre as alturas dos pais e dos filhos, desenvolvendo métodos estatísticos inovadores para a época. Ele criou pela primeira vez um gráfico de dispersão (scatter plot) representando os pares de medidas de altura em um plano cartesiano, permitindo visualizar a associação entre as duas variáveis e medir numericamente o grau de relacionamento entre elas.
 
@@ -75,7 +75,7 @@ ggplot(data=father.son, aes(x=fheight, y=sheight)) +
   theme_classic()
 ```
 
-## Regressão linear (modelos Lineares)
+### Regressão linear (modelos Lineares)
 
 A correlação entre duas variáveis numéricas analisa se há alguma associação entre elas, bem como a força e a direção dessa associação, mas não descreve relações de causalidade. É um ditado comum na ciência dizer que **correlação não implica causalidade**. A análise de regressão vai além, pois o interesse não está apenas na intensidade ou direção da correlação, mas também na natureza dessa relação. Na análise de regressão, o pesquisador estabelece quais são as variáveis independentes (preditoras) e qual é a variável dependente (de desfecho). O objetivo é construir um modelo matemático que possa prever o desfecho a partir das variáveis preditoras. Na regressão linear, o modelo criado é simplesmente uma reta. O modelo gerado pela regressão linear é a equação da reta que mais se ajusta aos dados (*best fit line*), ou seja, o modelo calcula os parâmetros da inclinação ($a$) e intercepto ($b$) da reta $y = ax + b$.
 
@@ -85,7 +85,7 @@ Podemos inserir nesse modelo mais de uma variável preditora, transformando uma 
 
 A análise de regressão linear é usada quando a variável de resposta é numérica, ou seja, quando pretendemos criar um modelo matemático para prever um valor numérico a partir de uma ou mais variáveis. Por exemplo, podemos criar um modelo linear para prever o quanto a glicemia aumenta de acordo com a quantidade calórica ingerida, ou podemos criar modelos lineares complexos, com mais de uma variável preditora, tal como para analisar o quanto a pressão arterial depende do peso, do sexo e da idade.
 
-### Pressupostos do Modelo de Regressão Linear
+#### Pressupostos do Modelo de Regressão Linear
 
 Para que o modelo de regressão linear seja válido e forneça resultados confiáveis, é importante que alguns pressupostos sejam atendidos.
 
@@ -105,7 +105,7 @@ Para que o modelo de regressão linear seja válido e forneça resultados confi�
 
 Verificar a satisfação desses pressupostos é fundamental para garantir que o modelo de regressão linear seja apropriado e que suas previsões e inferências sejam válidas. Caso algum desses pressupostos seja violado, ajustes no modelo ou transformações nos dados podem ser necessários.
 
-### Os Resíduos da Regressão Linear
+#### Os Resíduos da Regressão Linear
 
 Os **resíduos** em um modelo de regressão linear representam a diferença entre os valores observados e os valores preditos pela reta de regressão. Em outras palavras, cada ponto de dados tem um valor real (observado) e um valor estimado pela equação da reta. A diferença entre esses dois valores é o que chamamos de **resíduo**. Os resíduos indicam o quão bem o modelo está se ajustando aos dados: quanto menores forem os resíduos, melhor será o ajuste do modelo.
 
@@ -189,7 +189,7 @@ Observe no gráfico acima as linhas vermelhas verticais entre os pontos dos dado
 
 O que o algoritmo da função `lm()` faz é tentar reduzir a soma desses erros através de uma técnica conhecida como **Método dos Quadrados Mínimos**.
 
-### O Método dos Quadrados Mínimos
+#### O Método dos Quadrados Mínimos
 
 O **método dos quadrados mínimos** é uma técnica matemática usada para determinar a melhor linha de ajuste para um conjunto de dados. Foi inicialmente desenvolvido por Adrien-Marie Legendre. Legendre desenvolveu essa técnica para resolver problemas relacionados à determinação das órbitas de cometas, buscando um meio de ajustar as observações astronômicas às previsões teóricas com a maior precisão possível. O método dos mínimos quadrados tornou-se rapidamente uma ferramenta essencial para cientistas que lidavam com dados experimentais sujeitos a erros. A técnica permite encontrar os parâmetros de um modelo que melhor se ajustam aos dados, garantindo que a soma dos quadrados dos resíduos (as diferenças entre os valores observados e os estimados - RSS, do inglês *Residual Sum of Squares*) seja a menor possível. No final do século XIX, Karl Pearson aplicou o método dos mínimos quadrados ao estudo das relações entre variáveis biológicas, especialmente na análise da hereditariedade de características físicas como a altura. Pearson conseguiu estimar a reta que melhor se ajustava aos dados observacionais, permitindo não apenas descrever a relação entre as alturas de pais e filhos, mas também prever a altura esperada de um filho com base na altura dos pais.
 
@@ -201,7 +201,7 @@ Como os resíduos podem ser positivos ou negativos, elevá-los ao quadrado evita
 
 Isso significa que, ao usar o método dos quadrados mínimos, o modelo está tentando encontrar a reta que passe "o mais próximo possível" dos pontos de dados, de maneira a minimizar o erro de predição. É essa técnica que permite calcular os coeficientes da reta da forma mais precisa possível.
 
-### Exemplo Visual
+#### Exemplo Visual
 
 Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros $a$ e $b$ que minimizam a RSS para criar a equação da reta.No gráfico gerado pelo código, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.
 
@@ -338,7 +338,7 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ```
 
-## Regressão linear no R
+### Regressão linear no R
 
 Vamos agora praticar a análise de regresão linear univariada (uma variável) no R passo a passo. Lembre-se que o objetivo da regressão linear é encontrar os coeficientes da equação que servirá de modelo para podermos fazer predições. No caso da regressão linear univariada, na qual temos apenas uma variável preditora, nosso modelo será uma reta $y=ax+b$. O objetivo da regressão será então encontrar os melhores valores dos parâmetros $a$ e $b$.
 
@@ -433,7 +433,7 @@ O **R-quadrado ajustado** (Adjusted R-squared), localizado abaixo dos coeficient
 
 Em resumo, os dados apresentados no modelo de regressão mostram claramente que, conforme aumenta o consumo semanal de drinks, há um aumento significativo nos níveis séricos de GGT. Essa relação é estatisticamente significativa e está evidenciada nos coeficientes e nos indicadores de ajuste do modelo fornecidos no resultado.
 
-## Regressão Linear multivariada no R
+### Regressão Linear multivariada no R
 
 Frequentemente uma única variável preditora não será capaz de explicar toda variação da variável de desfecho. Na verdade, na medicina é raro que uma resposta dependa de apenas uma única variável. Com o R podemos facilmente inserir mais de uma variável preditora em nosso modelo de regressão linear.
 
@@ -573,7 +573,7 @@ O modelo como um todo apresenta um **R-quadrado ajustado** de **92,81%**, indica
 
 Em resumo, ao incorporar o consumo de tabaco no modelo, constatamos que o consumo de álcool permanece como o fator mais significativo associado aos níveis séricos de GGT. A influência do tabaco não é estatisticamente significativa no modelo múltiplo, possivelmente devido à sua correlação com o consumo de álcool. Para lidar com a multicolinearidade, poderia-se examinar o Fator de Inflação de Variância (VIF) ou considerar modelos alternativos que tratem da variância compartilhada entre `tobacco` e `drinks`. Dessa forma, para entender e prever os níveis de GGT, o foco deve ser mantido no consumo de bebidas alcoólicas, já que é o preditor mais forte e significativo no modelo.
 
-## Regressão Linear com o pacote broom
+### Regressão Linear com o pacote broom
 
 Como vimos acima, as informações de um modelo estatístico criado com a função `lm()` podem ser acessadas criando um objeto com a função `summary()`. Entretanto, essas informações não estão organizadas num data frame e é difícil manipular e comparar resultados de diversos modelos. É também muito difícil combinar resultados de diversos modelos. O pacote `broom` resume as principais informações sobre estatísticas de objetos em data frames organizados facilitando sua análise, comparação e visualização.
 
@@ -606,14 +606,14 @@ Com a função `augment()`, adicionamos colunas aos dados originais que foram mo
 augment(model3)
 ```
 
-## Pacote stargazer
+### Pacote stargazer
 
 ```{r}
 library(stargazer)
 stargazer(model3, type = "text")
 ```
 
-## Referências
+### Referências
 
 -   Legendre, A.-M. (1805). *Nouvelles méthodes pour la détermination des orbites des comètes*. Paris: F. Didot.
 -   Gauss, C. F. (1809). *Theoria motus corporum coelestium in sectionibus conicis solem ambientium*. Hamburgo: Friedrich Perthes und I. H. Besser.

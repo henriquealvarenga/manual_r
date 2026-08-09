@@ -31,10 +31,25 @@ nada — os capítulos 15 e 16 sorteiam números sem semente (de propósito, poi
 ensinam justamente que o resultado muda a cada execução), e o `str()` de um
 tibble do `readr` imprime um endereço de memória que muda a cada sessão do R.
 
-**O detalhe que pega:** a decisão de reexecutar considera o `.qmd`, e não os
-dados. Se um arquivo de `dataset/` for alterado sem que o capítulo seja tocado,
-o site continuará mostrando os resultados antigos. Nesse caso, force a
-reexecução de tudo uma vez:
+**O detalhe importante:** o Quarto decide reexecutar olhando **apenas o `.qmd`
+listado em `chapters:`**. Duas situações passam despercebidas por ele:
+
+- **arquivos incluídos.** O capítulo 13 monta-se a partir de nove arquivos
+  `13.x` trazidos por `{{< include >}}`. Editar um deles não altera o
+  `13-Statistical-Analysis.qmd`, então o Quarto serve o resultado congelado e a
+  sua mudança simplesmente não aparece.
+- **dados.** Alterar um arquivo de `dataset/` sem tocar no capítulo deixa o
+  site mostrando os resultados antigos.
+
+Nos dois casos, a saída é invalidar o cache. Para um capítulo só, apague a
+pasta dele em `_freeze/` e renderize:
+
+```sh
+rm -rf _freeze/13-Statistical-Analysis
+quarto render
+```
+
+Para reexecutar o livro inteiro:
 
 ```sh
 quarto render --no-freeze
