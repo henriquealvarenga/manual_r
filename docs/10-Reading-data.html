@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -113,17 +113,17 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
@@ -136,13 +136,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-Reading-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lendo dados</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -159,7 +159,7 @@ div.csl-indent {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -281,7 +281,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referências</span></a>
   </div>
 </li>
     </ul>
@@ -291,7 +291,7 @@ div.csl-indent {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Índice</h2>
    
   <ul>
   <li><a href="#formatos-de-arquivos-de-dados." id="toc-formatos-de-arquivos-de-dados." class="nav-link active" data-scroll-target="#formatos-de-arquivos-de-dados."><span class="header-section-number">10.1</span> Formatos de arquivos de dados.</a></li>
@@ -425,7 +425,7 @@ div.csl-indent {
 <h2 data-number="10.4" class="anchored" data-anchor-id="lendo-dados-com-read.csv"><span class="header-section-number">10.4</span> Lendo dados com <code>read.csv()</code></h2>
 <p>Caso o arquivo esteja no formato <code>.csv</code> com as seus valores separados por vírgula (que é o padrão usual), podemos usar a função <code>read.csv( )</code> para carregar os dados, bastando indicar o nome do arquivo a ser lido. Se por acaso o arquivo se chama <code>diabetes.csv</code>, então o comando de leitura será:</p>
 <p><code>read.csv(file = "diabetes.csv")</code>.</p>
-<p>O primeiro argumento da função <code>read.csv</code> é o mais importante, é o <strong>caminho</strong> e o <strong>nome do arquivo</strong> a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Chapter 4</span></a>).</p>
+<p>O primeiro argumento da função <code>read.csv</code> é o mais importante, é o <strong>caminho</strong> e o <strong>nome do arquivo</strong> a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Capítulo 4</span></a>).</p>
 <p>O código acima ira funcionar se o arquivo chamado <code>diabetes.csv</code> estiver dentro do atual diretório de trabalho do R.</p>
 <p>Se o arquivo estiver numa pasta chamada <code>dataset</code>, dentro do diretório de trabalho, então teremos de incluir esse caminho no nome, tudo dentro das aspas, como abaixo:</p>
 <p><code>read.csv(file = "dataset/diabetes.csv")</code>.</p>
@@ -452,7 +452,7 @@ div.csl-indent {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header     =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep        =</span> <span class="st">","</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dec        =</span> <span class="st">"."</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">na.strings =</span> <span class="st">"NA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">na.strings =</span> <span class="st">"NA"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>O código acima faz o seguinte:</p>
 <ul>
@@ -477,11 +477,11 @@ div.csl-indent {
 <p>Mas podemos automatizar esse processo inserindo o endereço exato do banco de dados na função <code>read.csv()</code>: <a href="https://hbiostat.org/data/repo/diabetes.csv" class="uri">https://hbiostat.org/data/repo/diabetes.csv</a></p>
 <p>Veja o código abaixo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Na verdade nem precisamos explicitar o argumento <code>file</code>, podemos inserir apenas o endereço e obteremos o mesmo resultado. Lembre-se que é preciso colocar o endereço entre aspas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="lendo-dados-com-readr" class="level2" data-number="10.6">
@@ -491,7 +491,7 @@ div.csl-indent {
 <p>Lembre-se que para usar as funções de algum pacote é preciso primeiro instalar o pacote com o comando <code>install.packages()</code> no console. Além disso, no corpo do código, é preciso inserir o comando <code>library()</code> com o nome do pacote que será usado. Só precisamos inserir o comando <code>library()</code> uma única vez. O estilo ideal de escrever é sempre carregar os pacotes necessários no início do código.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "challenge.csv"               "chickens.csv"               
  [3] "epa78.txt"                   "example.log"                
@@ -505,14 +505,14 @@ div.csl-indent {
 </div>
 <p>Quando inserimos o nome do do banco de dados desejado como argumento da função, o resultado é o endereço do banco de dados em seu computador.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Library/Frameworks/R.framework/Versions/4.6/Resources/library/readr/extdata/chickens.csv"</code></pre>
 </div>
 </div>
 <p>Agora, para podermos usar esse banco de dados, basta usar a função <code>read_csv()</code> usando esse endereço, como feito abaixo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   chicken                 sex     eggs_laid motto                               
@@ -527,7 +527,7 @@ div.csl-indent {
 <p>Podemos usar o pipe para o código ficar mais limpo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 5 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
@@ -552,7 +552,7 @@ dbl (1): eggs_laid
 <p>Finalmente, o código acima apenas lê os dados e mostra, mas precisamos armazenar os dados num objeto na memória do R, como feito a seguir:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>galinhas <span class="ot">&lt;-</span> <span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">read_csv</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">read_csv</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 5 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
@@ -572,7 +572,7 @@ dbl (1): eggs_laid
 5. Explica que você pode usar o comando <code>spec()</code> para ver as especificações das colunas<br>
 6. Explica que você pode usar o argumento <code>show_col_types = FALSE</code> para que o comando não mostre essas explicações todas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>galinhas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>galinhas</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   chicken                 sex     eggs_laid motto                               
@@ -587,11 +587,11 @@ dbl (1): eggs_laid
 <p>Vamos repetir a leitura, agora com o argumento <code>show_col_types = FALSE</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>galinhas <span class="ot">&lt;-</span> <span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="co"># lendo os dados sem mostrar todas as explicações</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="co"># lendo os dados sem mostrar todas as explicações</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Podemos verificar esses detalhes com a função <code>spec()</code>. Observe que essa função vai inspecionar o objeto que recebeu o arquivo que foi lido (<code>galinhas</code>) e não o arquivo <code>csv</code>. Portanto o argumento é <code>galinhas</code> não <code>chickens.csv</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(galinhas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(galinhas)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cols(
   chicken = col_character(),
@@ -611,12 +611,12 @@ dbl (1): eggs_laid
 <section id="argumentos-de-read_csv-ou-read_csv2" class="level4" data-number="10.7.0.1">
 <h4 data-number="10.7.0.1" class="anchored" data-anchor-id="argumentos-de-read_csv-ou-read_csv2"><span class="header-section-number">10.7.0.1</span> Argumentos de <code>read_csv()</code> ou <code>read_csv2()</code></h4>
 <p>As funções do pacote <code>readr</code> podem ser ajustadas com diversos argumentos.</p>
-<p>O primeiro argumento é o mais importante, é o caminho e o nome do arquivo a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Chapter 4</span></a>).</p>
+<p>O primeiro argumento é o mais importante, é o caminho e o nome do arquivo a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Capítulo 4</span></a>).</p>
 <p>O arquivo <code>diabetes.csv</code> que eu tenho em meu computador está salvo na pasta <code>dataset</code>, dentro da pasta do meu projeto. Portanto, preciso informar isso nos argumentos da função <code>read_csv()</code>.</p>
 <p>É necessário também armazenar os dados lidos num objeto, que irei chamar de <code>diabetes</code>. Obs: eu poderia escolher outro nome, não é necessário que o objeto que irá armazenar os dados tenha o mesmo nome que o arquivo com os dados.</p>
 <p>Eu fiz o o download dos dados (<a href="https://hbiostat.org/data/repo/diabetes.csv" class="uri">https://hbiostat.org/data/repo/diabetes.csv</a>) e e salvei esses dados numa pasta chamada <code>dataset</code> em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para portugues.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/diabetes.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 403 Columns: 18
 ── Column specification ────────────────────────────────────────────────────────
@@ -630,7 +630,7 @@ dbl (15): n, id, colesterol, glicose, hdl, ratio, glicohemoglobina, idade, a...
 </div>
 <p>Podemos ler esses dados diretamente do site, como já fizemos anteriormente, nesse arquivo os nomes das variáveis ainda estão com os nomes originais em inglês.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 403 Columns: 19
 ── Column specification ────────────────────────────────────────────────────────
@@ -644,7 +644,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 </div>
 <p>Para mostrar a <code>tibble</code> basta digitar no console o nome da <code>tibble</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diabetes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diabetes</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 403 × 19
       id  chol stab.glu   hdl ratio glyhb location     age gender height weight
@@ -680,7 +680,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando a estrutura do vetor x antes de transformar em factor</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> int [1:10] 1 2 3 4 5 6 7 8 9 10</code></pre>
 </div>
@@ -689,7 +689,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando a estrutura do vetor x2 depois de transformar em factor</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Factor w/ 10 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10</code></pre>
 </div>
@@ -702,7 +702,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando a estrutura do vetor x antes de transformar em factor</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:4] "A" "B" "C" "D"</code></pre>
 </div>
@@ -711,7 +711,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando a estrutura do vetor x2 depois de transformar em factor</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Factor w/ 4 levels "A","B","C","D": 1 2 3 4</code></pre>
 </div>
@@ -722,11 +722,11 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>diabetes<span class="sc">$</span>location  <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diabetes<span class="sc">$</span>location)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>diabetes<span class="sc">$</span>gender    <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diabetes<span class="sc">$</span>gender)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>diabetes<span class="sc">$</span>frame     <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diabetes<span class="sc">$</span>frame)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>diabetes<span class="sc">$</span>frame     <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diabetes<span class="sc">$</span>frame)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Veja que agora essas variáveis são do tipo factor.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [403 × 19] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  $ id      : num [1:403] 1000 1001 1002 1003 1005 ...
@@ -780,7 +780,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">gender   =</span> <span class="fu">col_factor</span>(), </span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">location =</span> <span class="fu">col_factor</span>(),</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">frame    =</span> <span class="fu">col_factor</span>()))</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [403 × 19] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  $ id      : num [1:403] 1000 1001 1002 1003 1005 ...
@@ -939,10 +939,10 @@ O pacote <code>foreign</code> possui também funções para ler arquivos SPSS, a
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-csv2016" class="csl-entry" role="listitem">
-Mitlöhner, Johann, Sebastian Neumaier, Jürgen Umbrich, and Axel Polleres. 2016. <span>“Characteristics of Open Data CSV Files.”</span> <em>2016 2nd International Conference on Open and Big Data (OBD)</em>, 72–79. <a href="https://doi.org/10.1109/OBD.2016.18">https://doi.org/10.1109/OBD.2016.18</a>.
+Mitlöhner, Johann, Sebastian Neumaier, Jürgen Umbrich, e Axel Polleres. 2016. <span>“Characteristics of Open Data CSV Files”</span>. <em>2016 2nd International Conference on Open and Big Data (OBD)</em>, 72–79. <a href="https://doi.org/10.1109/OBD.2016.18">https://doi.org/10.1109/OBD.2016.18</a>.
 </div>
 <div id="ref-csv2005" class="csl-entry" role="listitem">
-Shafranovich, Yakov. 2005. <em>Common Format and MIME Type for Comma-Separated Values (CSV) Files</em>. <a href="https://www.rfc-editor.org/rfc/pdfrfc/rfc4180.txt.pdf">https://www.rfc-editor.org/rfc/pdfrfc/rfc4180.txt.pdf</a>.
+Shafranovich, Yakov. 2005. <em>Common format and MIME type for comma-separated values (CSV) files</em>. <a href="https://www.rfc-editor.org/rfc/pdfrfc/rfc4180.txt.pdf">https://www.rfc-editor.org/rfc/pdfrfc/rfc4180.txt.pdf</a>.
 </div>
 </div>
 </section>
@@ -973,12 +973,12 @@ Shafranovich, Yakov. 2005. <em>Common Format and MIME Type for Comma-Separated V
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

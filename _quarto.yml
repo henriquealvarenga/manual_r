@@ -37,6 +37,10 @@ book:
     - 17-Conclusion.qmd
     - references.qmd
 
+# Traduz os rótulos gerados pelo Quarto: "Chapter"/"Section" nas referências
+# cruzadas, "Table of contents" e "References" na barra lateral.
+lang: pt-BR
+
 bibliography: references.bib
 
 # Congela o resultado da execução do R. Cada capítulo só é reexecutado quando o
