@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------------ */
+/* Rodapé — identificação profissional                                  */
+/*                                                                      */
+/* O tema divide a barra do rodapé em três colunas com                  */
+/* `flex: 1 1 0px`, ou seja, um terço para cada uma independentemente   */
+/* do que carregam. A coluna da direita traz três palavras e a do meio  */
+/* está vazia, enquanto a da esquerda leva a identificação exigida pelo */
+/* CFM — nome, especialidade, CRM e RQE. Espremida num terço, ela       */
+/* quebra no meio de um dado, deixando "CRM-MG" numa linha e            */
+/* "31.778 · RQE 8381" na seguinte.                                     */
+/*                                                                      */
+/* `flex: 0 1 auto` faz cada coluna ocupar o espaço do próprio          */
+/* conteúdo, ainda podendo encolher em telas estreitas. O               */
+/* `justify-content: space-between` do tema continua encostando uma na  */
+/* esquerda e outra na direita.                                         */
+/*                                                                      */
+/* A outra armadilha conhecida — temas que põem o rodapé em caixa alta  */
+/* com letter-spacing largo — não se aplica aqui: o cosmo não declara   */
+/* text-transform no rodapé. Se o tema mudar, será preciso acrescentar  */
+/* `text-transform: none` nesta mesma regra.                            */
+/* ------------------------------------------------------------------ */
+.nav-footer .nav-footer-left,
+.nav-footer .nav-footer-right {
+  flex: 0 1 auto;
+}
+
+/* A coluna do meio não é usada. Sem conteúdo, ela só rouba espaço das
+   outras duas. O min-height do tema é mantido pela barra em si. */
+.nav-footer .nav-footer-center {
+  flex: 0 0 auto;
+  min-height: 0;
+}

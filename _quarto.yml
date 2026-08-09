@@ -17,6 +17,16 @@ book:
     email: "henriquealvarenga@ufsj.edu.br"
   isbn: "978-65-01-14142-8"
   date: "07/31/2024"
+  # Identificação profissional exigida pela Resolução CFM 2.336/2023 em
+  # material assinado por médico: nome, a palavra "médico", especialidade,
+  # CRM e RQE. Por isso vai no rodapé de todas as páginas, e não numa página
+  # isolada de créditos.
+  page-footer:
+    left: |
+      Dr. Henrique Alvarenga da Silva · Médico Psiquiatra · CRM-MG 31.778 · RQE 8381<br>
+      [henriquealvarenga.com](https://henriquealvarenga.com)
+    right: |
+      Criado com [Quarto](https://quarto.org/)
   chapters:
     - index.qmd
     - 00-prefacio.qmd
@@ -61,6 +71,8 @@ execute:
 format:
   html:
     theme: cosmo
+    # Corrige a largura das colunas do rodapé. Ver os comentários do arquivo.
+    css: styles.css
     number-sections: true
     # Declara o endereço oficial de cada página, para o buscador não tratar
     # variações do mesmo endereço como páginas diferentes.
