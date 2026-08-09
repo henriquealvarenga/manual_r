@@ -1028,5 +1028,45 @@
     "crumbs": [
       "Referências"
     ]
+  },
+  {
+    "objectID": "creditos.html",
+    "href": "creditos.html",
+    "title": "Créditos",
+    "section": "",
+    "text": "Manual Básico da Linguagem R\nIntrodução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde\nAutor\nHenrique Alvarenga da Silva\n2ª Edição\nSão João del-Rei – MG\n2024\nPublicação independente do autor\nFormato: E-book (HTML)\nISBN: 978-65-01-14142-8\n© 2024 Henrique Alvarenga da Silva\nTodos os direitos reservados.",
+    "crumbs": [
+      "Créditos"
+    ]
+  },
+  {
+    "objectID": "creditos.html#sobre-o-autor",
+    "href": "creditos.html#sobre-o-autor",
+    "title": "Créditos",
+    "section": "Sobre o autor",
+    "text": "Sobre o autor\nDr. Henrique Alvarenga da Silva\nMédico Psiquiatra e Professor de Medicina.\n\n\n\nRegistro profissional\nCRM-MG 31.778 · RQE 8381\n\n\nORCID\n0000-0001-9799-5240\n\n\nCurrículo Lattes\nlattes.cnpq.br/6147640440978297\n\n\nGoogle Scholar\nperfil\n\n\nSite\nhenriquealvarenga.com\n\n\n\nAfiliações institucionais:\n\nUniversidade Federal de São João del-Rei (UFSJ)\nCentro Universitário Presidente Tancredo de Almeida Neves (UNIPTAN)\n\nContato: henriquealvarenga@ufsj.edu.br",
+    "crumbs": [
+      "Créditos"
+    ]
+  },
+  {
+    "objectID": "creditos.html#como-este-livro-foi-feito",
+    "href": "creditos.html#como-este-livro-foi-feito",
+    "title": "Créditos",
+    "section": "Como este livro foi feito",
+    "text": "Como este livro foi feito\nO texto foi escrito em Quarto, e todo o código em R que aparece nas páginas é executado de verdade durante a publicação — os resultados, as tabelas e os gráficos que você vê são a saída real daquele código, não imagens coladas.\nO código-fonte é público e está em github.com/henriquealvarenga/manual_r. Correções e sugestões são bem-vindas por lá.",
+    "crumbs": [
+      "Créditos"
+    ]
+  },
+  {
+    "objectID": "creditos.html#como-citar",
+    "href": "creditos.html#como-citar",
+    "title": "Créditos",
+    "section": "Como citar",
+    "text": "Como citar\n\nABNTVancouverAPABibTeX\n\n\nSILVA, Henrique Alvarenga da. Manual básico da linguagem R: introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde. 2. ed. São João del-Rei: Edição do Autor, 2024. E-book. ISBN 978-65-01-14142-8. Disponível em: https://henriquealvarenga.com/manual_r/. Acesso em: [data].\n\n\nSilva HA. Manual básico da linguagem R: introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde. 2ª ed. [Internet]. São João del-Rei (MG): Edição do Autor; 2024 [citado em: data]. Disponível em: https://henriquealvarenga.com/manual_r/\n\n\nSilva, H. A. da. (2024). Manual básico da linguagem R: Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde (2ª ed.). Edição do Autor. https://henriquealvarenga.com/manual_r/\n\n\n@book{silva_manual_r_2024,\n  author    = {Silva, Henrique Alvarenga da},\n  title     = {Manual básico da linguagem R: introdução à análise de dados\n               com a linguagem R, RStudio e Quarto para área da saúde},\n  edition   = {2},\n  publisher = {Edição do Autor},\n  address   = {São João del-Rei, MG, Brasil},\n  year      = {2024},\n  isbn      = {978-65-01-14142-8},\n  url       = {https://henriquealvarenga.com/manual_r/}\n}",
+    "crumbs": [
+      "Créditos"
+    ]
   }
 ]

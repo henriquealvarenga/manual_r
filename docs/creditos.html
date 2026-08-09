@@ -8,7 +8,7 @@
 
 <meta name="description" content="Introdução prática à análise de dados com R, RStudio e Quarto para a área da saúde: da linguagem básica aos testes estatísticos, regressão e análise de sobrevivência.">
 
-<title>2&nbsp; Instalação do R e do RStudio – Manual Básico da Linguagem R</title>
+<title>Créditos – Manual Básico da Linguagem R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,8 +69,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./03-RStudio.html" rel="next">
-<link href="./01-intro.html" rel="prev">
+<link href="./references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -168,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<link rel="canonical" href="https://henriquealvarenga.com/manual_r/02-Instalation.html">
+<link rel="canonical" href="https://henriquealvarenga.com/manual_r/creditos.html">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -180,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-Instalation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./creditos.html">Créditos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -225,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02-Instalation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></span></a>
   </div>
 </li>
@@ -327,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./creditos.html" class="sidebar-item-text sidebar-link">
+  <a href="./creditos.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Créditos</span></a>
   </div>
 </li>
@@ -341,9 +375,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#instalando-o-r" id="toc-instalando-o-r" class="nav-link active" data-scroll-target="#instalando-o-r"><span class="header-section-number">2.1</span> Instalando o R</a></li>
-  <li><a href="#instalando-o-rstudio" id="toc-instalando-o-rstudio" class="nav-link" data-scroll-target="#instalando-o-rstudio"><span class="header-section-number">2.2</span> Instalando o RStudio</a></li>
-  <li><a href="#video-da-instalação-no-youtube" id="toc-video-da-instalação-no-youtube" class="nav-link" data-scroll-target="#video-da-instalação-no-youtube"><span class="header-section-number">2.3</span> Video da instalação no Youtube</a></li>
+  <li><a href="#manual-básico-da-linguagem-r" id="toc-manual-básico-da-linguagem-r" class="nav-link active" data-scroll-target="#manual-básico-da-linguagem-r">Manual Básico da Linguagem R</a></li>
+  <li><a href="#sobre-o-autor" id="toc-sobre-o-autor" class="nav-link" data-scroll-target="#sobre-o-autor">Sobre o autor</a></li>
+  <li><a href="#como-este-livro-foi-feito" id="toc-como-este-livro-foi-feito" class="nav-link" data-scroll-target="#como-este-livro-foi-feito">Como este livro foi feito</a></li>
+  <li><a href="#como-citar" id="toc-como-citar" class="nav-link" data-scroll-target="#como-citar">Como citar</a></li>
   </ul>
 </nav>
     </div>
@@ -352,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalação do R e do RStudio</span></h1>
+<h1 class="title">Créditos</h1>
 </div>
 
 
@@ -369,17 +404,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instalando-o-r" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="instalando-o-r"><span class="header-section-number">2.1</span> Instalando o R</h2>
-<p>O R pode ser baixado para instalação no site do CRAN: <a href="https://cran.r-project.org/index.html" class="uri">https://cran.r-project.org/index.html</a></p>
+<section id="manual-básico-da-linguagem-r" class="level2" style="text-align: center;">
+<h2 class="anchored" data-anchor-id="manual-básico-da-linguagem-r">Manual Básico da Linguagem R</h2>
+<p><em>Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde</em></p>
+<p><strong>Autor</strong></p>
+<p>Henrique Alvarenga da Silva</p>
+<p><strong>2ª Edição</strong></p>
+<p>São João del-Rei – MG</p>
+<p>2024</p>
+<p>Publicação independente do autor</p>
+<p>Formato: E-book (HTML)</p>
+<p><strong>ISBN: 978-65-01-14142-8</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ISBN.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="250"></p>
+</figure>
+</div>
+<hr>
+<p>© 2024 Henrique Alvarenga da Silva</p>
+<p>Todos os direitos reservados.</p>
 </section>
-<section id="instalando-o-rstudio" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="instalando-o-rstudio"><span class="header-section-number">2.2</span> Instalando o RStudio</h2>
-<p>O RStudio pode ser instalado a partir do site do RStudio: <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a></p>
+<section id="sobre-o-autor" class="level2">
+<h2 class="anchored" data-anchor-id="sobre-o-autor">Sobre o autor</h2>
+<p><strong>Dr.&nbsp;Henrique Alvarenga da Silva</strong></p>
+<p>Médico Psiquiatra e Professor de Medicina.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Registro profissional</td>
+<td>CRM-MG 31.778 · RQE 8381</td>
+</tr>
+<tr class="even">
+<td>ORCID</td>
+<td><a href="https://orcid.org/0000-0001-9799-5240">0000-0001-9799-5240</a></td>
+</tr>
+<tr class="odd">
+<td>Currículo Lattes</td>
+<td><a href="https://lattes.cnpq.br/6147640440978297">lattes.cnpq.br/6147640440978297</a></td>
+</tr>
+<tr class="even">
+<td>Google Scholar</td>
+<td><a href="https://scholar.google.com/citations?user=Fbv4vDsAAAAJ">perfil</a></td>
+</tr>
+<tr class="odd">
+<td>Site</td>
+<td><a href="https://henriquealvarenga.com">henriquealvarenga.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>Afiliações institucionais:</p>
+<ul>
+<li>Universidade Federal de São João del-Rei (UFSJ)</li>
+<li>Centro Universitário Presidente Tancredo de Almeida Neves (UNIPTAN)</li>
+</ul>
+<p>Contato: <a href="mailto:henriquealvarenga@ufsj.edu.br">henriquealvarenga@ufsj.edu.br</a></p>
 </section>
-<section id="video-da-instalação-no-youtube" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="video-da-instalação-no-youtube"><span class="header-section-number">2.3</span> Video da instalação no Youtube</h2>
-<p>Há um pequeno video de instalação do R e do RStudio no Mac no link a seguir: <a href="https://youtu.be/zhhxPbGhI8Q" class="uri">https://youtu.be/zhhxPbGhI8Q</a></p>
+<section id="como-este-livro-foi-feito" class="level2">
+<h2 class="anchored" data-anchor-id="como-este-livro-foi-feito">Como este livro foi feito</h2>
+<p>O texto foi escrito em <a href="https://quarto.org">Quarto</a>, e todo o código em R que aparece nas páginas é executado de verdade durante a publicação — os resultados, as tabelas e os gráficos que você vê são a saída real daquele código, não imagens coladas.</p>
+<p>O código-fonte é público e está em <a href="https://github.com/henriquealvarenga/manual_r">github.com/henriquealvarenga/manual_r</a>. Correções e sugestões são bem-vindas por lá.</p>
+</section>
+<section id="como-citar" class="level2">
+<h2 class="anchored" data-anchor-id="como-citar">Como citar</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">ABNT</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Vancouver</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">APA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">BibTeX</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>SILVA, Henrique Alvarenga da. <strong>Manual básico da linguagem R</strong>: introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde. 2. ed. São João del-Rei: Edição do Autor, 2024. E-book. ISBN 978-65-01-14142-8. Disponível em: https://henriquealvarenga.com/manual_r/. Acesso em: [data].</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Silva HA. Manual básico da linguagem R: introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde. 2ª ed.&nbsp;[Internet]. São João del-Rei (MG): Edição do Autor; 2024 [citado em: data]. Disponível em: https://henriquealvarenga.com/manual_r/</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Silva, H. A. da. (2024). <em>Manual básico da linguagem R: Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde</em> (2ª ed.). Edição do Autor. https://henriquealvarenga.com/manual_r/</p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@book</span>{<span class="ot">silva_manual_r_2024</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Silva, Henrique Alvarenga da},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Manual básico da linguagem R: introdução à análise de dados</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               com a linguagem R, RStudio e Quarto para área da saúde},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">edition</span>   = {2},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Edição do Autor},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">address</span>   = {São João del-Rei, MG, Brasil},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2024},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">isbn</span>      = {978-65-01-14142-8},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {https://henriquealvarenga.com/manual_r/}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -787,14 +900,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./01-intro.html" class="pagination-link" aria-label="Introdução">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span>
+      <a href="./references.html" class="pagination-link" aria-label="Referências">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Referências</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-RStudio.html" class="pagination-link" aria-label="RStudio">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

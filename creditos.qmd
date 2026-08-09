@@ -1,0 +1,105 @@
+# Créditos {.unnumbered}
+
+:::: {style="text-align: center;"}
+## Manual Básico da Linguagem R
+
+*Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde*
+
+**Autor**
+
+Henrique Alvarenga da Silva
+
+**2ª Edição**
+
+São João del-Rei – MG
+
+2024
+
+Publicação independente do autor
+
+Formato: E-book (HTML)
+
+**ISBN: 978-65-01-14142-8**
+
+![](ISBN.jpeg){width="250" fig-align="center"}
+
+------------------------------------------------------------------------
+
+© 2024 Henrique Alvarenga da Silva
+
+Todos os direitos reservados.
+::::
+
+## Sobre o autor
+
+**Dr. Henrique Alvarenga da Silva**
+
+Médico Psiquiatra e Professor de Medicina.
+
+| | |
+|---|---|
+| Registro profissional | CRM-MG 31.778 · RQE 8381 |
+| ORCID | [0000-0001-9799-5240](https://orcid.org/0000-0001-9799-5240) |
+| Currículo Lattes | [lattes.cnpq.br/6147640440978297](https://lattes.cnpq.br/6147640440978297) |
+| Google Scholar | [perfil](https://scholar.google.com/citations?user=Fbv4vDsAAAAJ) |
+| Site | [henriquealvarenga.com](https://henriquealvarenga.com) |
+
+Afiliações institucionais:
+
+- Universidade Federal de São João del-Rei (UFSJ)
+- Centro Universitário Presidente Tancredo de Almeida Neves (UNIPTAN)
+
+Contato: [henriquealvarenga@ufsj.edu.br](mailto:henriquealvarenga@ufsj.edu.br)
+
+## Como este livro foi feito
+
+O texto foi escrito em [Quarto](https://quarto.org), e todo o código em R que
+aparece nas páginas é executado de verdade durante a publicação — os resultados,
+as tabelas e os gráficos que você vê são a saída real daquele código, não
+imagens coladas.
+
+O código-fonte é público e está em
+[github.com/henriquealvarenga/manual_r](https://github.com/henriquealvarenga/manual_r).
+Correções e sugestões são bem-vindas por lá.
+
+## Como citar
+
+::: {.panel-tabset}
+
+### ABNT
+
+SILVA, Henrique Alvarenga da. **Manual básico da linguagem R**: introdução à
+análise de dados com a linguagem R, RStudio e Quarto para área da saúde. 2. ed.
+São João del-Rei: Edição do Autor, 2024. E-book. ISBN 978-65-01-14142-8.
+Disponível em: https://henriquealvarenga.com/manual_r/. Acesso em: [data].
+
+### Vancouver
+
+Silva HA. Manual básico da linguagem R: introdução à análise de dados com a
+linguagem R, RStudio e Quarto para área da saúde. 2ª ed. [Internet]. São João
+del-Rei (MG): Edição do Autor; 2024 [citado em: data]. Disponível em:
+https://henriquealvarenga.com/manual_r/
+
+### APA
+
+Silva, H. A. da. (2024). *Manual básico da linguagem R: Introdução à análise de
+dados com a linguagem R, RStudio e Quarto para área da saúde* (2ª ed.). Edição
+do Autor. https://henriquealvarenga.com/manual_r/
+
+### BibTeX
+
+```bibtex
+@book{silva_manual_r_2024,
+  author    = {Silva, Henrique Alvarenga da},
+  title     = {Manual básico da linguagem R: introdução à análise de dados
+               com a linguagem R, RStudio e Quarto para área da saúde},
+  edition   = {2},
+  publisher = {Edição do Autor},
+  address   = {São João del-Rei, MG, Brasil},
+  year      = {2024},
+  isbn      = {978-65-01-14142-8},
+  url       = {https://henriquealvarenga.com/manual_r/}
+}
+```
+
+:::

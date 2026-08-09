@@ -48,6 +48,7 @@ book:
     - 16-Datasets.qmd
     - 17-Conclusion.qmd
     - references.qmd
+    - creditos.qmd
 
 # Traduz os rótulos gerados pelo Quarto: "Chapter"/"Section" nas referências
 # cruzadas, "Table of contents" e "References" na barra lateral.
