@@ -65,6 +65,8 @@ format:
     # Declara o endereço oficial de cada página, para o buscador não tratar
     # variações do mesmo endereço como páginas diferentes.
     canonical-url: true
+    # Dados estruturados identificando o autor. Ver os comentários do arquivo.
+    include-in-header: _includes/autor.html
   pdf:
     documentclass: scrreprt
     number-sections: true

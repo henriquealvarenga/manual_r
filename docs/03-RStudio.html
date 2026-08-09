@@ -73,6 +73,98 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Procurar"
   }
 }</script>
+<!--
+  Dados estruturados (JSON-LD) declarando quem assina este livro.
+
+  O @id da pessoa é https://henriquealvarenga.com/#pessoa — exatamente o mesmo
+  usado no site principal e nos demais subsites. É esse identificador repetido
+  que permite ao Google e aos assistentes de IA concluírem que o autor deste
+  livro e o médico do consultório são a mesma pessoa, em vez de tratá-los como
+  homônimos. Se ele for alterado aqui, o livro se desliga dessa identidade.
+
+  O livro referencia a pessoa pelo @id em vez de repetir os dados dela, que é
+  como o schema.org expressa "o autor é aquela entidade já declarada".
+
+  Incluído em todas as páginas via include-in-header no _quarto.yml.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://henriquealvarenga.com/#pessoa",
+      "name": "Henrique Alvarenga da Silva",
+      "honorificPrefix": "Dr.",
+      "jobTitle": "Médico Psiquiatra e Professor de Medicina",
+      "url": "https://henriquealvarenga.com",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "CRM-MG",
+          "value": "31.778"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "RQE",
+          "value": "8381"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0000-0001-9799-5240"
+        }
+      ],
+      "affiliation": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Universidade Federal de São João del-Rei (UFSJ)"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Centro Universitário Presidente Tancredo de Almeida Neves (UNIPTAN)"
+        }
+      ],
+      "sameAs": [
+        "https://orcid.org/0000-0001-9799-5240",
+        "https://lattes.cnpq.br/6147640440978297",
+        "https://scholar.google.com/citations?user=Fbv4vDsAAAAJ",
+        "https://www.linkedin.com/in/henriquealvarengasilva",
+        "https://www.instagram.com/henriquealvarengadasilva",
+        "https://www.youtube.com/@henriquealvarenga"
+      ]
+    },
+    {
+      "@type": "Book",
+      "@id": "https://henriquealvarenga.com/manual_r/#livro",
+      "name": "Manual Básico da Linguagem R",
+      "url": "https://henriquealvarenga.com/manual_r/",
+      "author": {
+        "@id": "https://henriquealvarenga.com/#pessoa"
+      },
+      "bookEdition": "2ª edição",
+      "isbn": "978-65-01-14142-8",
+      "inLanguage": "pt-BR",
+      "isAccessibleForFree": true,
+      "description": "Introdução prática à análise de dados com R, RStudio e Quarto para a área da saúde: da linguagem básica aos testes estatísticos, regressão e análise de sobrevivência.",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Linguagem R"
+        },
+        {
+          "@type": "Thing",
+          "name": "Análise de dados"
+        },
+        {
+          "@type": "Thing",
+          "name": "Estatística em saúde"
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 
 <link rel="canonical" href="https://henriquealvarenga.com/manual_r/03-RStudio.html">
