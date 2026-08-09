@@ -3,7 +3,7 @@
 **Manual Básico da Linguagem R** — Introdução à análise de dados com a
 linguagem R, RStudio e Quarto para área da saúde. Segunda edição.
 
-Publicado em <https://henriquealvarenga.com/manual_r/>
+Publicado em <https://henriquealvarenga.com/manual_r/> · ISBN 978-65-01-14142-8
 
 ## Como trabalhar neste livro
 
@@ -15,6 +15,30 @@ O `quarto render` gera a pasta `docs/`, que é versionada. O push dispara o
 workflow `.github/workflows/publish.yml`, que publica `docs/` no GitHub Pages.
 O GitHub não renderiza nada: o livro é renderizado na máquina do autor, onde os
 pacotes de R já estão instalados.
+
+### Configuração que não está neste repositório
+
+Em **Settings → Pages → Build and deployment**, a fonte precisa estar em
+**GitHub Actions**. Não existe arquivo que registre isso — é estado guardado
+numa tela do GitHub. Trocar para "Deploy from a branch" faz o workflow falhar
+no passo de deploy, sem nenhuma pista no código.
+
+### Pacotes de R necessários
+
+O livro carrega 24 pacotes, mas um deles é o `grid`, que já vem com o R. Os
+outros 23 precisam ser instalados numa máquina nova:
+
+```r
+install.packages(c(
+  "bestglm", "broom", "dplyr", "forcats", "GGally", "ggforce", "ggplot2",
+  "gridExtra", "janitor", "kableExtra", "magrittr", "plotly", "pROC",
+  "psych", "purrr", "readr", "skimr", "stargazer", "tibble", "tidyr",
+  "tidyverse", "UsingR", "vcd"
+))
+```
+
+Também é preciso ter o [Quarto](https://quarto.org) instalado. A saída em PDF
+depende de uma distribuição LaTeX — `quarto install tinytex` resolve.
 
 ## Atenção: o freeze olha o código, não os dados
 
@@ -56,6 +80,37 @@ quarto render --no-freeze
 ```
 
 Os resultados congelados ficam em `_freeze/`, que é versionado de propósito.
+
+## Formatos de saída
+
+O `_quarto.yml` gera **HTML** (o site publicado) e **PDF**.
+
+**Não existe saída em docx, e não é esquecimento.** As tabelas do livro usam
+`kableExtra` (`kbl()` seguido de `kable_classic()` e `row_spec()`), que só
+produz HTML e LaTeX. Com `docx` declarado no `_quarto.yml`, o render **para com
+erro**:
+
+```
+Functions that produce HTML output found in document targeting docx output.
+```
+
+O `prefer-html: true` sugerido pela mensagem não resolve de verdade: ele deixa
+o render terminar, mas as tabelas somem do arquivo do Word.
+
+Se um dia for preciso mesmo entregar em Word, o caminho é trocar o motor de
+tabelas por um que atravesse os três formatos — o `flextable` é o candidato —
+e isso significa reescrever as tabelas e os trechos de texto que as explicam.
+
+Para a Amazon não é necessário: a KDP prefere **EPUB** para o Kindle e exige
+**PDF** para o miolo do impresso. O EPUB é HTML por baixo, então o `kableExtra`
+funciona nele sem nenhuma adaptação. Bastaria acrescentar ao `_quarto.yml`:
+
+```yaml
+  epub:
+    cover-image: cover.png
+    toc: true
+    number-sections: true
+```
 
 ## Estrutura
 
