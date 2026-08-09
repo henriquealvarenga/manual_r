@@ -4,11 +4,13 @@ project:
   output-dir: docs
 
 book:
-  title: "Manual Basico da Linguagem R"
+  title: "Manual Básico da Linguagem R"
   # Sem barra final: a barra dispara um defeito conhecido do Quarto que produz
   # barra dupla no link canônico.
   site-url: "https://henriquealvarenga.com/manual_r"
   subtitle: "Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde"
+  # Frase que aparece no resultado de busca do Google.
+  description: "Introdução prática à análise de dados com R, RStudio e Quarto para a área da saúde: da linguagem básica aos testes estatísticos, regressão e análise de sobrevivência."
   author:
   - name: "Henrique Alvarenga da Silva"
     address: "Departamento de Medicina - UFSJ"
@@ -60,6 +62,9 @@ format:
   html:
     theme: cosmo
     number-sections: true
+    # Declara o endereço oficial de cada página, para o buscador não tratar
+    # variações do mesmo endereço como páginas diferentes.
+    canonical-url: true
   pdf:
     documentclass: scrreprt
     number-sections: true
