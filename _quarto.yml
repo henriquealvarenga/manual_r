@@ -39,6 +39,19 @@ book:
 
 bibliography: references.bib
 
+# Congela o resultado da execução do R. Cada capítulo só é reexecutado quando o
+# próprio .qmd muda — renders seguidos param de gerar diferença espúria em docs/.
+#
+# Sem isso, duas coisas mudavam a cada render, sem ninguém editar nada:
+#   - os capítulos 15 e 16 sorteiam números sem set.seed(), o que é PROPOSITAL:
+#     eles ensinam justamente que sem semente o resultado muda a cada execução
+#   - str() sobre um tibble do readr imprime o endereço de memória do atributo
+#     "problems" (<pointer: 0x...>), que muda a cada sessão do R
+#
+# Os resultados congelados ficam em _freeze/, que é versionado de propósito.
+execute:
+  freeze: auto
+
 format:
   html:
     theme: cosmo
