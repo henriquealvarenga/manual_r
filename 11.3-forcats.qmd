@@ -1,0 +1,304 @@
+## Trabalhando com dados categóricos com `forcats` {#sec-forcats}
+
+No campo da análise de dados, especialmente na área médica, os dados categóricos desempenham um papel crucial. Seja categorizando pacientes pelo genero, agrupando tratamentos ou analisando respostas de pesquisas, gerenciar essas variáveis categóricas de maneira eficiente é essencial. O pacote `forcats`, parte da coleção `tidyverse`, oferece um conjunto de ferramentas especificamente projetadas para trabalhar com fatores no R.
+
+Fatores são a estrutura de dados do R para dados categóricos, permitindo que você manipule e analise dados não numéricos com facilidade. Embora o R base forneça funcionalidades básicas para fatores, o `forcats` aprimora isso, oferecendo ferramentas mais intuitivas para a manipulação de fatores. Este pacote simplifica tarefas como reordenar níveis de fatores, gerenciar valores ausentes e converter fatores para outros tipos de dados, tornando-se uma ferramenta indispensável para analistas de dados médicos.
+
+Neste capítulo, você aprenderá a aproveitar as capacidades do forcats para agilizar seu fluxo de trabalho de análise de dados.
+
+### Variáveis categóricas e `factor` do R
+
+R usa o tipo `factor` para lidar com variáveis categóricas, isto é, variáveis que possuem um conjunto fixo e conhecido de valores possíveis. O objetivo do pacote `forcats` é fornecer um conjunto de ferramentas que resolva problemas comuns com esse tipo de variável, incluindo a alteração da ordem dos níveis ou dos valores. Esse tipo de variável no R é também útil quando pretendemos apresentar os dados de forma que naão seja a ordem alfabética.
+
+Por exemplo, se temos um conjunto de dados com os meses do ano, a ordenação correta não é a ordem alfabética, mas sim a sequência dos meses.
+
+```{r}
+meses <- c("Janeiro", "Fevereiro", "Março",    "Abril", 
+           "Maio",    "Junho",     "Julho",    "Agosto", 
+           "Setembro", "Outubro",  "Novembro", "Dezembro")
+```
+
+Veja que ao pedir ao R para ordenar os valores da variável meses, a ordenação segue em ordem alfabética, o que, nesse caso, é totalmente inconveniente.
+
+```{r}
+sort(meses)
+```
+
+Isso pode ser corrigido transformando a variável num `factor` e definindo os níveis e a ordenação desses níveis da variável.
+
+A primeira etapa é definir os níveis:
+
+```{r}
+meses <-  c("Janeiro", "Fevereiro", "Março",    "Abril", 
+            "Maio",    "Junho",     "Julho",    "Agosto", 
+            "Setembro", "Outubro",  "Novembro", "Dezembro")
+```
+
+A segunda etapa é transformar a variável original numa do tipo factor com a função `factor()`.
+
+```{r}
+# carregando o pacote forcats
+library(forcats)
+
+meses2 <- factor(meses, levels = meses)
+sort(meses2)
+```
+
+Quando omitimos o argumento `levels`, a ordenação continua sendo alfabética:
+
+```{r}
+meses3 <- factor(meses)
+sort(meses3)
+```
+
+Quando definimos os níveis de uma variável do tipo `factor` qualquer valor desconhecido é transformado em `NA`. Veja abaixo o que ocorre quando escrevemos um dos meses de forma errada (Fevereirooo):
+
+```{r}
+meses_erro <-   c("Janeiro", "Fevereirooo", "Março",    "Abril", 
+                   "Maio",    "Junho",     "Julho",    "Agosto", 
+                   "Setembro", "Outubro",  "Novembro", "Dezembro")
+
+meses_erro <- factor(meses_erro, levels = meses)
+sort(meses_erro)
+```
+
+O mês de Fevereiro não apareceu quando pedimos ao R para ordenar os valores, pois não havia um mes chamado "Fevereiro". O data frame tinha um mês chamado "Fevereirooo" e portanto, o comando `sort()` ignorou esse mês, já que não havia entre os níveis um mês com esse nome.
+
+Isso pode ser problemático, pois a exclusão foi feita de forma invisível, ou seja, o R não explicitou essa exclusão. É ainda que o pacote `forcats` mostra sua utilidade.
+
+### Manipulando variáveis categóricas com `forcats`
+
+O pacote `forcats` é um pacote popular do R desenvolvido por Hadley Wickham que faz parte da coleção de pacotes do `tidyverse` Ele é projetado para trabalhar com dados categóricos, especificamente `factors` Algumas vantagens do pacote `forcats` incluem:
+
+*Consistência*: O pacote segue os princípios do `tidyverse`, garantindo uma interface consistente e intuitiva para trabalhar com `factors`.
+
+*Simplicidade*: `forcats` fornece um conjunto de funções que simplificam tarefas comuns, como alterar a ordem dos níveis de fatores, reduzir níveis ou reordenar níveis com base em sua frequência ou outros atributos.
+
+*Recodificação e renomeação*: funções como `fct_recode()` e `fct_relevel()` simplificam a recodificação ou renomeação de níveis de `factors`, o que pode ser particularmente útil ao limpar e pré-processar dados.
+
+*Controle*: o `forcats` facilita o controle explícito da ordem dos níveis das variáveis categóricas ou a definição de níveis específicos como referências nas análises, o que pode ser importante ao trabalhar com variáveis categóricas ordinais.
+
+*Visualização*: ao usar o `ggplot2`, outro pacote do `tidyverse`, as funções `forcats` podem ser usadas para personalizar a ordem das categorias exibidas, o que pode levar a gráficos mais informativos e esteticamente agradáveis.
+
+*Compatibilidade*: como parte da ordenação, o `forcats` funciona perfeitamente com outros pacotes de ordenação como `dplyr`, `aligner` e `ggplot2`, tornando-o uma excelente opção para gerenciar e visualizar dados categóricos em um fluxo de trabalho de dados organizado.
+
+*Documentação*: O pacote forcats vem com documentação abrangente e possui forte suporte da comunidade, tornando mais fácil para os usuários encontrar soluções para suas dúvidas e problemas.
+
+Ao oferecer essas vantagens, o pacote `forcats` torna o trabalho com dados categóricos em R mais eficiente e fácil de usar.
+
+#### Reordenando variáveis categóricas
+
+Geralmente é útil alterar a ordem dos níveis de fator em uma visualização. Nos exemplos seguintes não se preocupe com os códigos para gerar os gráficos. Em capítulos adiante iremos discutir como criar gráficos com o `ggplot2`. No momento o que interessa é observar que podemos indicar ao R como deverá ser interpretada a ordenação da variável categórica.
+
+A técnica ideal é definir essa ordenação antes de gerar o gráfico, como será mostrado nos códigos adiante.
+
+Vejamos esse exemplo de uma `tibble` com os preços de frutas e legumes.
+
+```{r}
+library(tibble)
+
+# Criando uma tibble fictícia
+data <- tibble(produto = factor(c("abacaxi", "goiaba", "limão", "uva T", "kiwi", "vagem", "jilo")),
+               preco = c(3.0, 3.5, 1.5, 11.0, 8.39, 4.55, 2.0))
+
+```
+
+Plotar esses dados sem nenhum ajuste resultaria num gráfico ordenado de forma alfabética.
+
+```{r}
+library(ggplot2)
+
+ggplot(data) +
+  geom_bar(aes(x=produto, y=preco), 
+           stat = "identity", 
+           fill="lightgreen", 
+           col="darkgreen") +
+  theme_minimal()
+```
+
+Porém, frequentemente é interessante ordenar de acordo com algum padrão que não alfabético, por exemplo, de acordo com o preço. Para isso podemos usar a função `fct_reorder()` como abaixo. Veja como o mesmo gráfico agora será ordenado segundo o preço.
+
+```{r}
+# carregando o pacote dplyr para usar mutate
+library(dplyr)
+
+# Ordenar a variável produto de acordo com uma outra variável: preco
+data <- data %>%
+  mutate(produto = fct_reorder(produto, preco))
+
+# plotando novamente o gráfico
+ggplot(data) +
+  geom_bar(aes(x=produto, y=preco), 
+           stat = "identity", 
+           fill="lightgreen", 
+           col="darkgreen") +
+  theme_minimal()
+```
+
+### Agrupando categorias
+
+As vezes desejamos colpasar algumas categorias mais específicas para outras mais genéricas. Por exemplo, podemos criar grupos de `legumes` e `frutas` a partir dos dados da tible anterior.
+
+O código a seguir reune cria uma variável `tipo`, com dois grupos (`fruta` e `legume`). Para isso reúne sob o rótulo `fruta` os produtos "abacaxi", "goiaba", "limão", "uva T" e "kiwi"; e sob o rótulo `legume` os produtos "vagem" e "jilo".
+
+```{r}
+data <- data %>%
+  mutate(tipo = fct_collapse(produto,
+                             "fruta" = c("abacaxi", "goiaba", "limão", "uva T", "kiwi"),
+                             "legume" = c("vagem", "jilo")))
+
+data
+```
+
+### Recodificando variáveis categóricas {#sec-recodingfactors}
+
+Podemos recodificar os níveis da variáveis categórica `produto` usando `fct_recode()`.
+
+Vamos recodificar:\
+`uva T` para `Uva Thompson`\
+`limão` para `Limão Thaiti`\
+`goiaba` para `Goiaba`\
+`abacaxi` para `Abacaxi`\
+`kiwi` para `Kiwi`\
+`vagem` para `Vagem`\
+`jilo` para `Jiló`
+
+Veja que o novo nome vem na frente do nome antigo dentro do código:
+
+```{r}
+# Recode factor levels
+data <- data %>%
+  mutate(produto = fct_recode(produto,
+                            "Uva Thompson" = "uva T",
+                            "Limão Thaiti" = "limão",
+                            "Goiaba"       = "goiaba",
+                            "Abacaxi"      = "abacaxi",
+                            "Kiwi"         = "kiwi",
+                            "Vagem"        = "vagem", 
+                            "Jiló"         = "jilo"))
+
+
+data
+```
+
+### Ordenando de acordo com a frequência dos elementos
+
+O pacote `forcats` tem também uma função que ordena os elementos de acordo com a frequência deles. Vejamos a aplicação dessa função num data frame que contém as variáveis sexo, idade.
+
+```{r}
+library(tibble)
+
+# criando um data frame com dados de idade e sexo
+# Definir parâmetros da distribuição normal
+media_idade   <- 40
+desvio_padrao <- 10
+n_pessoas     <- 100
+
+# Definir sementes aleatórias para garantir a reprodutibilidade
+set.seed(20)
+
+# Criar uma tibble com o nome df_sexo
+df_sexo <- tibble(id = 1:n_pessoas,
+                  sexo = sample(c("Masculino", "Feminino", "Outro", "Não definido"), n_pessoas, replace = TRUE),
+                  idade = round(rnorm(n_pessoas, mean = media_idade, sd = desvio_padrao), 0))
+
+print(df_sexo)
+```
+
+Veja que a frequência continua sendo por ordem alfabética.
+
+```{r}
+# plotando um gráfico de barras das frequências de cada sexo
+ggplot(df_sexo) +
+  geom_bar(aes(x=sexo, fill=sexo)) +
+  theme_minimal()
+```
+
+Podemos fazer com que as barras sejam plotadas de acordo com a frequência, o que faz o gráfico ficar esteticamente mais interessante. Para isso usaremos a função `fct_infreq()` para indicar que essa variável categórica deverá ser tratada de acordo com a frequência dos dados.
+
+```{r}
+# indicando que a variável sexo deverá ser ordenada de acordo com a frequência (decrescente)
+df_sexo <- df_sexo %>%
+  mutate(sexo = fct_infreq(sexo))
+
+
+# plotando um gráfico de barras das frequências de cada sexo
+ggplot(df_sexo) +
+  geom_bar(aes(x=sexo, fill=sexo)) +
+  theme_minimal()
+```
+
+Caso o interesse seja plotar na ordem inversa, podemos fazer isso com a função `fct_rev` aplicada juntamente com a função `fct_infreq` como mostra o código abaixo.
+
+```{r}
+# indicando que a variável sexo deverá ser ordenada de acordo com a frequência, na ordem crescente
+df_sexo <- df_sexo %>%
+  mutate(sexo = fct_rev(fct_infreq(sexo)))
+
+
+# plotando um gráfico de barras das frequências de cada sexo
+ggplot(df_sexo) +
+  geom_bar(aes(x=sexo, fill=sexo)) +
+  theme_minimal()
+```
+
+### Categorizando variáveis numéricas com a função `cut( )`
+
+A função `cut()` nos permite criar uma variável categórica a partir de uma variável numérica. Isso é útil em diversas situações como por exemplo criar grupos de crianças, adultos e idosos a partir de uma variável numérica; ou categorizar escores númericos em escalas em níveis de leve, moderado e grave. A função `cut()` discretiza esses dados e nos permite criar também os rótulos (nomes) para essas categorias.
+
+A forma usual dessa função é:
+
+```         
+  cut(variável, 
+      breaks=c(-Inf, x1, x2, Inf),
+      labels=c("label", "label", "label"))
+```
+
+Veja que o parâmetro breaks pode usar `-Inf` como limite inferior e `Inf` como limite superior, significando limite infinito negativo e limite infinito positivo. Entretanto, geralmente conhecemos nosso dataset e o ideal é usar os limites máximo e mínino conhecidos.
+
+Entre esses limites extremos serão definidos os pontos de corte. Veja também que com 4 pontos serão criados 3 categorias. Por padrão os intervalos são do abertos à esquerda e fechados à direita, tal como em (x1, x2\]. De tal forma que o intervalo termina no valores indicados, incluindo esse valor.
+
+Outra funcionalidade bastante útil da função `cut()` é a possibilidade de criação de rótulos próprios, `labels` para nomear as categorias criadas. É importante aqui que o número de labels seja exatamente igual ao número de categorias criadas. Com 4 pontos no argumento breaks como no exemplo acima serão criados 3 categorias.
+
+Para exemplificar o uso da função `cut()` vamos usar o dataset `mpg` e criar uma variável categórica `cty_cat` a partir `cty` (milhas percorridas na estrada com 1 galão de combustível). A variável `cty` é numérica, com valores variando de 9 milhas a 35 milhas. Vamos definir 3 categorias de carros:
+
+Como o limite superior do intervalo é aberto, o valor desse ponto de corte será parte da 1º categoria, portanto, o primeiro ponto de corte deve ser 15, já que definimos o primeiro intervalo como menor ou igual a 15. O segundo ponto de corte será 20, pois será o limite superior da segunda categoria é menor ou igual a 20. O código ficará então assim:
+
+```{r}
+library(ggplot2)
+data(mpg)
+mpg$cty_cat <- cut(mpg$cty,               
+                   breaks=c(0, 15, 20, 35),                  
+                   labels=c("Beberrão","Moderado", "Econômico"))
+table(mpg$cty_cat)
+```
+
+Agora o data frame mpg contém uma nova variável categórica denominada `cty_cat` com 3 níveis, o que podemos verificar com a função `class()` e `unique()`.
+
+```{r}
+class(mpg$cty_cat)
+```
+
+```{r}
+unique(mpg$cty_cat)
+```
+
+Entretanto, ainda falta um pequeno detalhe. A variável criada deveria ser ordenada, mas foi criada como sendo uma variável nominal. Por padrão o R cria uma variável categórica nominal com a função `cut()`. Para indicar que desejamos que a nova variável seja ordenada devemos incluir o parâmetro `ordered_result` como sendo TRUE (`ordered_result = TRUE`).
+
+```{r}
+mpg$cty_cat <- cut(mpg$cty,
+                   
+                   breaks=c(0, 15, 20, 35),                               
+                   labels=c("Beberrão","Moderado", "Econômico"),
+                   ordered_result = TRUE)
+```
+
+Vamos verificar agora que a variável `cty_cat( )` é ordenada e qual a ordenação.
+
+```{r}
+class(mpg$cty_cat)
+```
+
+```{r}
+unique(mpg$cty_cat)
+```

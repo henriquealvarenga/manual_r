@@ -1,0 +1,56 @@
+project:
+  type: book
+  # O GitHub Pages publica a pasta docs/ deste repositório.
+  output-dir: docs
+
+book:
+  title: "Manual Basico da Linguagem R"
+  # Sem barra final: a barra dispara um defeito conhecido do Quarto que produz
+  # barra dupla no link canônico.
+  site-url: "https://henriquealvarenga.com/manual_r"
+  subtitle: "Introdução à análise de dados com a linguagem R, RStudio e Quarto para área da saúde"
+  author:
+  - name: "Henrique Alvarenga da Silva"
+    address: "Departamento de Medicina - UFSJ"
+    email: "henriquealvarenga@ufsj.edu.br"
+  isbn: "978-65-01-14142-8"
+  date: "07/31/2024"
+  chapters:
+    - index.qmd
+    - 00-prefacio.qmd
+    - 01-intro.qmd
+    - 02-Instalation.qmd
+    - 03-RStudio.qmd
+    - 04-R-Projects.qmd
+    - 05-R-Objects-Variables-Vectors.qmd
+    - 06-Dataframes-and-Tibbles.qmd
+    - 07-Operators.qmd
+    - 08-R-Functions.qmd
+    - 09-R-Packages.qmd
+    - 10-Reading-data.qmd
+    - 11-Manipulating-data.qmd
+    - 12-Ploting-graphics.qmd
+    - 13-Statistical-Analysis.qmd
+    - 15-Distributions.qmd
+    - 16-Simulations.qmd
+    - 17-Datasets.qmd
+    - 18-Conclusion.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    number-sections: true
+  pdf:
+    documentclass: scrreprt
+    number-sections: true
+
+bookdown::epub_book:
+  stylesheet: css/style.css
+
+editor: visual
+
+before_body: cover.png {-}
+

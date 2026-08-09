@@ -1,0 +1,392 @@
+## Organizando e transformando dados com tidyr {#sec-tidyr}
+
+Na análise de dados na área da saúde, frequentemente lidamos com conjuntos de dados que precisam ser organizados de maneira eficiente para facilitar a análise e a visualização. O pacote **`tidyr`** do R é uma ferramenta poderosa para a manipulação e transformação de dados, permitindo que você organize seus dados de forma "arrumada" (tidy).
+
+O **`tidyr`** faz parte do universo **`tidyverse`**, uma coleção de pacotes R projetados para ciência de dados. Ele fornece funções que facilitam a conversão de dados em formatos que são mais compatíveis com outros pacotes do **`tidyverse`**, como **`dplyr`**, **`ggplot2`** e **`readr`**.
+
+Neste capítulo, exploraremos as principais funções do **`tidyr`**, incluindo:
+
+-   **`pivot_longer()`** e **`pivot_wider()`**: funções para converter dados entre formatos largos e longos, sucessores modernos das funções **`gather()`** e **`spread()`**, oferecendo maior flexibilidade e controle.
+
+-   **`separate()`** e **`unite()`**: funções para dividir e combinar colunas, respectivamente.
+
+-   **`drop_na()`**: função para remover linhas com valores ausentes.
+
+-   **`replace_na()`**: função para remover linhas com valores ausentes.
+
+Vamos começar explorando como o **`tidyr`** pode simplificar a manipulação de dados e permitir que você se concentre nas análises que realmente importam para suas pesquisas e práticas na área da saúde.
+
+### Reformatação de Dados: Longo para Largo e Vice-Versa
+
+Em análise de dados, os termos "dados longos" e "dados largos" referem-se a diferentes formas de estruturar conjuntos de dados. Dados largos, também conhecidos como formato "tidy", são caracterizados por uma estrutura em que cada variável tem sua própria coluna e cada observação tem sua própria linha. Este formato é intuitivo para visualização direta e facilita a manipulação de dados em muitos casos, especialmente quando se trabalha com pacotes do `tidyverse`.
+
+Por outro lado, dados longos possuem uma coluna para variáveis e outra para valores, permitindo múltiplas entradas para uma mesma entidade. Este formato é particularmente útil para análises temporais ou categóricas, onde múltiplas medições são realizadas para cada entidade. A habilidade de transformar dados entre esses formatos, utilizando funções como `pivot_longer()` e `pivot_wider()`, é crucial para uma análise eficiente e precisa, adaptando os dados à necessidade específica da tarefa analítica.
+
+```{r long-data, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Long data frame'}
+knitr::include_graphics(rep("images/long_dataframe.png", 1))
+```
+
+#### A função `pivot_longer()` e `pivot_wider`
+
+Na seção sobre data frames mostramos que o layout mais comum de um data frame é chamado de **wide**, na qual as linhas representam observações e as colunas representam variáveis. Mas nem sempre os data frames vem organizados da forma como precisamos. Às vezes uma variável está distribuída em mais de uma coluna.
+
+Num dataset que construimos em seções anteriores, por exemplo, existem duas colunas para representar os resultados de 2 diferentes tipos de tratamento, A e B. Essa separação pode ajudar a comparar visualmente os 2 tratamentos numa tabela.
+
+Mas, pode ser interessante agrupar essas duas colunas num única variável, que poderíamos chamar de tratamento. Ou seja, podemos representar esse dados de duas formas, chamadas de `wide` ou `long`.
+
+Esse agrupamento de duas ou mais colunas em uma única variável é feito com a função `pivot_longer()`.
+
+Vamos recriar esse dataset novamente aqui, com 3 pacientes e os 2 tipos de tratamento:
+
+```{r}
+# criando os vetores do data frame simulado
+pacientes   <- c("João", "José", "Maria")
+tratamentoA <- c(25,16,20) 
+tratamentoB <- c(12,8,9) 
+
+# criando o data frame a partir dos vetores já criados
+result <- data.frame(pacientes, tratamentoA, tratamentoB)
+
+# mostrando o data frame criado
+result
+```
+
+Veja que esse novo data frame possui 3 linhas e as colunas `tratamentoA` e `tratamentoB` com os resultados de cada tratamento.
+
+O que precisamos é unir essas duas últimas colunas (`tratamentoA` e `tratamentoB`) em uma única coluna que iremos denominar simplesmente de `tratamento`.
+
+Observe que o data frame no formato `long` terá 6 linhas, o dobro do anterior, e que os valores das duas antigas colunas(`tratamentoA` e `tratamentoB`) foram todos inseridos na coluna denominada `tratamento`. Observe que os resultados de cada tratamento foram colocados numa outra coluna que denominei de `scores`.
+
+Ou seja, não há perda de informação, apenas uma modificação do layout do data frame, que é usualmente denominado de **long**, pelo fato de ser mais comprido que o anterior.
+
+Essa transformação é realizada com a função `pivo_longer()`, como mostram os códigos abaixo.
+
+```{r}
+# carregando o tidyr para usar a função pivot_longer
+library(tidyr) 
+
+# transformando a tibble para o formato long
+result.long <- pivot_longer(result,                               
+                            cols=c("tratamentoA", "tratamentoB"), 
+                            names_to = "tratamento",               
+                            values_to = "scores")                 
+result.long 
+```
+
+Ou usando o operador pipe:
+
+```{r}
+result.long <- result |> 
+                pivot_longer(cols=c("tratamentoA", "tratamentoB"), 
+                             names_to = "tratamento",
+                             values_to = "scores")              
+result.long 
+```
+
+O que a função `pivot_longer()` fez foi:
+
+1.  Carregou o data frame indicado (`result`),
+2.  Selecionou as colunas indicadas no argumento `cols=c("tratamentoA" e "tratamentoB").`
+3.  Criou uma coluna chamada `tratamento` e colocou nessa coluna os nomes `tratamentoA` e `tratamentoB`.
+4.  Criou uma coluna chamada `scores` e colocou nessa coluna os valores que antes estavam nas colunas `tratamentoA` e `tratamentoB`.
+
+A função `pivot_wider()` faz justamente o oposto.
+
+```{r}
+result.long |> pivot_wider(names_from = "tratamento", 
+                            values_from = "scores")
+```
+
+Vejamos como a transformação do data frame na versão long facilita a criação de um gráfico. Com esse novo formato, podemos usare a função `geom_boxplot` do `ggplot` para criar boxplots de cada tipo de tratamento, o que seria bem mais difícil no data frame do tipo wide.
+
+```{r}
+library(ggplot2)
+ggplot(result.long) +
+  geom_boxplot(aes(x=tratamento, y=scores)) +
+  theme_classic()
+```
+
+### Separando e unindo colunas
+
+Quando trabalhamos com conjuntos de dados na área da saúde, muitas vezes encontramos situações em que precisamos dividir uma coluna em várias ou combinar várias colunas em uma só. As funções `separate()` e `unite()` do pacote tidyr são projetadas exatamente para essas tarefas.
+
+#### Função separate()
+
+A função `separate()` é usada para dividir uma coluna em duas ou mais colunas. Esta função é especialmente útil quando uma coluna contém informações que podem ser separadas por um delimitador (como uma vírgula, espaço ou qualquer outro caractere).
+
+Imagine que temos um conjunto de dados com uma coluna chamada `data_hora` que contém informações de data e hora combinadas numa única coluna como mostrado no código abaixo:
+
+```{r}
+library(tidyr)
+
+# Exemplo de dados
+dados <- data.frame(id_paciente = c(1, 2, 3),
+                    data_hora = c("2024-05-01 14:30", "2024-05-02 09:15", "2024-05-03 18:45"))
+print(dados)
+```
+
+Nesse caso, será útil colocar a data em uma coluna e a hora em outra coluna. A sintaxe da função separate é a seguinte:
+
+`separate(data, col, into, sep = " ")`
+
+-   data: O conjunto de dados, o dataset
+-   col: A coluna a ser separada.
+-   into: Um vetor de novos nomes de colunas.
+-   sep: O delimitador que separa os valores (por padrão, é um espaço).
+
+```{r}
+# Usando separate para dividir a coluna data_hora em data e hora
+dados_separados <- separate(dados, 
+                            col = "data_hora", 
+                            into = c("data", "hora"), 
+                            sep = " ")
+
+print(dados_separados)
+```
+
+Podemos também separar a data em dia, mês e ano, como mostrado no código abaixo
+
+```{r}
+# Usando separate para dividir a coluna data_hora em data e hora
+dados_dma <- separate(dados_separados, 
+                      col = "data", 
+                      into = c("ano", "mes", "dia"), 
+                      sep = "-")
+
+print(dados_dma)
+```
+
+```{r}
+# Usando separate para dividir a coluna hora em horas e minutos
+dados_hm <- separate(dados_dma, 
+                      col = "hora", 
+                      into = c("horas", "minutos"), 
+                      sep = ":")
+
+print(dados_hm)
+```
+
+#### Função unite()
+
+A função `unite()` é usada para combinar duas ou mais colunas em uma única coluna. Essa função é útil quando queremos simplificar nosso conjunto de dados ou criar uma nova coluna combinada. A sintaxe dessa função é:
+
+`unite(data, col, ..., sep = "_")`
+
+-   data: O conjunto de dados.\
+-   col: O nome da nova coluna.\
+-   ...: As colunas a serem unidas.\
+-   sep: O delimitador a ser usado para unir os valores (por padrão, é um sublinhado "\_").
+
+Veja como unir as colunas que acabamos de separar:
+
+```{r}
+# Usando unite para combinar as colunas data e hora em data_hora
+dados <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
+
+print(dados)
+```
+
+A função `unite()` não suporte múltiplas uniões em um único comando. Assim, para unir novamente também as colunas ano, mes e dia, precisamos de uma nova linha com unite.
+
+```{r}
+# Usando unite para combinar as colunas data e hora em data_hora
+print(dados_hm)
+
+dados_hm <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
+dados_hm <- unite(dados_hm, col = "data", ano, mes, dia, sep = "-")
+
+print(dados_hm)
+```
+
+### NA Values {#sec-NAvalues}
+
+É muito frequente que faltem dados em pesquisas. Às vezes uma questão de um questionário deixou de ser respondida, às vezes um dado não foi encontrado etc. Esses dados são representados no R como `NA`, que significa NOT AVAILABLE. É importante reconhecer a existência desses dados faltantes pois a presença desses dados faltantes pode impedir que sejam executados cálculos matemáticos. Afinal de contas, o que poderia significar `3*NA`? Experimente fazer essa conta no R.
+
+#### Desconsiderar valores NA
+
+Como vimos anteriormente, nem todos argumentos são valores numéricos. Alguns argumentos servem para indicar como a função deve se comportar. Um argumento importante de muitas funções é o `na.rm = TRUE`. a expressão `na.rm=TRUE` é uma abreviação de REMOVE NOT AVAILABLE DATA, ou seja, remova os dados faltantes. Ao indicarmos que esse argumento é verdadeiro (`TRUE`), o R irá desconsiderar dados em branco ou faltantes ao fazer os cálculos. Sem esse argumento, frequentemente os cálculos não são realizados.
+
+**Criando uma variável peso com valores NA**
+
+```{r}
+peso <- c(50,55,8, NA) 
+peso
+```
+
+**Tentando calcular a média do peso, sem retirar os valores NA**
+
+```{r}
+mean(peso)
+```
+
+Veja que o resultado obtido foi `NA`, ou seja, o R não conseguiu fazer os cálculos. Uma das formas de resolver esse problema é retirar os valores `NA` antes de fazer os cálculos. Isso pode ser feito através do argumento `na.rm = TRUE`.
+
+**Tentando calcular a média do peso, indicando ao R para retirar os valores NA com o o argumento na.rm = TRUE**
+
+```{r}
+# calcula a média do peso, retirando os valores NA, utilizando o argumento na.rm = TRUE
+mean(peso, na.rm = TRUE)
+```
+
+Veremos a seguir como resolver problemas de valores `NA` em data frames usando o pacote `dplyr`, com as funções `drop_na()` e `replace_na()`.
+
+#### A função `drop_na()`
+
+Em muitos conjuntos de dados, especialmente na área da saúde, é comum encontrar valores ausentes (NA). Esses valores podem surgir por diversos motivos, como erros de coleta de dados ou dados que não foram registrados. A função `drop_na()` do pacote `tidyr` é uma ferramenta eficaz para lidar com esses valores ausentes, permitindo a remoção de linhas que contêm NAs de forma fácil e eficiente.
+
+A função `drop_na()` serve para excluirmos linhas com valores `NA` antes de executarmos algum cálculo estatístico. Lembre-se que muitas funções estatísticas não conseguem ser executadas se houver valores `NA` nos dados.
+
+Vamos criar uma tabela com valores `NA` e então tentar calcular a média de alguma das variáveis sem retirar os valores `NA` e, em seguida, retirando os valores `NA`.
+
+```{r}
+mydata <- tibble(
+  id     = 1:10,
+  sex    = c("Male", "Male","Male","Male","Male", "Female", "Female", "Female", "Female", "Female"),
+  age    = c(44, 18,  29,  33, 57,  47,  33,  71,  34,  NA),
+  height = c(NA, 172, 175, NA, 170, 169, 145, 179, 155, 149),
+  weight = c(70, 120, 90,  NA, 89,  72,  89,  91,  74,  70)
+)
+
+mydata
+```
+
+1ª Tentativa: tentando calcular a média das idades sem retirar os valores `NA`.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função pull
+mydata |> 
+  select(age) |> 
+  pull() |> 
+  mean()
+```
+
+2ª Tentativa: tentando calcular a média das idades usando o argumento `na.rm=TRUE`.
+
+```{r}
+mydata |> 
+  select(age) |> 
+  pull() |> 
+  mean(na.rm = TRUE)
+```
+
+Conseguimos calcular usando a função `mean()` com o argumento `na.rm=TRUE`. Entretanto, nem todas funções aceitam o argumento `na.rm=TRUE`. E as vezes precisamos retirar os valores `NA` numa sequencia diferente dentro do pipe. Podemos entáo resolver isso usando a função `drop_na()`.
+
+Vejamos o resultado usando a função `drop_na()`. Perceba que a função `drop_na()` precisa ser usada **antes** da função `pull()`. Isso é porque a função `drop_na()` atua em um data frame e a função `pull()` recebe um data frame e tem como output um vetor. Então, na sequencia do código, depois do `pull()` o que existe é um vetor e não um data frame. Por isso a função `drop_na()` não pode ser usada depois do `pull()`.
+
+```{r}
+mydata |>
+  select(age) |> 
+  drop_na() |> 
+  pull() |>  
+  mean()
+```
+
+Vejamos alguns outros exemplos mais simples de como usar a função `drop_na()`.
+
+```{r}
+library(tidyr)
+library(tibble)
+
+# Exemplo de dados de pacientes com NAs 
+pacientes <- tibble(id_paciente = 1:10,
+                    nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
+                             "Fernanda", "Gustavo", NA, "Isabela", "João"),
+                    idade  = c(25, 30, 35, 40, NA, 28, 33, 45, NA, 50),
+                    cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", NA, 
+                               "Curitiba", "Porto Alegre", "Salvador", "Brasília", "Fortaleza", NA))
+
+print(pacientes)
+
+```
+
+Podemos usar a função `drop_na()` para retirar todas as linhas que tenham dados faltantes em toda a tibble
+
+```{r}
+# Remover linhas com NAs nas colunas 'nome' e 'idade'
+pacientes2 <- drop_na(pacientes)
+print(pacientes2)
+
+```
+
+Às vezes, pode ser necessário remover linhas com NAs apenas em colunas específicas, enquanto preserva outras linhas com NAs em colunas menos críticas. Vamos considerar o mesmo conjunto de dados, mas desta vez removeremos apenas as linhas com NAs nas colunas nome e idade.
+
+```{r}
+# Remover linhas com NAs na coluna 'idade'
+pacientes3 <- drop_na(pacientes, idade)
+print(pacientes3)
+```
+
+#### A função `replace_na()`
+
+Nem sempre deletar da análise os valores `NA` é a melhor solução. Ao deletar um dado `NA` da amostra, podemos estar aumentando artificialmente o desvio padrão. Algumas vezes pode ser interessante substituir os valores NA por outro valor. Por exemplo, no caso de dados numéricos, é uma técnica comum substituir os valores NA pela média. Isso não modifica a média do conjunto, e evita que o desvio padrão seja artificialmente aumentado.
+
+Para substituir um valor numérico faltante pela média dos dados utilizando a função `replace_na()` do pacote `tidyr`, você pode seguir os passos abaixo. Primeiro, calcule a média dos valores existentes na coluna, ignorando os valores ausentes (NA). Em seguida, utilize `replace_na()` para substituir os valores ausentes pela média calculada.
+
+Aqui está um exemplo detalhado, usando também a função mutate do pacote `dplyr` que será discutido no capítulo seguinte.
+
+Vamos usar um conjunto de dados de pacientes e substituir os valores ausentes na coluna idade pela média das idades não ausentes.
+
+```{r}
+library(tidyr)
+library(tibble)
+library(dplyr)
+
+# Exemplo de dados de pacientes com NAs usando tibble
+pacientes <- tibble(id_paciente = 1:10,
+                    nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
+                             "Fernanda", "Gustavo", NA, "Isabela", "João"),
+                    idade  = c(25, 30, 35, 40, NA, 28, 33, 45, NA, 50),
+                    cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", NA, "Curitiba", 
+                               "Porto Alegre", "Salvador", "Brasília", "Fortaleza", NA))
+
+
+print(pacientes)
+```
+
+```{r}
+mean(pacientes$idade, na.rm = TRUE)
+sd(pacientes$idade, na.rm = TRUE)
+```
+
+```{r}
+# Calcular a média da coluna idade, ignorando NAs
+media_idade <- mean(pacientes$idade, na.rm = TRUE)
+
+# Substituir os valores ausentes na coluna idade com a média
+pacientes <- pacientes |>
+  mutate(idade = replace_na(idade, media_idade))
+
+print(pacientes)
+```
+
+Observe que os valores agora são mostrados com 2 casas decimais. Isso ocorre porque ao calcular a média da idade o R transformou esses dados que antes eram numeros inteiros (int) em números reais (dbl).
+
+```{r}
+# recalculando a média das idades, agora não precisamos mais de informar na.rm = TRUE
+mean(pacientes$idade)
+sd(pacientes$idade)
+```
+
+Veja que a média não foi alterada após a substituição dos valores faltantes pela própria média. O desvio padrão, por outro lado fica um pouco menor.
+
+Podemos usar `replace_na()` também para substituir o texto de variáveis. Por exemplo, podemos colocar o texto "Não informado" ou "Desconhecido" em campos onde havia NAs.
+
+```{r}
+library(tidyr)
+library(tibble)
+
+# Exemplo de dados de pacientes com NAs usando tibble
+pacientes <- tibble(id_paciente = 1:10,
+                    nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
+                             "Fernanda", "Gustavo", NA, "Isabela", "João"),
+                    idade  = c(25, 30, 35, 40, NA, 28, 33, 45, NA, 50),
+                    cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", NA, "Curitiba", 
+                               "Porto Alegre", "Salvador", "Brasília", "Fortaleza", NA))
+
+# Substituir valores ausentes por valores específicos
+pacientes_substituidos <- replace_na(pacientes, 
+                                     list(nome = "Desconhecido",
+                                          cidade = "Não Informado"))
+
+print(pacientes_substituidos)
+```

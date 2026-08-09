@@ -1,0 +1,41 @@
+# --- R ---
+.Rhistory
+.RData
+.Ruserdata
+
+# --- Estado local dos editores ---
+# Nada aqui é conteúdo do livro: são preferências e sessão de quem edita.
+# O .Rproj.user é do RStudio; ficam listados mesmo sem uso, para o caso de
+# alguém clonar o repositório e abrir com outro editor.
+.Rproj.user/
+.vscode/
+.positron/
+
+# --- Quarto ---
+# Cache interno do Quarto: reconstruído a cada render, não versionar.
+.quarto/
+*.knit.md
+*.utf8.md
+
+# Saída antiga do Quarto. O site publicado agora sai em docs/ (ver output-dir
+# no _quarto.yml), e docs/ SIM é versionado, porque é dele que o Pages publica.
+_book/
+
+# --- Renderizações avulsas de capítulos soltos ---
+# Sobras de quando um capítulo é renderizado sozinho durante a escrita.
+13-Statistical-Analysis_files/
+13.6-Linear-Regression.html
+13.6-Linear-Regression.pdf
+13.6-Linear-Regression_files/
+13.7-Logistic-Regression.html
+13.7-Logistic-Regression.pdf
+13.7-Logistic-Regression_files/
+15-Distributions_files/
+16-Simulations_files/
+index*.log
+
+# --- macOS ---
+.DS_Store
+
+/.quarto/
+**/*.quarto_ipynb

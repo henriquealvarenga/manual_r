@@ -1,0 +1,169 @@
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+# `Tibbles`, os dataframes do tidyverse {#tibbles}
+
+Tibbles são a versão moderna dos data frames do R. Um dataframe é uma estrutura de dados em R que organiza dados em uma tabela, onde cada coluna pode conter um tipo diferente de dados (como números, texto, ou datas). Cada linha do dataframe representa uma observação.
+
+Por exemplo, imagine que você tem uma tabela com informações sobre pacientes:
+
+| Nome  | Idade | Tipo Sanguíneo |
+|-------|-------|----------------|
+| João  | 30    | A+             |
+| Maria | 25    | B-             |
+| Ana   | 40    | O+             |
+
+Essa tabela pode ser representada como um dataframe em R.
+
+### O que são Tibbles?
+
+Tibbles são uma versão moderna dos dataframes, oferecida pelo pacote `tibble`, parte do tidyverse. Eles são projetados para serem mais simples e robustos do que os dataframes tradicionais. Embora sejam semelhantes aos dataframes, as tibbles trazem várias vantagens que facilitam o trabalho com dados em R.
+
+### Vantagens das Tibbles
+
+1.  **Exibição Melhorada**:
+
+    -   Quando você exibe uma tibble, ela é formatada de forma amigável. Apenas as primeiras 10 linhas e as colunas que cabem na tela são mostradas, evitando sobrecarregar a tela com informações.
+    -   Dataframes tradicionais podem mostrar grandes quantidades de dados de uma só vez, o que pode ser confuso.
+
+```{r}
+# Exibindo um dataframe tradicional
+df <- data.frame(nome = c("João", "Maria", "Ana", "Marcos", "Antônio", 
+                          "Pedro", "José", "Gustavo", "Carlos", "Rafaela", 
+                          "Luiza", "Lucas", "Laura", "Lavinia", "Carla"), 
+                 idade = c(30, 25, 40, 35, 60, 
+                           75, 27, 54, 59, 12, 
+                           19, 22, 65, 87, 90), 
+                 tipoSanguineo = c("A+", "B-", "O+", "A+", "B-", 
+                                   "O+", "A+", "B-", "O+","B-", 
+                                   "O+", "A+", "A+", "B-", "O+"))
+df
+```
+
+```{r}
+# Exibindo uma tibble
+library(tibble)
+tib <- tibble(nome = c("João", "Maria", "Ana", "Marcos", "Antônio", 
+                          "Pedro", "José", "Gustavo", "Carlos", "Rafaela", 
+                          "Luiza", "Lucas", "Laura", "Lavinia", "Carla"), 
+             idade = c(30, 25, 40, 35, 60, 
+                       75, 27, 54, 59, 12, 
+                       19, 22, 65, 87, 90), 
+             tipoSanguineo = c("A+", "B-", "O+", "A+", "B-", 
+                               "O+", "A+", "B-", "O+","B-", 
+                               "O+", "A+", "A+", "B-", "O+"))
+print(tib)
+```
+
+2.  **Colunas Consistentes**:
+
+    -   As tibbles sempre mantêm as colunas como os tipos de dados corretos. Por exemplo, se você tiver uma coluna de números, ela não será automaticamente convertida em caracteres, mesmo se houver um valor de texto nela.
+    -   Dataframes tradicionais às vezes convertem automaticamente os tipos de dados de colunas, o que pode causar problemas.
+
+3.  **Facilidade de Subsetting (Subconjuntos)**:
+
+    -   Subsetting em tibbles é mais intuitivo. Você pode usar colchetes `[]`, `$` ou funções específicas do `tidyverse` sem surpresas.
+    -   Dataframes tradicionais podem se comportar de maneiras inesperadas ao fazer subsetting, especialmente com colunas de uma única linha.
+
+```{r}
+# Subsetting com tibble
+tib$nome  # Acesso à coluna 'Nome'
+```
+
+```{r}
+# Subsetting com tibble
+tib[1, ]  # Acesso à primeira linha
+```
+
+```{r}
+# Subsetting com dataframe tradicional pode causar problemas se não tomar cuidado
+df$nome # Acesso à coluna 'Nome'
+```
+
+```{r}
+# Subsetting com dataframe tradicional pode causar problemas se não tomar cuidado
+df[1, ] # Acesso à primeira linha
+```
+
+4.  **Mensagens de Erro Mais Úteis**:
+
+    -   As tibbles fornecem mensagens de erro mais claras e informativas, ajudando a entender o que deu errado e como corrigir.
+
+5.  **Melhor Compatibilidade com o Tidyverse**:
+
+    -   As tibbles são projetadas para funcionar perfeitamente com outras ferramentas do `tidyverse` (como `dplyr` e `ggplot2`), facilitando operações de manipulação de dados e visualização.
+
+### Criando e Usando Tibbles
+
+Aqui está um exemplo de como criar e usar tibbles no R:
+
+```{r}
+# Instale e carregue o pacote tibble
+# install.packages("tibble")
+library(tibble)
+
+# Criando uma tibble
+dados_pacientes <- tibble(nome = c("João", "Maria", "Ana", "Marcos", "Antônio", 
+                                  "Pedro", "José", "Gustavo", "Carlos", "Rafaela", 
+                                  "Luiza", "Lucas", "Laura", "Lavinia", "Carla"), 
+                         idade = c(30, 25, 40, 35, 60, 
+                                   75, 27, 54, 59, 12, 
+                                   19, 22, 65, 87, 90), 
+                         tipoSanguineo = c("A+", "B-", "O+", "A+", "B-", 
+                                           "O+", "A+", "B-", "O+","B-", 
+                                           "O+", "A+", "A+", "B-", "O+"))
+```
+
+```{r}
+# Exibindo a tibble
+dados_pacientes
+```
+
+```{r}
+# Acessando colunas
+dados_pacientes$nome
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Filtrando dados com o dplyr (do tidyverse)
+library(dplyr)
+pacientes_mais_jovens <- dados_pacientes %>% filter(idade < 35)
+pacientes_mais_jovens
+```
+
+```{r}
+```
+
+### transformando data frames em `tibbles`
+
+Caso você tenha um data frame, é fácil transformá-lo numa `tibble` usando a função `as.tibble()`.
+
+O código a seguir lê um banco de dados chamado `diabetes.csv` que está na pasta `dataset` do projeto. A leitura será feita através da função base do R `read.csv()`, que coloca os dados lidos num data frame. Em seguida, usaremos a função `as.tibble()` para transformar o data frame numa `tibble`.
+
+```{r}
+# lendo os dados com a função read.csv do R Base
+diabetes <- read.csv("dataset/diabetes.csv") 
+
+# verificando que os dados foram armazenados num data frame
+str(diabetes)
+```
+
+```{r}
+# transformando o data frame numa tibble
+diabetes <- as_tibble(diabetes)
+
+# verificando que os dados agora esão armazenados numa tibble
+str(diabetes)
+```
+
+Lembre-se que a função `read_csv()` do `readr` já lê os dados como uma tibble.
+
+```{r}
+# lendo os dados com a função read.csv do R Base
+library(readr)
+diabetes <- read_csv("dataset/diabetes.csv") 
+
+# verificando que os dados foram armazenados num data frame
+str(diabetes)
+```

@@ -1,0 +1,17 @@
+# Prefácio **da Segunda Edição** {.unnumbered}
+
+Desde a publicação da primeira edição do "Manual Básico da Linguagem R" em 2019, a recepção positiva e o feedback construtivo dos leitores nos motivaram a aprimorar e expandir esta obra. Com 407 avaliações na Amazon e uma média de 4.7 pontos de um total de 5, ficamos profundamente agradecidos pelo reconhecimento e suporte de nossos leitores.
+
+A crescente importância da análise de dados na área da saúde e a popularização da linguagem R como uma ferramenta essencial para estatísticas médicas reforçam a relevância de um guia acessível e prático para estudantes e profissionais da saúde.
+
+Nesta segunda edição, mantivemos o compromisso de oferecer um material didático que facilita o aprendizado da linguagem R, mesmo para aqueles sem formação prévia em ciência da computação ou estatística avançada. Revisamos cuidadosamente a estrutura do livro para incluir novos tópicos e atualizações importantes, garantindo que os leitores tenham acesso às ferramentas e técnicas mais atuais.
+
+Desde 2019, a linguagem R e seu ecossistema evoluíram significativamente. A empresa RStudio, que desenvolve o ambiente de desenvolvimento integrado amplamente utilizado por nossos leitores, mudou seu nome para POSIT, refletindo uma expansão de suas ferramentas e serviços. Entre as grandes novidades no mundo R, destacam-se o avanço dos pacotes do tidyverse, a introdução de novos pacotes para análise de dados e visualização, e a melhoria contínua das interfaces de usuário e de desenvolvimento.
+
+Ao longo do livro, procuramos manter a abordagem prática e didática que caracterizou a primeira edição. Exemplos claros, exercícios práticos e explicações detalhadas continuam sendo a base do nosso método de ensino, com o objetivo de tornar a análise de dados acessível e útil para todos os profissionais da saúde.
+
+A importância da estatística na medicina não pode ser subestimada. Ela é fundamental para a prática baseada em evidências, permitindo uma avaliação crítica da literatura científica e uma melhor tomada de decisão clínica. Com a evolução constante das técnicas estatísticas e das ferramentas computacionais, esperamos que esta edição continue a ser um recurso valioso para a formação de profissionais de saúde capacitados e informados.
+
+Agradecemos a todos os leitores e colaboradores que contribuíram com sugestões e críticas construtivas. Este livro é um trabalho em constante evolução, e sua participação é essencial para que possamos continuar melhorando e adaptando o conteúdo às necessidades dos estudantes e profissionais da área da saúde.
+
+Henrique Alvarenga da Silva

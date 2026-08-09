@@ -1,0 +1,36 @@
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+## Wilcoxon rank sum test (Man-Whitney test)
+
+Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. Os testes Wilcoxon rank sum test (Mann-Whitney test) é o equivalentes não paramétricos do teste t.
+
+O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento `PAIRED=TRUE`.
+
+Veja como realizar os Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no test t realizado anteriormente.
+
+```{r}
+# criando os vetores com os dados:
+controle     <- c(21, 28, 24, 23, 23, 19, 28, 20, 22, 20, 26, 26)
+experimental <- c(26, 27, 23, 25, 25, 29, 30, 31, 36, 23, 32, 22)
+result <- tibble(controle, experimental)
+result.long <- pivot_longer(data = result,
+                            cols = c("controle", "experimental"),
+                            names_to = "grupo", 
+                            values_to = "scores")
+```
+
+Fazendo o teste de Wilcoxon rank sum test quando os dados estão em colunas distintas, ou seja, um data frame no formato wide:
+
+```{r}
+wilcox.test(result$controle, result$experimental)
+```
+
+Fazendo o Wilcoxon rank sum test quando os dados estão em uma única coluna, ou seja, um data frame no formato long. Nesse caso, assim como fizemos no teste t, indicamos a variável numérica e a variável dos grupos separadas pelo operador `~`.
+
+```{r}
+wilcox.test(data=result.long, scores~grupo)
+```
+
+Na mensagem de aviso acima o termo "ties" significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de "empates" ou ties". Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.

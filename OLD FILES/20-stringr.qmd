@@ -1,0 +1,15 @@
+# stringr - Manipulando dados de texto no R
+
+Na análise de dados, especialmente em contextos médicos, lidar com dados de texto é uma tarefa comum e frequentemente desafiadora. Nomes de pacientes, códigos de procedimentos, descrições de sintomas e resultados de exames são apenas alguns exemplos de dados textuais que precisam ser manipulados e analisados. O pacote stringr, parte do tidyverse, é uma ferramenta poderosa e intuitiva para trabalhar com strings em R.
+
+Strings são sequências de caracteres que representam texto. No R, você pode trabalhar com strings de várias maneiras, e o stringr facilita muito essas operações.
+
+Este capítulo vai guiá-lo através das principais funcionalidades do stringr e mostrar como você pode usá-lo para manipular textos de forma eficiente, mesmo que você nunca tenha programado antes.
+
+O pacote stringr oferece diversas funções para realizar operações comuns em strings, como busca, substituição, divisão e combinação de textos. Com uma sintaxe simples e consistente, o stringr torna o processamento de texto mais acessível e eficiente, permitindo que você se concentre na análise dos dados em vez de lutar com a manipulação de strings.
+
+Neste capítulo, você aprenderá como utilizar o stringr para melhorar suas habilidades de manipulação de texto. Abordaremos os seguintes tópicos:
+
+Introdução às Strings em R: Compreendendo a importância das strings e como elas são representadas no R. Manipulação Básica de Strings: Operações comuns como concatenar, dividir e substituir strings. Expressões Regulares: Utilizando padrões para buscar e manipular texto de forma avançada. Funções de Combinação e Separação: Técnicas para unir e separar strings de maneira eficiente. Manipulação Avançada de Texto: Trabalhando com casos, espaços em branco e outras transformações de texto. Exemplos Práticos: Aplicações do mundo real que demonstram como o stringr pode ser utilizado na análise de dados médicos.
+
+## Manipulando strings com `stringr`

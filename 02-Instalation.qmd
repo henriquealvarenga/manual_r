@@ -1,0 +1,13 @@
+# Instalação do R e do RStudio
+
+## Instalando o R
+
+O R pode ser baixado para instalação no site do CRAN: <https://cran.r-project.org/index.html>
+
+## Instalando o RStudio
+
+O RStudio pode ser instalado a partir do site do RStudio: <https://www.rstudio.com>
+
+## Video da instalação no Youtube
+
+Há um pequeno video de instalação do R e do RStudio no Mac no link a seguir: <https://youtu.be/zhhxPbGhI8Q>

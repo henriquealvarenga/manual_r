@@ -1,0 +1,312 @@
+## Tabulando dados categóricos
+
+Os dados categóricos desempenham um papel fundamental em pesquisas na área da saúde, sendo essenciais para a compreensão de padrões, tendências e relações dentro dos dados coletados. Dados categóricos são aqueles que podem ser classificados em diferentes categorias ou grupos, como sexo, tipo de doença, grupo sanguíneo, entre outros. Ao contrário dos dados numéricos, que representam quantidades e podem ser submetidos a operações matemáticas diretas, os dados categóricos representam qualidades e são analisados de maneiras distintas.
+
+A importância dos dados categóricos em estudos de saúde é evidente em diversas situações. Por exemplo, em estudos epidemiológicos, a categorização dos indivíduos por faixa etária, sexo e fatores de risco é crucial para entender a distribuição e os determinantes das doenças. Da mesma forma, em ensaios clínicos, a resposta dos pacientes a diferentes tratamentos pode ser categorizada como "melhora", "piora" ou "nenhuma mudança", proporcionando insights valiosos sobre a eficácia dos tratamentos.
+
+Outro exemplo relevante é a categorização de doenças. As classificações internacionais, como a Classificação Internacional de Doenças (CID), utilizam categorias para agrupar doenças e condições de saúde, facilitando a coleta, análise e comparação de dados em nível global. Isso permite identificar tendências em saúde pública, avaliar a carga de doenças e desenvolver estratégias de prevenção e controle mais eficazes.
+
+Além disso, dados categóricos são frequentemente utilizados para estudar a relação entre variáveis. Por exemplo, pode-se investigar a associação entre o tipo de dieta (vegetariana, vegana, onívora) e a incidência de doenças cardiovasculares, ou entre hábitos de vida (não-fumante, ex-fumante, fumante) e o risco de desenvolver câncer.
+
+Uma das principais tarefas ao análisar dados categóricos é sua tabulação, ou seja, a contagem da quantidade ou do percentual em cada grupo e a criação de tabelas de frequencias. Veremos também que frequentemente precisamos recodificar o nome de variáveis, agrupar categorias em níveis mais amplos.
+
+### Preparando as variáveis categóricas para tabulação.
+
+As funções `table()` e `prop.table()` do R possibilitam a criação de tabelas de frequencias de dados categóricos com grande praticidade. Veremos também como usar as funções `count()` do `tidyverse` para criar essas tabelas.
+
+Lembre-se que é sempre indicado verificarmos como o R está interpretando as variáveis, para nos certificamos que as variáveis a serem analisadas estão realmente no formato `factor`, formato para variáveis categóricas do R. Além disso, também é bom indicarmos se há alguma ordenação ou não nessas variáveis antes de qualquer análise.
+
+Quando lidamos com variáveis categóricas, usar números para identificar os tipos deixa as tabelas muito confusas. Por exemplo, no caso do dataset `mtcars` precisamos lembrar que "0" significa motores em V e "1" significa motores alinhados. Seria melhor renomear essas variáveis categóricas antes de criar as tabelas, como fizemos na seção sobre o pacote `forcats` (@sec-recodingfactors).
+
+Vamos usar como exemplo ainda o dataset `mtcars`. Inicialmente usaremos a função `str()` para verificar a estrutura desse arquivo e verificar como o R está interpretando os tipos de cada variável. O comando "`?mtcars`" digitado no console mostrará no painel help as informações sobre esse dataset.
+
+```{r}
+data(mtcars)
+str(mtcars)
+```
+
+Veja que o R interpreta diversas variáveis categóricas desse dataset como sendo numéricas.\
+A variável `am` é na verdade categórica, e indica se o carro tem marcha automática ("0") ou manual ("1"). A variável `vs` é também categórica, e indica o tipo de motor. O valor "0" indica motor V-Shaped e valor "1" indica motor linear. A variável `cyl`, apesar de também trazer números, é na também categórica, e indica o número de cilindros do carro, podendo ser 4, 6 ou 8 cilindros.
+
+A primeira etapa será então transformar essas variáveis em categóricas com `as.factor()` e a segunda etapa será renomear essas variáveis com rótulos mais descritivos, usando `fct_recode()`do pacote `forcats`, para facilitar a interpretação dos dados. No caso da variável `cyl`, que indica as cilindradas do carro, será útil também indicar a ordenação dessa variável.
+
+```{r}
+library(forcats) # necessário para usar a função fct_recode
+# Transformando a variável 'am' em categórica
+mtcars$am <- as.factor(mtcars$am)
+# Recodificando os rótulos de am
+mtcars$am <- fct_recode(mtcars$am, "Automático" = "0", "Manual" = "1")
+
+# Transformando a variável 'vs' em categórica
+mtcars$vs <- as.factor(mtcars$vs)
+# Recodificando os rótulos de  vs
+mtcars$vs <- fct_recode(mtcars$vs, "Motor em V" = "0", "Motor em linha" = "1")
+
+# Transformando a variável 'cyl' em categórica
+mtcars$cyl <- as.factor(mtcars$cyl)
+# Recodificando os rótulos de  cyl
+mtcars$cyl <- fct_recode(mtcars$cyl, "4 Cilindros" = "4", "6 Cilindros" = "6", "8 Cilindros" = "8")
+# Indicando a ordenação dos calores dessa variável
+mtcars$cyl <- fct_relevel(mtcars$cyl, "4 Cilindros", "6 Cilindros", "8 Cilindros")
+```
+
+Veja agora essas variáveis estão sendo corretamente interpretadas.
+
+```{r}
+str(mtcars)
+```
+
+Agora que já temos nossas variáveis categóricas interpretadas corretamente no R podemos criar nossas tabelas de frequencias.
+
+### Tabulando variáveis categóricas
+
+#### A função `table()` do R base
+
+A função `table()` do R é utilizada para criar tabelas de contingência a partir de vetores ou fatores. Ela conta as frequências de ocorrência de cada valor único nas variáveis fornecidas, sendo muito útil para resumir e analisar dados categóricos.
+
+```{r}
+table(mtcars$cyl)
+```
+
+Podemos também usar o `pipe` juntamente com a função `table()`, mas nesse caso, precisamos selecionar as colunas desejadas usando `select()` antes da função `table()`
+
+```{r}
+library(dplyr) # necessário para usar as função select()
+
+mtcars  |>   
+  select(cyl) |> 
+  table()
+```
+
+Podemos criar tabelas 2x2 com a função table, bastando para isso selecinar as duas colunas/variáveis desejadas. O código abaixo constroi uma tabela 2x2 com as variáveis cilindradas (cyl) e alinhamento do motor (vs)
+
+```{r}
+library(dplyr) # necessário para usar as função select()
+
+mtcars  |>   
+  select(cyl, vs) |> 
+  table()
+```
+
+##### Calculando percentuais com prop.table()
+
+A função `prop.table()` calcula percentuais em tabelas. Importante entender que o argumento da função `prop.table()` é uma tabela criada com a função `table()`. Ou seja, precisamos primeiro criar a tabela com `table()` para depois aplicarmos a função `prop.table()`. Para tornar o código mais fácil de ser lido, é conveniente usar o operador pipe.
+
+```{r}
+# calculando o percentual de carros com motor em V e motores em linha reta
+# nesse exemplo não foi usado o operador pipe.
+prop.table(table(mtcars$vs))
+```
+
+Esse código pode ser escrito de forma mais elegante usando o operador pipe
+
+```{r}
+# calculando o percentual de carros com motor em V e motores em linha reta
+# nesse exemplo usamos o operador pipe.
+mtcars$vs |> 
+  table() |> 
+  prop.table()
+```
+
+Observe que o código com o pipe fica bem mais elegante, e facilita as próximas etapas. Podemos agora facilmente agregar outras funções, por exemplo, arredondar as casas decimais para apenas duas casas, adicionar uma coluna com o total, multiplicar por 100 para tornar o número um percentual, etc:
+
+```{r}
+# calculando o percentual de carros com motor em V e motores em linha reta
+# nesse exemplo usamos o operador pipe.
+mtcars |>      # iniciando o pipe com a variável dataset mtcars2 (criando anteriormente)
+  select(vs) |> 
+  table() |>       # criando a tabela com os valores absolutos
+  prop.table() |>  # calculando os percentuais
+  (`*`)(100) |>    # multiplicando os valores por 100
+  addmargins()     # adicionando uma coluna com o total.
+```
+
+Podemos também criar tabelas com mais de uma variável, por exemplo, acrescentando aqui a variável `am`, que indica o tipo de marcha usado (autmática ou manual).
+
+```{r}
+mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+  select(vs, am) |> # selecionando as duas variáveis, vs e am
+  table() |>        # criando a tabela com os valores absolutos
+  addmargins()      # adicionando uma coluna com o total.
+```
+
+Em tabelas com mais de uma variável é preciso ter cuidado com a função `prop.table()`. Essa função vai calcular os percentuais em cada célula usando o total de elementos. Nessa tabela acima podemos ver que temos 32 carros. Então os percentuais serão calculados com base em 32, como mostrado abaixo:
+
+```{r}
+mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+  select(vs, am) |> # selecionando as duas variáveis, vs e am
+  table() |>        # criando a tabela com os valores absolutos
+  prop.table() |> 
+  (`*`)(100) |>     # multiplicando os valores por 100
+  addmargins()      # adicionando uma coluna com o total.
+```
+
+Muitas vezes é intessante calcular os percentuais nas linhas ou nas colunas e não no total. Para isso é necessário adicionar o argumento "1" ou "2" na função `prop.table()`.
+
+1 - calcula as proporções nas linhas 2 - calcula as proporções nas colunas
+
+```{r}
+mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+  select(vs, am) |> # selecionando as duas variáveis, vs e am
+  table() |>        # criando a tabela com os valores absolutos
+  prop.table(1) |>  # calculando as proporções nas linhas
+  (`*`)(100) |>     # multiplicando os valores por 100
+  addmargins() |>   # adicionando uma coluna com o total.
+  round(1)          # arredonda os valores para 1 casa decimal
+```
+
+```{r}
+mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+  select(vs, am) |> # selecionando as duas variáveis, vs e am
+  table() |>        # criando a tabela com os valores absolutos
+  prop.table(2) |>  # calculando as proporções nas colunas
+  (`*`)(100) |>     # multiplicando os valores por 100
+  addmargins() |>   # adicionando uma coluna com o total.
+  round(1)          # arredonda os valores para 1 casa decimal
+```
+
+##### Lidando com NAs na função `table()`
+
+Frequentemente existem dados faltantes em datasets. Esses dados são usualmente denotados no R pela sigla `NA` que indica **Not Available** (não disponível).
+
+A função `table()`, por padrão, não inclui os dados faltantes na tabela gerada. Entretanto, muitas vezes é importante poder ter esses dados incluídos na tabela. Para isso é necessário ajustar um parâmetro da função table, inserindo `exclude=false` na função como mostremos a seguir.
+
+Para exemplificar isso vamos primeiro inserir alguns `NAs` no dataset `mtcars`. O código abaixo faz com que todos os carros com 8 cilindros, na variável `cyl` sejam trocados por `NA`.
+
+```{r}
+mtcars$cyl[mtcars$cyl=="8 Cilindros"] <- NA
+mtcars
+```
+
+A função `table()` usual não iria inclui nenhum valor `NA` e, portanto, podemos ter a falsa impressão que não há dados faltantes.
+
+```{r}
+table(mtcars$cyl)
+```
+
+Entretanto, podemos mudar esse comportamento da função `table()` inserindo o parâmetro `exclude = FALSE` como a seguir, que mostra haver 14 `NAs` nessa variável.
+
+```{r}
+table(mtcars$cyl, exclude = FALSE)
+```
+
+Para voltar a usar o dataset `mtcars` com os dados completos, basta carregar novamente esse dataset.
+
+```{r}
+data(mtcars)
+str(mtcars)
+```
+
+#### Cruzando dados com a função xtabs( )
+
+A função `xtabs()` serve para criarmos tabelas de cruzamento de dados usando o operador de fórmulas `~` já discutido no capítulo de operadores (@sec-operators). Para demonstrar o uso dessa função vamos usar os dados do dataset `mpg` do pacote `ggplot2`.
+
+A variável `drv` contém dados acerca do tipo de tração dos carros (f=frontal, r=traseira, 4=4x4) e a variável `class` contém dados acerca do tipo de carro (compact, midsize, suv, 2seater, minivan, pickup, subcompact).
+
+A expressão a ser usada como argumento nessa função tem a forma a seguir `xtabs(~ variável + variável, dataset)`
+
+Vamos criar uma tabela com o tipo de tração `drv` nas linhas e o tipo de carro `class` nas colunas, usando a função `xtabs()`.
+
+```{r}
+library(ggplot2)
+xtabs( ~ drv + class, mpg)
+```
+
+#### Tabulando dados com `count()`
+
+A função `count()` do pacote `dplyr` é uma ferramenta poderosa para contar observações em um dataframe, especialmente quando se trabalha com dados em formato de tabela. Ela oferece uma sintaxe simples e intuitiva, permitindo facilmente agregar e contar dados categóricos.
+
+Vamos explorar o uso de `count()` com o exemplo do dataset mtcars e discutir as diferenças e vantagens em relação à função `table()` do R base.
+
+**Vantagens do `count()`**
+
+*Clareza e Consistência*: A função count() é mais intuitiva e consistente com outras funções do dplyr, proporcionando uma curva de aprendizado mais suave para os usuários do tidyverse. Tem sintaxe mais legível e intuitiva, especialmente para quem já está familiarizado com o estilo de manipulação de dados do `dplyr.`
+
+*Integração com o tidyverse*: Permite encadear operações de forma clara e eficiente, melhorando a legibilidade e a manutenção do código.
+
+*Flexibilidade*: Facilita operações adicionais como agrupamentos complexos e filtros dentro da mesma cadeia de operações. Integra-se perfeitamente com outras funções do `dplyr`, permitindo operações adicionais como filtragem, agrupamento e mutação de dados em uma sequência fluida de comandos.
+
+*Resultado*: A função `count()` retorna um tibble, que é um tipo de dataframe moderno e mais amigável para manipulação subsequente dentro do universo tidyverse. Por outro lado, a função `table()` retorna um objeto de classe table, que pode exigir conversão adicional para se integrar com outras funções de manipulação de dados.
+
+Em resumo, a função `count()` do `dplyr` oferece uma abordagem moderna e integrada para contar dados categóricos em dataframes, proporcionando vantagens significativas em termos de sintaxe, flexibilidade e integração com outras funções do tidyverse. Embora `table()` do R base seja útil e eficiente para contagens rápidas, `count()` é preferível em contextos onde a manipulação e análise de dados complexos são necessárias.
+
+##### Tabulando uma variável com count()
+
+A função `count()` pode ser utilizada para contar as ocorrências de cada valor único de uma variável. Vamos contar o número de carros para cada número de cilindros (cyl).
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+data("mtcars")
+mtcars |> 
+  count(cyl)
+```
+
+Podemos acrescentar o argumento sort=TRUE para mostrar os grupos com mais elementos no topo.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+data("mtcars")
+mtcars |> 
+  count(cyl, sort = TRUE)
+```
+
+##### Tabulando duas variáveis com count()
+
+Com a função `count()` podemos contar o número ocorrências de uma variável categórica, agrupadas segundo uma outra variável categórica. Por exemplo, podemos contar o número de de carros agrupados por número de cilindros (cyl) de acordo com o tipo de marcha (am) - automática ou manual.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+mtcars |>
+  count(cyl, am)
+```
+
+#### Calculando Proporções com count()
+
+Podemos calcular as proporções de cada categoria em relação ao total usando a função `count()` associada com a função `mutate()`. Vamos contar o número de carros para cada número de cilindros e, em seguida, calcular a proporção de cada contagem em relação ao total.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+mtcars |>
+  count(cyl) |>
+  mutate(proportion = n / sum(n))
+```
+
+Podemos facilmente transformar esses valores em percentuais ajustando o código anterior para multiplicar por 100.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+mtcars |>
+  count(cyl) |>
+  mutate(proportion = (n / sum(n))*100)
+```
+
+##### Renomeando as colunas de count()
+
+Podemos facilmente contar o número de carros para cada número de cilindros e renomear as colunas de saída.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função count
+mtcars |>
+  count(cyl, name = "numero de carros")
+```
+
+#### Contando depois de filtrar dados
+
+Podemos combinar a função `count()` com a função `filter()` para contar o número de ocorrências de uma variável categórica após filtrar os dados. Vamos contar o número de carros para cada número de marchas (gear), mas somente para os carros com um peso (wt) menor que `4.0` (4.000 libras). Em seguida, ordenar o resultado por número de marchas
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr) # necessário para usar a função filter e count
+mtcars |>
+  filter(wt < 4.0) |>
+  count(gear) |>
+  arrange(gear)
+```
+
+Os exemplos acima ilustram como a função `count()` do `dplyr` pode ser utilizada em situações mais complexas, combinando-a com outras funções para realizar filtragens, agrupamentos, transformações e ordenações. Isso demonstra a flexibilidade e poder do `dplyr` para manipulação de dados em R, tornando a análise mais eficiente e o código mais legível.
+
+
+
+
+
+
+

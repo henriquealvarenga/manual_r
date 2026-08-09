@@ -1,0 +1,613 @@
+## Manipulando dados com `dplyr` {#sec-dplyr}
+
+A análise de dados envolve frequentemente a transformação e manipulação de grandes conjuntos de dados para torná-los prontos para a análise. No contexto médico, isso pode incluir a limpeza de dados de pacientes, o cálculo de estatísticas resumidas, a filtragem de observações relevantes e a combinação de diferentes fontes de dados.
+
+O pacote `dplyr`, parte integrante do `tidyverse`, é uma ferramenta poderosa para essas tarefas, proporcionando uma sintaxe clara e eficiente para a manipulação de dados em R.
+
+O `dplyr` oferece um conjunto de funções intuitivas e expressivas para a manipulação de dados tabulares. Estas funções permitem realizar operações como seleção de colunas, filtragem de linhas, agrupamento de dados, criação de novas variáveis e combinações de datasets. O foco do `dplyr` é a simplicidade e a legibilidade do código, o que facilita a escrita de scripts claros e concisos, mesmo para iniciantes.
+
+### Funções Mais Importantes do `dplyr`
+
+O `dplyr` é um dos pacotes mais populares do `tidyverse` para manipulação de dados. Aqui estão algumas das funções mais importantes e frequentemente utilizadas no `dplyr`:
+
+1.  **`filter()`**: Filtra linhas em um conjunto de dados com base em condições específicas.
+2.  **`select()`**: Seleciona colunas específicas de um conjunto de dados.
+3.  **`pull()`**: Extrai uma coluna de um conjunto de dados como um vetor.
+4.  **`mutate()`**: Adiciona novas colunas ou modifica colunas existentes em um conjunto de dados.
+5.  **`arrange()`**: Ordena as linhas de um conjunto de dados com base em uma ou mais colunas.
+6.  **`group_by()`**: Agrupa os dados com base em uma ou mais colunas, preparando-os para operações de agregação.
+7.  **`ungroup()`**: Remove agrupamentos de um conjunto de dados.
+8.  **`rename()`**: Renomeia colunas em um conjunto de dados.
+9.  **`recode()`**: Recodifica valores, substituindo valores existentes por novos valores.
+10. **`bind_rows()`**: Empilha dois ou mais conjuntos de dados um em cima do outro (concatenação vertical).
+11. **`bind_cols()`**: Combina dois ou mais conjuntos de dados lado a lado (concatenação horizontal).
+12. **`distinct()`**: Retorna linhas distintas, removendo duplicatas de um conjunto de dados.
+13. **`count()`**: Conta o número de observações em cada grupo.
+14. **`summarize()` / `summarise()`**: Resume os dados em uma única linha ou várias linhas, aplicando funções de agregação.
+
+Essas funções são fundamentais para a manipulação e transformação de dados em R, permitindo que você limpe, organize e analise seus dados de maneira eficiente.
+
+### Filtrando linhas com `filter()`
+
+Num data frame as linhas representam as diferentes observações e as colunas representam as variáveis. Por exemplo, em pesquisas na área de saúde, geralmente cada linha representa um participante da pesquisa e as colunas as vriáveis da pesquisa.
+
+Frequentemente precisamos acessar subgrupos de um grande conjunto de dados, ou seja, precisamos selecionar subgrupos nos quais desejamos fazer nossa análise. Isso é feito no R com a função `filter()` do pacote `dplyr` que faz parte do tidyverse.
+
+O modo de usar a função `filter()` é muito simples: o primeiro argumento é o data frame a ser usado, em seguida as expressões lógicas para filtrar/selecionar as linhas do data frame, como mostraremos a seguir, usando novamente o dataset `mpg` do pacote `ggplot2` (Esse pacote também faz parte do `tidyverse`).
+
+Vamos carregar esses dados com a função `data()`:
+
+```{r}
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+data(mpg)
+```
+
+Relembrando o significado de cada variável do dataset `mpg`:
+
+```{r mpg-dictionary, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mpg dictionary'}
+knitr::include_graphics(rep("images/mpg.png", 1))
+```
+
+Sabemos que para acessar uma variável de um data frame usamos o operador `$` e que a variável com os nomes das montadores é manufacturer. Vamos então checar quais são as montadoras dos carros dessa pacote com o comando `unique()`. Essa função lista os elementos de um conjunto, sem repetição:
+
+```{r}
+unique(mpg$manufacturer)
+```
+
+Como podemos ver, esse banco de dados tem carros de várias montadoras. Em análises estatísticas que é frequentemente necessário separar os dados de acordo com alguma regra, por exemplo, de acordo com a montadora. Podemos, por exemplo desejar analisar apenas os carros das montadoras tradicionais no Brasil (Ford, Chevrolet, Volkswagen). Vamos fazer um novo data frame com essas montadoras. Para isso usamos a função `filter()` como descrito anteriormente e criar um novo data frame chamado `cfv`, letras iniciais dessas montadoras.
+
+```{r}
+cfv <- filter(mpg, manufacturer %in% c("chevrolet", "ford", "volkswagen"))
+```
+
+Observe que usamos um novo operador nessa função %in%. Esse operador procurou dentro da variável manufacturer os nomes "chevrolet", "ford", “volkswagen”. A função `filter()` por sua vez, selecionou essas montadoras e o resultado foi colocado num novo data frame chamado de `cfv`.
+
+Veja que agora nosso data frame só possui essas três montadoras.
+
+```{r}
+unique(cfv$manufacturer)
+```
+
+Podemos visualizar o consumo dessas três marcar selecionadas num boxplot comparativo, como feito a seguir:
+
+```{r}
+boxplot(cty~manufacturer,   # plota o consumo de acordo com a montadora
+	   data=cfv,        # indica que os dados estão no data frame cfv
+	   col="lightblue") # colore os box com a cor lightblue
+```
+
+Podemos ver com essa análise inicial que os carros da volkswagen percorrem mais milhas com um galão que os carros da Chevrolet e da Ford. Mas quais são esses carros?
+
+Podemos usar o comando `filter()` para filtramos os dados de acordo com regras numéricas. Por exemplo, para sabermos quais são os carros que conseguem percorrer mais de 30 milhas com um galão usamos também a função `filter()` como abaixo, no qual criamos um novo data frame com o nome `bestcars`.
+
+```{r}
+bestcars <- filter(cfv, cty > 30)
+```
+
+Para mostrar o conteúdo desse novo data frame que chamamos de bestaras basta digitar o nome do data frame no console. E para saber apenas o nome dos modelos desses carros, basta usar o operador `$`, como mostrado abaixo:
+
+```{r}
+bestcars$model
+```
+
+Se desejássemos separar apenas UMA determinada montadora, poderíamos da mesma forma usar a função filter. Lembrando que o operador de igualdade no R é um igual duplo ==. Por exemplo, podemos criar um dataframe apenas com os carros da Jeep.
+
+```{r}
+jeep <- filter(mpg, manufacturer == "jeep")
+jeep
+```
+
+### Selecionando colunas com `select()`
+
+A função `select()` seleciona as colunas desejadas, ou seja, as variáveis desejadas. Muitas vezes um data frame possui muitas colunas e pode ser útil criar um novo data frame apenas com as variáveis de interesse. A função `select()` faz justamente isso. O dataset `mpg` possui 11 variáveis. Se nossa análise vai usar apenas `manufacturer`, `displ` e `cty`, podemos criar um novo data frame com apenas essas variáveis.
+
+```{r}
+library(dplyr)
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+newdf <- select(mpg, manufacturer, displ, cty)
+```
+
+Para verificar esse novo data frame basta usar a função `str()` e veremos que agora só existem 3 variáveis.
+
+```{r}
+str(newdf)
+```
+
+Quando trabalhamos com datasets com centenas ou milhares de variáveis, usar a função `select()` é bastante útil.
+
+### Extraindo valores com `pull()`
+
+A função `pull()` funciona de forma parecida com o operador `$`. Ambos tem a função de extrair valores de um data frame. Já vimos como usar o operador `$` para extrair valores de uma variável e usar esses valores em funções estatísticas tais como `mean()`, `median()` e `sd()`. Vamos relembrar como isso foi feito usando o dataset `mpg`.
+
+```{r}
+# calculando a média das milhas por galão na cidade 
+library(dplyr)
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+mean(mpg$cty) 
+```
+
+Mas as vezes são necessárias diversas operações antes de encontrar o conjunto numérico desejado para calcular uma média. Por exemplo, se quisermos calcular a média das milhas percorridas com um galão em automóveis do tipo SUV? vamos ver como podemos fazer isso usando o operador pipe `|>` e as funções `select()`, `filter()` e `pull()`.
+
+```{r}
+data(mpg)
+mpg |> filter(class=="suv") |>
+        select(cty) |>
+        mean()
+```
+
+O código acima falhou!. O motivo é que o argumento passado pelo pipe para a função `mean()` não é um vetor, mas sim uma data frame (ou uma tibble). Podemos conferir isso no código abaixo, onde substituimos a função `mean()` pela função `class()` que informa o tipo de objeto.
+
+```{r}
+mpg |> filter(class=="suv") |>
+        select(cty) |>
+        class()
+```
+
+Para que a função `mean()` possa calcular a média é necessário que o argumento passado para essa função seja um conjunto numérico, ou seja, um vetor numérico. É aí que entra a função `pull()`, que extrai os valores do data frame e repassa esse valores adiante pelo pipe. Vejamos agora como consertar o código.
+
+```{r}
+mpg |> filter(class=="suv") |>
+        select(cty) |>
+        pull() |>
+        mean()
+```
+
+### Criando novas variáveis com `mutate()`
+
+É frequente a necessidade de modificar ou criar novas variáveis no processo de análise de dados. Uma situação comum é a necessidade de transformarmos a unidade de medida de libras para peso, de milhas para quilômetros, de horas para minutos etc.
+
+No dataset `mpg` a medida da distância percorrida é dada em milhas. Podemos usar a função `mutate()` do pacote `dplyr` que faz parte do `tidyverse` para criar uma nova variável com a medida em quilômetros. Veja no código abaixo como fazer isso.
+
+```{r}
+library(dplyr)
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+mutate(cty.km = cty*1.609344, mpg) 
+```
+
+O código acima por ser lido da seguinte maneira: crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344, proveniente do dataset `mpg`. Esse código, entretanto, tem um problema: o resultado dessa operação não foi salvo em nenhuma variável. Ao ser executado, esse código irá apenas mostrar todo o resultado sem salvar nada. Para que a nova variável seja salva é necessário acrescenta essa etapa no código como feito abaixo.
+
+```{r}
+mpg <- mutate(cty.km = cty*1.609344, mpg) 
+```
+
+Podemos também reescrever esse código usando o operador pipe `|>` ou `|>`, tornando esse código mais fácil de ser compreendido.
+
+```{r}
+mpg <- mpg |> 
+       mutate(cty.km = cty*1.609344) 
+```
+
+O coódigo acima pode ser lido da seguinte forma: use o dataset `mpg`, crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344. Finalmente, acrescente essa nova variável no dataset `mpg`.
+
+Veja que, quando usamos o operador pipe, o dataset usado é informado antes do operador pipe e as funções a seguir já não precisam mais dessa informação nos seus argumentos.
+
+### Ordenando dados com `arrange()`
+
+Na manipulação de dados, a ordenação é uma operação fundamental que ajuda a organizar e visualizar melhor os dados. A função `arrange()` do pacote `dplyr` permite ordenar as linhas de um data frame com base em uma ou mais colunas. Essa função é essencial para classificar dados em ordem crescente ou decrescente, facilitando a análise e a interpretação.
+
+Sintaxe:\
+`arrange(data, ...)`\
+- data: O data frame a ser ordenado.\
+- ...: As colunas pelas quais o data frame será ordenado.
+
+Por padrão, a ordenação é crescente. Para ordenar de forma decrescente, use o argumento `desc()`.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes
+pacientes <- tibble(id_paciente = 1:10,
+                    nome   = c("Ana", "Bruno", "Carlos", "Diana", "Eduardo", 
+                             "Fernanda", "Gustavo", "Helena", "Isabela", "João"),
+                    idade  = c(25, 30, 35, 40, 50, 28, 33, 50, 22, 50),
+                    cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre", 
+                               "Salvador", "Brasília", "Fortaleza", "Manaus", "Recife"))
+
+print(pacientes)
+```
+
+```{r}
+# Ordenar os dados pela coluna idade em ordem crescente
+pacientes_ordenados <- arrange(pacientes, idade)
+print(pacientes_ordenados)
+```
+
+Agora, vamos ordenar os dados pela coluna idade em ordem decrescente.
+
+```{r}
+# Ordenar os dados pela coluna idade em ordem decrescente
+pacientes_ordenados_desc <- arrange(pacientes, desc(idade))
+print(pacientes_ordenados_desc)
+```
+
+Podemos também ordenar o data frame por múltiplas colunas. Por exemplo, vamos ordenar pela coluna idade em ordem crescente e, em seguida, pela coluna cidade em ordem crescente.
+
+```{r}
+# Ordenar os dados pela coluna idade e depois pela coluna nome
+pacientes_ordenados_mult <- arrange(pacientes, idade, cidade)
+print(pacientes_ordenados_mult)
+```
+
+### Agrupando dadoc com `group_by()` e `by()`
+
+As funções `by()` do R base e `group_by()` do `dplyr` no `tidyverse` são usadas para agrupar dados e aplicar operações sobre esses grupos. Ambas são ferramentas poderosas para manipulação de dados, mas possuem diferentes sintaxes e vantagens.
+
+**Propósito e Vantagens**
+
+**`by()`**
+
+A função `by()` é usada para aplicar uma função a subconjuntos de um data frame, organizados por um fator ou uma combinação de fatores. É uma solução base do R, sem necessidade de carregar pacotes adicionais. As vantagens de **`by()`** incluem:
+
+-   **Simplicidade**: Uma solução base do R, que não requer pacotes externos.
+-   **Flexibilidade**: Pode ser usada com qualquer função que aceite data frames como input.
+-   **Compatibilidade**: Por ser parte do R base, funciona em qualquer instalação do R.
+-   **Resulta em listas**: O output é uma lista, que pode ser útil para manipulações subsequentes.
+
+**`group_by()`**
+
+A função `group_by()` do pacote `dplyr`, parte do `tidyverse`, é usada para agrupar dados em um data frame e é geralmente combinada com outras funções como `summarise`, `mutate`, etc. As vantagens de `group_by()` incluem:
+
+-   **Facilidade de uso**: Sintaxe intuitiva e fácil de usar.
+-   **Integração com a pipe (%\>%)**: Permite a construção de pipelines de manipulação de dados de maneira clara e legível.
+-   **Flexibilidade**: Pode ser usada com múltiplas colunas para criar grupos mais complexos.
+-   **Performance**: Otimizada para grandes conjuntos de dados.
+-   **Compatibilidade**: Facilmente combinada com outros pacotes do `tidyverse`.
+
+#### Agrupando com a função `by()`
+
+A função `by()` estratifica ou agrupa dados segundo alguma variável categórica. Podemos, portanto, aplicar a função `summary()` no dataset mtcars através da função `by()`, estratificando o dataset de acordo com o tipo de câmbio (manual ou automático) e aplicando a função `summary()` em cada grupo. Veja como fazer isso no código abaixo.
+
+```{r}
+by(mtcars, mtcars$am, summary)
+```
+
+#### Agrupando com a função `group_by()`
+
+Frequentemente precisamos realizar análises estatísticas em grupos, por exemplo, a média de idade entre os homens e a média de idade entre as mulheres. Para isso será necessário separar esses grupos antes de realizar a análise. Por exemplo, para calcular a média de alguma variável em cada tipo de carro precisamos, criar grupos segundo o tipo de carro e depois calcular a média.
+
+Nas seções anteriores vimos como usar o comando `filter()` para selecionar subgrupos dentre os dados. Havíamos usado o comando `filter()` para selecionar algumas das montadoras dentre as várias existentes. Esse comando é útil quando precisamos de apenas alguns grupos dentre os vários existentes. E usamos também a função `select()` para selecionar as variáveis de interesse.
+
+O comando `group_by()`, usado em conjunto com a função `summarize()`, nos permite fazer exatamente isso de uma forma mais simples.
+
+O código abaixo cria grupos segundo o tipo de carro (`class`) e depois calcula a média da distância percorrida na cidade com um galão (variável `cty`) de cada grupo. O resultado é apresentado numa tabela que pode ser armazenada em um novo objeto, se necessário.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+mpg |> 
+  group_by(class) |> 
+  summarize(mean(cty))
+```
+
+Podemos ver que, com um galão de gasolina, os SUVs e as Pickups conseguem percorrer uma distância bem menor que os outros tipos de carros, ou seja, são bem menos econômicos. Já os carros compactos e subcompactos conseguem percorrer uma distância bem maior com apenas um galão, sendo, portanto, mais econômicos.
+
+Podemos calcular mais de uma medida em cada grupo, bastando incluir o que se deseja calcular como argumento da função `summarize()`, como mostra o código a seguir.
+
+```{r}
+mpg |> 
+group_by(class) |> 
+summarize(mean(cty), median(cty), sd(cty), max(cty), min(cty))
+```
+
+Podemos também incluir um nome para cada estatística calculada, como feito abaixo. Lembre-se apenas de não usar acentos, espaços ou caracteres especiais no nome usado.
+
+```{r}
+mpg |> 
+group_by(class) |> 
+summarize(media=mean(cty), mediana=median(cty), desvio_padrão=sd(cty), maximo=max(cty), minimo=min(cty))
+```
+
+O comando `group_by()` também pode ser usado para agrupar dados de acordo com mais de uma variável, bastando separar as variáveis por vírgula dentro do parênteses. Por exemplo, para agrupar os dados de acordo com o tipo de carro e o tipo de tração usamos `group_by(drv, class)`.
+
+```{r, message=FALSE}
+mpg |> 
+  group_by(drv, class) |> 
+  summarize(media=mean(cty))
+```
+
+É possível que você veja uma mensagem "`summarise()` has grouped output by `drv`. You can override using the `.groups` argument."
+
+Essa mensagem pode ser desconsiderada. Não se preocupe com isso. No meu código essa mensagem não aparece porque eu defini `message=FALSE` no cabeçalho do meu code chunk.
+
+### Desagrupando dados com `ungroup()`
+
+Ao trabalhar com conjuntos de dados, especialmente após aplicar a função `group_by()` para criar agrupamentos, pode ser necessário remover esses agrupamentos para realizar operações subsequentes que não dependem da estrutura de grupos. A função `ungroup()` do `dplyr` é utilizada para desfazer agrupamentos em um data frame, retornando-o ao seu estado original.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes
+pacientes <- tibble(
+  id_paciente = 1:10,
+  nome = c("Ana", "Bruno", "Carlos", "Diana", "Eduardo", 
+           "Fernanda", "Gustavo", "Helena", "Isabela", "João"),
+  idade = c(25, 30, 35, 40, 50, 28, 33, 45, 22, 50),
+  cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", 
+             "Porto Alegre", "Salvador", "Brasília", "Fortaleza", "Manaus", "Recife"))
+
+# Agrupar os dados pela coluna cidade
+pacientes_agrupados <- pacientes |>
+  group_by(cidade)
+
+# Realizar alguma operação de agrupamento, por exemplo, calcular a média da idade
+media_idade <- pacientes_agrupados |>
+  summarise(media_idade = mean(idade, na.rm = TRUE))
+
+print(media_idade)
+```
+
+```{r}
+# Desagrupar os dados
+pacientes_desagrupados <- ungroup(pacientes_agrupados)
+
+# Verificar se os dados foram desagrupados
+print(pacientes_desagrupados)
+
+```
+
+### Renomeando colunas `rename()`
+
+A função `rename()` do `dplyr` é uma ferramenta essencial para renomear colunas em um data frame de forma clara e concisa. Ela permite que você torne os nomes das colunas mais descritivos, corrija erros de nomenclatura e padronize os nomes das colunas para facilitar a leitura e a manipulação dos dados. Seja renomeando uma única coluna ou várias colunas de uma vez, a função `rename()` simplifica o processo de ajuste dos nomes das colunas para melhor atender às necessidades de sua análise.
+
+Também é possível renomear várias colunas de uma só vez, passando múltiplos pares de `novo_nome = nome_antigo` para a função `rename()`.
+
+Vamos considerar um conjunto de dados de pacientes e renomear a coluna `idade` para `idade_anos` e a coluna `nome` para `primeiro_nome`.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes
+pacientes <- tibble(
+  id_paciente = 1:10,
+  nome = c("Ana", "Bruno", "Carlos", "Diana", "Eduardo", 
+           "Fernanda", "Gustavo", "Helena", "Isabela", "João"),
+  idade = c(25, 30, 35, 40, 50, 28, 33, 45, 22, 50),
+  cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", 
+             "Porto Alegre", "Salvador", "Brasília", "Fortaleza", "Manaus", "Recife"))
+```
+
+```{r}
+# Renomear a coluna idade para idade_anos e nome para primeiro nome
+pacientes_2 <- rename(pacientes, 
+                      idade_anos = idade, 
+                      primeiro_nome = nome)
+print(pacientes_2)
+```
+
+### Recodificando valores com `recode()`
+
+Frequentemente necessitamos modificar valores de variáveis ou reduzir o número de variáveis categóricas. A função `recode()` serve para isso. No exemplo abaixo a variável `x` contém dados sobre o sexo, mas com nomes heterogêneos para identificar quem é do sexo masculino ou feminino. Com esses diferentes nomes a tabulação dos dados será inadequada.
+
+```{r}
+x <- c("Fem", "Fem", "Fem", "Feminino", 
+       "Masc", "Masc", "Masc", "Masc", "Masc", "Masculino" )
+table(x)
+
+```
+
+Podemos resolver esse problema recodificando o valor da variável "Feminino" para "Fem" e "Masculino" para “Masc". Observe que é preciso atribuir o resultado à um objeto para que a recodificação seja salva.
+
+```{r}
+x2 <- recode(x, Feminino = "Fem", Masculino = "Masc")
+table(x2)
+```
+
+O código acima poderia ser reescrito com o operador pipe:
+
+```{r}
+x3 <- x |> recode(Feminino = "Fem", Masculino = "Masc")
+table(x3)
+```
+
+A recodificação de variáveis pode servir também para reduzir o número de categorias de uma variável.
+
+Por exemplo, no dataset `mpg` a variável `trans` (tipo de transmissão) tem 10 categorias, ou seja, 10 diferentes de tipos de transmissão: 8 tipos de marchas automáticas e 2 tipos de marchas manuais.
+
+```{r}
+library(dplyr)
+library(ggplot2) # necessária para poder ter acesso ao dataset mpg
+unique(mpg$trans)
+```
+
+Para compararmos os carros com marchas automáticas com marchas manuais precisamos reduzir essas 10 categorias para apenas duas: `manual` e `automática`.
+
+Podemos fazer isso criando uma nova variável com apenas essas duas categorias.
+
+Podemos fazer isso usando função `mutate()` para criar uma nova variável `marcha`.
+
+Usaremos a função `recode()`, para codificar os valores da variável `marcha` a partir dos valores da variável `trans`, e o operador `pipe` para facilitar tudo isso.
+
+```{r}
+mpg <- mpg |> mutate(marcha = recode(trans,
+                                      "auto(l3)"   = "automatica",
+                                      "auto(l4)"   = "automatica", 
+                                      "auto(l5)"   = "automatica",                                                                   "auto(l6)"   = "automatica", 
+                                      "auto(s4)"   = "automatica",
+                                      "auto(s5)"   = "automatica", 
+                                      "auto(s6)"   = "automatica",                                                                   "auto(av)"   = "automatica", 
+                                      "manual(m5)" = "manual", 
+                                      "manual(m6)" = "manual"))
+
+unique(mpg$marcha)
+```
+
+Veja que a variável marcha tem apenas 2 níveis: automática e manual:
+
+```{r}
+table(mpg$marcha)
+```
+
+### Combinando data frames com `bind_rows()` e `bind_cols()`
+
+Ao trabalhar com dados, muitas vezes é necessário combinar vários data frames em um único data frame. As funções `bind_rows()` e `bind_cols()` do pacote `dplyr` são projetada para concatenar data frames verticalmente, empilhando as linhas de cada data frame um em cima do outro, ou horizontalmente combinando suas colunas em um único data frame. Estas funções são particularmente útil quando se tem dados provenientes de diferentes fontes ou partes de um estudo que precisam ser unificados.
+
+#### Combinando por linhas com `bind_rows()`
+
+*Exemplo 1*: Combinar Dois Data Frames Simples
+
+Vamos considerar dois data frames de pacientes e combiná-los verticalmente (por linhas) em um único data frame usando `bind_rows()`. Essa função funciona empilhando as linhas de cada data frame um em cima do outro.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes - Parte 1
+pacientes_parte1 <- tibble(id_paciente = 1:5,
+                           nome = c("Ana", "Bruno", "Carlos", "Diana", "Eduardo"),
+                           idade = c(25, 30, 35, 40, 50),
+                           cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre"))
+
+# Exemplo de dados de pacientes - Parte 2
+pacientes_parte2 <- tibble(id_paciente = 6:10,
+                           nome = c("Fernanda", "Gustavo", "Helena", "Isabela", "João"),
+                           idade = c(28, 33, 45, 22, 50),
+                           cidade = c("Salvador", "Brasília", "Fortaleza", "Manaus", "Recife"))
+
+# Combinar os data frames
+pacientes <- bind_rows(pacientes_parte1, pacientes_parte2)
+print(pacientes)
+```
+
+*Exemplo 2*: Combinar Data Frames com Diferentes Colunas
+
+Quando os data frames têm diferentes colunas, `bind_rows()` ainda pode combiná-los, preenchendo as colunas ausentes com NA.
+
+```{r}
+# Exemplo de dados de pacientes - Parte 3 com coluna extra
+pacientes_parte3 <- tibble(id_paciente = 11:12,
+                           nome = c("Lara", "Marcos"),
+                           idade = c(27, 34),
+                           cidade = c("Natal", "Maceió"),
+                           genero = c("Feminino", "Masculino"))
+
+# Combinar os data frames
+pacientes_completos <- bind_rows(pacientes_parte3, pacientes)
+print(pacientes_completos)
+```
+
+*Exemplo 3*: Adicionar uma Coluna de Identificação da Origem
+
+Ao combinar vários data frames, pode ser útil adicionar uma coluna que identifique a origem de cada linha. Podemos fazer isso usando o argumento .id.
+
+```{r}
+# Combinar os data frames com uma coluna de identificação
+pacientes_identificados <- bind_rows(parte1 = pacientes_parte1, 
+                                     parte2 = pacientes_parte2, 
+                                     parte3 = pacientes_parte3, 
+                                     .id = "origem")
+
+print(pacientes_identificados)
+```
+
+#### Combinando por colunas `bind_cols()`
+
+As vezes é necessário combinar várias tabelas ou data frames lado a lado, unindo suas colunas. A função `bind_cols()` do pacote `dplyr` é projetada para concatenar data frames horizontalmente, combinando suas colunas em um único data frame. Esta função é útil quando você tem diferentes partes de dados que compartilham a mesma estrutura de linhas e deseja uni-los para formar um conjunto de dados completo.
+
+*Exemplo*: Combinar Dois Data Frames Lado a Lado
+
+Vamos considerar dois data frames de pacientes que contêm informações complementares e combiná-los lado a lado usando `bind_cols()`.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes - Parte 1
+pacientes_parte1 <- tibble(id_paciente = 1:5,
+                           nome = c("Ana", "Bruno", "Carlos", "Diana", "Eduardo"))
+
+# Exemplo de dados de pacientes - Parte 2
+pacientes_parte2 <- tibble(idade = c(25, 30, 35, 40, 50),
+                           cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre"))
+
+# Combinar os data frames
+pacientes <- bind_cols(pacientes_parte1, pacientes_parte2)
+
+print(pacientes)
+
+```
+
+### Removendo linhas duplicadas com `distinct()`
+
+Em conjuntos de dados, é comum encontrar linhas duplicadas que podem distorcer análises e resultados. A função `distinct()` do pacote `dplyr` é utilizada para remover essas duplicatas, retornando apenas as linhas distintas de um data frame. Esta função é útil para garantir a integridade e a limpeza dos dados antes de prosseguir com análises mais detalhadas.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes com duplicatas
+# os pacientes com ids 2 e 4 estão duplicados
+
+pacientes <- tibble(id_paciente = c(1, 2, 2, 3, 4, 4, 5),
+                    nome = c("Ana", "Bruno", "Bruno", "Carlos", "Diana", "Diana", "Eduardo"),
+                    idade = c(25, 30, 30, 35, 40, 40, 50),
+                    cidade = c("São Paulo", "Rio de Janeiro", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Curitiba", "Porto Alegre"))
+
+# Remover linhas duplicadas
+pacientes_distintos <- distinct(pacientes)
+
+print(pacientes_distintos)
+
+```
+
+*Exemplo 2*: Remover Duplicatas com Base em Colunas Específicas
+
+Podemos especificar colunas específicas para considerar ao remover duplicatas. Neste exemplo, removeremos duplicatas com base nas colunas id, mantendo apenas uma ocorrência de cada combinação. Podemos usar o argumento `.keep_all = TRUE` para manter todas as colunas do data frame original, mesmo ao remover duplicatas com base em colunas específicas.
+
+```{r}
+# Remover duplicatas com base nas colunas nome e idade
+pacientes_distintos_colunas <- distinct(pacientes, id_paciente, .keep_all = TRUE)
+print(pacientes_distintos_colunas)
+```
+
+### Contando observações com `count()` {#sec-count}
+
+Contar observações em um conjunto de dados é uma operação fundamental em análise de dados. A função `count()` do pacote `dplyr` é uma ferramenta poderosa para contar o número de ocorrências de valores em uma ou mais colunas, proporcionando uma maneira rápida e eficiente de resumir dados categóricos.
+
+*Exemplo 1*: Contar Ocorrências Simples
+
+Vamos considerar um conjunto de dados de pacientes e contar o número de ocorrências de cada doença e do gênero dos participantes.
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# Exemplo de dados de pacientes com diagnósticos e sexo
+pacientes <- tibble(id_paciente = 1:20,
+                    sexo = c("Feminino", "Masculino", "Masculino", "Feminino", "Masculino", 
+                             "Feminino", "Feminino", "Masculino", "Feminino", "Masculino",
+                             "Feminino", "Masculino", "Feminino", "Masculino", "Feminino", 
+                             "Masculino", "Feminino", "Masculino", "Feminino", "Masculino"),
+                    diagnostico = c("Depressão", "Bipolaridade", "Pneumonia", "AVC", "Depressão", 
+                                    "Pneumonia", "Bipolaridade", "AVC", "Depressão", "Pneumonia",
+                                    "AVC", "Bipolaridade", "Depressão", "Pneumonia", "AVC", 
+                                    "Bipolaridade", "Pneumonia", "Depressão", "Depressão", "Depressão"))
+
+# Visualizar os dados
+print(pacientes)
+```
+
+```{r}
+# Contar o número de pacientes por genero
+count(pacientes, sexo)
+```
+
+```{r}
+# Contar o número de pacientes por diagnóstico
+count(pacientes, diagnostico)
+```
+
+Para ordenar os resultados em ordem decrescente pelo número de ocorrências, use o argumento `sort = TRUE`.
+
+```{r}
+count(pacientes, diagnostico, sort = TRUE)
+```
+
+Podemos contar ocorrências em múltiplas colunas como sexo e diagnóstico.
+
+```{r}
+# Contar o número de pacientes por sexo e diagnóstico
+count(pacientes, diagnostico, sexo)
+```

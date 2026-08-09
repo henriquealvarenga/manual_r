@@ -1,0 +1,370 @@
+# Regressão Logística
+
+A regressão logística é um algoritmo usado para resolver problemas de classificação, ou seja, quando o resultado a ser previsto é categórico. Ela serve para prever a probabilidade de um evento pertencer a uma determinada categoria. Por exemplo, suponha que temos um conjunto de dados de pacientes com tumores e queremos prever se um tumor é maligno (canceroso) ou benigno (não canceroso). A regressão logística nos ajuda a fazer essa classificação. Ela é amplamente utilizada em várias áreas, como medicina, finanças e marketing, para fazer previsões e tomar decisões com base em probabilidades. O algoritmo da regressão logística se baseia em um modelo matemático que relaciona as variáveis de entrada (como tamanho do tumor, idade do paciente, etc.) com a variável de saída (se o tumor é maligno ou benigno).
+
+Assim como a regressão linear, a regressão logística parte de uma equação na qual cada variável ($x_i$) tem um coeficiente ($a_i$), de tal forma que:
+
+$$
+z = a_0 + a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4 + \dots + a_nx_n
+$$
+
+A ideia da regressão logística é transformar essa soma em uma probabilidade, ou seja, em um valor entre 0 e 1.
+
+A transformação desse valor de $z$ em uma probabilidade é obtida com o uso da função sigmoide, que calcula uma probabilidade a partir da combinação linear das variáveis de entrada. Essa função tem a forma de uma curva em “S”, como mostrado no gráfico abaixo, e é definida por:
+
+$$
+p=f(z) = \frac{1}{1 + e^{-z}}
+$$
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(grid)  # para arrow() e unit()
+
+# Gerar dados para plotar a função logística
+z <- seq(-10, 10, by = 0.1)
+
+# Função logística padrão com beta0 = 0 e beta1 = 1
+prob <- plogis(z)  
+
+# Criar um data frame para o ggplot
+dados <- data.frame(x = z, prob = prob)
+
+
+ggplot(dados, aes(x = x, y = prob)) +
+  geom_line(color = "blue", size = 1) +
+  stat_function(fun = function(x) 1 / (1 + exp(-x)),
+                color = "black", size = 1, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "red") +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
+  annotate(
+    "text", x = -7.2, y = 0.84,
+    label = "paste(italic(p),' = ', f(z), ' = ', frac(1, 1 + e^{-z}))",
+    parse = TRUE, size = 6, hjust = 0, vjust = 0
+  ) +
+  # Desenha uma seta apontando para (x=0, y=0.5)
+  annotate(
+    "segment",
+    x = -1.0, y = 0.6, xend = -0.2, yend = 0.52,
+    arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+    colour = "black"
+  ) +
+  annotate(
+    "text", x = -1.05, y = 0.6,
+    label = "Threshold: decision boundary",
+    size = 4, hjust = 1, vjust = 0
+  ) +
+  labs(title = "Função Logística", x = "z", y = "P(y = 1 | z)") +
+  theme_classic()
+```
+
+A função sigmoide recebe um valor $z$ como entrada e retorna um valor entre 0 e 1. Ela é definida pela fórmula $f(z) = \frac{1}{1 + e^{-z}}$ , onde $e$ é a constante matemática de Euler, com valor aproximado de 2,718. O valor $z$ representa a combinação linear das variáveis de entrada do modelo de regressão logística. A função sigmoide transforma esse valor $z$ em uma probabilidade, que representa a chance de um evento ocorrer.
+
+Quando o valor de $z$ é muito grande e positivo, o termo $e^{-z}$ se torna um número muito pequeno, fazendo com que o denominador da fórmula seja próximo de 1. Isso faz com que a função sigmoide retorne um valor próximo de 1. Por outro lado, quando o valor de $z$ é muito negativo, o termo $e^{-z}$ se torna um número muito grande, fazendo com que o denominador seja um número muito grande. Isso resulta em um valor próximo de 0 para a função sigmoide.
+
+Em resumo, a função sigmoide mapeia qualquer valor de entrada para um valor entre 0 e 1. Para fazer a classificação, o valor obtido pela função sigmoide é comparado a um limiar (threshold ou decision boundary), que usualmente é 0.5. Se a probabilidade for maior que o limiar, classificamos como 1. Caso contrário, classificamos como 0. Assim, o algoritmo de regressão logística faz uma classificação entre duas possibilidades.
+
+Além disso, os coeficientes $a_i$ podem ser interpretados em termos das odds do evento. A relação entre $z$ e a probabilidade $p$ pode ser expressa como:
+
+$$
+z= \ln\left(\frac{p}{1 - p}\right)
+$$
+
+Onde $\frac{p}{1 - p}$ representa as odds do evento ocorrer. Essa forma logarítmica lineariza a relação, permitindo que os coeficientes sejam estimados usando métodos estatísticos apropriados, como a máxima verossimilhança.
+
+## Passo a passo da regressão logística no R
+
+Vamos explorar a regressão logística usando o dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
+
+### SAheart
+
+O dataset SAheart contém 462 observações e 10 variáveis:
+
+**sbp**: Pressão arterial sistólica (em mmHg)\
+**tobacco**: Consumo cumulativo de tabaco (em kg)\
+**ldl**: Nível de lipoproteína de baixa densidade (mg/dl)\
+**adiposity**: Adiposidade\
+**famhist**: Histórico familiar de doença coronariana (presente/ausente)\
+**typea**: Pontuação no teste de comportamento tipo A (escala psicológica que mede traços de personalidade)\
+**obesity**: Índice de Massa Corporal (imc)\
+**alcohol**: Consumo de álcool (em gramas por dia)\
+**age**: Idade do paciente (em anos)\
+**chd**: Doença coronariana (0 = ausente, 1 = presente) - variável de resposta ou desfecho\
+
+## Etapas da análise de regressão
+
+1.  **Instalação e Carregamento do Pacote**: O pacote `bestglm` deve ser instalado e carregado para acessar o dataset SAheart.
+2.  **Visualização Inicial**: Visualize as primeiras linhas do dataset para entender sua estrutura.
+3.  **Conversão de Variáveis**: Certifique-se de que as variáveis categóricas estejam no formato correto.
+4.  **Preparação dos dados**: Lidar com valores ausentes, codificar variáveis categóricas, normalizar dados numéricos.
+5.  **Divisão do Dataset**: Divida o dataset em conjuntos de treino e teste.
+6.  **Ajuste do Modelo**: Ajuste o modelo de regressão logística usando a função glm.
+7.  **Predições e Avaliação**: Faça predições no conjunto de teste e avalie a performance do modelo.
+8.  **Curva ROC**: Utilize o pacote `pROC` para gerar e visualizar a curva ROC.
+
+### Instalação, Carregamento do Pacote e Visualização do dataset
+
+```{r, warning=FALSE, message=FALSE}
+# Instalando e carregando o pacote necessário
+library(bestglm)
+library(dplyr)
+library(pROC)
+library(kableExtra)
+
+# Carregando o dataset
+data(SAheart, package = "bestglm")
+
+# Visualizando as primeiras linhas do dataset
+head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart antes da normalização",
+      booktabs = TRUE, 
+      row.names = FALSE, 
+      digits=2) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  row_spec(row = 1:6, color = "black", background = "white", font_size = 10) |>
+  row_spec(row = 0, color = "white", background = "#FF5733", font_size = 15)
+```
+
+### Preparação dos dados
+
+Na regressão logística, a normalização dos dados é um passo crucial no pré-processamento que garante que todas as variáveis do conjunto de dados contribuam de maneira equilibrada para o modelo. A função sigmoide utilizada na regressão logística é **sensível às escalas das variáveis de entrada**; variáveis com valores numéricos maiores podem ter um impacto desproporcional no processo de otimização, influenciando a convergência e o ajuste dos coeficientes.
+
+Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de **0 a 15**, enquanto o consumo de álcool varia de **0 a 147 mg/dL**. Se essas variáveis forem usadas diretamente no modelo sem normalização, o consumo de álcool, por ter uma escala numérica significativamente maior, pode **dominar o processo de ajuste**, ofuscando o efeito da LDL e de outras variáveis com escalas menores.
+
+A normalização ajusta os valores para uma escala comum—geralmente entre 0 e 1 ou com média zero e desvio padrão um—permitindo que todas as variáveis tenham um **impacto equilibrado** no modelo. Isso melhora a eficiência do algoritmo de otimização e ajuda a garantir que o modelo capture de forma adequada as relações entre as variáveis independentes e a variável dependente.
+
+Em contraste, na regressão linear, a normalização dos dados **geralmente não é necessária**. Isso ocorre porque os coeficientes estimados na regressão linear se ajustam proporcionalmente às escalas das variáveis, e a interpretação dos coeficientes permanece direta: cada coeficiente representa a variação esperada na variável dependente para uma unidade de variação na variável independente correspondente. Normalizar as variáveis na regressão linear pode até dificultar a interpretação prática dos coeficientes, já que as unidades originais das variáveis são perdidas.
+
+Existem várias formas de fazer a normalização dos dados, vamos usar aqui a técnica de normalização Z-score às variáveis numéricas.
+
+```{r, warning=FALSE, message=FALSE}
+# Criando uma função para normalizar os dados
+normalize <- function(x) {
+  return ((x - mean(x)) / sd(x))
+}
+
+# Identificando as variáveis numéricas
+numericvars <- c("sbp", "tobacco", "ldl", "adiposity", "typea", "obesity", "alcohol", "age")
+
+# Normalizando as variáveis numéricas em todo o dataset
+SAheart[numericvars] <- lapply(SAheart[numericvars], normalize)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart depois a normalização",
+      booktabs = TRUE, 
+      row.names = FALSE, 
+      digits=2) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  row_spec(row = 1:6, color = "black", background = "white", font_size = 10) |>
+  row_spec(row = 0, color = "white", background = "#FF5733", font_size = 15)
+```
+
+Além disso, um outro passo geralmente é necessário. É preciso que as variáveis categóricas estejam explicitamente classificadas no dataframe como `factor`. Caso as variáveis categóricas não estejam definidas como `factor` é necessário realizar essa transformação utilizando a função `as.factor()` como mostrado no código abaixo. No caso do dataset `SAheart` isso não é necessário porque a variável categórica `famhist` já está definida como factor. Coloquei o código abaixo apenas como exemplo de como podemos fazer isso.
+
+```{r}
+SAheart$famhist <- as.factor(SAheart$famhist)
+```
+
+## Escolhendo das variáveis para o modelo
+
+Um elemento fundamdental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.
+
+Um outro ponto importante é evitar usar variáveis altamente correlacionadas. Plotar gráficos de dispersão entre todas variáveis entre si pode ajudar a visualizar essas correlações.
+
+```{r}
+plot(SAheart)
+```
+
+Como pode ser vito no gráfico acima, as variáveis adiposidade e obesidade parecem estar correlacionadas, o que pode ser mensurado com o código abaixo:
+
+```{r}
+cor.test(SAheart$adiposity, SAheart$obesity)
+```
+
+Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade tem uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.
+
+## Divisão do Dataset
+
+Uma etapa importante é dividir os dados em conjuntos de treino e teste. Isso é necessário para podermos avaliar a performance do modelo em dados não usados no treinamento. O conjunto de treino é usado para ajustar o modelo, enquanto o conjunto de teste é usado para avaliar a capacidade de generalização do modelo.
+
+```{r, warning=FALSE, message=FALSE}
+# Dividindo os dados em treino (70%) e teste (30%)
+set.seed(123)
+
+# criando indices aleatórios para as 70% das linhas do dataset
+train_indices <- sample(1:nrow(SAheart), size = 0.7 * nrow(SAheart))
+# explicação: 
+# 1:nrow(SAheart): Gera uma sequência de números de 1 até o número de linhas do dataset SAheart. Isso representa todos os índices das observações no dataset.
+# size = 0.7 * nrow(SAheart): Define o tamanho da amostra como 70% do número total de observações no dataset.
+# sample(): A função sample seleciona aleatoriamente os índices 
+
+# Selecionando todas as colunas para os índices especificados em train_indices. Isso cria o subconjunto train_data, contendo 70% dos dados originais, selecionados aleatoriamente.
+SAheart_train_data  <- SAheart[train_indices, ]
+
+# Selecionando todas as colunas para os índices que não estão em train_indices (indicado pelo - antes de train_indices). Isso cria o subconjunto test_data, contendo os 30% restantes dos dados.
+SAheart_test_data   <- SAheart[-train_indices, ]
+```
+
+## Ajustando o modelo com a função `glm`
+
+Lembre-se que nessa etapa, para treinar nosso modelo, não usamos o dataset completo, mas apenas uma parte dele, que denominamos `SAheart_train_data`.
+
+```{r, warning=FALSE, message=FALSE}
+# Ajustando o modelo de regressão logística
+# é preciso especificar o parâmetro family = binomial
+SAheart_model <- glm(chd ~ sbp + tobacco + ldl + adiposity + famhist + typea + alcohol + age,
+                 data = SAheart_train_data, 
+                 family = binomial)
+
+# Sumário do modelo
+summary(SAheart_model)
+```
+
+Nesse modelo de regressão logística, conforme indicado pelos seus coeficientes e p-valores, algumas variáveis foram estatisticamente significativas para prever a presença de doença coronariana (marcadas com asteriscos): Consumo de tabaco (`tobacco`), Níveis de LDL (`ldl`), Histórico familiar de doença coronariana (`famhistPresent`), Pontuação de comportamento tipo A (`typea`), Idade (`age`). Além disso, nesse modelo, variáveis como pressão arterial sistólica (`sbp`), adiposidade (`adiposity`) e consumo de álcool (`alcohol`) não mostraram significância estatística. É sempre preciso ter em mente que os modelos não representam a realidade e muitas vezes não podem ser generalizados. Então, é sempre interessante analisar a acurácia do modelo gerado.
+
+## Calculando a acurácia do modelo
+
+Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma e não há como calcular o valor de $r$ ou $r^2$.
+
+Para calcular a **acurácia** de um modelo de regressão logística, seguimos um processo que nos ajuda a entender quão bem o modelo está prevendo os resultados. A regressão logística é usada quando queremos prever resultados que se enquadram em duas categorias distintas, como "sim" ou "não", "positivo" ou "negativo".
+
+**Passo a passo:**
+
+1.  **Ajuste do Modelo:** Primeiro, utilizamos nossos dados de treinamento para ajustar o modelo de regressão logística. Isso significa que o modelo aprende a relação entre as variáveis independentes (as características ou fatores que podem influenciar) e a variável dependente (o resultado que queremos prever).
+
+2.  **Previsão de Probabilidades:** Após o modelo estar treinado, aplicamos ele a um conjunto de dados de teste para prever as probabilidades de cada observação pertencer a uma das duas categorias. Por exemplo, o modelo pode indicar que há 70% de chance de um paciente ter uma determinada doença.
+
+3.  **Conversão em Categorias:** Como precisamos de uma previsão categórica ("sim" ou "não"), estabelecemos um ponto de corte, geralmente 0,5. Se a probabilidade prevista for igual ou superior a 0,5, classificamos como "sim"; se for inferior, classificamos como "não".
+
+4.  **Comparação com os Resultados Reais:** Comparamos as previsões do modelo com os resultados reais conhecidos no conjunto de teste. Assim, podemos identificar quantas vezes o modelo acertou ou errou.
+
+5.  **Cálculo da Acurácia:** A acurácia é calculada dividindo o número de previsões corretas pelo número total de previsões feitas. Por exemplo, se o modelo fez 100 previsões e acertou 85, a acurácia é de 85%.
+
+**Exemplo Ilustrativo:**
+
+Imagine que estamos tentando prever se pacientes têm uma certa condição médica com base em vários exames. Usando o modelo:
+
+-   **Total de pacientes no teste:** 100
+-   **Previsões corretas ("sim" e "não"):** 85
+-   **Previsões incorretas:** 15
+
+A **acurácia** seria:
+
+$$
+\text{Acurácia} = \frac{\text{Previsões Corretas}}{\text{Total de Previsões}} = \frac{85}{100} = 0,85 \text{ ou } 85\%
+$$
+
+Isso significa que o modelo acertou 85% das vezes ao prever se os pacientes têm ou não a condição.
+
+**Considerações Importantes:**
+
+-   **Equilíbrio das Categorias:** Se uma categoria é muito mais comum que a outra, a acurácia pode ser enganosa. Por exemplo, se 90% dos pacientes não têm a condição, um modelo que sempre prevê "não" terá 90% de acurácia, mas não será útil para identificar quem realmente tem a condição.
+
+-   **Outras Métricas:** Nesses casos, é útil considerar outras métricas como **sensibilidade** (capacidade de identificar corretamente os casos positivos) e **especificidade** (capacidade de identificar corretamente os casos negativos).
+
+**Conclusão:**
+
+Calcular a acurácia nos permite avaliar a performance geral do modelo de regressão logística. Ao entender esse processo, mesmo quem não tem background em estatística pode apreciar como os modelos preditivos são avaliados e a importância de usar métricas adequadas para cada situação.
+
+Vamos ver como fazer isso no R usando o modelo que criamos anteriormente e que denominamos `SAheart_model`
+
+```{r}
+# Fazendo predições no conjunto de teste
+SAheart_test_data$predictedprob <- predict(SAheart_model, 
+                                            newdata = SAheart_test_data, 
+                                            type = "response")
+```
+
+Nesta linha, estamos usando o modelo de regressão logística que foi previamente ajustado aos dados de treinamento (chamado `SAheart_model`) para prever as probabilidades no conjunto de dados de teste (`SAheart_test_data`).
+
+Função `predict()`: Essa função é utilizada para gerar previsões a partir de um modelo estatístico ajustado. No contexto da regressão logística, ela calcula a probabilidade de cada observação pertencer a uma das duas categorias (por exemplo, ter ou não ter uma doença).
+
+Argumentos da função: `SAheart_model`: O modelo de regressão logística já treinado com os dados de treinamento. `newdata` = `SAheart_test_data`: O conjunto de dados sobre o qual queremos fazer as previsões, neste caso, os dados de teste. `type` = "response": Especifica que queremos as probabilidades previstas (valores entre 0 e 1) em vez dos valores brutos da função linear.
+
+O modelo glm_model calcula a probabilidade de cada paciente no conjunto de teste ter a condição que estamos estudando. Essas probabilidades são armazenadas em uma nova coluna chamada `predictedprob` dentro do `SAheart_test_data`.
+
+```{r}
+head(SAheart_test_data) |>  
+  dplyr::select(predictedprob) |>
+  kbl(caption = "Primeiras linhas da coluna predictedprob",
+      booktabs = TRUE, 
+      row.names = FALSE, 
+      digits=2,
+      align = "c") |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  row_spec(row = 1:6, color = "black", background = "white", font_size = 10) |>
+  row_spec(row = 0, color = "white", background = "#FF5733", font_size = 15)
+```
+
+```{r}
+# Convertendo probabilidades em classes (0/1) com threshold de 0.5
+SAheart_test_data$predictedclass <- ifelse(SAheart_test_data$predictedprob > 0.5, 1, 0)
+```
+
+Nesta etapa, estamos transformando as probabilidades previstas em previsões categóricas: "1" para a presença da condição e "0" para a ausência.
+
+Função `ifelse()`: É uma função que verifica uma condição lógica e atribui um valor com base no resultado (verdadeiro ou falso). Como funciona nesta linha? `SAheart_test_data$predictedprob > 0.5`: Verifica se a probabilidade prevista para cada paciente é maior que 0.5. Se a probabilidade for maior que 0.5, atribuímos 1 (indicando que o modelo prevê que o paciente tem a condição). Se a probabilidade for menor ou igual a 0.5, atribuímos 0 (indicando que o modelo prevê que o paciente não tem a condição). O resultado é armazenado em uma nova coluna chamada `predictedclass` dentro do `SAheart_test_data`.\
+Por que usamos o limiar de 0.5? O valor de 0.5 é um ponto médio entre 0 e 1 e serve como um critério simples para decidir entre as duas classes. No entanto, esse limiar pode ser ajustado dependendo do contexto ou se queremos ser mais conservadores nas previsões.
+
+```{r}
+head(SAheart_test_data) |>  
+  dplyr::select(predictedprob, predictedclass) |>
+  kbl(caption = "Primeiras linhas das colunas predictedprob e predictedclass",
+      booktabs = TRUE, 
+      row.names = FALSE, 
+      digits=2,
+      align = "c") |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  row_spec(row = 1:6, color = "black", background = "white", font_size = 10) |>
+  row_spec(row = 0, color = "white", background = "#FF5733", font_size = 15)
+```
+
+```{r}
+# Calculando a acurácia do modelo
+accuracy <- mean(SAheart_test_data$predictedclass == SAheart_test_data$chd)
+print(paste("Acurácia do modelo:", round(accuracy, 2)))
+```
+
+Nesta parte, estamos avaliando o quão bem o modelo performou ao comparar as previsões com os resultados reais.
+
+Comparação das Previsões com os Resultados Reais: `SAheart_test_data$predictedclass == SAheart_test_data$chd`: Compara a classe prevista pelo modelo (predictedclass) com a classe real (chd) para cada paciente. O resultado é um vetor de valores lógicos: TRUE se as classes forem iguais e FALSE se forem diferentes. Cálculo da Acurácia: `mean()`: Calcula a média dos valores no vetor. Em R, TRUE é tratado como 1 e FALSE como 0. Portanto, `mean(SAheart_test_data$predictedclass == test_data$chd)` calcula a proporção de previsões corretas. O resultado é a acurácia do modelo, ou seja, a porcentagem de vezes que o modelo acertou. Exibição do Resultado: `round(accuracy, 2)`: Arredonda a acurácia para duas casas decimais. `print()`: Exibe a acurácia calculada no console.
+
+## Plotando a curva ROC
+
+```{r}
+# Gerando a matriz de confusão
+table(SAheart_test_data$chd, SAheart_test_data$predictedclass)
+
+# Plotando a curva ROC
+roc_curve <- roc(SAheart_test_data$chd, SAheart_test_data$predictedprob)
+plot(roc_curve, main = "Curva ROC", col = "blue")
+```
+
+A Curva ROC (Receiver Operating Characteristic) é uma ferramenta gráfica usada para avaliar o desempenho de um modelo de classificação binária. Ela traça a relação entre a taxa de verdadeiros positivos (TPR ou Sensibilidade) e a taxa de falsos positivos (FPR ou 1 - Especificidade) em diferentes pontos de corte (thresholds).
+
+Taxa de Verdadeiros Positivos (True Positive Rate - TPR), também conhecida como Sensibilidade ou Recall, representa a proporção de positivos corretamente identificados pelo modelo. Taxa de Falsos Positivos (False Positive Rate - FPR), é o número de verdadeiros negativos. Representa a proporção de negativos incorretamente classificados como positivos.
+
+## Avaliação da Curva ROC
+
+**Forma da Curva ROC**
+
+Curva Próxima ao Canto Superior Esquerdo: Indica um bom desempenho do modelo, pois combina uma alta taxa de verdadeiros positivos com uma baixa taxa de falsos positivos. Curva Próxima da Diagonal (45 graus): Indica um desempenho próximo ao acaso. Um modelo que segue a linha diagonal não tem poder discriminativo.
+
+**Área Sob a Curva (AUC - Area Under the Curve)**
+
+AUC: A área sob a curva ROC é uma métrica resumida do desempenho do modelo. Ela varia de 0 a 1, onde 1 representa um modelo perfeito e 0.5 representa um modelo que não tem poder discriminativo (desempenho aleatório).
+
+-   AUC = 0.5: Desempenho aleatório.
+-   0.5 \< AUC \< 0.7: Desempenho pobre.
+-   0.7 ≤ AUC \< 0.8: Desempenho aceitável.
+-   0.8 ≤ AUC \< 0.9: Desempenho excelente.
+-   AUC ≥ 0.9: Desempenho excepcional.
+
+Para calcular e imprimir o valor da AUC no R:
+
+```{r}
+# Calculando a AUC
+roc_curve <- roc(SAheart_test_data$chd, SAheart_test_data$predictedprob)
+auc_value <- auc(roc_curve)
+print(paste("Área sob a curva (AUC):", round(auc_value, 2)))
+```

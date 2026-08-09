@@ -1,0 +1,760 @@
+# Objetos do R {#objects}
+
+> “Everything that exists is an object”
+>
+> “Everything that happens is a function”
+>
+> --- John Chambers, Creator of the S programming language
+
+Nessa seção serão desenvolvidos os princípios básicos de uma linguagem de programação, tais como os conceitos de objetos, variáveis, operadores, funções, vetores, tipos de dados (categóricos numéricos, lógicos).
+
+O R é uma linguagem de programação de alto nível e como tal, usa do conceito de objetos. As linguagens de programação desse tipo são chamadas de linguagens orientadas a objetos. Essa abstração simplifica muito a programação e torna muito mais fácil resolver problemas complexos. Tudo que existe no R pode ser chamado de um objeto. Todas variáveis e todos gráficos do R são objetos.
+
+## Tipos de Dados e Estruturas de Dados
+
+Em R, os tipos de dados e as estruturas de dados são conceitos fundamentais, mas distintos, que se complementam na manipulação de informações.
+
+Os tipos de dados referem-se às categorias de valores que R pode manipular. Cada tipo de dado determina o tipo de operação que pode ser realizada e a forma como os dados são armazenados. Por exemplo, o tipo **numeric** abrange números de ponto flutuante, enquanto **integer** inclui apenas valores inteiros. **Character** se refere a dados textuais ou strings, **logical** trata de valores booleanos (`TRUE` ou `FALSE`), e **complex** abrange números complexos. Existe também o tipo **raw**, que representa bytes brutos. Esses tipos de dados são fundamentais para definir as características básicas dos valores individuais em R.
+
+As estruturas de dados, por outro lado, referem-se às maneiras como esses valores individuais podem ser organizados e armazenados em coleções. Enquanto os tipos de dados tratam de valores individuais, as estruturas de dados lidam com conjuntos de valores.
+
+**Vetores (Vectors)** são estruturas unidimensionais homogêneas, onde todos os elementos são do mesmo tipo. **Fatores (Factors)** são usados para representar dados categóricos e são uma forma especializada de vetor. **Listas (Lists)** são estruturas heterogêneas, onde os elementos podem ser de diferentes tipos, oferecendo uma flexibilidade significativa na manipulação de dados complexos.
+
+**Matrizes (Matrices)** são bidimensionais e homogêneas, adequadas para dados tabulares. **Arrays** são uma extensão das matrizes para múltiplas dimensões, mantendo a homogeneidade dos dados. **Data Frames** são estruturas bidimensionais heterogêneas, onde cada coluna pode conter diferentes tipos de dados, sendo amplamente usados para manipulação de dados tabulares em análises estatísticas. Veremos adiantes que as **Tibbles** são data frames modernos.
+
+Além disso, existem tipos especializados para trabalhar com datas e tempos, como **Date** para datas e **POSIXct**/**POSIXlt** para datetimes, permitindo a manipulação eficiente de informações temporais.
+
+A principal diferença entre tipos de dados e estruturas de dados reside na granularidade e na finalidade. Os tipos de dados definem as propriedades básicas e os comportamentos dos valores individuais. Já as estruturas de dados organizam esses valores em conjuntos, permitindo a manipulação de dados em níveis mais complexos e estruturados. Enquanto tipos de dados são o alicerce para os valores básicos, as estruturas de dados são a construção que permite a organização e a manipulação de coleções desses valores em R.
+
+| **Category** | **Data Type** | **R Name** | **Description** |
+|---------------|--------------|--------------|------------------------------|
+| **Tipos Básicos de dados** | Numeric | `numeric` | Dados numéricos gerais (dupla precisão) |
+|  | Integer | `integer` | Números inteiros |
+|  | Character | `character` | Texto or string |
+|  | Logical | `logical` | Valores lógicos (`TRUE` or `FALSE`) |
+|  | Complex | `complex` | Números Complexos |
+|  | Raw | `raw` | Raw bytes |
+| **Tipo Especial de dados** | Factor | `factor` | Dados categóricos |
+| **Estructuras de Dados** | Vector | `vector` | Coleções homogêneas de tipos de dados básicos |
+|  | List | `list` | Coleções heterogêneas de tipos de dados |
+|  | Matrix | `matrix` | Estruturas de dados bidimensionais e homogêneas |
+|  | Array | `array` | Estruturas de dados multidimensionais e homogêneas |
+|  | Data Frame | `data.frame` | Estruturas de dados bidimensionais e heterogêneas |
+| **Tipos especiais** | Date | `Date` | Datas |
+|  | POSIXct | `POSIXct` | Date-time |
+|  | POSIXlt | `POSIXlt` | Date-time |
+| **Outros tipos** | NULL | `NULL` | Representa a ausência de um valor |
+|  | NA | `NA` | Representa um valor faltante |
+|  | NaN | `NaN` | Representa algo que Não é um Número |
+|  | Inf | `Inf` | Representa infinito positivo |
+|  | -Inf | `-Inf` | Representa infinito negativo |
+
+Entretanto, antes de estudarmos os objetos do R, será útil rever os tipos de dados existentes numa pesquisa, lembrando que cada tipo de dado será armazenado numa variável de tipo diferente.
+
+## Variáveis no R
+
+A ciência depende de dados, que são gerados a partir de alguma forma de coleta ou transformação de outros dados. Tudo que poder ser contado ou quantificado será armazenado numa variável. Uma variável deve ser entendida como um objeto que contém os resultados dessa coleta ou transformação de dados.
+
+Mas dados podem ser coletados de diferentes modos: algumas dados são provenientes de algo que foi contado, outros dados provém de algo que foi medido. Contar e medir fornecem diferentes tipos de dados. Podemos por exemplo, contar o número de pessoas com AIDS, o número de eleitores de um determinado político, o número de óbitos, de nascimentos etc. Por outro lado, podemos medir o perímetro cefálico de crianças recém-nascidas, o nível pressórico ou de glicemia de um grupo de pacientes, etc.
+
+## Tipos de Variáveis
+
+Variáveis com dados provenientes de contagem são denominadas variáveis categóricas, também chamadas de variáveis qualitativas, pois podem expressar uma qualidade.
+
+Variáveis com dados provenientes de medidas são denominadas variáveis numéricas, também chamadas de variáveis quantitativas.
+
+-   As variáveis categóricas (ou qualitativas) se dividem em nominais e ordinais.
+-   As variáveis numéricas (ou quantitativas) por sua vez são tradicionalmente divididas em variáveis numéricas inteiras e numéricas contínuas.
+
+A necessidade de classificarmos as variáveis em diferentes tipos é devido ao fato de que o tipo de variável determina os tipos de operações matemáticas que podem ser realizadas e, consequentemente, as medidas estatísticas e os testes estatísticos que podem ser realizados.
+
+Veremos também que na computação existem outros tipos de variáveis, tais como variáveis lógicas, strings, caracteres etc.
+
+#### Variáveis Categóricas ou Qualitativas
+
+Algumas variáveis são nomes que expressão uma qualidade (que podem ter ou não uma ordenação). Em estatística essas variáveis são chamadas categóricas e podem se dividir em nominais ou ordinais. Os dados que não possuem nenhuma ordenação, são armazenados em variáveis categóricas nominais.
+
+Variáveis categóricas nominais expressam qualidades, mas sem uma ordenação, tal como sexo, raça, local de nascimento etc.
+
+Variáveis categóricas ordinais também expressão qualidades, mas tem uma ordenação, tais como grau de obesidade (leve, moderado, grave), estancamento do câncer (estágio I, estágio II, estágio III) etc.
+
+No R as variáveis categóricas são chamados de `factor`, independente de serem nominais ou ordinais. Caso sejam variáveis categóricas ordinais, ou seja, caso exista uma ordem certa entre os elementos, existem meios de indicar isso para o R.
+
+Frequentente precisamos indicar ao R que uma determinada variável é categórica. Em algumas situações o R pode interpretar uma variável como numérica quando na verdade é categórica. É usual em pesquisas em os sexos sejam codificados com números, por exemplo 0 = Masculino, 1 = Feminino. Nesse caso, a variável `sexo` iria ser interpretada no R como um vetor numérico. Entretanto, os elementos desse vetor não representam números de verdade, mas são apenas símbolos para indicar os sexo masculino ou feminino.
+
+Vejamos um exemplo num conjunto fictício de dados de uma pesquisa com nomes, sexo e idade de alguns participantes. Esse conjunto de dados será armazenado num objeto do tipo data frame. Esse tipo de objeto será discutido mais adiante, por enquanto basta entender que um data frame é como uma planilha, com linhas e colunas. Nesse exemplo nosso data frame será denominado de `df`. Poderíamos escolher qualquer outro nome. Iremos discutir mais sobre esses objetos no capítulo adiante sobre Dataframes e Tibbles (@sec-dataframes).
+
+No código abaixo você irá ver também um operador do R, o operador de atribuição: `<-` que indica que o que está à direita do operador será atribuido ao objeto à esquerda. Iremos detalhar mais sobre isso no capítulo adiante sobre operadores do R (@sec-operators).
+
+```{r}
+# criando os vetores com os dados
+nome  <- c("Eduardo","José","Antônio","Pedro","Maria","Gustavo")
+sexo  <- c(0,  0,  0,  0,  1,  0)
+idade <- c(50, 45, 49, 60, 32, 39)
+
+# criando o data frame:
+df <- data.frame(nome, sexo, idade)
+
+# mostrando  o data frame
+df
+```
+
+Veja que para o R, a variável tando a `sexo` como a `idade` são numéricas (dbl).
+
+Para contornar esse problema precisamos informar ao R que `sexo` é uma variável categórica. Isso pode ser feito com a função `as.factor()`.
+
+Podemos fazer isso com o vetor `sexo` antes de criar o banco de dados:
+
+```{r}
+# criando os vetores com os dados
+nome  <- c("Eduardo","José","Antônio","Pedro","Maria","Gustavo")
+sexo  <- c(0,  0,  0,  0,  1,  0)
+idade <- c(50, 45, 49, 60, 32, 39)
+
+# transformando sexo em factor
+sexo <- as.factor(sexo)
+
+# criando o o data frame
+df <- data.frame(nome, sexo, idade)
+
+# mostrando  o data frame
+df
+```
+
+Podemos fazer isso depois de criar o banco de dados:
+
+```{r}
+nome  <- c("Eduardo","José","Antônio","Pedro","Maria","Gustavo")
+sexo  <- c(0,  0,  0,  0,  1,  0)
+idade <- c(50, 45, 49, 60, 32, 39)
+
+# criando o banco de dados:
+df <- data.frame(nome, sexo, idade)
+
+# transformando a variável sexo do data frame df em factor
+df$sexo <- as.factor(df$sexo)
+
+# mostrando o data frame
+df
+```
+
+Caso seja interessante renomear os elementos, transformando 0 em "Masc" e 1 em "Fem" podemos usar a função recode_factor do pacote `dplyr`. Iremos discutir esse pacote mais adiante, portanto, não se preocupe em entender o código abaixo por enquanto, veja apenas que podemos fazer isso facilmente com essa função.
+
+```{r, message=FALSE, warning=FALSE}
+# recodificando os elementos da variável sexo
+library(dplyr)
+df$sexo <- recode_factor(df$sexo, "0" = "Masc", 
+                                  "1" = "Fem")
+
+# mostrando novamente o data frame
+df
+```
+
+As variáveis categóricas não podem ser usadas em operações aritméticas. Não podemos, por exemplo, calcular a média desse tipo de variável. O que podemos fazer com variáveis categóricas é construir tabelas de frequências de cada categoria.
+
+Ou seja, podemos pedir ao R para contar o número absoluto ou a freqüência relativa dos resultados. A função para tabular os dados de variáveis categóricas é `table()`.
+
+```{r}
+table(df$sexo)
+```
+
+Podemos calcular os percentuais facilmente com a função `prop.table()`, como mostrado abaixo:
+
+```{r}
+prop.table(table(df$sexo))
+```
+
+Mais adiante veremos como deixar esse código mais elegante usando um operador chamado pipe `|>`.
+
+```{r}
+df$sexo |>         # busque a variável sexo no data frame df
+  table() |>       # calcule as quantidade de cada sexo
+  prop.table() |>  # calcule o percentual de cada sexo
+  round(2)         # arredondo para 2 casas decimais
+```
+
+#### Variáveis Numéricas ou Quantitativas
+
+As variáveis quantitativas (numéricas) são resultado de alguma medida realizada. Podem ser números inteiros (discretas) ou reais (contínuas). A grande diferença dessas variáveis com as qualitativas é que com as variáveis numéricas podemos fazer todas operações matemáticas: somar, dividir, calcular a média, a variância, o desvio padrão etc.
+
+##### Cuidado: representando valores decimais no R
+
+*Uma questão importante:*
+
+No R o separador decimal é o ponto final e não a vírgula, portanto o valor de metade de `1` é `0.5`. Cuidado para não usar a vírgula como separador dos decimais.
+
+No R a vírgula separa elementos.
+
+```{r}
+idade <- c(45,10,12) 
+class(idade) 
+```
+
+No exemplo acima criamos uma variável numérica chamada `idade`, e atribuímos a essa variável o conjunto de valores 45, 10 e 12.
+
+Na linha seguinte usamos a função `class( )` para que o R nos informasse o tipo dessa variável, confirmando que foi criada uma variável numérica.
+
+O R já tem um enorme conjunto de funções pré definidas para fazer operações matemáticas e estatísticas. Veremos mais adiante o funcionamento dessas funções com mais detalhes.
+
+Veja nos códigos a seguir alguns exemplos de como usar essas funções do R em variáveis numéricas.
+
+```{r}
+# calcula a média de todos os valores da variável idade
+mean(idade)
+```
+
+```{r}
+# calcula a mediana de todos os valores da variável idade
+median(idade)
+```
+
+```{r}
+# calcula a variância 
+var(idade)
+```
+
+```{r}
+# calcula o desvio padrão
+sd(idade)
+```
+
+```{r}
+# calcula a raiz quadrada de cada um dos valores da variável
+sqrt(idade)
+```
+
+```{r}
+# soma todos os valores
+sum(idade)
+```
+
+A função `summary()` já foi demonstrada anteriormente.
+
+```{r}
+# soma todos os valores
+summary(idade)
+```
+
+#### Variáveis Lógicas
+
+Variáveis lógicas são aquelas que armazenam resultados de operações lógicas. Operações lógicas são aquelas realizadas através de relacionais: igual, maior, maior ou igual, menor, menor ou igual, etc. Como já vimos resultado dessas operação não é um número, mas sim FALSO ou VERDADEIRO, e esse resultado pode ser armazenada numa variável. No exemplo uma operação lógica é realizada e seu resultado é colocado numa variável chamada teste.
+
+```{r}
+a <- 2
+b <- 3
+teste <- (b > a)
+teste
+```
+
+Podemos confirmar que a variável é do tipo lógica com a função `class( )`.
+
+```{r}
+class(teste)
+```
+
+Para visualizarmos o conteúdo de uma variável basta digitar o nome da variável.
+
+```{r}
+teste
+```
+
+Veja que o valor da variável teste é `TRUE`, pois 3 é realmente maior que 2. Um ponto importante a ser memorizado é que em linguagens de programação é usual que `TRUE` tenha o valor de 1 e `FALSE` tenha o valor de 0.
+
+## Vetores no R
+
+Vetores são objetos fundamentais de todas linguagens computacionais. Um vetor é um conjunto de elementos da mesma natureza. Por exemplo, um conjunto de números, um conjunto de palavras, etc.
+
+#### A função `c()`
+
+A função `c()`, abreviação de "combine" ou "concatenate" (combinar ou concatenar), é uma das funções mais frequentemente usadas no R. Ela permite que você crie conjuntos combinando elementos individuais em uma única estrutura coesa. Esta função é incrivelmente versátil, permitindo a construção de vetores, que são o tipo mais simples de conjuntos em R. Vetores são coleções ordenadas de elementos e servem como blocos de construção para estruturas de dados mais complexas, como matrizes, data frames e listas.
+
+A forma mais comum de criar um vetor no R é através do uso do comando `c()` como mostrado a seguir.
+
+##### Criando um vetor numérico determinado conjunto de números
+
+```{r}
+idades <- c(45, 32, 24, 23, 55, 56) 
+```
+
+##### Criando um vetor com uma sequencia de números
+
+```{r}
+x <- c(1:10)
+```
+
+No exemplo acima vimos um novo operador `:` (dois pontos), que cria uma sequencia de números. No capítulo sobre operadores do R iremos discutir melhor o que são operadores e quais os operadores do R \@ref(operadores).
+
+Mais adiante veremos como podemos agrupar um conjunto de vetores num objeto chamado de data frame, formado por colunas e linhas tal como uma planilha.
+
+##### Criando um vetor com nomes dos pacientes:
+
+```{r}
+nomes <- c("Eduardo","José","Antônio","Pedro","Maria","Gustavo")
+```
+
+#### Manipulando Vetores
+
+### A Vantagem do R Ser uma Linguagem Vetorial
+
+Uma das principais vantagens do R é ser uma linguagem vetorial. Isso significa que o R realiza operações em vetores de maneira eficiente e intuitiva.
+
+Em linguagens não vetoriais, operações em conjuntos de dados geralmente requerem loops explícitos, que podem ser lentos e complexos de escrever. No R, a maioria das operações aritméticas e lógicas pode ser aplicada diretamente a vetores, permitindo código mais conciso, legível e de melhor desempenho.
+
+#### Benefícios do R como Linguagem Vetorial:
+
+1.  **Eficiência**: Operações em vetores são implementadas de maneira otimizada em R, resultando em desempenho superior comparado a loops explícitos.
+2.  **Concisão**: O código que usa vetores é geralmente mais curto e mais fácil de entender, o que reduz a probabilidade de erros.
+3.  **Operações em Conjunto**: R permite aplicar operações aritméticas e lógicas diretamente a vetores inteiros, facilitando a manipulação de grandes conjuntos de dados.
+4.  **Facilidade de Uso**: As operações vetoriais em R são intuitivas e facilitam o trabalho com dados tabulares e séries temporais, comuns em análises médicas e científicas.
+
+#### Exemplos de Operações Vetoriais no R
+
+1.  **Aritmética Vetorial**: Operações aritméticas podem ser aplicadas diretamente a vetores.
+
+```{r}
+# Criando vetores numéricos
+a <- c(1,  2,  3, 4 ,  5)
+b <- c(10, 20, 30, 40, 50)
+c <- c(10, 20, 31, 41, 51)
+```
+
+```{r}
+# Adição de vetores: soma os elementos nas posições equivalentes.
+ a + b
+```
+
+Veja que a soma de `a + b` resultou num outro vetor: `11 22 33 44 55`.
+
+No exemplo abaixo e nos seguintes iremos armazenar esse novo vetor num outro objeto (outro vetor) para futuras análises.
+
+```{r}
+# criando um vetor y que será o resultado da soma dos vetores a e b
+y <- a + b 
+# mostrando o vetor y
+print(y) 
+```
+
+```{r}
+# criando um vetor w que será o resultado da subtração dos vetores b e a
+w <- b - a
+# mostrando o vetor w
+print(w)
+```
+
+2.  **Operações Lógicas**: Comparações lógicas podem ser feitas diretamente entre elementos dos vetores.
+
+```{r}
+# Comparando elementos de um vetor numérico com um determinado valor
+# o resultado será armazenado num vetor chamado de z
+z <- a > 3
+# mostrando o vetor z
+print(z)
+```
+
+```{r}
+# Comparando elementos de dois vetores: compara elementos em posições equivalentes
+# o resultado será armazenado num vetor chamado de comparacao
+comparacao <- b == c
+# mostrando o vetor comparacao
+print(comparacao) 
+```
+
+3.  **Funções Aplicadas a Vetores**: Muitas funções em R são vetorizadas, o que significa que elas podem ser aplicadas diretamente a vetores inteiros.
+
+```{r}
+# Calculando a média de um vetor numérico
+mean(a)
+```
+
+```{r}
+# Calculando a soma de um vetor
+sum(a)
+```
+
+4.  **Operações Elemento-a-Elemento**: A aplicação de funções a cada elemento de um vetor é direta.
+
+Vamos imaginar a situação na qual temos um vetor com os dados de peso em libras de um conjunto de pacientes e precisamos transformar esses dados em quilos. Para isso basta multiplicar o vetor pelo valor adequado.
+
+No exemplo a seguir, o vetor `peso_lib` contém valores do peso em libras e o vetor `altura_metros` contém valores de altura em metros de 15 pacientes.
+
+A conversão para quilogramas é realizada multiplicando cada elemento pelo fator de conversão `0.45359237`. Armazenaremos o resultado desses cálculos no vetor `peso_kg`.
+
+```{r}
+# Vetor de pesos em libras com 15 elementos
+peso_lib <- c(120, 135, 150, 165, 180, 
+              195, 210, 225, 240, 255, 
+              270, 285, 300, 315, 330)
+
+altura_metros <- c(1.50, 1.55, 1.60, 1.65, 1.70, 
+                   1.75, 1.80, 1.85, 1.90, 1.95, 
+                   2.00, 2.05, 2.10, 2.15, 2.20)
+
+
+# Convertendo para quilogramas todos os valores do vetor de uma só vez.
+peso_kg <- peso_lib * 0.45359237
+
+# mostrando os resultados armazenados no novo vetor pesos_kg
+print(peso_kg)
+```
+
+Se quisermos construir um novo vetor com o índice de massa corporal (imc) vamos precisar de um vetor com a altura elevada ao quadrado. Isso pode ser feito também de forma simples e rápida no R apenas elevando o vetor de alturas ao quadrado como mostrado abaixo.
+
+```{r}
+altura2 <- altura_metros^2
+altura2 
+```
+
+Criar um vetor com o imc agora ficou fácil:
+
+```{r}
+imc <- peso_kg/altura2
+imc
+```
+
+Poderiamos também ter feito tudo isso de forma mais simples numa única operação:
+
+```{r}
+imc <- (peso_lib * 0.45359237)/(altura_metros^2)
+imc
+```
+
+5.  **Combinação de Vetores**: A combinação de vetores é simples e intuitiva.
+
+```{r}
+# Combinando vetores
+c <- c(a, b)
+print(c) 
+```
+
+Esses exemplos ilustram a eficácia e a simplicidade das operações vetoriais em R. Ao aproveitar essas capacidades, você pode escrever código mais eficiente e legível, facilitando a análise e manipulação de grandes conjuntos de dados comuns na prática médica e em pesquisas científicas.
+
+## Matrizes do R
+
+As matrizes são uma das estruturas de dados fundamentais em R, amplamente utilizadas para armazenar e manipular dados numéricos. Uma matriz é uma coleção bidimensional de elementos, organizados em linhas e colunas. Cada elemento em uma matriz deve ser do mesmo tipo de dado, o que as torna ideais para operações matemáticas e estatísticas.
+
+### Criando Matrizes
+
+Para criar uma matriz em R, utilizamos a função `matrix()`. Por exemplo, para criar uma matriz de 2 linhas e 3 colunas contendo os números de 1 a 6, podemos usar o seguinte código:
+
+```{r}
+minha_matriz <- matrix(1:6, nrow = 2, ncol = 3)
+print(minha_matriz)
+```
+
+### Acessando Elementos de uma Matriz
+
+Os elementos de uma matriz podem ser acessados utilizando a notação de índice `[linha, coluna]`. Por exemplo, para acessar o elemento na primeira linha e segunda coluna da matriz `minha_matriz`, usamos:
+
+```{r}
+minha_matriz[1, 2]
+```
+
+### Operações com Matrizes
+
+Uma das vantagens das matrizes é a facilidade de realizar operações matemáticas. Podemos realizar adição, subtração, multiplicação e divisão diretamente entre matrizes ou entre uma matriz e um escalar.
+
+#### Adição e Subtração
+
+Para adicionar duas matrizes de mesmas dimensões, utilizamos o operador `+`:
+
+```{r}
+matriz_a <- matrix(1:4, nrow = 2)
+matriz_b <- matrix(5:8, nrow = 2)
+matriz_c <- matriz_a + matriz_b
+print(matriz_c)
+```
+
+#### Multiplicação
+
+A multiplicação elementar (elemento a elemento) é feita com o operador `*`, enquanto a multiplicação de matrizes (produto matricial) é feita com a função `%*%`:
+
+```{r}
+produto_elementar <- matriz_a * matriz_b
+produto_matricial <- matriz_a %*% matriz_b
+```
+
+### Funções Úteis com matrizes
+
+R oferece uma série de funções úteis para trabalhar com matrizes, tais como:
+
+-   `t()`: Transposta de uma matriz.
+-   `solve()`: Inversa de uma matriz quadrada.
+-   `det()`: Determinante de uma matriz.
+
+As matrizes são essenciais para muitos métodos estatísticos e análises de dados em R, servindo como a base para outras estruturas de dados mais complexas, como `arrays` e `data frames`. Entender e dominar o uso de matrizes é fundamental para qualquer pessoa que deseje utilizar R de forma eficaz em análises de dados na área da saúde.
+
+## Arrays do R
+
+Arrays são uma estrutura de dados em R que permitem armazenar dados multidimensionais. Enquanto matrizes são restritas a duas dimensões (linhas e colunas), arrays podem ter qualquer número de dimensões, tornando-os mais flexíveis para certas aplicações.
+
+### Criando Arrays
+
+Para criar um array em R, utilizamos a função `array()`. A função requer um vetor de dados e um vetor de dimensões. Por exemplo, para criar um array tridimensional com dimensões 2x3x4, contendo os números de 1 a 24, podemos usar o seguinte código:
+
+```{r}
+meu_array <- array(1:24, dim = c(2, 3, 4))
+print(meu_array)
+```
+
+### Acessando Elementos de um Array
+
+Os elementos de um array podem ser acessados utilizando a notação de índice `[dim1, dim2, dim3, ...]`. Por exemplo, para acessar o elemento na primeira linha, segunda coluna e terceira camada do array `meu_array`, usamos:
+
+```{r}
+elemento <- meu_array[1, 2, 3]
+print(elemento)
+```
+
+### Operações com Arrays
+
+Assim como as matrizes, arrays suportam operações matemáticas. Podemos realizar operações entre arrays de mesmas dimensões ou entre um array e um escalar.
+
+#### Adição e Subtração
+
+Para adicionar dois arrays de mesmas dimensões, utilizamos o operador `+`:
+
+```{r}
+array_a <- array(1:12, dim = c(2, 3, 2))
+array_b <- array(13:24, dim = c(2, 3, 2))
+array_c <- array_a + array_b
+print(array_c)
+```
+
+#### Multiplicação
+
+A multiplicação elementar (elemento a elemento) é feita com o operador `*`:
+
+```{r}
+produto_elementar <- array_a * array_b
+print(produto_elementar)
+```
+
+### Funções Úteis
+
+R oferece uma série de funções úteis para trabalhar com arrays, tais como:
+
+-   `dim()`: Retorna as dimensões de um array.
+-   `apply()`: Aplica uma função ao longo de uma margem (dimensão) de um array.
+-   `arrayInd()`: Converte índices lineares para índices de array.
+
+Os arrays são particularmente úteis em análises de dados que envolvem múltiplas dimensões, como análise de imagens, séries temporais multivariadas e simulações complexas. Compreender como criar e manipular arrays é uma habilidade valiosa para utilizar o poder do R em análises de dados na área da saúde.
+
+## Listas do R
+
+As listas são uma estrutura de dados poderosa e flexível em R, capazes de armazenar diferentes tipos de elementos, como vetores, matrizes, arrays, data frames e até outras listas. Essa flexibilidade torna as listas ideais para agrupar dados heterogêneos em uma única estrutura.
+
+### Criando Listas
+
+Para criar uma lista em R, utilizamos a função `list()`. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Alias, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.
+
+```{r}
+# Carregando a biblioteca necessária
+library(tibble)
+
+# Criando a lista de pacientes
+pacientes <- list(
+  paciente_1 = list(idade = 34,
+                    sexo = "Feminino",
+                    altura = 1.65,
+                    peso = 62,
+                    diagnostico = "Transtorno de Ansiedade Generalizada",
+                    data_nascimento = as.Date("1990-04-15"),
+                    escolaridade = "Ensino Superior Completo",
+                    fumante = FALSE),
+  paciente_2 = list(idade = 45,
+                    sexo = "Masculino",
+                    altura = 1.75,
+                    peso = 85,
+                    diagnostico = "Depressão Major",
+                    data_nascimento = as.Date("1979-11-23"),
+                    escolaridade = "Ensino Médio Completo",
+                    fumante = TRUE),
+  paciente_3 = list(idade = 29,
+                    sexo = "Feminino",
+                    altura = 1.60,
+                    peso = 55,
+                    diagnostico = "Asma",
+                    data_nascimento = as.Date("1995-03-30"),
+                    escolaridade = "Ensino Superior Incompleto",
+                    fumante = FALSE),
+  paciente_4 = list(idade = 52,
+                    sexo = "Masculino",
+                    altura = 1.80,
+                    peso = 90,
+                    diagnostico = "Esquizofrenia",
+                    data_nascimento = as.Date("1972-06-10"),
+                    escolaridade = "Ensino Fundamental Completo",
+                    fumante = TRUE),
+  paciente_5 = list(idade = 40,
+                    sexo = "Feminino",
+                    altura = 1.70,
+                    peso = 70,
+                    diagnostico = "Doença Pulmonar Obstrutiva Crônica",
+                    data_nascimento = as.Date("1984-01-25"),
+                    escolaridade = "Ensino Médio Incompleto",
+                    fumante = TRUE))
+```
+
+### Acessando Elementos de uma Lista
+
+Os elementos de uma lista podem ser acessados de várias maneiras. A notação `$` é usada para acessar elementos nomeados:
+
+```{r}
+# Acessando um determinado paciente
+pacientes$paciente_1
+```
+
+Podemos usar esse mesmo operador `$` em sequencia para acessar um informação de uma lista que está dentro de outro lista. Poe exemplo o sexo do paciente_1.
+
+```{r}
+# Acessando uma informação de uma lista, dentro de outro lista
+pacientes$paciente_1$sexo
+```
+
+Enquanto a notação `$` é usada para acessar elementos nomeados, A notação `[[ ]]` é utilizada para acessar elementos individuais,
+
+```{r}
+# Acessando o vetor
+pacientes$paciente_1$sexo
+```
+
+Veremos adiante que diversos pacotes do R possuem funcionalidades para melhorar o código, como o pacote purrr do tidyverse tem a função `pluck()`:
+
+```{r}
+# Usando a função pluck do purrr
+library(purrr)
+pluck(pacientes, "paciente_1", "sexo")
+```
+
+Na seção de análises estatísticas você verá que muitos das análises tem como resultado uma lista e voê precisará acessar os elementos dessa lista para obter as informções específicas que deseja, tal como, por exemplo, o valor de p. Vamos criar uma matriz de exemplo e realizar um teste do chi quadrado.
+
+```{r}
+mydata <- matrix(c(35,13,29,17,12,21),nrow=3,ncol=2)
+mytest <- chisq.test(mydata,correct=FALSE)
+mytest
+```
+
+```{r}
+str(mytest)
+```
+
+Observe que o resultado do teste chi-quadrado é uma lista. Para acessarmos o valor de p vamos prescisar acessar essa lista usando o operador `$`. Podemos, se precisarmos, armazenar esse valor numa variável.
+
+```{r}
+p <- mytest$p.value
+p
+```
+
+Resumindo, as listas são uma ferramenta essencial em R para trabalhar com dados complexos e heterogêneos, permitindo que você agrupe diferentes tipos de informações em uma única estrutura. Essa capacidade é especialmente útil na análise de dados na área da saúde, onde os dados frequentemente variam em tipo e formato. Em suas análises você frequentemente irá lidar com listas e precisará acessar os elementos individuais dessas listas.
+
+## Nomes de Variáveis e Objetos
+
+Uma variável é um objeto que armazena dados, tais como valores numéricos, datas, caracteres, palavras, valores lógicos etc. Uma variável é um objeto para armazenar um determinado tipo de dado de uma pesquisa. Se uma variável de minha pesquisa é a medida da pressão dos pacientes, posso no R criar um a variável chamada `pa`, `nivel.pressorico` ou `pressao.arterial` para armazenar esse conjunto de dados.
+
+### Estilos de nomeação de variáveis e objetos
+
+Como você deve ter notado, variáveis devem ter nomes fáceis de serem compreendidos, nomes que mostrem o que significam. Se uma variável serve para armazenar a glicemia é mais adequado que essa variável seja denominada `glicemia` do que apenas `x`. Por outro lado, devemos usar nomes sucintos e evitar nomes grandes, `glicemia` é mais apropriado do que `nivel.de.glicose`, que é demasiadamente extenso.
+
+### Nomes compostos
+
+Entretanto, quando houver necessidade de usar nomes compostos, um modo dequado é usar um ponto separando as palavras, tais como: `glico.fem` ou `idade.media`.
+
+Evite usar o underline em variáveis, a separação de palavras pelo o underline é geralmente usado para nomear arquivos tais como: `research_results_fase_1.csv`.
+
+Evite usar maiúsculas para separar as palavras de uma variável, pois esse estilo geralmente é usado para nomear funções, tal como em `solveEquation`. Veja que as palavras são separadas pelo uso de uma maiúscula no início das palavras, exceto a primeira. Esse modo criar nomes é geralmente usado para nomearmos funções, portanto, vamos evitar fazer isso ao criarmos nomes de variáveis.
+
+Além dessa dica, existem regras formais para criar nomes de variáveis:\
+1. O nome de uma variável deve SEMPRE começar com uma letra.\
+2. O nome de uma variável NÃO pode começar com números ou caracteres especiais.\
+3. O nome de uma variável NÃO pode conter espaços.\
+4. O nome de uma variável NÃO pode conter caracteres com acentos gramaticais.
+
+Esse último ponto é importante: o nome de uma variável não pode conter acentos. É importante para usuários da língua portuguesa se atentarem a isso ao criarem variáveis em suas pesquisas.
+
+### Case Sensitive
+
+Um ponto importante: o R é case sensitive, ou seja, maiúsculas e minúsculas são considerados caracteres diferentes: portanto as variáveis idade e Idade são diferentes. A dica é evitar usar maiúsculas em nomes de variáveis, para não criar confusão.
+
+## Examinando objetos do R
+
+A linguagem R possui muitas funções para examinar as características de objetos, por exemplo:
+
+-   `class()` - retorna o tipo de objeto
+-   `typeof()` - retorna o tipo de dados do objeto
+-   `str()` - retorna a estrutura do objeto
+-   `length()` -retorna o tamanho do objeto
+-   `attributes()` - retorna os metadados do objeto
+
+Veja o funcionamento dessas funções aplicada a uma variável simples:
+
+```{r}
+# criando uma variável numérica
+x <- 3
+
+# examinando a variável x
+class(x)
+typeof(x)
+length(x)
+attributes(x)
+str(x)
+```
+
+Ou seja, é um objeto da classe "numeric", do tipo "double", de tamanho "1". Não há atributos. Finalmente, sua estrutura é apenas o valor "3", do tipo numérico.
+
+```{r}
+nome <- "José"
+class(nome)
+typeof(nome)
+length(nome)
+attributes(nome)
+str(nome)
+```
+
+```{r}
+teste <- FALSE
+class(teste)
+typeof(teste)
+length(teste)
+attributes(teste)
+str(teste)
+```
+
+Vamos aplicar agora essas funções em alguns vetores:
+
+```{r}
+z <- c(1, 2, 3)
+class(z)
+typeof(z)
+length(z)
+attributes(z)
+str(z)
+```
+
+```{r}
+frutas <- c("bananas", "maçãs", "melão")
+class(frutas)
+typeof(frutas)
+length(frutas)
+attributes(frutas)
+str(frutas)
+```
+
+Veja agora como a função `str()` nos ajuda a compreender melhor a estrutura de conjunto de dados num dataset, usando o dataset `esoph` do R, que contém dados de um estudo de caso controle de câncer de esôfago na frança.
+
+```{r}
+str(esoph)
+```
+
+Como podemos ver acima a função `str()` mostrou a estrutura desse data frame. Podemos ver que as variáveis `agegp`, `alcgp` e `tobgp` são variáveis categóricas ordinais, ou seja, tem uma ordenação.
+
+Usando o comando `?esoph` podemos descobrir o significado exato de cada variável.
+
+```{r}
+# use esse comando no console e veja o significado de cada elemento do data frame na aba help no painel à direita inferior do Rstudio.
+?esoph
+```
+
+-   A variável `agegp` indica a faixa etária do participante e tem seis níveis de faixas etárias
+-   A variável `alcgp` indica a quantidade de alcool que o participante consome em gramas por dia e tem 4 níveis
+-   A variável `tobgp` indica a quantidade de tabaco que o participante consome em gramas por dia e tem 4 níveis
+-   As variáveis `ncases` e `ncontrols` são numéricas.

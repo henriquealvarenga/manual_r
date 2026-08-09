@@ -1,0 +1,12 @@
+# purr - Progamação funcional no R
+
+O pacote `purrr` aprimora o kit de ferramentas de programação funcional (FP) do R, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores.
+
+A programação funcional é uma abordagem poderosa para a análise de dados, proporcionando maneiras elegantes e eficientes de manipular, transformar e resumir conjuntos de dados.
+
+No contexto da análise de dados médicos, onde frequentemente lidamos com grandes volumes de informações complexas, a programação funcional pode ser uma aliada indispensável. O pacote `purrr`, parte integrante do `tidyverse`, é projetado para trazer as vantagens da programação funcional para o R, oferecendo diversas ferramentas para trabalhar com funções e listas.
+
+O `purrr` facilita a aplicação de funções de maneira iterativa e permite manipulações sofisticadas de dados com código limpo e conciso. Seja para aplicar a mesma operação a várias colunas de um dataframe, transformar listas complexas ou simplificar operações repetitivas, o `purrr` fornece uma sintaxe intuitiva e poderosa para melhorar sua eficiência analítica.
+
+
+## Manipulando vetores com `purr`

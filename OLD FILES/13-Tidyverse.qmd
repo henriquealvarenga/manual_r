@@ -1,0 +1,34 @@
+# Manipulando dados com o Tidyverse
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+O `tidyverse` é uma coleção de pacotes R projetados para ciência de dados, para manipulação, exploração e visualização de dados, inicialmente desenvolvidos por Hadley Wickham, mas que continuam sendo expandidos por vários colaboradores.
+
+Entre os pacotes mais importantes estão:
+
+**1.readr**\
+O pacote `readr` fornece uma maneira rápida e amigável de ler dados tabulados (como .csv, .tsv e fwf). Veremos as funções `read_csv()` e `readcsv2()` para leitura de dados em formato `csv`.
+
+**2.tibble**\
+o pacote `tibble` atualiza o objeto data frame para a `tibble`, uma versão mais moderna dos data frames.
+
+**3.tidyr**\
+O pacote `tidyr` fornece um conjunto de funções que ajudam você a organizar os dados. Veremos como transformar data frames no formato wide em formato long e vice versa com as funções `pivot_longer()` e `pivot_wider()`; veremos como retirar observações com valores `NA` com a função `drop_na()` e como substituir observações com valores `NA` com a função `replace_na()`.
+
+**4.dplyr**\
+O pacote `dplyr` fornece uma gramática de manipulação de dados, fornecendo um conjunto consistente de funções que resolvem os desafios mais comuns de manipulação de dados. Veremos como extrair linhas que preencham certos critérios com a função `filter()`; seleciona uma ou um conjunto de colunas (variáveis) com a função `select()`; extrair os valores de uma coluna na forma de um vetor com a função `pull()`; agrupa dados segundo as categorias de uma variável categórica com a função `group_by()`; criar novas colunas (variáveis) a partir de outras já existentes com a função `mutate()` e como modifica valores de variáveis, numérica ou categóricas com a função `recode()`.
+
+**5.forcats**\
+O pacote `forcats` fornecer um conjunto de ferramentas que resolve problemas comuns com variáveis categóricas.
+
+**6.ggplot2**\
+O pacote `ggplot2` é um sistema para criação declarativa de gráficos, baseado em **The Grammar of Graphics**. Você fornece os dados, diz ao ggplot2 como mapear variáveis, quais tipos de gráficos usar e ele cuida dos detalhes.
+
+O `tidyverse` tem diversos outros pacotes para funções mais complexas que estão fora do escopo desse livro, tais como o pacote `purrr` de programação funcional (FP) do R, para trabalhar com funções e vetores; o pacote pacote `stringr` para trabalhar com strings dentre vários outros.
+
+### Recursos Adicionais
+
+-   [Documentação do R](https://cran.r-project.org/manuals.html)
+-   [Documentação do Tidyverse](https://www.tidyverse.org/)

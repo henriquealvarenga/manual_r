@@ -1,0 +1,15 @@
+# Manipulando dados
+
+Neste capítulo, vamos aprender a manipular dados com os pacotes `dplyr` e `tidyr`. O `dplyr` é um pacote que fornece um conjunto de funções para manipulação de dados que são rápidas e fáceis de usar. O `tidyr` é um pacote que fornece um conjunto de funções para organizar dados em um formato mais limpo e organizado. Vamos aprender a usar esses pacotes para manipular dados de forma eficiente e eficaz. Em seguida vamos aprender a usar o pacote `forcats` para manipular dados categóricos de forma eficiente e eficaz. Finalmente vamos ver como analisar dados numéricos e fazer a sumarização de dados.
+
+{{< include 11.1-tidyr.qmd >}}
+
+{{< include 11.2-dplyr.qmd >}}
+
+{{< include 11.3-forcats.qmd >}}
+
+{{< include 11.4-Trabalhando-com-dados-categoricos.qmd >}}
+
+{{< include 11.5-Trabalhando-com-dados-numericos.qmd >}}
+
+{{< include 11.6-Summarizing-data.qmd >}}

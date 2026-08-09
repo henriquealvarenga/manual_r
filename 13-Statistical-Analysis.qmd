@@ -1,0 +1,23 @@
+# Análises Estatísticas
+
+A análise estatística dos dados é uma etapa fundamental em qualquer pesquisa científica. A estatística é uma ferramenta que permite a interpretação dos dados, a identificação de padrões e a tomada de decisões.
+
+Inicialmente vamos apresentar como avaliar a normalidade de um conjunto de dados, etapa fundamental para a escolha da técnica estatística a ser utilizada. Em seguida, vamos apresentar a análise de correlação, que permite avaliar a relação entre duas variáveis. Em seguida, vamos apresentar o teste t de Student, que permite avaliar a diferença entre as médias de dois grupos. Em seguida, vamos apresentar a análise de variância (ANOVA), que permite avaliar a diferença entre as médias de três ou mais grupos. Em seguida, vamos apresentar o teste de Wilcoxon, que permite avaliar a diferença entre as medianas de dois grupos. Em seguida, vamos apresentar o teste do qui-quadrado e o teste exato de Fisher, que permitem avaliar a associação entre duas variáveis categóricas. Por fim, vamos apresentar a análise de regressão, que permite avaliar a relação entre uma variável dependente e uma ou mais variáveis independentes.
+
+{{< include 13.0-Normality.qmd >}}
+
+{{< include 13.1-Correlation.qmd >}}
+
+{{< include 13.2-Test-t-Student.qmd >}}
+
+{{< include 13.3-ANOVA.qmd >}}
+
+{{< include 13.4-Wilcoxon-rank-sum-test.qmd >}}
+
+{{< include 13.5-Chi-quadrado-e-teste-exato-de-Fisher.qmd >}}
+
+{{< include 13.6-Linear-Regression.qmd >}}
+
+{{< include 13.7-Logistic-Regression.qmd >}}
+
+{{< include 13.8-Survival-Analysis.qmd >}}

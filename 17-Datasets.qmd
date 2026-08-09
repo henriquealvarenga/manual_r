@@ -1,0 +1,85 @@
+# Datasets
+
+Lista dos datasets usados nesse manual
+
+## diabetes
+
+O dataset com dados de diabetes foi obtido no site do departamento de bio estatística da universidade de Vanderbilt no link abaixo. Consistem em 19 variáveis de 403 indivíduos, selecionados de um total de 1046 entrevistados, em um estudo sobre a prevalência de obesidade, diabetes e outros fatores de risco cardiovascular na população afro-americana da região central da Virgínia.
+
+```{r}
+# Código para ler o dataset diabetes do site da Universidade de Vanderbilt
+diabetes <- read.csv(file = "https://hbiostat.org/data/repo/diabetes.csv")
+```
+
+<https://hbiostat.org/data>
+
+## iris
+
+O conjunto de dados "`iris`" do `ggplot2` contém 150 observações de três espécies de íris (Setosa, Versicolor, Virginica), com medições de comprimento e largura das sépalas e pétalas, em centímetros. É amplamente utilizado para demonstrações de técnicas de análise de dados e aprendizado de máquina.
+
+```{r}
+# código para acessar o dataset iris do ggplot2
+# lembre-se que será primeiro necessário instalar o pacote ggplot2
+library(ggplot2)
+data(iris)
+```
+
+## mpg
+
+O conjunto de dados "`mpg`" do `ggplot2` contém 234 observações de veículos, com informações detalhadas sobre consumo de combustível, características do motor e especificações do carro. As variáveis incluem fabricante, modelo, cilindrada, ano, número de cilindros, tipo de transmissão, tipo de tração, consumo na cidade e na estrada, tipo de combustível e classe do veículo. Este conjunto de dados é amplamente utilizado para análises e visualizações relacionadas ao desempenho de veículos em termos de eficiência de combustível.
+
+```{r}
+# código para acessar o dataset mpg do ggplot2
+# lembre-se que será primeiro necessário instalar o pacote ggplot2
+library(ggplot2)
+data(mpg)
+```
+
+## mtcars
+
+O conjunto de dados "`mtcars`" do R base contém 32 observações de modelos de carros, com informações detalhadas sobre eficiência de combustível, características do motor, e especificações do veículo. As variáveis incluem milhas por galão, número de cilindros, deslocamento, potência, relação do eixo traseiro, peso, tempo para percorrer um quarto de milha, tipo de motor, tipo de transmissão, número de marchas e número de carburadores. Este conjunto de dados é amplamente utilizado para análises estatísticas e visualizações relacionadas ao desempenho e características dos veículos. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.
+
+```{r}
+# código para acessar o dataset mtcars
+data(mpg)
+```
+
+## Arthritis
+
+O conjunto de dados "Arthritis" do pacote `vcd` do R contém 84 observações de pacientes de um estudo clínico sobre o tratamento da artrite. As variáveis incluem a identificação do paciente, tipo de tratamento (Placebo ou Tratamento), sexo, idade e grau de melhora dos sintomas (Nenhuma, Alguma, Marcante). Este conjunto de dados é amplamente utilizado para analisar a eficácia de tratamentos de artrite e explorar como fatores como idade e sexo podem influenciar os resultados do tratamento.
+
+```{r}
+# código para acessar o dataset Arthritis
+# lembre-se que será primeiro necessário instalar o pacote vcd
+library(vcd)
+data("Arthritis")
+```
+
+## airquality
+
+O conjunto de dados "airquality" em R contém 153 observações de medições diárias de qualidade do ar na cidade de Nova York, durante os meses de maio a setembro de 1973. As variáveis incluem concentração de ozônio, radiação solar, velocidade do vento, temperatura, mês e dia da medição. Este conjunto de dados é amplamente utilizado para análises ambientais e de séries temporais, apesar de conter alguns valores faltantes. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.
+
+```{r}
+# código para acessar o dataset airquality
+data(airquality)
+```
+
+## PlantGrowth
+
+O conjunto de dados "PlantGrowth" em R contém 30 observações de pesos de plantas submetidas a três diferentes tratamentos (controle, tratamento 1 e tratamento 2). Cada grupo possui 10 plantas. Este conjunto de dados é utilizado principalmente para realizar análises estatísticas, como ANOVA, para investigar o efeito dos tratamentos no crescimento das plantas. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.
+
+```{r}
+# código para acessar o dataset PlantGrowth
+data(PlantGrowth)
+```
+
+## SAheart
+
+dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
+
+```{r}
+# código para acessar o dataset SAheart
+# lembre-se que será primeiro necessário instalar o pacote bestglm
+library(bestglm)
+data("SAheart")
+```
