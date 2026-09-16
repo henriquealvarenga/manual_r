@@ -16,7 +16,11 @@ book:
     address: "Departamento de Medicina - UFSJ"
     email: "henriquealvarenga@ufsj.edu.br"
   isbn: "978-65-01-14142-8"
-  date: "07/31/2024"
+  # Data de publicação da edição com ISBN, registrado em 08/09/2024. O site foi
+  # ao ar antes disso, em junho de 2024, e 31/07/2024 era apenas a data em que o
+  # conteúdo foi congelado. Em ISO para não virar 9 de agosto: o valor anterior
+  # estava em mês/dia/ano.
+  date: "2024-09-08"
   # Identificação profissional exigida pela Resolução CFM 2.336/2023 em
   # material assinado por médico: nome, a palavra "médico", especialidade,
   # CRM e RQE. Por isso vai no rodapé de todas as páginas, e não numa página
