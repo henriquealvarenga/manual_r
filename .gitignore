@@ -22,6 +22,17 @@
 # no _quarto.yml), e docs/ SIM é versionado, porque é dele que o Pages publica.
 _book/
 
+# --- Sobras do render em PDF ---
+# O _quarto.yml declara os dois formatos (ver "format:"), então um `quarto
+# render` sem argumentos gera também o livro em PDF e congela a passagem em
+# LaTeX. Nada disso vai para o ar: o Pages publica o docs/ em HTML e nenhuma
+# página do site aponta para o PDF, que sozinho tem 25 MB e dobraria o
+# repositório. O _freeze/ continua versionado na parte que importa — os
+# html.json e as figuras de figure-html, que são o que o site usa.
+docs/*.pdf
+_freeze/**/figure-pdf/
+_freeze/**/execute-results/tex.json
+
 # --- Renderizações avulsas de capítulos soltos ---
 # Sobras de quando um capítulo é renderizado sozinho durante a escrita.
 13-Statistical-Analysis_files/
