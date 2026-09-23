@@ -109,8 +109,7 @@ Plotar esses dados sem nenhum ajuste resultaria num gráfico ordenado de forma a
 library(ggplot2)
 
 ggplot(data) +
-  geom_bar(aes(x=produto, y=preco), 
-           stat = "identity", 
+  geom_col(aes(x=produto, y=preco), 
            fill="lightgreen", 
            col="darkgreen") +
   theme_minimal()
@@ -128,8 +127,7 @@ data <- data %>%
 
 # plotando novamente o gráfico
 ggplot(data) +
-  geom_bar(aes(x=produto, y=preco), 
-           stat = "identity", 
+  geom_col(aes(x=produto, y=preco), 
            fill="lightgreen", 
            col="darkgreen") +
   theme_minimal()

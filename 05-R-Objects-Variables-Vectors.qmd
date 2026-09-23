@@ -138,13 +138,13 @@ df$sexo <- as.factor(df$sexo)
 df
 ```
 
-Caso seja interessante renomear os elementos, transformando 0 em "Masc" e 1 em "Fem" podemos usar a função recode_factor do pacote `dplyr`. Iremos discutir esse pacote mais adiante, portanto, não se preocupe em entender o código abaixo por enquanto, veja apenas que podemos fazer isso facilmente com essa função.
+Caso seja interessante renomear os elementos, transformando 0 em "Masc" e 1 em "Fem" podemos usar a função `recode_values()` do pacote `dplyr`. Iremos discutir esse pacote mais adiante, portanto, não se preocupe em entender o código abaixo por enquanto, veja apenas que podemos fazer isso facilmente com essa função.
 
 ```{r, message=FALSE, warning=FALSE}
 # recodificando os elementos da variável sexo
 library(dplyr)
-df$sexo <- recode_factor(df$sexo, "0" = "Masc", 
-                                  "1" = "Fem")
+df$sexo <- recode_values(df$sexo, "0" ~ "Masc",
+                                  "1" ~ "Fem") |> as.factor()
 
 # mostrando novamente o data frame
 df

@@ -112,7 +112,7 @@ t.test(controle, experimental, paired = TRUE)
 t.test(result$controle, result$experimental, paired = TRUE)
 ```
 
-Entretanto, quando usamos a sintaxe do teste com o operador `~` não podemos inserir o argumento `paired = TRUE`, senão teremos um erro. Esse Parece ser um bug de algumas versões do R, que talvez seja corrigido no futuro.
+Entretanto, quando usamos a sintaxe do teste com o operador `~` não podemos inserir o argumento `paired = TRUE`, senão teremos um erro. Isso é proposital: desde a versão 4.4 do R a fórmula não aceita mais o teste pareado, porque ela não garante que as observações dos dois grupos estejam na mesma ordem. Para o teste pareado, use a sintaxe com os dois vetores, como acima.
 
 #### Teste t para uma amostra.
 

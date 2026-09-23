@@ -131,9 +131,11 @@ ggplot(airquality)  +
   geom_point(aes(x=Ozone, y=Solar.R)) 
 ```
 
+O aviso `Removed 42 rows containing missing values` não é um erro: 42 observações do `airquality` têm `NA` em `Ozone` ou em `Solar.R`, e o ggplot avisa que as deixou de fora do gráfico. Nos gráficos seguintes esse aviso foi omitido com a opção `warning=FALSE` do chunk.
+
 Para plotar a reta de regressão basta incluir uma nova camada, uma nova geometria, nesse caso geom_smooth(), indicando como argumentos os mesmos dados e o método linear model `lm`.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 ggplot(airquality)  + 
   geom_point(aes(x=Ozone, y=Solar.R)) + 
   geom_smooth(aes(x=Ozone, y=Solar.R), method = lm)

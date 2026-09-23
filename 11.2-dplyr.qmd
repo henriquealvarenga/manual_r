@@ -18,7 +18,7 @@ O `dplyr` é um dos pacotes mais populares do `tidyverse` para manipulação de 
 6.  **`group_by()`**: Agrupa os dados com base em uma ou mais colunas, preparando-os para operações de agregação.
 7.  **`ungroup()`**: Remove agrupamentos de um conjunto de dados.
 8.  **`rename()`**: Renomeia colunas em um conjunto de dados.
-9.  **`recode()`**: Recodifica valores, substituindo valores existentes por novos valores.
+9.  **`replace_values()`** e **`recode_values()`**: Recodificam valores, substituindo valores existentes por novos valores.
 10. **`bind_rows()`**: Empilha dois ou mais conjuntos de dados um em cima do outro (concatenação vertical).
 11. **`bind_cols()`**: Combina dois ou mais conjuntos de dados lado a lado (concatenação horizontal).
 12. **`distinct()`**: Retorna linhas distintas, removendo duplicatas de um conjunto de dados.
@@ -135,7 +135,7 @@ mpg |> filter(class=="suv") |>
         mean()
 ```
 
-O código acima falhou!. O motivo é que o argumento passado pelo pipe para a função `mean()` não é um vetor, mas sim uma data frame (ou uma tibble). Podemos conferir isso no código abaixo, onde substituimos a função `mean()` pela função `class()` que informa o tipo de objeto.
+O código acima não deu erro, mas devolveu `NA` acompanhado de um aviso. O motivo é que o argumento passado pelo pipe para a função `mean()` não é um vetor, mas sim uma data frame (ou uma tibble). Podemos conferir isso no código abaixo, onde substituimos a função `mean()` pela função `class()` que informa o tipo de objeto.
 
 ```{r}
 mpg |> filter(class=="suv") |>
@@ -377,9 +377,9 @@ pacientes_2 <- rename(pacientes,
 print(pacientes_2)
 ```
 
-### Recodificando valores com `recode()`
+### Recodificando valores com `replace_values()` e `recode_values()`
 
-Frequentemente necessitamos modificar valores de variáveis ou reduzir o número de variáveis categóricas. A função `recode()` serve para isso. No exemplo abaixo a variável `x` contém dados sobre o sexo, mas com nomes heterogêneos para identificar quem é do sexo masculino ou feminino. Com esses diferentes nomes a tabulação dos dados será inadequada.
+Frequentemente necessitamos modificar valores de variáveis ou reduzir o número de variáveis categóricas. A função `replace_values()` serve para isso: cada argumento tem a forma `valor_antigo ~ valor_novo`, e os valores não listados são mantidos como estão. No exemplo abaixo a variável `x` contém dados sobre o sexo, mas com nomes heterogêneos para identificar quem é do sexo masculino ou feminino. Com esses diferentes nomes a tabulação dos dados será inadequada.
 
 ```{r}
 x <- c("Fem", "Fem", "Fem", "Feminino", 
@@ -391,14 +391,14 @@ table(x)
 Podemos resolver esse problema recodificando o valor da variável "Feminino" para "Fem" e "Masculino" para “Masc". Observe que é preciso atribuir o resultado à um objeto para que a recodificação seja salva.
 
 ```{r}
-x2 <- recode(x, Feminino = "Fem", Masculino = "Masc")
+x2 <- replace_values(x, "Feminino" ~ "Fem", "Masculino" ~ "Masc")
 table(x2)
 ```
 
 O código acima poderia ser reescrito com o operador pipe:
 
 ```{r}
-x3 <- x |> recode(Feminino = "Fem", Masculino = "Masc")
+x3 <- x |> replace_values("Feminino" ~ "Fem", "Masculino" ~ "Masc")
 table(x3)
 ```
 
@@ -418,18 +418,13 @@ Podemos fazer isso criando uma nova variável com apenas essas duas categorias.
 
 Podemos fazer isso usando função `mutate()` para criar uma nova variável `marcha`.
 
-Usaremos a função `recode()`, para codificar os valores da variável `marcha` a partir dos valores da variável `trans`, e o operador `pipe` para facilitar tudo isso.
+Usaremos a função `recode_values()`, irmã da `replace_values()`, que serve para criar uma variável inteiramente nova a partir dos valores da variável `trans` (os valores não listados viram `NA`), e o operador `pipe` para facilitar tudo isso. Note que o lado esquerdo do `~` pode ser um vetor com vários valores antigos, o que evita repetir o valor novo linha a linha.
 
 ```{r}
-mpg <- mpg |> mutate(marcha = recode(trans,
-                                      "auto(l3)"   = "automatica",
-                                      "auto(l4)"   = "automatica", 
-                                      "auto(l5)"   = "automatica",                                                                   "auto(l6)"   = "automatica", 
-                                      "auto(s4)"   = "automatica",
-                                      "auto(s5)"   = "automatica", 
-                                      "auto(s6)"   = "automatica",                                                                   "auto(av)"   = "automatica", 
-                                      "manual(m5)" = "manual", 
-                                      "manual(m6)" = "manual"))
+mpg <- mpg |> mutate(marcha = recode_values(trans,
+                                          c("auto(l3)", "auto(l4)", "auto(l5)", "auto(l6)",
+                                            "auto(s4)", "auto(s5)", "auto(s6)", "auto(av)") ~ "automatica",
+                                          c("manual(m5)", "manual(m6)") ~ "manual"))
 
 unique(mpg$marcha)
 ```

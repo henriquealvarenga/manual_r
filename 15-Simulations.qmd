@@ -333,7 +333,7 @@ y_area <- f(x_area)
 
 # Criando o gráfico
 ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
-  geom_line(color = "blue", size = 1) +  # Curva y = x^2
+  geom_line(color = "blue", linewidth = 1) +  # Curva y = x^2
   geom_ribbon(data = data.frame(x = x_area, ymin = 0, ymax = y_area),
               aes(x = x, ymin = ymin, ymax = ymax),
               fill = "red", alpha = 0.5) +  # Área sob a curva
@@ -377,7 +377,7 @@ y_area <- f(x_area)
 ggplot() +
   # Desenhando a curva y = x^2
   geom_line(data = data.frame(x = seq(x_range[1], x_range[2], length.out = 1000), y = f(seq(x_range[1], x_range[2], length.out = 1000))),
-            aes(x = x, y = y), color = "blue", size = 1) +
+            aes(x = x, y = y), color = "blue", linewidth = 1) +
   # Desenhando a área sob a curva
   geom_ribbon(data = data.frame(x = x_area, ymin = 0, ymax = y_area),
               aes(x = x, ymin = ymin, ymax = ymax),

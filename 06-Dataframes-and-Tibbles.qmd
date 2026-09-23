@@ -261,9 +261,9 @@ pacientes_mais_jovens
 
 ### transformando data frames em `tibbles`
 
-Caso você tenha um data frame, é fácil transformá-lo numa `tibble` usando a função `as.tibble()`.
+Caso você tenha um data frame, é fácil transformá-lo numa `tibble` usando a função `as_tibble()`.
 
-O código a seguir lê um banco de dados chamado `diabetes.csv` que está na pasta `dataset` do projeto. A leitura será feita através da função base do R `read.csv()`, que coloca os dados lidos num data frame. Em seguida, usaremos a função `as.tibble()` para transformar o data frame numa `tibble`.
+O código a seguir lê um banco de dados chamado `diabetes.csv` que está na pasta `dataset` do projeto. A leitura será feita através da função base do R `read.csv()`, que coloca os dados lidos num data frame. Em seguida, usaremos a função `as_tibble()` para transformar o data frame numa `tibble`.
 
 ```{r, message=FALSE, warning=FALSE}
 # lendo os dados com a função read.csv do R Base

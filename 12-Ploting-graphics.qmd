@@ -211,18 +211,17 @@ Agora que já estudamos as etapas genéricas de construção de gráficos com o 
 
 #### Rotacionando o gráfico
 
-Com o ggplot é fácil rotacionar o gráfico, bastando para isso incluir uma linha no código: `coord_flip()`. Vejamos como rotacionar o gráfico de barras acima:
+Com o ggplot é fácil rotacionar o gráfico: basta mapear a variável categórica em `y` em vez de `x`. (Nas versões antigas do ggplot2 era preciso acrescentar uma linha `coord_flip()` ao código; ela ainda funciona, mas já não é necessária.) Vejamos como rotacionar o gráfico de barras acima:
 
 ```{r}
-ggplot(mpg, aes(x=drv, fill=fl)) +
+ggplot(mpg, aes(y=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
        subtitle = "234 Carros populares de 1998 a 2008",
        caption = "fonte: dataset mgp do ggplot2",
-       x = "Tipo de tração", 
-       y = "Número de carros") +
-  theme_classic()+ 
-  coord_flip()
+       y = "Tipo de tração", 
+       x = "Número de carros") +
+  theme_classic()
 ```
 
 #### Agrupando os gráficos
@@ -373,7 +372,7 @@ Podemos também mudar o eixo vertical para percentual ao inves de números absol
 Para que o gráfico de barras use percentuais é preciso:\
 1. calcular os percentuais.\
 2. colocar esses percentuais num novo dataset. 3. usar esse dataset como argumento da função ggplot 4. incluir a variável com os percentuais nos argumentos do `ggplot`.\
-5. finalmente, será preciso incluir o argumento `stat = "identity"` dentro da função `geom_bar()`, como mostrado abaixo:
+5. finalmente, será preciso usar `geom_col()` em vez de `geom_bar()`, porque agora a altura das barras já vem calculada no dataset (o `geom_bar()` conta as linhas por conta própria), como mostrado abaixo:
 
 ```{r}
 # criando uma dataset com os dados percentuais:
@@ -390,7 +389,7 @@ Veja que o novo dataset (`newdataset`) tem apenas 3 variáveis agora, drv, n e p
 # no código abaixo foi usado o novo dataset, newdataset, que contém a nova variável "perc".
 
 ggplot(newdataset, aes(x=drv, y=perc)) +
-  geom_bar(width = 0.5, stat = "identity") +
+  geom_col(width = 0.5) +
   labs(title = "Tipo de tração e Tipo de combustível",
        subtitle = "234 Carros populares de 1998 a 2008",
        caption = "fonte: dataset mgp do ggplot2",

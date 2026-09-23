@@ -32,9 +32,9 @@ dados <- data.frame(x = z, prob = prob)
 
 
 ggplot(dados, aes(x = x, y = prob)) +
-  geom_line(color = "blue", size = 1) +
+  geom_line(color = "blue", linewidth = 1) +
   stat_function(fun = function(x) 1 / (1 + exp(-x)),
-                color = "black", size = 1, linetype = "dashed") +
+                color = "black", linewidth = 1, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed", color = "red") +
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
   annotate(
