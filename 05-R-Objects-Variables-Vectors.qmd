@@ -6,6 +6,13 @@
 >
 > --- John Chambers, Creator of the S programming language
 
+Este capítulo usa duas funções de pacotes que serão apresentados mais adiante (@sec-packages): `recode_values()` do `dplyr` e `pluck()` do `purrr`. Os pacotes são carregados uma única vez, no início:
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(purrr)
+```
+
 Nessa seção serão desenvolvidos os princípios básicos de uma linguagem de programação, tais como os conceitos de objetos, variáveis, operadores, funções, vetores, tipos de dados (categóricos numéricos, lógicos).
 
 O R é uma linguagem de programação de alto nível e como tal, usa do conceito de objetos. As linguagens de programação desse tipo são chamadas de linguagens orientadas a objetos. Essa abstração simplifica muito a programação e torna muito mais fácil resolver problemas complexos. Tudo que existe no R pode ser chamado de um objeto. Todas variáveis e todos gráficos do R são objetos.
@@ -142,7 +149,6 @@ Caso seja interessante renomear os elementos, transformando 0 em "Masc" e 1 em "
 
 ```{r, message=FALSE, warning=FALSE}
 # recodificando os elementos da variável sexo
-library(dplyr)
 df$sexo <- recode_values(df$sexo, "0" ~ "Masc",
                                   "1" ~ "Fem") |> as.factor()
 
@@ -331,14 +337,14 @@ No exemplo abaixo e nos seguintes iremos armazenar esse novo vetor num outro obj
 # criando um vetor y que será o resultado da soma dos vetores a e b
 y <- a + b 
 # mostrando o vetor y
-print(y) 
+y
 ```
 
 ```{r}
 # criando um vetor w que será o resultado da subtração dos vetores b e a
 w <- b - a
 # mostrando o vetor w
-print(w)
+w
 ```
 
 2.  **Operações Lógicas**: Comparações lógicas podem ser feitas diretamente entre elementos dos vetores.
@@ -348,7 +354,7 @@ print(w)
 # o resultado será armazenado num vetor chamado de z
 z <- a > 3
 # mostrando o vetor z
-print(z)
+z
 ```
 
 ```{r}
@@ -356,7 +362,7 @@ print(z)
 # o resultado será armazenado num vetor chamado de comparacao
 comparacao <- b == c
 # mostrando o vetor comparacao
-print(comparacao) 
+comparacao
 ```
 
 3.  **Funções Aplicadas a Vetores**: Muitas funções em R são vetorizadas, o que significa que elas podem ser aplicadas diretamente a vetores inteiros.
@@ -389,12 +395,11 @@ altura_metros <- c(1.50, 1.55, 1.60, 1.65, 1.70,
                    1.75, 1.80, 1.85, 1.90, 1.95, 
                    2.00, 2.05, 2.10, 2.15, 2.20)
 
-
 # Convertendo para quilogramas todos os valores do vetor de uma só vez.
 peso_kg <- peso_lib * 0.45359237
 
 # mostrando os resultados armazenados no novo vetor pesos_kg
-print(peso_kg)
+peso_kg
 ```
 
 Se quisermos construir um novo vetor com o índice de massa corporal (imc) vamos precisar de um vetor com a altura elevada ao quadrado. Isso pode ser feito também de forma simples e rápida no R apenas elevando o vetor de alturas ao quadrado como mostrado abaixo.
@@ -423,7 +428,7 @@ imc
 ```{r}
 # Combinando vetores
 c <- c(a, b)
-print(c) 
+c
 ```
 
 Esses exemplos ilustram a eficácia e a simplicidade das operações vetoriais em R. Ao aproveitar essas capacidades, você pode escrever código mais eficiente e legível, facilitando a análise e manipulação de grandes conjuntos de dados comuns na prática médica e em pesquisas científicas.
@@ -438,7 +443,7 @@ Para criar uma matriz em R, utilizamos a função `matrix()`. Por exemplo, para 
 
 ```{r}
 minha_matriz <- matrix(1:6, nrow = 2, ncol = 3)
-print(minha_matriz)
+minha_matriz
 ```
 
 ### Acessando Elementos de uma Matriz
@@ -461,7 +466,7 @@ Para adicionar duas matrizes de mesmas dimensões, utilizamos o operador `+`:
 matriz_a <- matrix(1:4, nrow = 2)
 matriz_b <- matrix(5:8, nrow = 2)
 matriz_c <- matriz_a + matriz_b
-print(matriz_c)
+matriz_c
 ```
 
 #### Multiplicação
@@ -493,7 +498,7 @@ Para criar um array em R, utilizamos a função `array()`. A função requer um 
 
 ```{r}
 meu_array <- array(1:24, dim = c(2, 3, 4))
-print(meu_array)
+meu_array
 ```
 
 ### Acessando Elementos de um Array
@@ -502,7 +507,7 @@ Os elementos de um array podem ser acessados utilizando a notação de índice `
 
 ```{r}
 elemento <- meu_array[1, 2, 3]
-print(elemento)
+elemento
 ```
 
 ### Operações com Arrays
@@ -517,7 +522,7 @@ Para adicionar dois arrays de mesmas dimensões, utilizamos o operador `+`:
 array_a <- array(1:12, dim = c(2, 3, 2))
 array_b <- array(13:24, dim = c(2, 3, 2))
 array_c <- array_a + array_b
-print(array_c)
+array_c
 ```
 
 #### Multiplicação
@@ -526,7 +531,7 @@ A multiplicação elementar (elemento a elemento) é feita com o operador `*`:
 
 ```{r}
 produto_elementar <- array_a * array_b
-print(produto_elementar)
+produto_elementar
 ```
 
 ### Funções Úteis
@@ -548,9 +553,6 @@ As listas são uma estrutura de dados poderosa e flexível em R, capazes de arma
 Para criar uma lista em R, utilizamos a função `list()`. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Alias, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.
 
 ```{r}
-# Carregando a biblioteca necessária
-library(tibble)
-
 # Criando a lista de pacientes
 pacientes <- list(
   paciente_1 = list(idade = 34,
@@ -622,7 +624,6 @@ Veremos adiante que diversos pacotes do R possuem funcionalidades para melhorar 
 
 ```{r}
 # Usando a função pluck do purrr
-library(purrr)
 pluck(pacientes, "paciente_1", "sexo")
 ```
 

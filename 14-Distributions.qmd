@@ -2,6 +2,12 @@
 
 Distribuições teóricas são modelos matemáticos que descrevem como os dados se comportam. Elas são importantes porque permitem a modelagem e previsão de fenômenos naturais, fazendo inferências sobre uma população a partir de uma amostra e testando hipóteses para determinar a significância dos resultados observados.
 
+Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+```
+
 Na medicina, esses conceitos são aplicados de várias maneiras. Ensaios clínicos utilizam distribuições teóricas para determinar a significância dos resultados dos testes de tratamento, por exemplo, modelando a distribuição dos resultados com a distribuição normal. Estudos epidemiológicos usam distribuições para modelar a incidência e prevalência de doenças, como a distribuição de Poisson para modelar o número de novos casos em um determinado período. A análise de sobrevivência utiliza a distribuição exponencial para modelar o tempo de sobrevivência dos pacientes após um tratamento ou o tempo até a ocorrência de um evento específico, como a recaída de uma doença. Distribuições teóricas de probabilidade são, portanto, elementos fundamentais da análise estatística.
 
 O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantiles (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.
@@ -166,7 +172,6 @@ dnorm(2)
 ```
 
 ```{r, echo=FALSE}
-library(ggplot2)
 # Parâmetros informados pelo usuário
 x.value      <- 2
 media        <- 0
@@ -393,7 +398,6 @@ qnorm(0.99, mean=173.1, sd=7.3)
 Essa análise pode ser visualizada no gráfico abaixo:
 
 ```{r, echo=FALSE}
-library(ggplot2)
 # Estudo da ANAC - Agencia Nacional de Aviação Civil
 # LEVANTAMENTO DO PERFIL ANTROPOMÉTRICO DA POPULAÇÃO BRASILEIRA 
 # USUÁRIA DO TRANSPORTE AÉREO NACIONAL – PROJETO CONHECER
@@ -481,7 +485,6 @@ dt(x=2, df=5)
 ```
 
 ```{r, echo=FALSE}
-library(ggplot2)
 # Parâmetros informados pelo usuário
 x.value      <- 2 # ponto no eixo x da curva de distribuição t
 gl           <- 5 # graus de liberdade
@@ -560,10 +563,8 @@ pt(q = 2, df = 5)
 ```
 
 ```{r, echo=FALSE}
-library(ggplot2)
 x.value <- 2
 gl      <- 5 # graus de liberdade
-
 
 # limites do gráfico: 4 desvios padrões abaixo e acima da média
 lim.inf <- -4
@@ -698,9 +699,6 @@ pchisq(q = 6, df = 2)
 O gráfico abaixo visualiza o uso da função `pchisq(q = 5.991, df = 2)`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Carregar os pacotes necessários
-library(ggplot2)
-
 # Definir os parâmetros
 q <- 6
 df <- 2

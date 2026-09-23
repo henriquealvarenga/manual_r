@@ -2,6 +2,14 @@
 
 Operadores são os elementos que indicam uma ação, uma operação, a ser realizada. Toda linguagem científica necessita de operações aritméticas (tais como somar e subtrair), operações lógicas (verificar se duas variáveis são iguais ou não), operações de atribuição (atribuir um valor a uma variável) etc.
 
+Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(magrittr)
+library(ggplot2)
+library(dplyr)
+```
+
 ## Operadores Aritméticos
 
 Os operadores mais comuns do R são os aritméticos:\
@@ -221,7 +229,7 @@ summary(modelo)
 
 Pipe, na língua inglesa, significa tubo ou tubulação. Na computação pipe é uma forma de simplificar uma série de comandos em sequência. O nome desse operador tem a ver com o fato de criar uma sequencia de ações, encaminhando os resultados de uma função para a próxima função como se estivessem sendo carregados por um tubo. Esse operador faz parte do pacote `magrittr` e é automaticamente instalado juntamente com o `tidyverse`. A partir da versão 4.1, o R passou a ter um operador pipe próprio, sem a necessidade de novos pacotes. Ambos tem funções similares e se comportam de forma parecida, com alguns detalhes diferentes. Esses operadores usam simbolos diferentes, mas funcionam de forma parecida e não entraremos em detalhes das sutis diferenças entre eles.
 
--   Operador pipe do pacote `magritte`: `%>%`
+-   Operador pipe do pacote `magrittr`: `%>%`
 
 -   Operador pipe do R (4.1 e acima): `|>`
 
@@ -278,8 +286,6 @@ Esse modo de realizar essa sequencia de operações é mais fácil de ser compre
 Veja agora como fazer essas operações de forma elegante com o operador pipe.
 
 ```{r}
-# usando o pipe do pacote magritte
-library(magrittr)
 x %>% mean() %>% sqrt() %>% round(2)
 ```
 
@@ -300,7 +306,7 @@ Veja como é muito mais natural e mais fácil compreender esse código. O que o 
 O operador pipe pode ser colocado em diversas linhas para facilitar ainda mais a visualização e compreensão da sequencia de códigos. Essa é o estilo adequado de se usar o operador pipe.
 
 ```{r}
-# usando o pipe do pacote magritte
+# usando o pipe %>% do pacote magrittr
 x %>%   
   mean() %>%   
   sqrt() %>%   
@@ -324,8 +330,6 @@ Sem o uso do operador pipe o código poderia ser feita de duas formas: criando d
 **Modo 1:** Usando comandos aninhados um dentro do outro com parênteses.
 
 ```{r, message=FALSE, warning=FALSE}
-library(ggplot2) # necessário para usar o dataset mpg
-library(dplyr) # necessário para usar as funções filter() e select()
 # carregando o dataset mpg
 data(mpg)
 

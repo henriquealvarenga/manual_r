@@ -2,6 +2,14 @@
 
 Gráficos são uma linguagem sem palavras. E como toda linguagem, possui uma gramática para ordenar sua construção. Leland Wilkinson (2005) idealizou essa gramática em seu livro "The Grammar of Graphics", tentando responder à pergunta "o que é um gráfico?". De acordo com Wilkinson, um gráfico é estruturado por um conjunto de dados (data), um relacionamento/mapeamento estéticos (aesthetics) desses dados através de formas geométricas (geometrics) num sistema de coordenadas (coord). Essa gramática se tornou a base do pacote gráfico `ggplot2`, criado por Hadley Wickham. Devida a sua enorme flexibilidade, o uso do `ggplot2` se tornou um dos pacotes mais populares do R.
 
+Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(forcats)
+library(dplyr)
+```
+
 Apesar do R ter funções básicas para geração de gráficos, o pacote `ggplot2` possibilita a construção de gráficos mais elaborados, com maior facilidade de ajustes, maior integração com as outras funções do `tidyverse`.
 
 No `ggplot2` cada tipo de gráfico é tem seu nome iniciado com o termo `geom_`, seguido da forma geométrica usada. Os gráficos mais comuns são os seguintes: `geom_bar()`, `geom_histogram()`, `geom_density()`, `geom_boxplot()`, `geom_point()`.
@@ -21,11 +29,6 @@ A primeira etapa da criação e um gráfico com o `ggplot2` é a definição do 
 Uma observação importante: o `ggplot2` só cria gráficos a partir de dados armazenados em `data frames` ou `tibbles.` Portanto, se seus dados não estão num data frame ou `tibbles`, será necessário primeiro transformá-los nesse tipo de objeto, usando a função `data.frame()` ou `tibble()`. Os exemplos a seguir irão usar o dataset `mpg`, que já é um objeto do tipo data frame e faz parte do conjunto de datasets do próprio `ggplot2`.
 
 Antes de usar o conjunto de dados do mpg, vamos ver primeiro lembrar o que existe nesse data frame. Podemos fazer isso usando o comando `?mpg` no console, o resultado será mostrado na aba Help, no canto inferior direito do RStudio.
-
-```{r}
-# carregando o pacote ggplot2, necessário para usar o dataset mpg
-library(ggplot2)
-```
 
 ```{r, eval=FALSE}
 # use esse comando no console para abrir a documentação do dataset
@@ -58,9 +61,6 @@ knitr::include_graphics("images/mpg.png")
 Para isso definir qual data frame ou `tibble` vamos usar, basta usar a função `ggplot()`, inserindo como argumento o data frame ou `tibble` com os dados, como mostrado nos exemplos a seguir, usando o data frame `mpg`.
 
 ```{r}
-# carregando o pacote ggplot2
-library(ggplot2)
-
 # começando a criar um gráfico
 ggplot(data = mpg)
 ```
@@ -312,11 +312,6 @@ Já vimos comos construir um gráfico de barras nas seções anteriores. Vamos v
 Lembre-se, como discutido na seção dobre variáveis categóricas, que os gráficos ggplot por padrão usam uma sequencia alfabética para dispor os elementos. Se desejarmos mudar isso, basta usar a função `fct_infreq()` do pacote `forcats`. Depois basta plotar novamente o gráfico.
 
 ```{r}
-# carregando os pacotes
-library(ggplot2) # necessário para usar o dataset mpg
-library(forcats) # necessário para usar a função fct_infreq
-library(dplyr) # necessário para usar mutate
-
 # indicando que a variável drv deverá ser plotada com de acordo com a frequencia
 mpg <- mpg |> 
   mutate(drv = fct_infreq(drv))
@@ -376,8 +371,8 @@ Para que o gráfico de barras use percentuais é preciso:\
 
 ```{r}
 # criando uma dataset com os dados percentuais:
-newdataset <-  mpg %>% 
-                 count(drv) %>% 
+newdataset <-  mpg |> 
+                 count(drv) |> 
                  mutate(perc = n / nrow(mpg)) 
 newdataset
 ```
@@ -409,7 +404,6 @@ A função do ggplot para plotar um histograma é o `geom_histogram()`.
 Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de milhas percorridas com 1 galão de combustível quando rodando em estradas) e `cty` (quantidade de milhas percorridas com 1 galão de combustível quando rodando na cidade).
 
 ```{r, warning=FALSE, message=FALSE}
-library(ggplot2)
 ggplot(mpg, aes(x=hwy)) +
   geom_histogram() 
 ```
@@ -475,7 +469,6 @@ A função do ggplot para plotar um gráfico de densidade é o `geom_density()`.
 Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de galões o carro consome quando rodando em estradas) e `cty` (quantidade de galões o carro consome quando rodando na cidade).
 
 ```{r}
-library(ggplot2)
 ggplot(mpg, aes(x=hwy)) +
   geom_density() 
 ```
@@ -541,7 +534,6 @@ A função do `ggplot` para construir um boxplot é o `geom_boxplot()`.
 Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de galões o carro consome quando rodando em estradas) e, em seguida, `cty` (quantidade de galões o carro consome quando rodando na cidade).
 
 ```{r}
-library(ggplot2)
 ggplot(mpg, aes(x=hwy)) +
   geom_boxplot() 
 ```
@@ -649,7 +641,6 @@ As variáveis desse dataset são:
 Vamos criar um gráfico de dispersão para analisar as relação entre o peso do diamante (variável `carat`) e seu preço (variável `price`).
 
 ```{r}
-library(ggplot2)
 ggplot(diamonds, aes(x=price, y=carat)) +
   geom_point()
 ```
@@ -657,7 +648,6 @@ ggplot(diamonds, aes(x=price, y=carat)) +
 Podemos inserir a reta de regressão num scatter plot com o seguinte comando
 
 ```{r}
-library(ggplot2)
 ggplot(diamonds, aes(x=price, y=carat)) +
   geom_point() +
   geom_smooth(method='lm', formula= y~x)
@@ -697,8 +687,6 @@ Digite `?diamonds` no console para ter informações sobrbe esse dataset
 Para construir um gráfico de barras com a função `plot()`, basta fornecer um vetor categórico como argumento. Por exemplo, vamos criar um gráfico de barras para analisar a distribuição das cores dos diamantes (variável `color`). As cores dos diamentes variam de D (melhores) to J (piores).
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # Criando um gráfico de barras
 plot(diamonds$color)
 ```
@@ -708,9 +696,6 @@ plot(diamonds$color)
 Para criar um gráfico de densidade com a função `plot()`, precisamos primeiro calcular a densidade dos dados usando a função `density()`. Em seguida, podemos plotar a densidade dos dados usando a função `plot()`. Ao fornecer como argumento a densidade dos pontos, a função plot automaticamente irá gerar um gráfico de densidade. Por exemplo, vamos criar um gráfico de densidade para analisar a distribuição dos preços dos diamantes (variável `price`).
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
-
 # Calculando a densidade dos preços dos diamantes
 d <- density(diamonds$price)
 
@@ -723,8 +708,6 @@ plot(d)
 Para criar um scatter plot com a função `plot()`, basta fornecer **duas** variáveis numéricas como argumentos para os eixos `x` e `y`. Por exemplo, vamos criar um scatter plot para analisar a relação entre o preço do diamante (variável `price`) e seu peso em quilates (variável `carat`).
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # Criando um scatter plot
 plot(diamonds$price, diamonds$carat)
 ```
@@ -766,8 +749,6 @@ A função `hist()` é usada para criar histogramas no R, que são gráficos que
 Vamos ver como criar um histograma para analisar a distribuição dos preços dos diamantes (variável `price`).
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # Criando um histograma
 hist(diamonds$price)
 ```
@@ -779,8 +760,6 @@ A função `boxplot()` é usada para criar boxplots no R, que são gráficos que
 Vamos ver como criar um boxplot para analisar a distribuição dos preços dos diamantes (variável `price`) em cada grupo tipo de corte do diamante (variável `cut`). Vamos usar a mesma notação de fórmula `~` para indicar a relação entre as variáveis.
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # Criando um boxplot
 boxplot(price ~ cut, data = diamonds)
 ```
@@ -790,8 +769,6 @@ boxplot(price ~ cut, data = diamonds)
 A função `barplot()` é usada para criar gráficos de barras no R, que são gráficos que mostram a distribuição de uma variável categórica em relação a uma variável numérica. Os gráficos de barras são úteis para visualizar a frequência ou contagem de observações em cada categoria da variável categórica. Vamos ver como estão distribuídas os diamantes de acoerd com a cor. Lembre-se que as cores dos diamentes variam de D (melhores) to J (piores). Observe que ao usar `barplot()` e necessário inserir como argumento a função `table()` para contar a frequência de cada cor, o R automaticamente ordena as cores em ordem alfabética. Compare com o gráfico de barras criado com `plot()` e veja como foi mais simples usar `plot()`, pois nõa foi preciso usar a função `table()`.
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # Criando um gráfico de barras
 barplot(table(diamonds$color))
 ```
@@ -801,9 +778,6 @@ barplot(table(diamonds$color))
 A função `pie()` é usada para criar gráficos de pizza no R, que são gráficos circulares que mostram a distribuição de uma variável categórica em relação ao todo. Os gráficos de pizza são úteis para visualizar a proporção de cada categoria em relação ao total. Vamos ver como criar um gráfico de pizza para analisar a distribuição das cores dos diamantes (variável `color`). Lembre-se que as cores dos diamentes variam de D (melhores) to J (piores).
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
-
 # Criando um gráfico de pizza
 pie(table(diamonds$color))
 ```
@@ -861,7 +835,6 @@ O argumento `pch` é usado para alterar o tipo de ponto, onde `pch=20` represent
 Para alterar a espessura e o tipo de linha de um gráfico do R base, podemos usar os argumentos `lwd` e `lty`. O argumento `lwd` é usado para alterar a largura da linha, enquanto o argumento `lty` é usado para alterar o tipo de linha. Por exemplo, vamos alterar a espessura da linha para 2 e o tipo de linha para tracejado (`lty=2`). VAmos usar o gráfico de linhas que tínhamos feito anteriormente. Experimente alterar os valores de `lwd` e `lty` para ver os diferentes tipos de linhas.
 
 ```{r}
-
 # Criando um vetor de valores para x
 x <- seq(1, 100, by = 0.1)
 # Criando um vetor de valores para y
@@ -917,8 +890,6 @@ plot(diamonds$price, diamonds$carat,
 O R permite agrupar diversos gráficos numa única janela, facilitando a comparação entre diferentes visualizações. O comando `par()` define parâmetros gerais do agrupamento. O argumento `mfrow=c(2,2)` define como serão exibidos os gráficos. Nesse caso, serão 2 linhas e 2 colunas. Vamos criar um boxplot, um histograma, um scatter plot e um gráfico de pizza para analisar diferentes aspectos dos dados dos diamantes e agrupá-los em um único gráfico emparelhado numa matrix 2x2.
 
 ```{r}
-# Carrregando o pacote ggplot2
-library(ggplot2)
 # usado par para que os gráficos sejam exibidos emparelhados, 2 linhas, 2 colunas
 par(mfrow=c(2,2))
 # Criando um boxplot

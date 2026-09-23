@@ -1,10 +1,14 @@
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(tidyverse)
-```
-
 ## Teste t de Student
 
 O test t de Student foi criado em 1908 por William Sealy Gosset [@Student], matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de pequeno tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.
+
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(tibble)
+library(tidyr)
+library(ggplot2)
+```
 
 A importância dada ao departamento científico da Guinness era tamanha que o uso de métodos estatísticos na fabricação da cerveja era considerado um segredo industrial. Alguns autores argumentam que foi esse o motivo pelo qual Gosset publicou o artigo sobre o teste t em 1908 sob o pseudônimo "Student" e o teste t passou a ser conhecido como teste t de Student.
 
@@ -41,9 +45,6 @@ result
 Muitas vezes antes de algumas análises, teremos de fazer uma transformação em nosso data frame (ou tibble), transformando o data frame do tipo wide em long como explicado no capítulo do pacote `tidyr` \@ref(tidyr).
 
 ```{r}
-# carregando o pacote tidyr
-library(tidyr)
-
 # criando um data frame do tipo long
 result.long <- pivot_longer(data = result,
                             cols = c("controle", "experimental"),

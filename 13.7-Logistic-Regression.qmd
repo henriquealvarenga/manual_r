@@ -2,6 +2,14 @@
 
 A regressão logística é um algoritmo usado para resolver problemas de classificação, ou seja, quando o resultado a ser previsto é categórico. Ela serve para prever a probabilidade de um evento pertencer a uma determinada categoria. Por exemplo, suponha que temos um conjunto de dados de pacientes com tumores e queremos prever se um tumor é maligno (canceroso) ou benigno (não canceroso). A regressão logística nos ajuda a fazer essa classificação. Ela é amplamente utilizada em várias áreas, como medicina, finanças e marketing, para fazer previsões e tomar decisões com base em probabilidades. O algoritmo da regressão logística se baseia em um modelo matemático que relaciona as variáveis de entrada (como tamanho do tumor, idade do paciente, etc.) com a variável de saída (se o tumor é maligno ou benigno).
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(pROC)
+library(kableExtra)
+```
+
 Assim como a regressão linear, a regressão logística parte de uma equação na qual cada variável ($x_i$) tem um coeficiente ($a_i$), de tal forma que:
 
 $$
@@ -16,11 +24,7 @@ $$
 p=f(z) = \frac{1}{1 + e^{-z}}
 $$
 
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
-library(grid)  # para arrow() e unit()
-
 # Gerar dados para plotar a função logística
 z <- seq(-10, 10, by = 0.1)
 
@@ -29,7 +33,6 @@ prob <- plogis(z)
 
 # Criar um data frame para o ggplot
 dados <- data.frame(x = z, prob = prob)
-
 
 ggplot(dados, aes(x = x, y = prob)) +
   geom_line(color = "blue", linewidth = 1) +
@@ -102,15 +105,9 @@ O dataset SAheart contém 462 observações e 10 variáveis:
 7.  **Predições e Avaliação**: Faça predições no conjunto de teste e avalie a performance do modelo.
 8.  **Curva ROC**: Utilize o pacote `pROC` para gerar e visualizar a curva ROC.
 
-#### Instalação, Carregamento do Pacote e Visualização do dataset
+#### Carregamento e visualização do dataset
 
 ```{r, warning=FALSE, message=FALSE}
-# Instalando e carregando o pacote necessário
-library(bestglm)
-library(dplyr)
-library(pROC)
-library(kableExtra)
-
 # Carregando o dataset
 data(SAheart, package = "bestglm")
 

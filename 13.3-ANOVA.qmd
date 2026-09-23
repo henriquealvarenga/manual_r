@@ -1,10 +1,13 @@
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(tidyverse)
-```
-
 ## ANOVA
 
 O teste Anova (Análise de Variância) foi criado pelo estatístico britânico Ronald Fisher no início do século XX, para comparar as médias de três ou mais grupos independentes, para determinar se há diferenças estatisticamente significativas entre eles.
+
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+```
 
 A ideia central do teste Anova é decompor a variabilidade total dos dados em duas partes: a variabilidade entre os grupos e a variabilidade dentro dos grupos. Se as médias dos grupos forem estatisticamente diferentes, espera-se que a variabilidade entre os grupos seja maior do que a variabilidade dentro dos grupos.
 
@@ -30,8 +33,7 @@ Observe que esse dataset já está no formato long, conforme explicado no capít
 Podemos inicialmente computar as estatísticas básicas com a função `summarise()` do pacote `dplyr`, conforme explicado no capítulo sobre esse pacote \@ref(dplyr).
 
 ```{r}
-library(dplyr)
-group_by(mydata, group) %>%
+group_by(mydata, group) |>
   summarise(count = n(),
             mean = mean(weight, na.rm = TRUE),
             sd = sd(weight, na.rm = TRUE))
@@ -40,7 +42,6 @@ group_by(mydata, group) %>%
 Podemos também visualizar esses conjuntos com um boxplot, conforme explicado no capítulo sobre `ggplot` \@ref(ggplot).
 
 ```{r}
-library(ggplot2)
 ggplot(mydata, aes(x=group, y=weight, fill=group)) +
   geom_boxplot() +
   ylab("peso") + 

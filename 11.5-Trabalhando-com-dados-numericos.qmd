@@ -1,5 +1,14 @@
 ## Trabalhando com Dados Numéricos
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tibble)
+library(forcats)
+library(ggplot2)
+```
+
 ### Estatística Descritiva para dados numéricos
 
 Vamos examinar as principais funções do R para descrever numéricamente um conjunto de dados: as medidas de centralidade (media, mediana), de partição (percentis) e de dispersão (amplitude, variância e desvio padrão). Veremos como aplicar essas funções em vetores e em data frames ou `tibbles.`
@@ -255,10 +264,6 @@ Veja que essa função resolve muitas de nossas necessidades no processo de aná
 Vamos usar a função `group_by()` para separar grupos antes de calcular alguma medida estatística. Como exemplo, vamos comparar de níveis de glicose entre grupos com diferentes hábitos de exercício. Para isso precisaremos agrupar os dados numéricos dos níveis de glicose com base nas categorias de exercício (ex: Sedentário, Moderado, Intenso). Para isso será preciso carregar o pacote `dplyr.` Iremos também usar uma variável para armazenar os dados para análise e usar o operador pipe para melhorar a estética do código.
 
 ```{r, warning=FALSE, message=FALSE}
-# carregando o pacote dplyr e tibble
-library(dplyr)
-library(tibble)
-
 # Criando o data frame com 15 pacientes
 df <- tibble(paciente = 1:15,
              exercicio = c("Sedentário", "Moderado", "Intenso", 
@@ -270,7 +275,7 @@ df <- tibble(paciente = 1:15,
                                155, 135, 115, 145, 165, 105, 
                                158, 138, 112))
 
-print(df)
+df
 ```
 
 Agora vamos usar a função `group_by()` para calcular a média dos níveis de glicose por grupo de exercício.
@@ -280,14 +285,11 @@ result_exercicio <- df |>
   group_by(exercicio) |>
   summarise(mean_glicose = mean(nivel_glicose))
 
-print(result_exercicio)
+result_exercicio
 ```
 
 Vamos tentar analisar novamente o dataset `mtcars`, mas agora usando a função `group_by()` do `dplyr.`
 ```{r}
-# Carregar o pacote dplyr
-library(dplyr)
-
 # Carregar o dataset mtcars
 data(mtcars)
 
@@ -301,7 +303,7 @@ mtcars_analysis <- mtcars |>
             count = n())                   # Contagem de carros em cada grupo
 
 # Exibir o resultado
-print(mtcars_analysis)
+mtcars_analysis
 ```
 
 O código acima agrupou diversos dados segundo o tipo de transmissão (transmissão: 0 = automática, 1 = manual) usando `group_by()` e em seguida usou a função `summarise()` para calcular diversas medidas em cada grupo:
@@ -347,7 +349,6 @@ knitr::include_graphics(rep("images/cut2.png", 1))
 Como o limite superior do intervalo é aberto, o valor desse ponto de corte será parte da 1º categoria, portanto, o primeiro ponto de corte deve ser 15, já que definimos o primeiro intervalo como menor ou igual a 15. O segundo ponto de corte será 20, pois será o limite superior da segunda categoria é menor ou igual a 20. O código ficará então:
 
 ```{r}
-library(ggplot2) # necessário para usar o dataset mpg
 data(mpg) # carregando o dataset mpg na memória
 mpg$cty_cat <- cut(mpg$cty,
                    breaks=c(-Inf, 15, 20, Inf),
@@ -382,7 +383,6 @@ unique(mpg$cty_cat)
 Observe que apesar dos valores da variável `cty_cat` serem 0, 1 e 2, essa variável é uma variável categórica e esses valores não representam números no R. Poderíamos muito tem ter nomeado essas categorias de A, B e C ou usar a função `fct_recode()` do pacote `forcats` para tornar esses dados mais compreensíveis.
 
 ```{r, message=FALSE, warning=FALSE}
-library(forcats)
 mpg <- mpg |>
   mutate(cty_cat = fct_recode(cty_cat,
                             "0 a 15 milhas com um galão" = "0",
@@ -401,7 +401,6 @@ Mas podemos melhorar ainda mais esse código usando a função `count()` do `dpl
 Veja que no código abaixo começamos com o dataset `mpg`, seguido do operador pipe para *passar* esse datase para a função `count()`. E inserimos como argumento da função `count()` o nome da variável categórica a ser usada.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr)
 mpg |> count(cty_cat)
 ```
 

@@ -18,10 +18,8 @@ diabetes <- read.csv(file = "https://hbiostat.org/data/repo/diabetes.csv")
 O conjunto de dados "`iris`" do `ggplot2` contém 150 observações de três espécies de íris (Setosa, Versicolor, Virginica), com medições de comprimento e largura das sépalas e pétalas, em centímetros. É amplamente utilizado para demonstrações de técnicas de análise de dados e aprendizado de máquina.
 
 ```{r}
-# código para acessar o dataset iris do ggplot2
-# lembre-se que será primeiro necessário instalar o pacote ggplot2
-library(ggplot2)
-data(iris)
+# código para acessar o dataset iris, que faz parte do R base
+data(iris, package = "datasets")
 ```
 
 ## mpg
@@ -29,10 +27,9 @@ data(iris)
 O conjunto de dados "`mpg`" do `ggplot2` contém 234 observações de veículos, com informações detalhadas sobre consumo de combustível, características do motor e especificações do carro. As variáveis incluem fabricante, modelo, cilindrada, ano, número de cilindros, tipo de transmissão, tipo de tração, consumo na cidade e na estrada, tipo de combustível e classe do veículo. Este conjunto de dados é amplamente utilizado para análises e visualizações relacionadas ao desempenho de veículos em termos de eficiência de combustível.
 
 ```{r}
-# código para acessar o dataset mpg do ggplot2
-# lembre-se que será primeiro necessário instalar o pacote ggplot2
-library(ggplot2)
-data(mpg)
+# código para acessar o dataset mpg, que vem com o pacote ggplot2
+# (o pacote precisa estar instalado, mas não precisa estar carregado)
+data(mpg, package = "ggplot2")
 ```
 
 ## mtcars
@@ -49,10 +46,8 @@ data(mtcars)
 O conjunto de dados "Arthritis" do pacote `vcd` do R contém 84 observações de pacientes de um estudo clínico sobre o tratamento da artrite. As variáveis incluem a identificação do paciente, tipo de tratamento (Placebo ou Tratamento), sexo, idade e grau de melhora dos sintomas (Nenhuma, Alguma, Marcante). Este conjunto de dados é amplamente utilizado para analisar a eficácia de tratamentos de artrite e explorar como fatores como idade e sexo podem influenciar os resultados do tratamento.
 
 ```{r}
-# código para acessar o dataset Arthritis
-# lembre-se que será primeiro necessário instalar o pacote vcd
-library(vcd)
-data("Arthritis")
+# código para acessar o dataset Arthritis, que vem com o pacote vcd
+data("Arthritis", package = "vcd")
 ```
 
 ## airquality
@@ -78,8 +73,6 @@ data(PlantGrowth)
 dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
 
 ```{r}
-# código para acessar o dataset SAheart
-# lembre-se que será primeiro necessário instalar o pacote bestglm
-library(bestglm)
-data("SAheart")
+# código para acessar o dataset SAheart, que vem com o pacote bestglm
+data("SAheart", package = "bestglm")
 ```

@@ -2,6 +2,14 @@
 
 A simulação é uma ferramenta bastante útil em diversas situações. Pode ser usada em contextos simples, tais como simulações para uso em sala de aula, como também em contextos profissionais permitindo que pesquisadores de diversas áreas possam compreender melhor fenômenos complexos, testar hipóteses e prever resultados em situações onde experimentos reais podem ser inviáveis, caros ou demorados. A linguagem R, com inúmeras funções e pacotes dedicados para a realização de simulações.
 
+Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(ggforce)
+library(dplyr)
+```
+
 Neste capítulo, exploraremos o uso de R para realizar simulações. Dicutiremos inicialmente a geração de sequencias e repetições, a geração de númeroso aleatórios, a importância de garantir a reprodutibilidade em simulações, utilizando a função `set.seed`, e depois as funções `sample` e `replicate`, que nos permitem gerar amostras aleatórias e replicar dados.
 
 Também discutiremos e exploraremos técnicas avançadas como simulações de Monte Carlo, Bootstrapping e Cadeias de Markov Monte Carlo (MCMC).
@@ -154,7 +162,6 @@ Agora que entendemos o funcionamento de `sample()`, podemos replicar esses dois 
 # replicando 5 vezes os dois lançamentos
 replicate(n = 5, sample(moeda, 2, replace = TRUE))
 ```
-
 
 ## Números Aleatórios
 
@@ -311,9 +318,6 @@ $$
 $$
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Carregar a biblioteca ggplot2
-library(ggplot2)
-
 # Definindo a função
 f <- function(x) x^2
 
@@ -346,9 +350,6 @@ ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Carregar a biblioteca ggplot2
-library(ggplot2)
-
 # Definindo a função
 f <- function(x) x^2
 
@@ -461,7 +462,6 @@ cat("A área estimada abaixo da curva y = x^2 entre x = 4 e x = 6 é aproximadam
 Vamos exemplificar também o uso da Simulação de Monte Carlo para calcular o valor de $\pi$, seguindo o exemplo do livro *Programming for Analytics in R* de John Paul Helveston <https://p4a.jhelvy.com/monte-carlo-methods>.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggforce)
 ggplot() +
   coord_fixed(ratio = 1) +
   geom_rect(aes(xmin = -1, xmax = 1, ymin = -1, ymax = 1), 
@@ -498,7 +498,6 @@ pontos <- data.frame(x = runif(trials, -0.5, 0.5),
 Para determinar quais pontos estão dentro do círculo (que tem um raio de 0,5), basta calcular a distância de cada ponto até o centro, o que nada mais é que a diagonal de um triângulo, que pode ser calculada com o teorema de pitágoras. Se essa diagonal for menor que o raio, então o ponto está dentro do círculo. Para isso iremos criar uma variável lógica chamada `pontosDentro`, que terá o valor `TRUE` se o ponto estiver dentro do círculo.
 
 ```{r, warning=FALSE, message=FALSE}
-library(dplyr)
 pontos <- pontos |>
           mutate(raio = sqrt(x^2 + y^2),
                  pontosDentro = raio <= 0.5)
@@ -508,7 +507,6 @@ head(pontos)
 O desenho abaixo mostra a simulação, colorindo de forma diferentes os pontos dentro e fora do círculo:
 
 ```{r}
-library(ggplot2)
 ggplot(pontos) +
     geom_point(aes(x = x, y = y, color = pontosDentro), size = 0.5) +
     coord_fixed( ratio=1) +
@@ -579,7 +577,6 @@ means <- apply(bootSamples, 2, mean)
 ```
 
 ```{r}
-library(ggplot2)
 ggplot() +
   geom_histogram(aes(x = means), bins = 14, fill = "lightgreen", col="darkgreen") +
   geom_histogram(aes(x = OriginalSample), bins = 14, fill = "lightblue", col="blue") +

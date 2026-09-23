@@ -2,6 +2,14 @@
 
 Frequentemente precisamos calcular numericamente a força e a direção da correlação entre duas variáveis. A medida estatística mais comum para mensurar a força e a direção da correlação entre duas variáveis numéricas é o Coeficiente de Correlação Linear de Pearson - denotado por r. Vale ressaltar que esse coeficiente só serve para analisar correlações lineares.
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(tidyr)
+library(GGally)
+```
+
 ### cor() e cor.test()
 
 A linguagem R tem uma função específica para calcular o coeficiente de correlação linear de Pearson (r) entre duas variáveis numéricas: a função `cor()`. Para usar essa função basta inserir como argumentos as duas variáveis numéricas para as quais se deseja calcular o coeficiente. A ordem em que as variáveis são inseridas não faz diferença nesse cálculo.
@@ -9,7 +17,6 @@ A linguagem R tem uma função específica para calcular o coeficiente de correl
 Vamos testar essas funções no dataset `mpg` que já foi discutido em capítulos anteriores (@sec-packages). O código abaixo calcula o coeficiente de correlação linear de Pearson entre as cilindradas (`displ`) e o número de milhas percorridas com um galão na cidade (`cty`). A ordem da inserção desses argumentos não importa.
 
 ```{r, message=FALSE, warning=FALSE}
-library(ggplot2) # necessário para usar o dataset mpg
 cor(mpg$displ, mpg$cty)
 ```
 
@@ -63,7 +70,6 @@ A inclusão desse argumento faz com que a função `cor()` exclua dos cálculos 
 Para demonstrar isso, vamos excluir esses valores com a função `drop_na()`do pacote `tidyr`, parte do `tidyverse.` Criaremos um novo data frame com o nome `air2.`
 
 ```{r, message=FALSE, warning=FALSE}
-library(tidyr)
 air2 <- airquality |> 
         drop_na()
 
@@ -90,11 +96,7 @@ knitr::include_graphics("images/Flores_de_Iris.png")
 pairs(iris)
 ```
 
-O pacote `GGally` possui uma função similar à função `pairs()` do R, mas com muito mais funcionalidades. Para usá-la, é necessário instalar o pacote `GGally` através do comando `install.packages("GGally")` no console.
-
-```{r, message=FALSE, warning=FALSE}
-library(GGally)
-```
+O pacote `GGally` possui uma função similar à função `pairs()` do R, mas com muito mais funcionalidades. Para usá-la, é necessário instalar o pacote `GGally` através do comando `install.packages("GGally")` no console; o pacote já foi carregado no início desta seção.
 
 ```{r, warning=FALSE, message=FALSE}
 ggpairs(iris)

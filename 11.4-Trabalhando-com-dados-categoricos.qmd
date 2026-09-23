@@ -2,6 +2,14 @@
 
 Os dados categóricos desempenham um papel fundamental em pesquisas na área da saúde, sendo essenciais para a compreensão de padrões, tendências e relações dentro dos dados coletados. Dados categóricos são aqueles que podem ser classificados em diferentes categorias ou grupos, como sexo, tipo de doença, grupo sanguíneo, entre outros. Ao contrário dos dados numéricos, que representam quantidades e podem ser submetidos a operações matemáticas diretas, os dados categóricos representam qualidades e são analisados de maneiras distintas.
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(forcats)
+library(dplyr)
+library(ggplot2)
+```
+
 A importância dos dados categóricos em estudos de saúde é evidente em diversas situações. Por exemplo, em estudos epidemiológicos, a categorização dos indivíduos por faixa etária, sexo e fatores de risco é crucial para entender a distribuição e os determinantes das doenças. Da mesma forma, em ensaios clínicos, a resposta dos pacientes a diferentes tratamentos pode ser categorizada como "melhora", "piora" ou "nenhuma mudança", proporcionando insights valiosos sobre a eficácia dos tratamentos.
 
 Outro exemplo relevante é a categorização de doenças. As classificações internacionais, como a Classificação Internacional de Doenças (CID), utilizam categorias para agrupar doenças e condições de saúde, facilitando a coleta, análise e comparação de dados em nível global. Isso permite identificar tendências em saúde pública, avaliar a carga de doenças e desenvolver estratégias de prevenção e controle mais eficazes.
@@ -31,7 +39,6 @@ A variável `am` é na verdade categórica, e indica se o carro tem marcha autom
 A primeira etapa será então transformar essas variáveis em categóricas com `as.factor()` e a segunda etapa será renomear essas variáveis com rótulos mais descritivos, usando `fct_recode()`do pacote `forcats`, para facilitar a interpretação dos dados. No caso da variável `cyl`, que indica as cilindradas do carro, será útil também indicar a ordenação dessa variável.
 
 ```{r}
-library(forcats) # necessário para usar a função fct_recode
 # Transformando a variável 'am' em categórica
 mtcars$am <- as.factor(mtcars$am)
 # Recodificando os rótulos de am
@@ -71,8 +78,6 @@ table(mtcars$cyl)
 Podemos também usar o `pipe` juntamente com a função `table()`, mas nesse caso, precisamos selecionar as colunas desejadas usando `select()` antes da função `table()`
 
 ```{r}
-library(dplyr) # necessário para usar as função select()
-
 mtcars  |>   
   select(cyl) |> 
   table()
@@ -81,8 +86,6 @@ mtcars  |>
 Podemos criar tabelas 2x2 com a função table, bastando para isso selecinar as duas colunas/variáveis desejadas. O código abaixo constroi uma tabela 2x2 com as variáveis cilindradas (cyl) e alinhamento do motor (vs)
 
 ```{r}
-library(dplyr) # necessário para usar as função select()
-
 mtcars  |>   
   select(cyl, vs) |> 
   table()
@@ -208,7 +211,6 @@ A expressão a ser usada como argumento nessa função tem a forma a seguir `xta
 Vamos criar uma tabela com o tipo de tração `drv` nas linhas e o tipo de carro `class` nas colunas, usando a função `xtabs()`.
 
 ```{r}
-library(ggplot2)
 xtabs( ~ drv + class, mpg)
 ```
 
@@ -235,7 +237,6 @@ Em resumo, a função `count()` do `dplyr` oferece uma abordagem moderna e integ
 A função `count()` pode ser utilizada para contar as ocorrências de cada valor único de uma variável. Vamos contar o número de carros para cada número de cilindros (cyl).
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 data("mtcars")
 mtcars |> 
   count(cyl)
@@ -244,7 +245,6 @@ mtcars |>
 Podemos acrescentar o argumento sort=TRUE para mostrar os grupos com mais elementos no topo.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 data("mtcars")
 mtcars |> 
   count(cyl, sort = TRUE)
@@ -255,7 +255,6 @@ mtcars |>
 Com a função `count()` podemos contar o número ocorrências de uma variável categórica, agrupadas segundo uma outra variável categórica. Por exemplo, podemos contar o número de de carros agrupados por número de cilindros (cyl) de acordo com o tipo de marcha (am) - automática ou manual.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 mtcars |>
   count(cyl, am)
 ```
@@ -265,7 +264,6 @@ mtcars |>
 Podemos calcular as proporções de cada categoria em relação ao total usando a função `count()` associada com a função `mutate()`. Vamos contar o número de carros para cada número de cilindros e, em seguida, calcular a proporção de cada contagem em relação ao total.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 mtcars |>
   count(cyl) |>
   mutate(proportion = n / sum(n))
@@ -274,7 +272,6 @@ mtcars |>
 Podemos facilmente transformar esses valores em percentuais ajustando o código anterior para multiplicar por 100.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 mtcars |>
   count(cyl) |>
   mutate(proportion = (n / sum(n))*100)
@@ -285,7 +282,6 @@ mtcars |>
 Podemos facilmente contar o número de carros para cada número de cilindros e renomear as colunas de saída.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função count
 mtcars |>
   count(cyl, name = "numero de carros")
 ```
@@ -295,7 +291,6 @@ mtcars |>
 Podemos combinar a função `count()` com a função `filter()` para contar o número de ocorrências de uma variável categórica após filtrar os dados. Vamos contar o número de carros para cada número de marchas (gear), mas somente para os carros com um peso (wt) menor que `4.0` (4.000 libras). Em seguida, ordenar o resultado por número de marchas
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função filter e count
 mtcars |>
   filter(wt < 4.0) |>
   count(gear) |>
@@ -303,10 +298,4 @@ mtcars |>
 ```
 
 Os exemplos acima ilustram como a função `count()` do `dplyr` pode ser utilizada em situações mais complexas, combinando-a com outras funções para realizar filtragens, agrupamentos, transformações e ordenações. Isso demonstra a flexibilidade e poder do `dplyr` para manipulação de dados em R, tornando a análise mais eficiente e o código mais legível.
-
-
-
-
-
-
 

@@ -2,6 +2,14 @@
 
 Resumir dados é uma tarefa muito comum em análise de dados. Podemos resumir dados de várias formas, como por exemplo, calculando medidas de tendência central, medidas de dispersão, tabelas de frequência, etc.
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(readr)
+library(skimr)
+library(psych)
+```
+
 O R possui diversas funções para resumir dados. As funções `summarise()` ou `summarize()` do pacote `dplyr` são sinônimas e servem para criar um novo dataframe com informações resumidas, ou seja, estatísticas de um conjunto de dados. A diferença entre essas funções e a função `summary` do R é que precisamos especificar quais medidas estatísticas serão calculadas. Apesar de dar um trabalho a mais escrever o código, você tem muito mais flexibilidade, podendo criar um novo dataframe com qualquer medida de interesse.
 
 O pacote `skimr` possui também algumas funções interessantes para resumir dados. A função `skim()` é uma delas. Ela fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `skim()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa funcção é necessário que você já tenha instalado o pacote skimr. Se ainda não tiver feito isso, use o comando `install.packages("skimr")` para instalar o pacote. Depois será necessário usar o comando `library(skimr)` para carregar esse pacote.
@@ -95,7 +103,6 @@ knitr::include_graphics("images/diabetes-dictionary.png")
 Para usar esse dataset é necessário fazer o download desse arquivo e depois carregar esse arquivo no R ou então podemos criar um código para ler os dados diretamente do site, como abaixo
 
 ```{r reading-diabetes-from-site}
-library(readr)
 diabetes <- read_csv("https://hbiostat.org/data/repo/diabetes.csv")
 ```
 
@@ -180,7 +187,6 @@ resumo
 Vamos usar agora a função `skim` do pacote `skimr` para resumir os dados. Veja como essa função resolve de forma simples e rápida o problema de resumir os dados.
 
 ```{r}
-library(skimr)
 skim(diabetes)
 ```
 
@@ -191,7 +197,6 @@ Observe que a função `skim()` reconheceu corretamente as variáveis location, 
 Vamos usar agora a função `describe()` do pacote `psych` para resumir os dados. Veja como essa função também resolve de forma simples e rápida o problema de resumir os dados.
 
 ```{r, warning=FALSE, message=FALSE}
-library(psych)
 describe(diabetes)
 ```
 

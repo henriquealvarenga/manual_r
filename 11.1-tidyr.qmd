@@ -2,6 +2,15 @@
 
 Na análise de dados na área da saúde, frequentemente lidamos com conjuntos de dados que precisam ser organizados de maneira eficiente para facilitar a análise e a visualização. O pacote **`tidyr`** do R é uma ferramenta poderosa para a manipulação e transformação de dados, permitindo que você organize seus dados de forma "arrumada" (tidy).
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyr)
+library(tibble)
+library(dplyr)
+library(ggplot2)
+```
+
 O **`tidyr`** faz parte do universo **`tidyverse`**, uma coleção de pacotes R projetados para ciência de dados. Ele fornece funções que facilitam a conversão de dados em formatos que são mais compatíveis com outros pacotes do **`tidyverse`**, como **`dplyr`**, **`ggplot2`** e **`readr`**.
 
 Neste capítulo, exploraremos as principais funções do **`tidyr`**, incluindo:
@@ -62,9 +71,6 @@ Ou seja, não há perda de informação, apenas uma modificação do layout do d
 Essa transformação é realizada com a função `pivo_longer()`, como mostram os códigos abaixo.
 
 ```{r}
-# carregando o tidyr para usar a função pivot_longer
-library(tidyr) 
-
 # transformando a tibble para o formato long
 result.long <- pivot_longer(result,                               
                             cols=c("tratamentoA", "tratamentoB"), 
@@ -100,7 +106,6 @@ result.long |> pivot_wider(names_from = "tratamento",
 Vejamos como a transformação do data frame na versão long facilita a criação de um gráfico. Com esse novo formato, podemos usare a função `geom_boxplot` do `ggplot` para criar boxplots de cada tipo de tratamento, o que seria bem mais difícil no data frame do tipo wide.
 
 ```{r}
-library(ggplot2)
 ggplot(result.long) +
   geom_boxplot(aes(x=tratamento, y=scores)) +
   theme_classic()
@@ -117,12 +122,10 @@ A função `separate()` é usada para dividir uma coluna em duas ou mais colunas
 Imagine que temos um conjunto de dados com uma coluna chamada `data_hora` que contém informações de data e hora combinadas numa única coluna como mostrado no código abaixo:
 
 ```{r}
-library(tidyr)
-
 # Exemplo de dados
 dados <- data.frame(id_paciente = c(1, 2, 3),
                     data_hora = c("2024-05-01 14:30", "2024-05-02 09:15", "2024-05-03 18:45"))
-print(dados)
+dados
 ```
 
 Nesse caso, será útil colocar a data em uma coluna e a hora em outra coluna. A sintaxe da função separate é a seguinte:
@@ -141,7 +144,7 @@ dados_separados <- separate(dados,
                             into = c("data", "hora"), 
                             sep = " ")
 
-print(dados_separados)
+dados_separados
 ```
 
 Podemos também separar a data em dia, mês e ano, como mostrado no código abaixo
@@ -153,7 +156,7 @@ dados_dma <- separate(dados_separados,
                       into = c("ano", "mes", "dia"), 
                       sep = "-")
 
-print(dados_dma)
+dados_dma
 ```
 
 ```{r}
@@ -163,7 +166,7 @@ dados_hm <- separate(dados_dma,
                       into = c("horas", "minutos"), 
                       sep = ":")
 
-print(dados_hm)
+dados_hm
 ```
 
 #### Função unite()
@@ -183,19 +186,18 @@ Veja como unir as colunas que acabamos de separar:
 # Usando unite para combinar as colunas data e hora em data_hora
 dados <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
 
-print(dados)
+dados
 ```
 
 A função `unite()` não suporte múltiplas uniões em um único comando. Assim, para unir novamente também as colunas ano, mes e dia, precisamos de uma nova linha com unite.
 
 ```{r}
 # Usando unite para combinar as colunas data e hora em data_hora
-print(dados_hm)
-
+dados_hm
 dados_hm <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
 dados_hm <- unite(dados_hm, col = "data", ano, mes, dia, sep = "-")
 
-print(dados_hm)
+dados_hm
 ```
 
 ### NA Values {#sec-NAvalues}
@@ -253,7 +255,6 @@ mydata
 1ª Tentativa: tentando calcular a média das idades sem retirar os valores `NA`.
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr) # necessário para usar a função pull
 mydata |> 
   select(age) |> 
   pull() |> 
@@ -284,9 +285,6 @@ mydata |>
 Vejamos alguns outros exemplos mais simples de como usar a função `drop_na()`.
 
 ```{r}
-library(tidyr)
-library(tibble)
-
 # Exemplo de dados de pacientes com NAs 
 pacientes <- tibble(id_paciente = 1:10,
                     nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
@@ -295,8 +293,7 @@ pacientes <- tibble(id_paciente = 1:10,
                     cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", NA, 
                                "Curitiba", "Porto Alegre", "Salvador", "Brasília", "Fortaleza", NA))
 
-print(pacientes)
-
+pacientes
 ```
 
 Podemos usar a função `drop_na()` para retirar todas as linhas que tenham dados faltantes em toda a tibble
@@ -304,8 +301,7 @@ Podemos usar a função `drop_na()` para retirar todas as linhas que tenham dado
 ```{r}
 # Remover linhas com NAs nas colunas 'nome' e 'idade'
 pacientes2 <- drop_na(pacientes)
-print(pacientes2)
-
+pacientes2
 ```
 
 Às vezes, pode ser necessário remover linhas com NAs apenas em colunas específicas, enquanto preserva outras linhas com NAs em colunas menos críticas. Vamos considerar o mesmo conjunto de dados, mas desta vez removeremos apenas as linhas com NAs nas colunas nome e idade.
@@ -313,7 +309,7 @@ print(pacientes2)
 ```{r}
 # Remover linhas com NAs na coluna 'idade'
 pacientes3 <- drop_na(pacientes, idade)
-print(pacientes3)
+pacientes3
 ```
 
 #### A função `replace_na()`
@@ -327,10 +323,6 @@ Aqui está um exemplo detalhado, usando também a função mutate do pacote `dpl
 Vamos usar um conjunto de dados de pacientes e substituir os valores ausentes na coluna idade pela média das idades não ausentes.
 
 ```{r}
-library(tidyr)
-library(tibble)
-library(dplyr)
-
 # Exemplo de dados de pacientes com NAs usando tibble
 pacientes <- tibble(id_paciente = 1:10,
                     nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
@@ -339,8 +331,7 @@ pacientes <- tibble(id_paciente = 1:10,
                     cidade = c("São Paulo", "Rio de Janeiro", "Belo Horizonte", NA, "Curitiba", 
                                "Porto Alegre", "Salvador", "Brasília", "Fortaleza", NA))
 
-
-print(pacientes)
+pacientes
 ```
 
 ```{r}
@@ -356,7 +347,7 @@ media_idade <- mean(pacientes$idade, na.rm = TRUE)
 pacientes <- pacientes |>
   mutate(idade = replace_na(idade, media_idade))
 
-print(pacientes)
+pacientes
 ```
 
 Observe que os valores agora são mostrados com 2 casas decimais. Isso ocorre porque ao calcular a média da idade o R transformou esses dados que antes eram numeros inteiros (int) em números reais (dbl).
@@ -372,9 +363,6 @@ Veja que a média não foi alterada após a substituição dos valores faltantes
 Podemos usar `replace_na()` também para substituir o texto de variáveis. Por exemplo, podemos colocar o texto "Não informado" ou "Desconhecido" em campos onde havia NAs.
 
 ```{r}
-library(tidyr)
-library(tibble)
-
 # Exemplo de dados de pacientes com NAs usando tibble
 pacientes <- tibble(id_paciente = 1:10,
                     nome   = c("Ana", "Bruno", NA, "Diana", "Eduardo", 
@@ -388,5 +376,5 @@ pacientes_substituidos <- replace_na(pacientes,
                                      list(nome = "Desconhecido",
                                           cidade = "Não Informado"))
 
-print(pacientes_substituidos)
+pacientes_substituidos
 ```

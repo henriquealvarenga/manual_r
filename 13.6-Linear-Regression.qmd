@@ -1,12 +1,18 @@
 ## Regressão Linear
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Configurando o ambiente
+A análise de regressão é uma ferramenta estatística fundamental para investigar e modelar a relação entre variáveis. Ela é amplamente utilizada em várias áreas do conhecimento, incluindo as ciências da saúde, para entender como uma ou mais variáveis independentes (ou preditoras) influenciam uma variável dependente (ou resposta). Em sua essência, a regressão busca encontrar uma função que descreva, de forma aproximada, a relação entre essas variáveis, permitindo previsões e interpretações relevantes.
+
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(gridExtra)
+library(grid)
+library(dplyr)
+library(kableExtra)
+library(broom)
+library(stargazer)
 ```
-
-A análise de regressão é uma ferramenta estatística fundamental para investigar e modelar a relação entre variáveis. Ela é amplamente utilizada em várias áreas do conhecimento, incluindo as ciências da saúde, para entender como uma ou mais variáveis independentes (ou preditoras) influenciam uma variável dependente (ou resposta). Em sua essência, a regressão busca encontrar uma função que descreva, de forma aproximada, a relação entre essas variáveis, permitindo previsões e interpretações relevantes.
 
 Para tornar mais clara a importância da análise de regressão, imagine uma situação prática: um estudo de saúde pública onde queremos entender o impacto de diferentes fatores no risco de desenvolvimento de doenças cardíacas. Ao investigar variáveis como nível de atividade física, consumo de gordura na dieta e histórico familiar, a análise de regressão pode ajudar a quantificar o impacto de cada um desses fatores, fornecendo insights que são essenciais para orientar recomendações de saúde e intervenções preventivas.
 
@@ -59,9 +65,7 @@ Dando continuidade ao trabalho de Galton, foi Karl Pearson quem desenvolveu a fo
 [![Gráfico do Artigo de Pearson de 1903](images/Father-Son-Pearson-Data.png)](https://www.jstor.org/stable/2331507)
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-# o pacote UsingR é necessário para acessar o dataset father.son
-library(UsingR)
-data(father.son)
+data(father.son, package = "UsingR")
 
 # criando o gráfico
 ggplot(data=father.son, aes(x=fheight, y=sheight)) + 
@@ -120,8 +124,6 @@ Onde $e_i$ é o resíduo, $y_i$é o valor observado e $\hat{y}_i$ é o valor pre
 No gráfico, os resíduos são representados por linhas verticais que ligam cada ponto da amostra à reta de regressão. Essas linhas mostram visualmente o erro de predição para cada ponto.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
-
 # Gerar dados aleatórios
 set.seed(1) # Para reprodutibilidade
 n <- 10
@@ -142,7 +144,6 @@ residuos <- y - y_pred
 coef      <- coef(modelo)
 intercept <- coef[1]
 slope     <- coef[2]
-
 
 # Criar um data frame com os dados
 dados <- data.frame(x = x, y = y, y_pred = y_pred, residuos = residuos)
@@ -207,8 +208,6 @@ Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos d
 Veja na tabela abaixo, na última linha, que a soma dos erros é zero, mas o RSS é um número positivo.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(dplyr)
-library(kableExtra)
 tabela1 <- data.frame(x, y, y_pred)
 tabela1 <- tabela1 |> mutate(erro  = y-y_pred, erro2 = erro^2)
 
@@ -230,16 +229,11 @@ tabela3 |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   row_spec(row = 0, color = "white", background = "#FF5733", font_size = 20)
 
-
 ```
 
 Veja nos gráficos abaixo como o valor do RSS vai se reduzindo à medida que a reta vai se adequando melhor aos dados. O menor valor de RSS encontrado foi $7925.70$.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Carregar pacotes necessários
-library(ggplot2)
-library(gridExtra)
-
 # Gerar dados
 set.seed(1) # Para reprodutibilidade
 n <- 10
@@ -387,7 +381,6 @@ drinks  <- c( 5, 6, 7,10,11,12,14,18,19,20,22,23,25,28,30) # drinks por semana
 tobacco <- c( 3, 7,10,15,14,16,20,22,22,25,27,26,26,29,30) # cigarros por dia
 ggt     <- c(13,14,12,23,20,29,30,39,36,48,40,45,48,65,75)
 
-
 # Criando o dataframe com os dados
 df <- data.frame(drinks, ggt, tobacco)
 
@@ -495,12 +488,8 @@ Com mais de 3 variáveis preditoras não há mais uma visualização possível, 
 Vamos continuar analisando os níveis de GGT, mas agora incorporando ao nosso modelo tanto o consumo de álcool como de cigarros.
 
 ```{r, echo=FALSE}
-library(gridExtra)
-library(grid)
-
 r1 <- cor(df$drinks, df$ggt) 
 r2 <- cor(df$tobacco, df$ggt)
-
 
 p1 <- ggplot(df, aes(x = drinks, y = ggt)) +
         geom_point() +
@@ -586,7 +575,6 @@ Este pacote fornece três métodos que organizam as informações de um modelo e
 Como veremos adiante, A função `tidy()` também pode ser aplicada a objetos `htest`, como aqueles produzidos por funções internas populares como `t.test()`, `cor.test()` e `wilcox.test()`.
 
 ```{r}
-library(broom)
 tidy(model3)
 ```
 
@@ -607,7 +595,6 @@ augment(model3)
 ### Pacote stargazer
 
 ```{r}
-library(stargazer)
 stargazer(model3, type = "text")
 ```
 

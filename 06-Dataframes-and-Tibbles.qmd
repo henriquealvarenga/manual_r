@@ -2,6 +2,15 @@
 
 Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base o R, os data frames e as tibbles são o coração do R.
 
+Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(tibble)
+library(tidyr)
+library(dplyr)
+library(readr)
+```
+
 ## Data frames
 
 Data frames são a forma usual do R para armazenar dados. Veremos depois que as tibbles são a versão mais nova dos data frames, com melhorias em vários aspectos.
@@ -116,7 +125,6 @@ Podemos ajustar esse data frame no formato long, colocando o tipo de tratamento 
 Veja no exemplo abaixo a transformação desse conjunto de dados para o formato long:
 
 ```{r}
-library(tidyr)
 result |>  
   pivot_longer(!pacientes,  
                names_to = "tratamento", 
@@ -170,7 +178,6 @@ df
 
 ```{r}
 # Exibindo uma tibble
-library(tibble)
 tib <- tibble(nome = c("João", "Maria", "Ana", "Marcos", "Antônio", 
                           "Pedro", "José", "Gustavo", "Carlos", "Rafaela", 
                           "Luiza", "Lucas", "Laura", "Lavinia", "Carla"), 
@@ -180,7 +187,7 @@ tib <- tibble(nome = c("João", "Maria", "Ana", "Marcos", "Antônio",
              tipoSanguineo = c("A+", "B-", "O+", "A+", "B-", 
                                "O+", "A+", "B-", "O+","B-", 
                                "O+", "A+", "A+", "B-", "O+"))
-print(tib)
+tib
 ```
 
 2.  **Colunas Consistentes**:
@@ -226,10 +233,6 @@ df[1, ] # Acesso à primeira linha
 Aqui está um exemplo de como criar e usar tibbles no R:
 
 ```{r, message=FALSE, warning=FALSE}
-# Instale e carregue o pacote tibble
-# install.packages("tibble")
-library(tibble)
-
 # Criando uma tibble
 dados_pacientes <- tibble(nome = c("João", "Maria", "Ana", "Marcos", "Antônio", 
                                   "Pedro", "José", "Gustavo", "Carlos", "Rafaela", 
@@ -254,8 +257,7 @@ dados_pacientes$nome
 
 ```{r, message=FALSE, warning=FALSE}
 # Filtrando dados com o dplyr (do tidyverse)
-library(dplyr)
-pacientes_mais_jovens <- dados_pacientes %>% filter(idade < 35)
+pacientes_mais_jovens <- dados_pacientes |> filter(idade < 35)
 pacientes_mais_jovens
 ```
 
@@ -284,8 +286,7 @@ str(diabetes)
 Veremos mais adiante que a função `read_csv()` do `readr` já lê os dados como uma tibble.
 
 ```{r, message=FALSE, warning=FALSE}
-# lendo os dados com a função read.csv do R Base
-library(readr)
+# lendo os dados com a função read_csv() do readr, que já devolve uma tibble
 diabetes <- read_csv("dataset/diabetes.csv") 
 
 # verificando que os dados foram armazenados num data frame

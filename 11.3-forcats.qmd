@@ -2,6 +2,15 @@
 
 No campo da análise de dados, especialmente na área médica, os dados categóricos desempenham um papel crucial. Seja categorizando pacientes pelo genero, agrupando tratamentos ou analisando respostas de pesquisas, gerenciar essas variáveis categóricas de maneira eficiente é essencial. O pacote `forcats`, parte da coleção `tidyverse`, oferece um conjunto de ferramentas especificamente projetadas para trabalhar com fatores no R.
 
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(forcats)
+library(tibble)
+library(dplyr)
+library(ggplot2)
+```
+
 Fatores são a estrutura de dados do R para dados categóricos, permitindo que você manipule e analise dados não numéricos com facilidade. Embora o R base forneça funcionalidades básicas para fatores, o `forcats` aprimora isso, oferecendo ferramentas mais intuitivas para a manipulação de fatores. Este pacote simplifica tarefas como reordenar níveis de fatores, gerenciar valores ausentes e converter fatores para outros tipos de dados, tornando-se uma ferramenta indispensável para analistas de dados médicos.
 
 Neste capítulo, você aprenderá a aproveitar as capacidades do forcats para agilizar seu fluxo de trabalho de análise de dados.
@@ -37,9 +46,6 @@ meses <-  c("Janeiro", "Fevereiro", "Março",    "Abril",
 A segunda etapa é transformar a variável original numa do tipo factor com a função `factor()`.
 
 ```{r}
-# carregando o pacote forcats
-library(forcats)
-
 meses2 <- factor(meses, levels = meses)
 sort(meses2)
 ```
@@ -95,8 +101,6 @@ A técnica ideal é definir essa ordenação antes de gerar o gráfico, como ser
 Vejamos esse exemplo de uma `tibble` com os preços de frutas e legumes.
 
 ```{r}
-library(tibble)
-
 # Criando uma tibble fictícia
 data <- tibble(produto = factor(c("abacaxi", "goiaba", "limão", "uva T", "kiwi", "vagem", "jilo")),
                preco = c(3.0, 3.5, 1.5, 11.0, 8.39, 4.55, 2.0))
@@ -106,8 +110,6 @@ data <- tibble(produto = factor(c("abacaxi", "goiaba", "limão", "uva T", "kiwi"
 Plotar esses dados sem nenhum ajuste resultaria num gráfico ordenado de forma alfabética.
 
 ```{r}
-library(ggplot2)
-
 ggplot(data) +
   geom_col(aes(x=produto, y=preco), 
            fill="lightgreen", 
@@ -118,11 +120,8 @@ ggplot(data) +
 Porém, frequentemente é interessante ordenar de acordo com algum padrão que não alfabético, por exemplo, de acordo com o preço. Para isso podemos usar a função `fct_reorder()` como abaixo. Veja como o mesmo gráfico agora será ordenado segundo o preço.
 
 ```{r}
-# carregando o pacote dplyr para usar mutate
-library(dplyr)
-
 # Ordenar a variável produto de acordo com uma outra variável: preco
-data <- data %>%
+data <- data |>
   mutate(produto = fct_reorder(produto, preco))
 
 # plotando novamente o gráfico
@@ -140,7 +139,7 @@ As vezes desejamos colpasar algumas categorias mais específicas para outras mai
 O código a seguir reune cria uma variável `tipo`, com dois grupos (`fruta` e `legume`). Para isso reúne sob o rótulo `fruta` os produtos "abacaxi", "goiaba", "limão", "uva T" e "kiwi"; e sob o rótulo `legume` os produtos "vagem" e "jilo".
 
 ```{r}
-data <- data %>%
+data <- data |>
   mutate(tipo = fct_collapse(produto,
                              "fruta" = c("abacaxi", "goiaba", "limão", "uva T", "kiwi"),
                              "legume" = c("vagem", "jilo")))
@@ -165,7 +164,7 @@ Veja que o novo nome vem na frente do nome antigo dentro do código:
 
 ```{r}
 # Recode factor levels
-data <- data %>%
+data <- data |>
   mutate(produto = fct_recode(produto,
                             "Uva Thompson" = "uva T",
                             "Limão Thaiti" = "limão",
@@ -175,7 +174,6 @@ data <- data %>%
                             "Vagem"        = "vagem", 
                             "Jiló"         = "jilo"))
 
-
 data
 ```
 
@@ -184,8 +182,6 @@ data
 O pacote `forcats` tem também uma função que ordena os elementos de acordo com a frequência deles. Vejamos a aplicação dessa função num data frame que contém as variáveis sexo, idade.
 
 ```{r}
-library(tibble)
-
 # criando um data frame com dados de idade e sexo
 # Definir parâmetros da distribuição normal
 media_idade   <- 40
@@ -200,7 +196,7 @@ df_sexo <- tibble(id = 1:n_pessoas,
                   sexo = sample(c("Masculino", "Feminino", "Outro", "Não definido"), n_pessoas, replace = TRUE),
                   idade = round(rnorm(n_pessoas, mean = media_idade, sd = desvio_padrao), 0))
 
-print(df_sexo)
+df_sexo
 ```
 
 Veja que a frequência continua sendo por ordem alfabética.
@@ -216,9 +212,8 @@ Podemos fazer com que as barras sejam plotadas de acordo com a frequência, o qu
 
 ```{r}
 # indicando que a variável sexo deverá ser ordenada de acordo com a frequência (decrescente)
-df_sexo <- df_sexo %>%
+df_sexo <- df_sexo |>
   mutate(sexo = fct_infreq(sexo))
-
 
 # plotando um gráfico de barras das frequências de cada sexo
 ggplot(df_sexo) +
@@ -230,9 +225,8 @@ Caso o interesse seja plotar na ordem inversa, podemos fazer isso com a função
 
 ```{r}
 # indicando que a variável sexo deverá ser ordenada de acordo com a frequência, na ordem crescente
-df_sexo <- df_sexo %>%
+df_sexo <- df_sexo |>
   mutate(sexo = fct_rev(fct_infreq(sexo)))
-
 
 # plotando um gráfico de barras das frequências de cada sexo
 ggplot(df_sexo) +
@@ -263,7 +257,6 @@ Para exemplificar o uso da função `cut()` vamos usar o dataset `mpg` e criar u
 Como o limite superior do intervalo é aberto, o valor desse ponto de corte será parte da 1º categoria, portanto, o primeiro ponto de corte deve ser 15, já que definimos o primeiro intervalo como menor ou igual a 15. O segundo ponto de corte será 20, pois será o limite superior da segunda categoria é menor ou igual a 20. O código ficará então assim:
 
 ```{r}
-library(ggplot2)
 data(mpg)
 mpg$cty_cat <- cut(mpg$cty,               
                    breaks=c(0, 15, 20, 35),                  

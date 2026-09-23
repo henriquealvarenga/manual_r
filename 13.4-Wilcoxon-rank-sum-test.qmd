@@ -1,10 +1,13 @@
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(tidyverse)
-```
-
 ## Wilcoxon rank sum test (Man-Whitney test)
 
 Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. Os testes Wilcoxon rank sum test (Mann-Whitney test) é o equivalentes não paramétricos do teste t.
+
+Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
+
+```{r, message=FALSE, warning=FALSE}
+library(tibble)
+library(tidyr)
+```
 
 O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento `PAIRED=TRUE`.
 

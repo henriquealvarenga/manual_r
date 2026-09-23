@@ -1,7 +1,3 @@
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(tidyverse)
-```
-
 ## Teste do Chi Quadrado
 
 O teste do chi-quadrado compara as frequências observadas em tabelas de contingência com as frequências esperadas se a hipótese nula fosse verdadeira.
@@ -73,16 +69,10 @@ Para instalar o pacote vcd use o comando install.packages no console.
 
 > install.packages("vcd")
 
-Para usar esse pacote é necessário carregá-lo com o comando `library()` no início do código:
+Como só precisamos do dataset, e não das funções do pacote, podemos carregá-lo direto com `data()`, indicando o pacote de origem no argumento `package`:
 
 ```{r}
-library(vcd)
-```
-
-Carregando o dataset Arthritis
-
-```{r}
-data("Arthritis")
+data("Arthritis", package = "vcd")
 ```
 
 Verificando o dataset Arthritis com o comando `str()`.
