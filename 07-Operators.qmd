@@ -281,7 +281,7 @@ round(x3, 2)
 
 Esse modo de realizar essa sequencia de operações é mais fácil de ser compreendido, já que cada etapa do processo é feita separadamente. Entretanto, tem o inconveniente de ser necessário a criação de diversas variáveis intermediárias, o que polui desnecessáriamente o ambiente de trabalho.
 
-**3º modo**: Usando o operador pipe `%>%`
+**3º modo**: Usando o operador pipe `%>%`ou `|>`
 
 Veja agora como fazer essas operações de forma elegante com o operador pipe.
 
