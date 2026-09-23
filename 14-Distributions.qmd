@@ -1,4 +1,4 @@
-# Distribuições de Probabilidade {#distribuicoes}
+# Distribuições de Probabilidade {#sec-distribuicoes}
 
 Distribuições teóricas são modelos matemáticos que descrevem como os dados se comportam. Elas são importantes porque permitem a modelagem e previsão de fenômenos naturais, fazendo inferências sobre uma população a partir de uma amostra e testando hipóteses para determinar a significância dos resultados observados.
 
@@ -82,7 +82,7 @@ A função `dunif()` calcula a função de densidade de probabilidade (PDF) da d
 -   min: o limite inferior da distribuição
 -   max: o limite superior da distribuição
 
-Veja como usar a função `dunif()` para calcular o PDF de uma distribuição uniforme entre 0 e 100 no valor 2:
+Veja como usar a função `dunif()` para calcular o PDF de uma distribuição uniforme entre 0 e 100 no valor 5:
 
 ```{r}
 dunif(x=5, min=0, max=100)
@@ -108,15 +108,15 @@ punif(5, min = 0, max = 100)
 
 ### `qunif`
 
-A função `quinf()` calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.
+A função `qunif()` calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.
 
-A função `quinf()` requer três argumentos:
+A função `qunif()` requer três argumentos:
 
 -   p: a probabilidade\
 -   min: o limite inferior da distribuição\
 -   max: o limite superior da distribuição
 
-Veja exemplo de como usar a função `quinf()` para calcular o quantil de uma distribuição uniforme entre 0 e 100 na probabilidade de 0.05:
+Veja exemplo de como usar a função `qunif()` para calcular o quantil de uma distribuição uniforme entre 0 e 100 na probabilidade de 0.05:
 
 ```{r}
 qunif(0.05, min = 0, max = 100)
@@ -294,7 +294,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
     geom_segment(aes(x = x, y = 0, xend = x, yend = dnorm(x, mean=media, sd=dp))) +
     labs(title = "Distribuição normal", 
          subtitle = "pnorm(2) = 0.9772499 ") +
-    xlab("cm") +
+    xlab("x") +
     ylab("probability") +
     annotate("text", x = media , 
              y = dnorm(media, mean=media, sd=dp)/3, 
@@ -369,7 +369,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
     geom_segment(aes(x = x, y = 0, xend = x, yend = dnorm(x, mean=h, sd=dp))) +
     labs(title = "Distribuição da altura da população brasileira", 
          subtitle = "Estudo ANAC - Projeto Conhecer - 2009") +
-    xlab("cm") +
+    xlab("x") +
     ylab("probability") +
     annotate("text", x = h , 
              y = dnorm(h, mean=h, sd=dp)/3, 
@@ -442,7 +442,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
     geom_segment(aes(x = x, y = 0, xend = x, yend = dnorm(x, mean=h, sd=dp))) +
     labs(title = "Qual a estatura abaixo da qual estão 99% dos Brasileiros", 
          subtitle = "Estudo ANAC - Projeto Conhecer - 2009") +
-    xlab("cm") +
+    xlab("x") +
     ylab("probability") +
     annotate("text", x = h , 
              y = dnorm(h, mean=h, sd=dp)/3, 
@@ -494,7 +494,7 @@ density.value <- dt(x.value, df=gl)
 lim.inf <- -4
 lim.sup <- +4
 
-# Curva Normal Padrão
+# Curva t
 ggplot(NULL, aes(c(lim.inf,lim.sup))) + 
   geom_area(stat = "function", 
         fun = dt, 
@@ -532,7 +532,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
             label=paste(round(density.value,5)))
 ```
 
-A função `dt()` pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função `curve()`, como mostrado nos códigos abaixo.
+A função `dt()` pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva t com códigos bem curtos, quando a associamos à função `curve()`, como mostrado nos códigos abaixo.
 
 ```{r}
 curve(dt(x, df = 5), 
@@ -604,19 +604,19 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
     xlab("quantiles") +
     ylab("density") +
    annotate("text", x = 0, 
-             y = 0.15, # old cod: dt(x.value, df = gl)
+             y = 0.15,
              size = 7, 
              fontface ="bold", 
              hjust=0.5, 
              label=left.area.text.decimal) +
   annotate("text", x = 0, 
-             y = 0.115, # old cod: dt(x.value, df = gl)
+             y = 0.115,
              size = 4, 
              fontface ="bold", 
              hjust=0.5, 
              label="ou") +
   annotate("text", x = 0, 
-             y = 0.08, # old cod: dt(x.value, df = gl)
+             y = 0.08,
              size = 7, 
              fontface ="bold", 
              hjust=0.5, 
@@ -632,6 +632,8 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
 ### `qt()`
 
 A função `qt()`, faz o inverso da função `pt()`: dada uma área abaixo da curva de distribuição t, a função retorna o quantile (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantile.
+
+Como exemplo, usamos a probabilidade 0.9490303, que é justamente o resultado de `pt(q = 2, df = 5)` calculado acima. A função devolve então o quantil 2.
 
 ```{r}
 qt(p = 0.9490303, df = 5)
@@ -690,13 +692,13 @@ A função pchisq em R é usada para calcular a distribuição acumulada (CDF) d
 
 Por padrão a funçõa retorna probabilidade acumulada do valor da estatística ser menor ou igual a `q`. Caso deseje a probabilidade de ser **maior ou igual** a `q` é necessário acrescentar o argumento `lower.tail=FALSE`
 
-Suponha que você tenha uma estatística qui-quadrado de 5.991 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 5.991)
+Suponha que você tenha uma estatística qui-quadrado de 6 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 6)
 
 ```{r}
 pchisq(q = 6, df = 2)
 ```
 
-O gráfico abaixo visualiza o uso da função `pchisq(q = 5.991, df = 2)`
+O gráfico abaixo visualiza o uso da função `pchisq(q = 6, df = 2)`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Definir os parâmetros
@@ -733,8 +735,10 @@ ggplot(data, aes(x = x, y = y)) +
 
 A função `qchisq()` é o oposto da `pchisq()`. É usada para calcular o quantil da distribuição qui-quadrado. Em outras palavras, ela encontra o valor `q` tal que a probabilidade acumulada até `q` seja igual a um dado valor de probabilidade `p`. Isso é útil em testes de hipóteses e intervalos de confiança onde se deseja encontrar os pontos críticos da distribuição qui-quadrado.
 
+Como exemplo, usamos a probabilidade 0.9502129, que é o resultado de `pchisq(q = 6, df = 2)` calculado acima. A função devolve então o quantil 6.
+
 ```{r}
-qchisq(p =0.9502129, df = 2)
+qchisq(p = 0.9502129, df = 2)
 ```
 
 ## Distribuição de Poisson
@@ -769,6 +773,6 @@ O R possui essas funções de densidade, densidade cumulativa, quantil e numeros
 | Log-normal        | `dlnorm`              | `plnorm`              | `qlnorm`              | `rlnorm`              |
 | Multinomial       | `dmultinom`           | \-                    | \-                    | `rmultinom`           |
 | Cauchy            | `dcauchy`             | `pcauchy`             | `qcauchy`             | `rcauchy`             |
-| Beta-Binomial     | `dbetabinom` (MASS)   | `pbetabinom` (MASS)   | `qbetabinom` (MASS)   | `rbetabinom` (MASS)   |
+| Beta-Binomial     | `dbetabinom` (VGAM)   | `pbetabinom` (VGAM)   | `qbetabinom` (VGAM)   | `rbetabinom` (VGAM)   |
 | Normal Inversa    | `dinvgauss` (statmod) | `pinvgauss` (statmod) | `qinvgauss` (statmod) | `rinvgauss` (statmod) |
 | Pareto            | `dpareto` (VGAM)      | `ppareto` (VGAM)      | `qpareto` (VGAM)      | `rpareto` (VGAM)      |

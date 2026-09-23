@@ -43,7 +43,7 @@ Por outro lado, sempre que desejamos usar o pacote precisamos carregar esse paco
 Para instalar o tidyverse usamos o comando `install.packages()` no console, como mostrado abaixo:\
 `> install.packages("tidyverse")`
 
-```{r Install-tidyverse, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Installing the tidyvese package'}
+```{r Install-tidyverse, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Installing the tidyverse package'}
 knitr::include_graphics("images/Install-tidyverse.png")
 ```
 
@@ -51,13 +51,13 @@ Ao executar esse comando você verá que o R instala diversos pacotes do `tidyve
 
 > Atenção, isso só precisa ser feito uma vez!! Se você já instalou esse pacote, passe para a próxima etapa. Lembre-se, que um pacote só precisa ser instalado uma única vez.
 
-## Carrregando pacotes
+## Carregando pacotes
 
 A segunda etapa é carregar o pacote na sessão. Isso é feito com o comando `library()`. O carregamento dos pacotes necessários deve ser feito sempre no início de seu código.
 
 Para carregar o pacote tidyverse em sua sessão R, use o comando `library()` no início de seu script ou de seu R Notebook ou documento Quarto, como mostrado abaixo.
 
-```{r load-tidyverse, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Loading the tidyvese package'}
+```{r load-tidyverse, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Loading the tidyverse package'}
 knitr::include_graphics(rep("images/Libray-at-begining.png", 1))
 ```
 
@@ -80,9 +80,9 @@ Experimente usar a função `str()`, que mostra a estrutura dos dados de um obje
 str(mpg)
 ```
 
-O acrônimo `mpg` significa **Miles Per Gallon** - uma medida de quantas milhas um carro pode viajar se você colocar apenas um galão de gasolina ou diesel em seu tanque (1 galão equivale a 3.79 litros e uma milha equivale a 1.6km). Esta medida padronizada serve comparar carros com base na sua eficiência. O conjunto de dados `mpg` que vem junto com o `ggplot2` é apenas um subconjunto dos dados de economia de combustível que a EPA (Enviroment Protection Agency - USA) disponibiliza em <http://fueleconomy.gov.> O conjunto completo dos dados podem ser obtidos nesse site, no link seguir: <http://fueleconomy.gov/feg/download.shtml>.
+O acrônimo `mpg` significa **Miles Per Gallon** - uma medida de quantas milhas um carro pode viajar se você colocar apenas um galão de gasolina ou diesel em seu tanque (1 galão equivale a 3.79 litros e uma milha equivale a 1.6km). Esta medida padronizada serve comparar carros com base na sua eficiência. O conjunto de dados `mpg` que vem junto com o `ggplot2` é apenas um subconjunto dos dados de economia de combustível que a EPA (Enviroment Protection Agency - USA) disponibiliza em <https://fueleconomy.gov>. O conjunto completo dos dados podem ser obtidos nesse site, no link seguir: <https://fueleconomy.gov/feg/download.shtml>.
 
-Esse dataset possui 243 linhas (observações) com 11 variáveis. O significado de cada variável está descrito na documentação de ajuda do dataset mpg e pode ser visualizado com o comando `?mpg` no console. A tabela a seguir mostra o significado de cada variável desse dataset.
+Esse dataset possui 234 linhas (observações) com 11 variáveis. O significado de cada variável está descrito na documentação de ajuda do dataset mpg e pode ser visualizado com o comando `?mpg` no console. A tabela a seguir mostra o significado de cada variável desse dataset.
 
 ```{r mpg-dictionary, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='dicionário de variáveis do dataset mpg'}
 knitr::include_graphics("images/mpg-dictionary.png")

@@ -51,7 +51,7 @@ data(mpg)
 
 Relembrando o significado de cada variável do dataset `mpg`:
 
-```{r mpg-dictionary, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mpg dictionary'}
+```{r mpg-dictionary-dplyr, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mpg dictionary'}
 knitr::include_graphics(rep("images/mpg.png", 1))
 ```
 
@@ -171,7 +171,7 @@ O código acima por ser lido da seguinte maneira: crie uma variável com o nome 
 mpg <- mutate(cty.km = cty*1.609344, mpg) 
 ```
 
-Podemos também reescrever esse código usando o operador pipe `|>` ou `|>`, tornando esse código mais fácil de ser compreendido.
+Podemos também reescrever esse código usando o operador pipe `|>`, tornando esse código mais fácil de ser compreendido.
 
 ```{r}
 mpg <- mpg |> 
@@ -222,7 +222,7 @@ pacientes_ordenados_desc
 Podemos também ordenar o data frame por múltiplas colunas. Por exemplo, vamos ordenar pela coluna idade em ordem crescente e, em seguida, pela coluna cidade em ordem crescente.
 
 ```{r}
-# Ordenar os dados pela coluna idade e depois pela coluna nome
+# Ordenar os dados pela coluna idade e depois pela coluna cidade
 pacientes_ordenados_mult <- arrange(pacientes, idade, cidade)
 pacientes_ordenados_mult
 ```
@@ -291,7 +291,7 @@ Podemos também incluir um nome para cada estatística calculada, como feito aba
 ```{r}
 mpg |> 
 group_by(class) |> 
-summarize(media=mean(cty), mediana=median(cty), desvio_padrão=sd(cty), maximo=max(cty), minimo=min(cty))
+summarize(media=mean(cty), mediana=median(cty), desvio_padrao=sd(cty), maximo=max(cty), minimo=min(cty))
 ```
 
 O comando `group_by()` também pode ser usado para agrupar dados de acordo com mais de uma variável, bastando separar as variáveis por vírgula dentro do parênteses. Por exemplo, para agrupar os dados de acordo com o tipo de carro e o tipo de tração usamos `group_by(drv, class)`.
@@ -399,7 +399,7 @@ Por exemplo, no dataset `mpg` a variável `trans` (tipo de transmissão) tem 10 
 unique(mpg$trans)
 ```
 
-Para compararmos os carros com marchas automáticas com marchas manuais precisamos reduzir essas 10 categorias para apenas duas: `manual` e `automática`.
+Para compararmos os carros com marchas automáticas com marchas manuais precisamos reduzir essas 10 categorias para apenas duas: `manual` e `automatica` (sem acento, seguindo a recomendação de não usar acentos em nomes).
 
 Podemos fazer isso criando uma nova variável com apenas essas duas categorias.
 
@@ -416,7 +416,7 @@ mpg <- mpg |> mutate(marcha = recode_values(trans,
 unique(mpg$marcha)
 ```
 
-Veja que a variável marcha tem apenas 2 níveis: automática e manual:
+Veja que a variável marcha tem apenas 2 níveis: automatica e manual:
 
 ```{r}
 table(mpg$marcha)
@@ -528,7 +528,7 @@ pacientes_distintos
 Podemos especificar colunas específicas para considerar ao remover duplicatas. Neste exemplo, removeremos duplicatas com base nas colunas id, mantendo apenas uma ocorrência de cada combinação. Podemos usar o argumento `.keep_all = TRUE` para manter todas as colunas do data frame original, mesmo ao remover duplicatas com base em colunas específicas.
 
 ```{r}
-# Remover duplicatas com base nas colunas nome e idade
+# Remover duplicatas com base na coluna id_paciente
 pacientes_distintos_colunas <- distinct(pacientes, id_paciente, .keep_all = TRUE)
 pacientes_distintos_colunas
 ```

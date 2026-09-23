@@ -41,7 +41,7 @@ Podemos indicar ao R que diretório da sessão de trabalho seja o diretório abe
 2.  Em seguida em `Set Working Directory`
 3.  Escolha a opção `To Files Pane Location`.
 
-```{r SetingWorkingDirecory, echo=FALSE, fig.show='hold', fig.cap='Criando um Projeto'}
+```{r SettingWorkingDirectory, echo=FALSE, fig.show='hold', fig.cap='Definindo o diretório de trabalho'}
 knitr::include_graphics("images/SetWorkingDirectory.png")
 ```
 
@@ -67,7 +67,7 @@ A grande importância de criar um Projeto no RStudio é que um projeto define au
 
 O nome do seu projeto aparece na barra na parte superior RStudio, e o caminho completo do diretório de trabalho aparece na barra superior do painel Console, como mostra a figura abaixo.
 
-```{r SetingWorkingDirecory2, echo=FALSE, fig.show='hold', fig.cap='Criando um Projeto'}
+```{r SettingWorkingDirectory2, echo=FALSE, fig.show='hold', fig.cap='Criando um Projeto'}
 knitr::include_graphics("images/RStudio_Project.png")
 ```
 
@@ -102,6 +102,6 @@ Um projeto no R geralmente inclui:
 
 Veja abaixo um exemplo de como organizar sua pasta do projeto:
 
-```{r SetingWorkingDirecory3, echo=FALSE, fig.show='hold', fig.cap='Estrutura de Diretórios de um Projeto'}
+```{r SettingWorkingDirectory3, echo=FALSE, fig.show='hold', fig.cap='Estrutura de Diretórios de um Projeto'}
 knitr::include_graphics("images/Project_file_structure.png")
 ```

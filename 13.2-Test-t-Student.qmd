@@ -12,7 +12,7 @@ library(ggplot2)
 
 A importância dada ao departamento científico da Guinness era tamanha que o uso de métodos estatísticos na fabricação da cerveja era considerado um segredo industrial. Alguns autores argumentam que foi esse o motivo pelo qual Gosset publicou o artigo sobre o teste t em 1908 sob o pseudônimo "Student" e o teste t passou a ser conhecido como teste t de Student.
 
-O teste t de Student (ou simplesmente teste t) compara as médias de dois conjuntos numéricos e avalia se as diferenças entre essas médias são significativas. Quando existem mais de 3 grupos o test t não pode ser usado e nesse caso podemos usar o Anova, discutido no capítulo seguinte.
+O teste t de Student (ou simplesmente teste t) compara as médias de dois conjuntos numéricos e avalia se as diferenças entre essas médias são significativas. Quando existem 3 ou mais grupos o teste t não pode ser usado e nesse caso podemos usar o Anova, discutido no capítulo seguinte.
 
 A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes de depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.
 
@@ -42,7 +42,7 @@ result
 
 ```
 
-Muitas vezes antes de algumas análises, teremos de fazer uma transformação em nosso data frame (ou tibble), transformando o data frame do tipo wide em long como explicado no capítulo do pacote `tidyr` \@ref(tidyr).
+Muitas vezes antes de algumas análises, teremos de fazer uma transformação em nosso data frame (ou tibble), transformando o data frame do tipo wide em long como explicado na seção sobre o pacote `tidyr` (@sec-tidyr).
 
 ```{r}
 # criando um data frame do tipo long
@@ -97,7 +97,7 @@ Se os dados das duas amostras estão numa mesma coluna (long format), e se há u
 
 ```{r}
 # teste t com data frame do tipo long
-# explicação: os dados numéricos estão na coluna "score", a informação sobre os grupos está na variável "grupos".
+# explicação: os dados numéricos estão na coluna "scores", a informação sobre os grupos está na variável "grupo".
 t.test(scores~grupo, data=result.long)
 ```
 
@@ -176,7 +176,7 @@ Para acessar cada um desses valores individualmente é necessário indicar isso 
 test.results$estimate[1]
 ```
 
-Veja que da forma como fizemos acima o resultado foi a média do grupo controle, mas o texto veio junto. Para extrair apenas o valor numérico devemos incluir mais um elemento no código, a função `as.mumeric()`.
+Veja que da forma como fizemos acima o resultado foi a média do grupo controle, mas o texto veio junto. Para extrair apenas o valor numérico devemos incluir mais um elemento no código, a função `as.numeric()`.
 
 ```{r}
 as.numeric(test.results$estimate[1])

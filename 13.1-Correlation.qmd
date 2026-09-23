@@ -24,7 +24,7 @@ cor(mpg$displ, mpg$cty)
 cor(mpg$cty,mpg$displ)
 ```
 
-O valor encontrado `cor(mpg$cty,mpg$displ)` indica que essa é uma correlação negativa e forte. A mensagem é clara, quanto maior as cilindradas, menor a distância percorrida com 1 galão de gasolina, ou seja, carros 1.0 são mais econômicos mesmo.
+O valor encontrado, `r round(cor(mpg$cty, mpg$displ), 2)`, indica que essa é uma correlação negativa e forte. A mensagem é clara, quanto maior as cilindradas, menor a distância percorrida com 1 galão de gasolina, ou seja, carros 1.0 são mais econômicos mesmo.
 
 O valor coeficiente de determinação $r^2$ pode ser obtido elevando-se a função `cor()` ao quadrado.
 
@@ -41,7 +41,7 @@ cor.test(mpg$cty,mpg$displ)
 
 Frequentemente existem valores `NA` no conjunto de dados. Nesses casos a função `cor()` não conseguirá computar o valor do coeficiente de correlação, pois, por padrão, essa função só faz os cálculos se todos os pares de dados estiverem completos. Para calcular a correlação omitindo os pares incompletos é necessário ajustar o parâmetro `use =`, incluindo `use = complete.obs`.
 
-Para ilustrar essa situação, usaremos o dataset `airquality` do R, que contém dados `NA` em algumas de suas medições. Esse dataset contém dados de medições diárias da qualidade do ar em Nova Iorque de maio a setembro de 1973. São cerca de 154 observações e 6 variáveis numéricas: - Ozone (quantidade de ozônio)\
+Para ilustrar essa situação, usaremos o dataset `airquality` do R, que contém dados `NA` em algumas de suas medições. Esse dataset contém dados de medições diárias da qualidade do ar em Nova Iorque de maio a setembro de 1973. São cerca de 153 observações e 6 variáveis numéricas: - Ozone (quantidade de ozônio)\
 - Solar.R (radiação solar)\
 - Wind (velocidade do vento)\
 - Temp (temperatura - F)\
@@ -84,11 +84,11 @@ cor.test(airquality$Ozone, airquality$Solar.R)
 
 ### pairs() e ggpairs()
 
-Podemos usar a função `pairs()` para visualizar rapidamente todas as correlações entre as variáveis de um dataset. Vamos testar essa função no dataset iris do `ggplot`.
+Podemos usar a função `pairs()` para visualizar rapidamente todas as correlações entre as variáveis de um dataset. Vamos testar essa função no dataset `iris`, que faz parte do R base.
 
 Este conjunto de dados fornece as medidas em centímetros das variáveis comprimento e largura da sépala e comprimento e largura da pétala, respectivamente, para 50 flores de cada uma das 3 espécies de íris. As espécies são Iris setosa, versicolor e virginica.
 
-```{r flores-de-iris, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Flores de Iris, Por Diego Marianom}'}
+```{r flores-de-iris, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Flores de Iris, por Diego Mariano'}
 knitr::include_graphics("images/Flores_de_Iris.png")
 ```
 
@@ -143,7 +143,7 @@ ggplot(airquality)  +
   geom_smooth(aes(x=Ozone, y=Solar.R), method = lm)
 ```
 
-Observe entretanto que o código acima repete duas vezes a expressão `aes(x=Solar.R, y=Ozone)`. Podemos reduzir esse código, inserindo essa expressão na primeira linha, o que deixa o código mais limpo, como feito abaixo:
+Observe entretanto que o código acima repete duas vezes a expressão `aes(x=Ozone, y=Solar.R)`. Podemos reduzir esse código, inserindo essa expressão na primeira linha, o que deixa o código mais limpo, como feito abaixo:
 
 ```{r, warning=FALSE, message=FALSE}
 ggplot(airquality, aes(x=Ozone, y=Solar.R))  + 

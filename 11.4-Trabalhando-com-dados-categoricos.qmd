@@ -36,7 +36,7 @@ str(mtcars)
 Veja que o R interpreta diversas variáveis categóricas desse dataset como sendo numéricas.\
 A variável `am` é na verdade categórica, e indica se o carro tem marcha automática ("0") ou manual ("1"). A variável `vs` é também categórica, e indica o tipo de motor. O valor "0" indica motor V-Shaped e valor "1" indica motor linear. A variável `cyl`, apesar de também trazer números, é na também categórica, e indica o número de cilindros do carro, podendo ser 4, 6 ou 8 cilindros.
 
-A primeira etapa será então transformar essas variáveis em categóricas com `as.factor()` e a segunda etapa será renomear essas variáveis com rótulos mais descritivos, usando `fct_recode()`do pacote `forcats`, para facilitar a interpretação dos dados. No caso da variável `cyl`, que indica as cilindradas do carro, será útil também indicar a ordenação dessa variável.
+A primeira etapa será então transformar essas variáveis em categóricas com `as.factor()` e a segunda etapa será renomear essas variáveis com rótulos mais descritivos, usando `fct_recode()`do pacote `forcats`, para facilitar a interpretação dos dados. No caso da variável `cyl`, que indica as número de cilindros do carro, será útil também indicar a ordenação dessa variável.
 
 ```{r}
 # Transformando a variável 'am' em categórica
@@ -83,7 +83,7 @@ mtcars  |>
   table()
 ```
 
-Podemos criar tabelas 2x2 com a função table, bastando para isso selecinar as duas colunas/variáveis desejadas. O código abaixo constroi uma tabela 2x2 com as variáveis cilindradas (cyl) e alinhamento do motor (vs)
+Podemos criar tabelas de dupla entrada (tabelas de contingência) com a função `table()`, bastando para isso selecionar as duas colunas/variáveis desejadas. O código abaixo constrói uma tabela 3x2 com as variáveis número de cilindros (cyl) e alinhamento do motor (vs)
 
 ```{r}
 mtcars  |>   
@@ -116,7 +116,7 @@ Observe que o código com o pipe fica bem mais elegante, e facilita as próximas
 ```{r}
 # calculando o percentual de carros com motor em V e motores em linha reta
 # nesse exemplo usamos o operador pipe.
-mtcars |>      # iniciando o pipe com a variável dataset mtcars2 (criando anteriormente)
+mtcars |>      # iniciando o pipe com a variável dataset mtcars (modificado anteriormente)
   select(vs) |> 
   table() |>       # criando a tabela com os valores absolutos
   prop.table() |>  # calculando os percentuais
@@ -127,7 +127,7 @@ mtcars |>      # iniciando o pipe com a variável dataset mtcars2 (criando anter
 Podemos também criar tabelas com mais de uma variável, por exemplo, acrescentando aqui a variável `am`, que indica o tipo de marcha usado (autmática ou manual).
 
 ```{r}
-mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+mtcars |>          # iniciando o pipe o dataset mtcars (modificado anteriormente)
   select(vs, am) |> # selecionando as duas variáveis, vs e am
   table() |>        # criando a tabela com os valores absolutos
   addmargins()      # adicionando uma coluna com o total.
@@ -136,7 +136,7 @@ mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
 Em tabelas com mais de uma variável é preciso ter cuidado com a função `prop.table()`. Essa função vai calcular os percentuais em cada célula usando o total de elementos. Nessa tabela acima podemos ver que temos 32 carros. Então os percentuais serão calculados com base em 32, como mostrado abaixo:
 
 ```{r}
-mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+mtcars |>          # iniciando o pipe o dataset mtcars (modificado anteriormente)
   select(vs, am) |> # selecionando as duas variáveis, vs e am
   table() |>        # criando a tabela com os valores absolutos
   prop.table() |> 
@@ -149,7 +149,7 @@ Muitas vezes é intessante calcular os percentuais nas linhas ou nas colunas e n
 1 - calcula as proporções nas linhas 2 - calcula as proporções nas colunas
 
 ```{r}
-mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+mtcars |>          # iniciando o pipe o dataset mtcars (modificado anteriormente)
   select(vs, am) |> # selecionando as duas variáveis, vs e am
   table() |>        # criando a tabela com os valores absolutos
   prop.table(1) |>  # calculando as proporções nas linhas
@@ -159,7 +159,7 @@ mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
 ```
 
 ```{r}
-mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
+mtcars |>          # iniciando o pipe o dataset mtcars (modificado anteriormente)
   select(vs, am) |> # selecionando as duas variáveis, vs e am
   table() |>        # criando a tabela com os valores absolutos
   prop.table(2) |>  # calculando as proporções nas colunas
@@ -172,7 +172,7 @@ mtcars |>          # iniciando o pipe o dataset mtcars2 (criando anteriormente)
 
 Frequentemente existem dados faltantes em datasets. Esses dados são usualmente denotados no R pela sigla `NA` que indica **Not Available** (não disponível).
 
-A função `table()`, por padrão, não inclui os dados faltantes na tabela gerada. Entretanto, muitas vezes é importante poder ter esses dados incluídos na tabela. Para isso é necessário ajustar um parâmetro da função table, inserindo `exclude=false` na função como mostremos a seguir.
+A função `table()`, por padrão, não inclui os dados faltantes na tabela gerada. Entretanto, muitas vezes é importante poder ter esses dados incluídos na tabela. Para isso é necessário ajustar um parâmetro da função table, inserindo `exclude = FALSE` na função como mostremos a seguir.
 
 Para exemplificar isso vamos primeiro inserir alguns `NAs` no dataset `mtcars`. O código abaixo faz com que todos os carros com 8 cilindros, na variável `cyl` sejam trocados por `NA`.
 

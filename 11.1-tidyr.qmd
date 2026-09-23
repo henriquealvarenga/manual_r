@@ -21,7 +21,7 @@ Neste capítulo, exploraremos as principais funções do **`tidyr`**, incluindo:
 
 -   **`drop_na()`**: função para remover linhas com valores ausentes.
 
--   **`replace_na()`**: função para remover linhas com valores ausentes.
+-   **`replace_na()`**: função para substituir valores ausentes por um valor escolhido.
 
 Vamos começar explorando como o **`tidyr`** pode simplificar a manipulação de dados e permitir que você se concentre nas análises que realmente importam para suas pesquisas e práticas na área da saúde.
 
@@ -68,7 +68,7 @@ Observe que o data frame no formato `long` terá 6 linhas, o dobro do anterior, 
 
 Ou seja, não há perda de informação, apenas uma modificação do layout do data frame, que é usualmente denominado de **long**, pelo fato de ser mais comprido que o anterior.
 
-Essa transformação é realizada com a função `pivo_longer()`, como mostram os códigos abaixo.
+Essa transformação é realizada com a função `pivot_longer()`, como mostram os códigos abaixo.
 
 ```{r}
 # transformando a tibble para o formato long
@@ -150,7 +150,7 @@ dados_separados
 Podemos também separar a data em dia, mês e ano, como mostrado no código abaixo
 
 ```{r}
-# Usando separate para dividir a coluna data_hora em data e hora
+# Usando separate para dividir a coluna data em ano, mês e dia
 dados_dma <- separate(dados_separados, 
                       col = "data", 
                       into = c("ano", "mes", "dia"), 
@@ -183,8 +183,8 @@ A função `unite()` é usada para combinar duas ou mais colunas em uma única c
 Veja como unir as colunas que acabamos de separar:
 
 ```{r}
-# Usando unite para combinar as colunas data e hora em data_hora
-dados <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
+# Usando unite para combinar as colunas horas e minutos numa coluna hora
+dados <- unite(dados_hm, col = "hora", horas, minutos, sep = ":")
 
 dados
 ```
@@ -192,9 +192,9 @@ dados
 A função `unite()` não suporte múltiplas uniões em um único comando. Assim, para unir novamente também as colunas ano, mes e dia, precisamos de uma nova linha com unite.
 
 ```{r}
-# Usando unite para combinar as colunas data e hora em data_hora
+# Usando unite duas vezes: horas e minutos em hora; ano, mes e dia em data
 dados_hm
-dados_hm <- unite(dados_hm, col = "data_hora", horas, minutos, sep = ":")
+dados_hm <- unite(dados_hm, col = "hora", horas, minutos, sep = ":")
 dados_hm <- unite(dados_hm, col = "data", ano, mes, dia, sep = "-")
 
 dados_hm
@@ -211,7 +211,7 @@ Como vimos anteriormente, nem todos argumentos são valores numéricos. Alguns a
 **Criando uma variável peso com valores NA**
 
 ```{r}
-peso <- c(50,55,8, NA) 
+peso <- c(50, 55, 58, NA) 
 peso
 ```
 
@@ -230,7 +230,7 @@ Veja que o resultado obtido foi `NA`, ou seja, o R não conseguiu fazer os cálc
 mean(peso, na.rm = TRUE)
 ```
 
-Veremos a seguir como resolver problemas de valores `NA` em data frames usando o pacote `dplyr`, com as funções `drop_na()` e `replace_na()`.
+Veremos a seguir como resolver problemas de valores `NA` em data frames usando o pacote `tidyr`, com as funções `drop_na()` e `replace_na()`.
 
 #### A função `drop_na()`
 
@@ -304,7 +304,7 @@ pacientes2 <- drop_na(pacientes)
 pacientes2
 ```
 
-Às vezes, pode ser necessário remover linhas com NAs apenas em colunas específicas, enquanto preserva outras linhas com NAs em colunas menos críticas. Vamos considerar o mesmo conjunto de dados, mas desta vez removeremos apenas as linhas com NAs nas colunas nome e idade.
+Às vezes, pode ser necessário remover linhas com NAs apenas em colunas específicas, enquanto preserva outras linhas com NAs em colunas menos críticas. Vamos considerar o mesmo conjunto de dados, mas desta vez removeremos apenas as linhas com NAs na coluna idade.
 
 ```{r}
 # Remover linhas com NAs na coluna 'idade'
@@ -350,7 +350,7 @@ pacientes <- pacientes |>
 pacientes
 ```
 
-Observe que os valores agora são mostrados com 2 casas decimais. Isso ocorre porque ao calcular a média da idade o R transformou esses dados que antes eram numeros inteiros (int) em números reais (dbl).
+Observe que os valores agora são mostrados com 2 casas decimais. Isso ocorre porque a média das idades não é um número inteiro e, ao entrar na coluna, faz todos os valores serem mostrados com casas decimais.
 
 ```{r}
 # recalculando a média das idades, agora não precisamos mais de informar na.rm = TRUE

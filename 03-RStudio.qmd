@@ -58,9 +58,11 @@ O R Notebook é um documento de texto mais sofisticado que um R Script. Um docum
 
 Veja na imagem abaixo que um trecho de código vem dentro de um campo (code chunk) delimitado por
 
-'''{r}
+````
+```{r}
 
-''''
+```
+````
 
 ```{r Meu-Primeiro-RNotebook, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Meu Primeiro RNotebook no R'}
 knitr::include_graphics("images/R_Notebook.png")

@@ -64,7 +64,7 @@ bibliography: references.bib
 # próprio .qmd muda — renders seguidos param de gerar diferença espúria em docs/.
 #
 # Sem isso, duas coisas mudavam a cada render, sem ninguém editar nada:
-#   - os capítulos 15 e 16 sorteiam números sem set.seed(), o que é PROPOSITAL:
+#   - os capítulos 14 e 15 sorteiam números sem set.seed(), o que é PROPOSITAL:
 #     eles ensinam justamente que sem semente o resultado muda a cada execução
 #   - str() sobre um tibble do readr imprime o endereço de memória do atributo
 #     "problems" (<pointer: 0x...>), que muda a cada sessão do R
@@ -87,11 +87,3 @@ format:
   pdf:
     documentclass: scrreprt
     number-sections: true
-
-bookdown::epub_book:
-  stylesheet: css/style.css
-
-editor: visual
-
-before_body: cover.png {-}
-

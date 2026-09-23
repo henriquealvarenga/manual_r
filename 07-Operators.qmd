@@ -130,7 +130,7 @@ staff$idade
 
 Veja que o comando formado por `A$B` extrai os dados armazenados na variável `B` do data frame `A`.
 
-Usamos esse operador `$` para realizar qualquer cálculo estatístico nos valores armazenados em uma variável de um data frame. Por exemplo, para calcular a média das idades dos pacientes no data frame acima basta usar a função `mean()`, colocando `mydf$idade` como argumento da função, como abaixo:
+Usamos esse operador `$` para realizar qualquer cálculo estatístico nos valores armazenados em uma variável de um data frame. Por exemplo, para calcular a média das idades dos pacientes no data frame acima basta usar a função `mean()`, colocando `staff$idade` como argumento da função, como abaixo:
 
 ```{r}
 # calcula a média da variável idade no data frame staff
@@ -266,7 +266,7 @@ x2 <- mean(x)
 x2
 ```
 
-Calcule a média dos valores de x2 e armazenando o resultado em x3
+Calcule a raiz quadrada de x2 e armazene o resultado em x3
 
 ```{r}
 x3 <- sqrt(x2)

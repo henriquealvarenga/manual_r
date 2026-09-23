@@ -133,7 +133,7 @@ result |>
 
 Não se preocupe com o código usado aqui para fazer essa transformação. O objetivo aqui é entender que existem dois tipos de formatação do data frame, wide e long e que existem ferramentas para essa transformação num sentido e no outro.
 
-Sugiro a leitura do artigo **Tidy Data** de Hadley Wickham, publicado no Journal of Statistical Software, Vol VV, Issue 2, no link a seguir: <https://vita.had.co.nz/papers/tidy-data.pdf>
+Sugiro a leitura do artigo **Tidy Data** de Hadley Wickham, publicado no Journal of Statistical Software, Vol. 59, Issue 10, no link a seguir: <https://vita.had.co.nz/papers/tidy-data.pdf>
 
 ## `Tibbles`, os dataframes do tidyverse
 

@@ -37,12 +37,12 @@ A principal diferença entre tipos de dados e estruturas de dados reside na gran
 |---------------|--------------|--------------|------------------------------|
 | **Tipos Básicos de dados** | Numeric | `numeric` | Dados numéricos gerais (dupla precisão) |
 |  | Integer | `integer` | Números inteiros |
-|  | Character | `character` | Texto or string |
-|  | Logical | `logical` | Valores lógicos (`TRUE` or `FALSE`) |
+|  | Character | `character` | Texto ou string |
+|  | Logical | `logical` | Valores lógicos (`TRUE` ou `FALSE`) |
 |  | Complex | `complex` | Números Complexos |
 |  | Raw | `raw` | Raw bytes |
 | **Tipo Especial de dados** | Factor | `factor` | Dados categóricos |
-| **Estructuras de Dados** | Vector | `vector` | Coleções homogêneas de tipos de dados básicos |
+| **Estruturas de Dados** | Vector | `vector` | Coleções homogêneas de tipos de dados básicos |
 |  | List | `list` | Coleções heterogêneas de tipos de dados |
 |  | Matrix | `matrix` | Estruturas de dados bidimensionais e homogêneas |
 |  | Array | `array` | Estruturas de dados multidimensionais e homogêneas |
@@ -106,7 +106,7 @@ df <- data.frame(nome, sexo, idade)
 df
 ```
 
-Veja que para o R, a variável tando a `sexo` como a `idade` são numéricas (dbl).
+Veja que para o R, tanto a variável `sexo` como a `idade` são numéricas.
 
 Para contornar esse problema precisamos informar ao R que `sexo` é uma variável categórica. Isso pode ser feito com a função `as.factor()`.
 
@@ -234,10 +234,10 @@ sqrt(idade)
 sum(idade)
 ```
 
-A função `summary()` já foi demonstrada anteriormente.
+A função `summary()` mostra um resumo dos valores: mínimo, primeiro quartil, mediana, média, terceiro quartil e máximo.
 
 ```{r}
-# soma todos os valores
+# resumo estatístico dos valores
 summary(idade)
 ```
 
@@ -288,7 +288,7 @@ idades <- c(45, 32, 24, 23, 55, 56)
 x <- c(1:10)
 ```
 
-No exemplo acima vimos um novo operador `:` (dois pontos), que cria uma sequencia de números. No capítulo sobre operadores do R iremos discutir melhor o que são operadores e quais os operadores do R \@ref(operadores).
+No exemplo acima vimos um novo operador `:` (dois pontos), que cria uma sequencia de números. No capítulo sobre operadores do R (@sec-operators) iremos discutir melhor o que são operadores e quais os operadores do R.
 
 Mais adiante veremos como podemos agrupar um conjunto de vetores num objeto chamado de data frame, formado por colunas e linhas tal como uma planilha.
 
@@ -398,7 +398,7 @@ altura_metros <- c(1.50, 1.55, 1.60, 1.65, 1.70,
 # Convertendo para quilogramas todos os valores do vetor de uma só vez.
 peso_kg <- peso_lib * 0.45359237
 
-# mostrando os resultados armazenados no novo vetor pesos_kg
+# mostrando os resultados armazenados no novo vetor peso_kg
 peso_kg
 ```
 
@@ -613,11 +613,11 @@ Podemos usar esse mesmo operador `$` em sequencia para acessar um informação d
 pacientes$paciente_1$sexo
 ```
 
-Enquanto a notação `$` é usada para acessar elementos nomeados, A notação `[[ ]]` é utilizada para acessar elementos individuais,
+Enquanto a notação `$` é usada para acessar elementos nomeados, a notação `[[ ]]` é utilizada para acessar elementos individuais pelo nome (entre aspas) ou pela posição:
 
 ```{r}
-# Acessando o vetor
-pacientes$paciente_1$sexo
+# Acessando o mesmo elemento com a notação [[ ]]
+pacientes[["paciente_1"]][["sexo"]]
 ```
 
 Veremos adiante que diversos pacotes do R possuem funcionalidades para melhorar o código, como o pacote purrr do tidyverse tem a função `pluck()`:

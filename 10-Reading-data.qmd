@@ -187,7 +187,7 @@ galinhas <- readr_example("chickens.csv") |>
             read_csv()
 ```
 
-Observe que a função `readr()` mostra os detalhes do que ela fez:\
+Observe que a função `read_csv()` mostra os detalhes do que ela fez:\
 1. Mostra que o arquivo lido tinha 5 linhas e 4 colunas.\
 2. Mostra que interpretou que o delimitador entre os elementos era a vírgula: `Delimiter: ","`.\
 3. Mostra que intrepretou as variáveis `chicken`, `sex` e `motto` como texto (`char`, caracteres).\
@@ -259,7 +259,7 @@ Vamos ver como fazer isso de cada uma dessas maneiras.
 
 **Transformando variáveis em factor depois de ler os dados**
 
-A função `as.factor()` tem como argumento um vetor, um dataframe ou uma tibble.
+A função `as.factor()` tem como argumento um vetor, por exemplo uma coluna de um data frame ou de uma tibble.
 
 1.  Transformando um vetor numérico em factor:
 
@@ -326,7 +326,7 @@ str(diabetes)
 O R também pode ler arquivos em outros formatos, tal como Excel, SAS, STATA, SPSS etc. Existem pacotes específicos para ler cada um desses formatos.\
 
 O pacote `readxl` serve para ler arquivos do Excel, sendo capaz de ler `.xls` quanto os novos formatos `.xlsx`. A função para ler esses arquivos é `read_excel()`.\
-O pacote `XML` é capaz de ler arquivos XML, a função para ler esses arquivos é `xmlParse()` ou `xmlToDataFrame()`.\
+O pacote `xml2` é capaz de ler arquivos XML com a função `read_xml()`; o pacote `XML`, mais antigo, faz o mesmo com `xmlParse()` ou `xmlToDataFrame()`.\
 Os pacotes `rjson` e `jsonlite` tem funções para leitura arquivos JSON. A função para ler esses arquivos é `fromJSON()`.\
 O pacote `haven` do tidyverse é capaz de ler vários de vários tipos, tais como SAS, SPSS e STATA, através das seguintes funções: `read_sas()`, `read_sav()`, `read_por()`, `read_dta()`, `read_xpt()`.\
 O pacote `foreign` possui também funções para ler arquivos SPSS, a função para ler esses arquivos é `read.spss()`.
@@ -347,4 +347,4 @@ O pacote `foreign` possui também funções para ler arquivos SPSS, a função p
 | `read_por()`   | haven    | Leitura de arquivos POR           | `data <- read_por("file.por")`                                    |
 | `read_xpt()`   | haven    | Leitura de arquivos transportados | `data <- read_xpt("file.xpt")`                                    |
 | `read_stata()` | haven    | Leitura de arquivos Stata         | `data <- read_stata("file.dta")`                                  |
-| `read_spss()`  | foreign  | Leitura de arquivos SPSS          | `data <- read.spss("file.sav", to.data.frame = TRUE)`             |
+| `read.spss()`  | foreign  | Leitura de arquivos SPSS          | `data <- read.spss("file.sav", to.data.frame = TRUE)`             |

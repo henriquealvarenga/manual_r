@@ -163,7 +163,7 @@ ggplot(dados, aes(x = x, y = y)) +
            vjust = 0, 
            size = 4 ) +
   annotate("text", x = 2, y = 145, 
-           label = paste("Slope (m) =", round(slope, 2)), 
+           label = paste("Slope (a) =", round(slope, 2)), 
            color = "black", 
            hjust = 0, 
            vjust = 0, 
@@ -203,7 +203,7 @@ Isso significa que, ao usar o método dos quadrados mínimos, o modelo está ten
 
 #### Exemplo Visual
 
-Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros $a$ e $b$ que minimizam a RSS para criar a equação da reta.No gráfico gerado pelo código, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.
+Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros $a$ e $b$ que minimizam a RSS para criar a equação da reta.No gráfico acima, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.
 
 Veja na tabela abaixo, na última linha, que a soma dos erros é zero, mas o RSS é um número positivo.
 
@@ -280,7 +280,7 @@ y_lim <- range(c(y, manual_line1(x), manual_line2(x), manual_line3(x), predict(f
 
 # Adicionar as anotações de intercepto, inclinação e RSS
 annotate_text <- function(intercept, slope, rss) {
-  paste0("Intercept (b): ", round(intercept, 2), "\nSlope (m): ", round(slope, 2), "\nRSS: ", round(rss, 2))
+  paste0("Intercept (b): ", round(intercept, 2), "\nSlope (a): ", round(slope, 2), "\nRSS: ", round(rss, 2))
 }
 
 # Gráfico 1: Reta ajustada manualmente 
@@ -339,7 +339,7 @@ O **primeiro passo** é ter um dataframe com os valores de x e y, ou seja, com o
 
 ```{r}
 # dados fictícios 
-drinks  <- c( 5, 6, 7,10,11,12,14,18,19,20,22,23,25,28,30) # drinks por dia
+drinks  <- c( 5, 6, 7,10,11,12,14,18,19,20,22,23,25,28,30) # drinks por semana
 tobacco <- c( 3, 7,10,15,14,16,20,22,22,25,27,26,26,29,30) # cigarros por dia
 ggt     <- c(13,14,12,23,20,29,30,39,36,48,40,45,48,65,75)
 
@@ -389,12 +389,13 @@ model1 <- lm(ggt~drinks, data=df)
 model2 <- lm(ggt~tobacco, data=df)
 
 # Extraindo os coeficientes do modelo gerado para GGT e alcool
-a1<-coef(model1)[1]
-b1<-coef(model1)[2]
+# (a = inclinação, b = intercepto, como na equação y = ax + b)
+a1 <- coef(model1)[2]
+b1 <- coef(model1)[1]
 
 # Extraindo os coeficientes do modelo gerado para GGT e cigarro
-a2<-coef(model2)[1]
-b2<-coef(model2)[2]
+a2 <- coef(model2)[2]
+b2 <- coef(model2)[1]
 ```
 
 ```{r, echo=FALSE}
@@ -404,7 +405,7 @@ ggplot(df, aes(x = drinks, y = ggt)) +
         geom_segment(aes(x = drinks, y = ggt, xend = drinks, yend = predict(model1)), color = "red") +
         labs(title= "Relação entre consumo de álcool e GGT",
              subtitle = "Reta de Regressão Calculada com a função lm()") +
-        annotate("text", x = 5, y = 70, label = paste0("Intercept (a): ", round(a1, 6), "\nSlope (b): ", round(b1, 4)), hjust = 0, vjust = 1, size = 4) +
+        annotate("text", x = 5, y = 70, label = paste0("Intercept (b): ", round(b1, 4), "\nSlope (a): ", round(a1, 4)), hjust = 0, vjust = 1, size = 4) +
         scale_x_continuous(expand = c(0, 0), limits = c(0, NA)) + 
         scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
         theme_classic()
@@ -483,7 +484,7 @@ p <- plot_ly() |>
 p
 ```
 
-Com mais de 3 variáveis preditoras não há mais uma visualização possível, mas isso não impede que sejam usadas quantas variáveis forem necessárias. O formato básico do modelo é bastante simples, tal como no modelo simples, usando o operador `~` para separar a variável de desfecho das preditoras e usando o operador `+` para somar as variáveis preditoras.
+Com mais de 2 variáveis preditoras não há mais uma visualização possível, mas isso não impede que sejam usadas quantas variáveis forem necessárias. O formato básico do modelo é bastante simples, tal como no modelo simples, usando o operador `~` para separar a variável de desfecho das preditoras e usando o operador `+` para somar as variáveis preditoras.
 
 Vamos continuar analisando os níveis de GGT, mas agora incorporando ao nosso modelo tanto o consumo de álcool como de cigarros.
 
@@ -497,8 +498,8 @@ p1 <- ggplot(df, aes(x = drinks, y = ggt)) +
         geom_segment(aes(x = drinks, y = ggt, xend = drinks, yend = predict(model1)), color = "red") +
         labs(title= "Álcool e GGT",
              subtitle = "Reta de Regressão Calculada com a função lm()") +
-        annotate("text", x = 5, y = 70, label = paste0("Intercept (a): ", round(a1, 6), 
-                                                       "\nSlope (b): ", round(b1, 4)), hjust = 0, vjust = 1, size = 4) +
+        annotate("text", x = 5, y = 70, label = paste0("Intercept (b): ", round(b1, 4), 
+                                                       "\nSlope (a): ", round(a1, 4)), hjust = 0, vjust = 1, size = 4) +
         annotate("text", x = 5, y = 60, label = paste0("r: ", round(r1, 2)), hjust = 0, vjust = 1, size = 4) + 
         scale_x_continuous(expand = c(0, 0), limits = c(0, NA)) + 
         scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
@@ -510,8 +511,8 @@ p2 <- ggplot(df, aes(x = tobacco, y = ggt)) +
         geom_segment(aes(x = tobacco, y = ggt, xend = tobacco, yend = predict(model2)), color = "red") +
         labs(title= "Cigarro e GGT",
              subtitle = "Reta de Regressão Calculada com a função lm()") +
-        annotate("text", x = 5, y = 70, label = paste0("Intercept (a): ", round(a2, 6), 
-                                                       "\nSlope (b): ", round(b2, 4)), hjust = 0, vjust = 1, size = 4) + 
+        annotate("text", x = 5, y = 70, label = paste0("Intercept (b): ", round(b2, 4), 
+                                                       "\nSlope (a): ", round(a2, 4)), hjust = 0, vjust = 1, size = 4) + 
         annotate("text", x = 5, y = 60, label = paste0("r: ", round(r2, 2)), hjust = 0, vjust = 1, size = 4) + 
         scale_x_continuous(expand = c(0, 0), limits = c(0, NA)) + 
         scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +

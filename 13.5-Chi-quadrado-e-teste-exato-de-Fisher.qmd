@@ -6,7 +6,7 @@ O argumento para a realização desse teste no R é, portanto, uma tabela de con
 
 Vamos usar os dados de uma pesquisa sobre a efetividade dos capacetes de bicicleta na prevenção de trauma crânio-encefálico (TCE), tal como exemplificado por Pagano e Gauvreau [@Pagano2022]. O objetivo aqui é avaliar, num estudo de caso controle, se o uso de capacetes reduz o risco de Trauma Crânio Encefálico.
 
-```{r chi_quadrado, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mtabela chi quadrado'}
+```{r chi_quadrado, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Tabela do teste do qui-quadrado'}
 knitr::include_graphics("images/Tabela2x2_Capacete.png")
 ```
 
@@ -109,7 +109,7 @@ result_chi <- chisq.test(tab5)
 str(result_chi)
 ```
 
-O valor de p pode ser extraido com o comando `result_chi$pvalue`, como feito abaixo:
+O valor de p pode ser extraido com o comando `result_chi$p.value`, como feito abaixo:
 
 ```{r}
 result_chi$p.value
@@ -142,7 +142,7 @@ Para encontrarmos o mesmo resultado, precisamos ajustar esse argumento, inserind
 fisher.test(tea_tasting, alternative = "greater")
 ```
 
-É possível fazer o teste de Fisher diretamente com os dados de um data frame, sem necessidade de tabulação previa dos dados. Vamos usar novamente o data frame `Arthritis`, do pacote `vcd`.
+É possível fazer o teste de Fisher diretamente com os dados de um data frame, bastando tabular os dados com `table()` e passar a tabela para `fisher.test()`. Vamos usar novamente o data frame `Arthritis`, do pacote `vcd`.
 
 ```{r}
 fisher.test(tab5)

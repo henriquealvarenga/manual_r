@@ -116,8 +116,8 @@ Podemos incluir título, subtitulo, notas de rodapé no gráfico do ggplot simpl
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2")
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2")
 ```
 
 #### Legendas(nomes) dos eixos
@@ -128,8 +128,8 @@ A função `labs` permite também incluir no gráfico os nomes dos eixos. O argu
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") 
 ```
@@ -159,8 +159,8 @@ Eu gosto muito do tema clássico: `theme_classic()`. Para usar esse tema, basta 
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic()
@@ -172,8 +172,8 @@ O `theme_minimal()` inclui algumas linhas horizontais e verticais para facilitar
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_minimal()
@@ -185,8 +185,8 @@ O `theme_linedraw()` incluir linhas dentro do gráfico e uma caixa ao redor do g
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_linedraw()
@@ -198,8 +198,8 @@ O `theme_void()` retira os eixos e os nomes dos eixos.
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_void()
@@ -217,8 +217,8 @@ Com o ggplot é fácil rotacionar o gráfico: basta mapear a variável categóri
 ggplot(mpg, aes(y=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        y = "Tipo de tração", 
        x = "Número de carros") +
   theme_classic()
@@ -234,22 +234,22 @@ Como exemplo, vamos criar diversos desses gráficos de barras, de acordo com o n
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic() + 
   facet_wrap(~cyl)
 ```
 
-É possível também criar uma grade, estratificando o gráfico com duas variáveis. Nesse caso as variáveis serão inseridas com o operador `~` entre elas nos argumentos dessas funções. por exemplo: `facet_grid(cyl~yearl)`.
+É possível também criar uma grade, estratificando o gráfico com duas variáveis. Nesse caso as variáveis serão inseridas com o operador `~` entre elas nos argumentos dessas funções. por exemplo: `facet_grid(cyl~year)`.
 
 ```{r}
 ggplot(mpg, aes(x=drv, fill=fl)) +
   geom_bar() +
   labs(title = "Tipo de tração e Tipo de combustível",
        subtitle = "234 Carros populares de 1998 e 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic() + 
@@ -297,9 +297,9 @@ ggplot(mpg, aes(x=hwy)) +
   geom_density(aes(fill=drv), alpha = 0.5) +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
-       y = "Número de carros") +
+       y = "Densidade") +
   theme_classic()
 ```
 
@@ -319,9 +319,9 @@ mpg <- mpg |>
 # plotando novamente o gráfico
 ggplot(mpg, aes(x=drv)) +
   geom_bar() +
-  labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+  labs(title = "Tipo de tração",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic()
@@ -337,9 +337,9 @@ mpg <- mpg |>
 # plotando novamente o gráfico
 ggplot(mpg, aes(x=drv)) +
   geom_bar() +
-  labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+  labs(title = "Tipo de tração",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic()
@@ -352,9 +352,9 @@ O argumento width da função geom_bar() permite alterar a largura das barras do
 ```{r}
 ggplot(mpg, aes(x=drv)) +
   geom_bar(width = 0.2) +
-  labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+  labs(title = "Tipo de tração",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Número de carros") +
   theme_classic()
@@ -385,9 +385,9 @@ Veja que o novo dataset (`newdataset`) tem apenas 3 variáveis agora, drv, n e p
 
 ggplot(newdataset, aes(x=drv, y=perc)) +
   geom_col(width = 0.5) +
-  labs(title = "Tipo de tração e Tipo de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+  labs(title = "Tipo de tração",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Tipo de tração", 
        y = "Percentual de carros") +
   theme_classic()
@@ -401,9 +401,9 @@ Um histograma representa a distribuição dos valores de dados dividindo a faixa
 
 A função do ggplot para plotar um histograma é o `geom_histogram()`.
 
-Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de milhas percorridas com 1 galão de combustível quando rodando em estradas) e `cty` (quantidade de milhas percorridas com 1 galão de combustível quando rodando na cidade).
+Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (milhas percorridas com 1 galão de combustível na estrada) e `cty` (quantidade de milhas percorridas com 1 galão de combustível quando rodando na cidade).
 
-```{r, warning=FALSE, message=FALSE}
+```{r}
 ggplot(mpg, aes(x=hwy)) +
   geom_histogram() 
 ```
@@ -418,8 +418,8 @@ Podemos melhorar esse gráfico ajustando para 15 barras, e também inserindo o t
 ggplot(mpg, aes(x=hwy)) +
   geom_histogram(bins = 15) +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
        y = "Número de carros") +
   theme_classic()
@@ -433,8 +433,8 @@ Podemos mudar as cores usadas com os argumentos `col` e `fill`. O argumento `col
 ggplot(mpg, aes(x=hwy)) +
   geom_histogram(bins = 15, col="darkblue", fill="lightblue") +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
        y = "Número de carros") +
   theme_classic()
@@ -448,8 +448,8 @@ Podemos, assim como fizemos com gráficos de barras, plotar diversos histogramas
 ggplot(mpg, aes(x=hwy)) +
   geom_histogram(bins = 15, col="darkblue", fill="lightblue") +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
        y = "Número de carros") +
   theme_classic() + 
@@ -466,7 +466,7 @@ Eles são especialmente úteis para visualizar padrões em dados contínuos, ide
 
 A função do ggplot para plotar um gráfico de densidade é o `geom_density()`.
 
-Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de galões o carro consome quando rodando em estradas) e `cty` (quantidade de galões o carro consome quando rodando na cidade).
+Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (milhas percorridas com 1 galão de combustível na estrada) e `cty` (milhas percorridas com 1 galão de combustível na cidade).
 
 ```{r}
 ggplot(mpg, aes(x=hwy)) +
@@ -484,9 +484,9 @@ ggplot(mpg, aes(x=hwy)) +
   geom_density(aes(col=drv)) +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
-       y = "Número de carros") +
+       y = "Densidade") +
   theme_classic()
 ```
 
@@ -497,9 +497,9 @@ ggplot(mpg, aes(x=hwy)) +
   geom_density(aes(fill=drv), alpha=0.5) +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
-       y = "Número de carros") +
+       y = "Densidade") +
   theme_classic()
 ```
 
@@ -512,9 +512,9 @@ ggplot(mpg, aes(x=c(hwy))) +
   geom_density(aes(fill=drv), alpha = 0.5) +
   labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas", 
-       y = "Número de carros") +
+       y = "Densidade") +
   theme_classic() + 
   facet_grid(~drv)
 ```
@@ -531,7 +531,7 @@ Um Boxplot também facilita a comparação entre diferentes conjuntos numéricos
 
 A função do `ggplot` para construir um boxplot é o `geom_boxplot()`.
 
-Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (quantidade de galões o carro consome quando rodando em estradas) e, em seguida, `cty` (quantidade de galões o carro consome quando rodando na cidade).
+Como exemplo, vamos continuar usando o dataset `mpg`, analisando agora as variáveis `hwy` (milhas percorridas com 1 galão de combustível na estrada) e, em seguida, `cty` (milhas percorridas com 1 galão de combustível na cidade).
 
 ```{r}
 ggplot(mpg, aes(x=hwy)) +
@@ -544,8 +544,8 @@ Da mesma forma que fizemos antes, podemos incluir facilmente o título, subtítu
 ggplot(mpg, aes(x=hwy)) +
   geom_boxplot() +
    labs(title = "Milhas percorridas na estrada com um galão de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas") +
   theme_classic() 
 ```
@@ -558,8 +558,8 @@ Podemos definir a cor de um boxplot com os argumentos col e fill, como mostrado 
 ggplot(mpg, aes(x=hwy)) +
   geom_boxplot(col="darkblue", fill="lightblue") +
    labs(title = "Milhas percorridas na estrada com um galão de combustível",
-       subtitle = "234 Carros populares de 1998 a 2008",
-       caption = "fonte: dataset mgp do ggplot2",
+       subtitle = "234 Carros populares de 1999 e 2008",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas") +
   theme_classic() 
 ```
@@ -578,7 +578,7 @@ ggplot(mpg, aes(x=hwy, y=drv)) +
   geom_boxplot() +
    labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas") +
   theme_classic() 
 ```
@@ -590,7 +590,7 @@ ggplot(mpg, aes(x=hwy)) +
   geom_boxplot(aes(fill=drv)) +
    labs(title = "Milhas percorridas na estrada com um galão de combustível",
        subtitle = "de acordo com o tipo de tração do carro",
-       caption = "fonte: dataset mgp do ggplot2",
+       caption = "fonte: dataset mpg do ggplot2",
        x = "Milhas") +
   theme_classic() 
 ```
@@ -641,14 +641,14 @@ As variáveis desse dataset são:
 Vamos criar um gráfico de dispersão para analisar as relação entre o peso do diamante (variável `carat`) e seu preço (variável `price`).
 
 ```{r}
-ggplot(diamonds, aes(x=price, y=carat)) +
+ggplot(diamonds, aes(x=carat, y=price)) +
   geom_point()
 ```
 
 Podemos inserir a reta de regressão num scatter plot com o seguinte comando
 
 ```{r}
-ggplot(diamonds, aes(x=price, y=carat)) +
+ggplot(diamonds, aes(x=carat, y=price)) +
   geom_point() +
   geom_smooth(method='lm', formula= y~x)
 ```
@@ -790,7 +790,7 @@ Entretanto, se você desejar usar o R base, é possível customizar os gráficos
 
 #### Cores
 
-Para alterar as cores de um gráfico do R base, você pode usar o argumento `col` ou `col.axis` para alterar a cor dos pontos, linhas, eixos, rótulos e outros elementos do gráfico. Por exemplo, vamos alterar a cor dos pontos de um scatter plot para vermelho. Digite `colors()` no console para ver a lista das 667 cores disponíveis no R.
+Para alterar as cores de um gráfico do R base, você pode usar o argumento `col` ou `col.axis` para alterar a cor dos pontos, linhas, eixos, rótulos e outros elementos do gráfico. Por exemplo, vamos alterar a cor dos pontos de um scatter plot para vermelho. Digite `colors()` no console para ver a lista das 657 cores disponíveis no R.
 
 ```{r}
 # Criando um scatter plot
@@ -801,13 +801,13 @@ Além dessas cores, é possível instalar pacotes de paletas de cores no R. Exis
 
 #### Títulos e rótulos dos eixos
 
-Para adicionar títulos e legendas a um gráfico do R base, usamos as funções `main()`, `sub()`, `xlab()` e `ylab()` para adicionar títulos, subtítulos e rótulos aos eixos x e y. Por exemplo, vamos adicionar um título e rótulos aos eixos x e y de um scatter plot.
+Para adicionar títulos e legendas a um gráfico do R base, usamos os argumentos `main`, `sub`, `xlab` e `ylab` para adicionar títulos, subtítulos e rótulos aos eixos x e y. Por exemplo, vamos adicionar um título e rótulos aos eixos x e y de um scatter plot.
 
 ```{r}
 # Criando um scatter plot
 plot(diamonds$price, diamonds$carat, 
      main = "Relação entre preço e peso do diamante", # adiciona um título
-     sub = "usando dataset diamond do ggpplot2",      # adiciona um subtítulo
+     sub = "usando dataset diamonds do ggplot2",      # adiciona um subtítulo
      xlab="Preço do diamante",                        # adiciona um nome ao eixo x
      ylab="Peso do diamante")                         # adiciona um nome ao eixo y
 ```
@@ -823,7 +823,7 @@ plot(diamonds$price, diamonds$carat,
      cex = 0.5,                                       # ajusta o tamanho dos pontos
      col = "blue",                                    # altera a cor dos pontos para azul
      main = "Relação entre preço e peso do diamante", # adiciona um título
-     sub = "usando dataset diamond do ggpplot2",      # adiciona um subtítulo
+     sub = "usando dataset diamonds do ggplot2",      # adiciona um subtítulo
      xlab="Preço do diamante",                        # adiciona um nome ao eixo x
      ylab="Peso do diamante")                         # adiciona um nome ao eixo y
 ```
@@ -877,9 +877,9 @@ Para estratificar os dados de acordo com uma variável categórica em um gráfic
 plot(diamonds$price, diamonds$carat, 
      pch=20,                                          # altera o tipo de ponto
      cex = 0.5,                                       # ajusta o tamanho dos pontos
-     col = diamonds$cut,                              # altera a cor dos pontos para azul
+     col = diamonds$cut,                              # colore os pontos conforme a qualidade do corte (cut)
      main = "Relação entre preço e peso do diamante", # adiciona um título
-     sub = "usando dataset diamond do ggpplot2",      # adiciona um subtítulo
+     sub = "usando dataset diamonds do ggplot2",      # adiciona um subtítulo
      xlab="Preço do diamante",                        # adiciona um nome ao eixo x
      ylab="Peso do diamante")                         # adiciona um nome ao eixo y
 

@@ -71,7 +71,7 @@ log(10)
 
 Podemos verificar alguns dos argumentos possíveis de serem passados para uma função digitando a tecla `tab` quando o cursor estiver dentro da função. Quando clicamos a tecla `tab` o RStudio abre um menu contextual com os mais importantes argumentos da função. Veja nas imagens abaixo alguns exemplos.
 
-```{r RStudio-4Panels, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='argumentos da função.'}
+```{r function-arguments, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='argumentos da função.'}
 knitr::include_graphics("images/arguments.png")
 ```
 

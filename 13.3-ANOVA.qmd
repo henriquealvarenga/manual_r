@@ -28,9 +28,9 @@ head(mydata)
 str(mydata)
 ```
 
-Observe que esse dataset já está no formato long, conforme explicado no capítulo sobre data frames \@ref(Dataframes).
+Observe que esse dataset já está no formato long, conforme explicado no capítulo sobre data frames (@sec-dataframes).
 
-Podemos inicialmente computar as estatísticas básicas com a função `summarise()` do pacote `dplyr`, conforme explicado no capítulo sobre esse pacote \@ref(dplyr).
+Podemos inicialmente computar as estatísticas básicas com a função `summarise()` do pacote `dplyr`, conforme explicado na seção sobre esse pacote (@sec-dplyr).
 
 ```{r}
 group_by(mydata, group) |>
@@ -39,7 +39,7 @@ group_by(mydata, group) |>
             sd = sd(weight, na.rm = TRUE))
 ```
 
-Podemos também visualizar esses conjuntos com um boxplot, conforme explicado no capítulo sobre `ggplot` \@ref(ggplot).
+Podemos também visualizar esses conjuntos com um boxplot, conforme explicado no capítulo sobre `ggplot` (@sec-ggplot).
 
 ```{r}
 ggplot(mydata, aes(x=group, y=weight, fill=group)) +
@@ -67,7 +67,7 @@ A coluna Pr(\>F) indica o valor de p do teste ANOVA. Como o valor foi menor que 
 
 Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences, para realizar comparações múltiplas de pares entre as médias dos grupos.
 
-A função `TukeyHD()` usa o modelo ANOVA que já criamos como argumento.
+A função `TukeyHSD()` usa o modelo ANOVA que já criamos como argumento.
 
 ```{r}
 TukeyHSD(modelo_ANOVA)

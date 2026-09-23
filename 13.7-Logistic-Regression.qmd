@@ -125,7 +125,7 @@ head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart antes da no
 
 Na regressão logística, a normalização dos dados é um passo crucial no pré-processamento que garante que todas as variáveis do conjunto de dados contribuam de maneira equilibrada para o modelo. A função sigmoide utilizada na regressão logística é **sensível às escalas das variáveis de entrada**; variáveis com valores numéricos maiores podem ter um impacto desproporcional no processo de otimização, influenciando a convergência e o ajuste dos coeficientes.
 
-Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de **0 a 15**, enquanto o consumo de álcool varia de **0 a 147 mg/dL**. Se essas variáveis forem usadas diretamente no modelo sem normalização, o consumo de álcool, por ter uma escala numérica significativamente maior, pode **dominar o processo de ajuste**, ofuscando o efeito da LDL e de outras variáveis com escalas menores.
+Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de **0 a 15**, enquanto o consumo de álcool varia de **0 a 147 gramas por dia**. Se essas variáveis forem usadas diretamente no modelo sem normalização, o consumo de álcool, por ter uma escala numérica significativamente maior, pode **dominar o processo de ajuste**, ofuscando o efeito da LDL e de outras variáveis com escalas menores.
 
 A normalização ajusta os valores para uma escala comum—geralmente entre 0 e 1 ou com média zero e desvio padrão um—permitindo que todas as variáveis tenham um **impacto equilibrado** no modelo. Isso melhora a eficiência do algoritmo de otimização e ajuda a garantir que o modelo capture de forma adequada as relações entre as variáveis independentes e a variável dependente.
 
@@ -278,7 +278,7 @@ Função `predict()`: Essa função é utilizada para gerar previsões a partir 
 
 Argumentos da função: `SAheart_model`: O modelo de regressão logística já treinado com os dados de treinamento. `newdata` = `SAheart_test_data`: O conjunto de dados sobre o qual queremos fazer as previsões, neste caso, os dados de teste. `type` = "response": Especifica que queremos as probabilidades previstas (valores entre 0 e 1) em vez dos valores brutos da função linear.
 
-O modelo glm_model calcula a probabilidade de cada paciente no conjunto de teste ter a condição que estamos estudando. Essas probabilidades são armazenadas em uma nova coluna chamada `predictedprob` dentro do `SAheart_test_data`.
+O modelo `SAheart_model` calcula a probabilidade de cada paciente no conjunto de teste ter a condição que estamos estudando. Essas probabilidades são armazenadas em uma nova coluna chamada `predictedprob` dentro do `SAheart_test_data`.
 
 ```{r}
 head(SAheart_test_data) |>  
@@ -339,7 +339,7 @@ plot(roc_curve, main = "Curva ROC", col = "blue")
 
 A Curva ROC (Receiver Operating Characteristic) é uma ferramenta gráfica usada para avaliar o desempenho de um modelo de classificação binária. Ela traça a relação entre a taxa de verdadeiros positivos (TPR ou Sensibilidade) e a taxa de falsos positivos (FPR ou 1 - Especificidade) em diferentes pontos de corte (thresholds).
 
-Taxa de Verdadeiros Positivos (True Positive Rate - TPR), também conhecida como Sensibilidade ou Recall, representa a proporção de positivos corretamente identificados pelo modelo. Taxa de Falsos Positivos (False Positive Rate - FPR), é o número de verdadeiros negativos. Representa a proporção de negativos incorretamente classificados como positivos.
+Taxa de Verdadeiros Positivos (True Positive Rate - TPR), também conhecida como Sensibilidade ou Recall, representa a proporção de positivos corretamente identificados pelo modelo. Taxa de Falsos Positivos (False Positive Rate - FPR) representa a proporção de negativos incorretamente classificados como positivos.
 
 ### Avaliação da Curva ROC
 

@@ -144,7 +144,7 @@ runif(10) |>
 
 **Exemplo 2: Simulação de Lançamento moeda**
 
-Como veremos no capítulo sobre simulação, a função `sample()` server para realizarmos amostragens. Podemos usar a função `replicate()` para simular várias repetições de amostragens.
+A função `sample()` serve para realizarmos amostragens. Podemos usar a função `replicate()` para simular várias repetições de amostragens.
 
 Vamos criar um objeto simulando uma moeda e usar a função `sample()` para sortear um dos valores desse objeto (cara ou coroa). O argumento `replace = TRUE` é necessário, pois os valores possíveis podem ser repetido em cada sorteio.
 
@@ -177,7 +177,7 @@ Os números pseudoaleatórios gerados por algoritmos, produzem sequências de n�
 
 Na linguagem R a função `set.seed()` define o valor inicial do gerador de números pseudoaleatórios. Ao fixar essa semente, você garante que os resultados da geração de números aleatórios possam ser reproduzidos. Isso significa que, se você e outra pessoa executarem o mesmo código com a mesma semente, ambos obterão exatamente os mesmos números aleatórios.
 
-No capítulo de Simulações mostramos que podemos cirar conjuntos de números aleatórios com diferentes distribuições, usando as funções `runif()` (distribuição uniforme), `rnorm()` (distribuição normal), `rt()` (distribuição t), `rchisq()` (distribuição Chi-quadrado) etc.
+No capítulo sobre distribuições (@sec-distribuicoes) vimos que podemos criar conjuntos de números aleatórios com diferentes distribuições, usando as funções `runif()` (distribuição uniforme), `rnorm()` (distribuição normal), `rt()` (distribuição t), `rchisq()` (distribuição Chi-quadrado) etc.
 
 Veremos a seguir como usar o R para realizar amostragens e como associar as funções de randomização com as funções de amostragem.
 
@@ -342,7 +342,7 @@ ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
               aes(x = x, ymin = ymin, ymax = ymax),
               fill = "red", alpha = 0.5) +  # Área sob a curva
   annotate("rect", xmin = x_min, xmax = x_max, ymin = 0, ymax = y_max, color = "black", fill = NA, linetype = "dashed") +
-  scale_x_continuous(limits = c(2, 8), breaks = seq(2, 8, by = 2)) +  # Limitar o eixo x de 0 a 10 com marcações nos números pares
+  scale_x_continuous(limits = c(2, 8), breaks = seq(2, 8, by = 2)) +  # Limitar o eixo x de 2 a 8 com marcações nos números pares
   labs(title = expression("Área sob a curva " * y == x^2),
        x = "x",
        y = expression(y == x^2)) +
@@ -403,7 +403,7 @@ ggplot() +
 Para estimar a área sob a curva usando a simulação de Monte Carlo, seguimos os seguintes passos:
 
 1.  **Definir o modelo**: No nosso caso, o mnodelo é a função $y = x^2$ e os limites são `x = 4` e `x = 6`.
-2.  **Gerar Pontos Aleatórios**: Geramos pontos aleatórios dentro do retângulo que envolve a região de interesse. Este retângulo vai de x = 3 a x = 4 e de y = 0 até o valor máximo de y neste caso, y = 16 porque $4^2 = 16$).
+2.  **Gerar Pontos Aleatórios**: Geramos pontos aleatórios dentro do retângulo que envolve a região de interesse. Este retângulo vai de x = 4 a x = 6 e de y = 0 até o valor máximo de y (neste caso, y = 36, porque $6^2 = 36$).
 3.  **Contar Pontos Abaixo da Curva**: Verificamos quantos pontos aleatórios caem abaixo da curva $y = x^2$.
 4.  **Calcular a Área**: A proporção de pontos abaixo da curva, multiplicada pela área do retângulo, nos dá a estimativa da área abaixo da curva.
 
@@ -464,12 +464,12 @@ Vamos exemplificar também o uso da Simulação de Monte Carlo para calcular o v
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot() +
   coord_fixed(ratio = 1) +
-  geom_rect(aes(xmin = -1, xmax = 1, ymin = -1, ymax = 1), 
-            fill = "white", alpha = 0.4, color = "black") +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE) + 
-  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 0, colour = "red"), show.legend = FALSE) +
+  annotate("rect", xmin = -0.5, xmax = 0.5, ymin = -0.5, ymax = 0.5, 
+           fill = "white", alpha = 0.4, color = "black") +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE) + 
+  annotate("segment", x = 0, y = 0, xend = 0.5, yend = 0, colour = "red") +
   annotate("point", x = 0, y = 0, colour = "red") +
-  annotate("text", label="r = 1" , x = 0.5, y = 0.125, colour = "red", fontface="bold") +
+  annotate("text", label = "r = 0.5", x = 0.25, y = 0.06, colour = "red", fontface = "bold") +
   theme_classic()
 ```
 

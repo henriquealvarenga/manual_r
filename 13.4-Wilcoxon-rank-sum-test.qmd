@@ -9,7 +9,7 @@ library(tibble)
 library(tidyr)
 ```
 
-O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento `PAIRED=TRUE`.
+O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento `paired = TRUE`.
 
 Veja como realizar os Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no test t realizado anteriormente.
 
