@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Os tipos de dados referem-se às categorias de valores que R pode manipular. Cada tipo de dado determina o tipo de operação que pode ser realizada e a forma como os dados são armazenados. Por exemplo, o tipo <strong>numeric</strong> abrange números de ponto flutuante, enquanto <strong>integer</strong> inclui apenas valores inteiros. <strong>Character</strong> se refere a dados textuais ou strings, <strong>logical</strong> trata de valores booleanos (<code>TRUE</code> ou <code>FALSE</code>), e <strong>complex</strong> abrange números complexos. Existe também o tipo <strong>raw</strong>, que representa bytes brutos. Esses tipos de dados são fundamentais para definir as características básicas dos valores individuais em R.</p>
 <p>As estruturas de dados, por outro lado, referem-se às maneiras como esses valores individuais podem ser organizados e armazenados em coleções. Enquanto os tipos de dados tratam de valores individuais, as estruturas de dados lidam com conjuntos de valores.</p>
 <p><strong>Vetores (Vectors)</strong> são estruturas unidimensionais homogêneas, onde todos os elementos são do mesmo tipo. <strong>Fatores (Factors)</strong> são usados para representar dados categóricos e são uma forma especializada de vetor. <strong>Listas (Lists)</strong> são estruturas heterogêneas, onde os elementos podem ser de diferentes tipos, oferecendo uma flexibilidade significativa na manipulação de dados complexos.</p>
-<p><strong>Matrizes (Matrices)</strong> são bidimensionais e homogêneas, adequadas para dados tabulares. <strong>Arrays</strong> são uma extensão das matrizes para múltiplas dimensões, mantendo a homogeneidade dos dados. <strong>Data Frames</strong> são estruturas bidimensionais heterogêneas, onde cada coluna pode conter diferentes tipos de dados, sendo amplamente usados para manipulação de dados tabulares em análises estatísticas. Veremos adiantes que as <strong>Tibbles</strong> são data frames modernos.</p>
+<p><strong>Matrizes (Matrices)</strong> são bidimensionais e homogêneas, adequadas para dados tabulares. <strong>Arrays</strong> são uma extensão das matrizes para múltiplas dimensões, mantendo a homogeneidade dos dados. <strong>Data Frames</strong> são estruturas bidimensionais heterogêneas, onde cada coluna pode conter diferentes tipos de dados, sendo amplamente usados para manipulação de dados tabulares em análises estatísticas. Veremos adiante que as <strong>Tibbles</strong> são data frames modernos.</p>
 <p>Além disso, existem tipos especializados para trabalhar com datas e tempos, como <strong>Date</strong> para datas e <strong>POSIXct</strong>/<strong>POSIXlt</strong> para datetimes, permitindo a manipulação eficiente de informações temporais.</p>
 <p>A principal diferença entre tipos de dados e estruturas de dados reside na granularidade e na finalidade. Os tipos de dados definem as propriedades básicas e os comportamentos dos valores individuais. Já as estruturas de dados organizam esses valores em conjuntos, permitindo a manipulação de dados em níveis mais complexos e estruturados. Enquanto tipos de dados são o alicerce para os valores básicos, as estruturas de dados são a construção que permite a organização e a manipulação de coleções desses valores em R.</p>
 <table class="caption-top table">
@@ -600,8 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="variáveis-no-r" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="variáveis-no-r"><span class="header-section-number">5.2</span> Variáveis no R</h2>
-<p>A ciência depende de dados, que são gerados a partir de alguma forma de coleta ou transformação de outros dados. Tudo que poder ser contado ou quantificado será armazenado numa variável. Uma variável deve ser entendida como um objeto que contém os resultados dessa coleta ou transformação de dados.</p>
-<p>Mas dados podem ser coletados de diferentes modos: algumas dados são provenientes de algo que foi contado, outros dados provém de algo que foi medido. Contar e medir fornecem diferentes tipos de dados. Podemos por exemplo, contar o número de pessoas com AIDS, o número de eleitores de um determinado político, o número de óbitos, de nascimentos etc. Por outro lado, podemos medir o perímetro cefálico de crianças recém-nascidas, o nível pressórico ou de glicemia de um grupo de pacientes, etc.</p>
+<p>A ciência depende de dados, que são gerados a partir de alguma forma de coleta ou transformação de outros dados. Tudo que pode ser contado ou quantificado será armazenado numa variável. Uma variável deve ser entendida como um objeto que contém os resultados dessa coleta ou transformação de dados.</p>
+<p>Mas dados podem ser coletados de diferentes modos: alguns dados são provenientes de algo que foi contado, outros dados provêm de algo que foi medido. Contar e medir fornecem diferentes tipos de dados. Podemos por exemplo, contar o número de pessoas com AIDS, o número de eleitores de um determinado político, o número de óbitos, de nascimentos etc. Por outro lado, podemos medir o perímetro cefálico de crianças recém-nascidas, o nível pressórico ou de glicemia de um grupo de pacientes, etc.</p>
 </section>
 <section id="tipos-de-variáveis" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="tipos-de-variáveis"><span class="header-section-number">5.3</span> Tipos de Variáveis</h2>
@@ -615,13 +615,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Veremos também que na computação existem outros tipos de variáveis, tais como variáveis lógicas, strings, caracteres etc.</p>
 <section id="variáveis-categóricas-ou-qualitativas" class="level4" data-number="5.3.0.1">
 <h4 data-number="5.3.0.1" class="anchored" data-anchor-id="variáveis-categóricas-ou-qualitativas"><span class="header-section-number">5.3.0.1</span> Variáveis Categóricas ou Qualitativas</h4>
-<p>Algumas variáveis são nomes que expressão uma qualidade (que podem ter ou não uma ordenação). Em estatística essas variáveis são chamadas categóricas e podem se dividir em nominais ou ordinais. Os dados que não possuem nenhuma ordenação, são armazenados em variáveis categóricas nominais.</p>
+<p>Algumas variáveis são nomes que expressam uma qualidade (que podem ter ou não uma ordenação). Em estatística essas variáveis são chamadas categóricas e podem se dividir em nominais ou ordinais. Os dados que não possuem nenhuma ordenação, são armazenados em variáveis categóricas nominais.</p>
 <p>Variáveis categóricas nominais expressam qualidades, mas sem uma ordenação, tal como sexo, raça, local de nascimento etc.</p>
-<p>Variáveis categóricas ordinais também expressão qualidades, mas tem uma ordenação, tais como grau de obesidade (leve, moderado, grave), estancamento do câncer (estágio I, estágio II, estágio III) etc.</p>
-<p>No R as variáveis categóricas são chamados de <code>factor</code>, independente de serem nominais ou ordinais. Caso sejam variáveis categóricas ordinais, ou seja, caso exista uma ordem certa entre os elementos, existem meios de indicar isso para o R.</p>
-<p>Frequentente precisamos indicar ao R que uma determinada variável é categórica. Em algumas situações o R pode interpretar uma variável como numérica quando na verdade é categórica. É usual em pesquisas em os sexos sejam codificados com números, por exemplo 0 = Masculino, 1 = Feminino. Nesse caso, a variável <code>sexo</code> iria ser interpretada no R como um vetor numérico. Entretanto, os elementos desse vetor não representam números de verdade, mas são apenas símbolos para indicar os sexo masculino ou feminino.</p>
+<p>Variáveis categóricas ordinais também expressam qualidades, mas têm uma ordenação, tais como grau de obesidade (leve, moderado, grave), estadiamento do câncer (estágio I, estágio II, estágio III) etc.</p>
+<p>No R as variáveis categóricas são chamadas de <code>factor</code>, independente de serem nominais ou ordinais. Caso sejam variáveis categóricas ordinais, ou seja, caso exista uma ordem certa entre os elementos, existem meios de indicar isso para o R.</p>
+<p>Frequentemente precisamos indicar ao R que uma determinada variável é categórica. Em algumas situações o R pode interpretar uma variável como numérica quando na verdade é categórica. É usual em pesquisas que os sexos sejam codificados com números, por exemplo 0 = Masculino, 1 = Feminino. Nesse caso, a variável <code>sexo</code> iria ser interpretada no R como um vetor numérico. Entretanto, os elementos desse vetor não representam números de verdade, mas são apenas símbolos para indicar o sexo masculino ou feminino.</p>
 <p>Vejamos um exemplo num conjunto fictício de dados de uma pesquisa com nomes, sexo e idade de alguns participantes. Esse conjunto de dados será armazenado num objeto do tipo data frame. Esse tipo de objeto será discutido mais adiante, por enquanto basta entender que um data frame é como uma planilha, com linhas e colunas. Nesse exemplo nosso data frame será denominado de <code>df</code>. Poderíamos escolher qualquer outro nome. Iremos discutir mais sobre esses objetos no capítulo adiante sobre Dataframes e Tibbles (<a href="06-Dataframes-and-Tibbles.html" class="quarto-xref"><span>Capítulo 6</span></a>).</p>
-<p>No código abaixo você irá ver também um operador do R, o operador de atribuição: <code>&lt;-</code> que indica que o que está à direita do operador será atribuido ao objeto à esquerda. Iremos detalhar mais sobre isso no capítulo adiante sobre operadores do R (<a href="07-Operators.html" class="quarto-xref"><span>Capítulo 7</span></a>).</p>
+<p>No código abaixo você irá ver também um operador do R, o operador de atribuição: <code>&lt;-</code> que indica que o que está à direita do operador será atribuído ao objeto à esquerda. Iremos detalhar mais sobre isso no capítulo adiante sobre operadores do R (<a href="07-Operators.html" class="quarto-xref"><span>Capítulo 7</span></a>).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando os vetores com os dados</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nome  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Eduardo"</span>,<span class="st">"José"</span>,<span class="st">"Antônio"</span>,<span class="st">"Pedro"</span>,<span class="st">"Maria"</span>,<span class="st">"Gustavo"</span>)</span>
@@ -713,7 +713,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>As variáveis categóricas não podem ser usadas em operações aritméticas. Não podemos, por exemplo, calcular a média desse tipo de variável. O que podemos fazer com variáveis categóricas é construir tabelas de frequências de cada categoria.</p>
-<p>Ou seja, podemos pedir ao R para contar o número absoluto ou a freqüência relativa dos resultados. A função para tabular os dados de variáveis categóricas é <code>table()</code>.</p>
+<p>Ou seja, podemos pedir ao R para contar o número absoluto ou a frequência relativa dos resultados. A função para tabular os dados de variáveis categóricas é <code>table()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>sexo)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -818,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="variáveis-lógicas" class="level4" data-number="5.3.0.3">
 <h4 data-number="5.3.0.3" class="anchored" data-anchor-id="variáveis-lógicas"><span class="header-section-number">5.3.0.3</span> Variáveis Lógicas</h4>
-<p>Variáveis lógicas são aquelas que armazenam resultados de operações lógicas. Operações lógicas são aquelas realizadas através de relacionais: igual, maior, maior ou igual, menor, menor ou igual, etc. Como já vimos resultado dessas operação não é um número, mas sim FALSO ou VERDADEIRO, e esse resultado pode ser armazenada numa variável. No exemplo uma operação lógica é realizada e seu resultado é colocado numa variável chamada teste.</p>
+<p>Variáveis lógicas são aquelas que armazenam resultados de operações lógicas. Operações lógicas são aquelas realizadas através de relacionais: igual, maior, maior ou igual, menor, menor ou igual, etc. Como já vimos, o resultado dessas operações não é um número, mas sim FALSO ou VERDADEIRO, e esse resultado pode ser armazenado numa variável. No exemplo uma operação lógica é realizada e seu resultado é colocado numa variável chamada teste.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
@@ -852,18 +852,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="5.4.0.1" class="anchored" data-anchor-id="a-função-c"><span class="header-section-number">5.4.0.1</span> A função <code>c()</code></h4>
 <p>A função <code>c()</code>, abreviação de “combine” ou “concatenate” (combinar ou concatenar), é uma das funções mais frequentemente usadas no R. Ela permite que você crie conjuntos combinando elementos individuais em uma única estrutura coesa. Esta função é incrivelmente versátil, permitindo a construção de vetores, que são o tipo mais simples de conjuntos em R. Vetores são coleções ordenadas de elementos e servem como blocos de construção para estruturas de dados mais complexas, como matrizes, data frames e listas.</p>
 <p>A forma mais comum de criar um vetor no R é através do uso do comando <code>c()</code> como mostrado a seguir.</p>
-<section id="criando-um-vetor-numérico-determinado-conjunto-de-números" class="level5" data-number="5.4.0.1.1">
-<h5 data-number="5.4.0.1.1" class="anchored" data-anchor-id="criando-um-vetor-numérico-determinado-conjunto-de-números"><span class="header-section-number">5.4.0.1.1</span> Criando um vetor numérico determinado conjunto de números</h5>
+<section id="criando-um-vetor-numérico-com-um-determinado-conjunto-de-números" class="level5" data-number="5.4.0.1.1">
+<h5 data-number="5.4.0.1.1" class="anchored" data-anchor-id="criando-um-vetor-numérico-com-um-determinado-conjunto-de-números"><span class="header-section-number">5.4.0.1.1</span> Criando um vetor numérico com um determinado conjunto de números</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>idades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">32</span>, <span class="dv">24</span>, <span class="dv">23</span>, <span class="dv">55</span>, <span class="dv">56</span>) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="criando-um-vetor-com-uma-sequencia-de-números" class="level5" data-number="5.4.0.1.2">
-<h5 data-number="5.4.0.1.2" class="anchored" data-anchor-id="criando-um-vetor-com-uma-sequencia-de-números"><span class="header-section-number">5.4.0.1.2</span> Criando um vetor com uma sequencia de números</h5>
+<section id="criando-um-vetor-com-uma-sequência-de-números" class="level5" data-number="5.4.0.1.2">
+<h5 data-number="5.4.0.1.2" class="anchored" data-anchor-id="criando-um-vetor-com-uma-sequência-de-números"><span class="header-section-number">5.4.0.1.2</span> Criando um vetor com uma sequência de números</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>No exemplo acima vimos um novo operador <code>:</code> (dois pontos), que cria uma sequencia de números. No capítulo sobre operadores do R (<a href="07-Operators.html" class="quarto-xref"><span>Capítulo 7</span></a>) iremos discutir melhor o que são operadores e quais os operadores do R.</p>
+<p>No exemplo acima vimos um novo operador <code>:</code> (dois pontos), que cria uma sequência de números. No capítulo sobre operadores do R (<a href="07-Operators.html" class="quarto-xref"><span>Capítulo 7</span></a>) iremos discutir melhor o que são operadores e quais os operadores do R.</p>
 <p>Mais adiante veremos como podemos agrupar um conjunto de vetores num objeto chamado de data frame, formado por colunas e linhas tal como uma planilha.</p>
 </section>
 <section id="criando-um-vetor-com-nomes-dos-pacientes" class="level5" data-number="5.4.0.1.3">
@@ -1012,7 +1012,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  [9] 30.15573 30.41842 30.61748 30.76117 30.85662 30.91003 30.92675</code></pre>
 </div>
 </div>
-<p>Poderiamos também ter feito tudo isso de forma mais simples numa única operação:</p>
+<p>Poderíamos também ter feito tudo isso de forma mais simples numa única operação:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> (peso_lib <span class="sc">*</span> <span class="fl">0.45359237</span>)<span class="sc">/</span>(altura_metros<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>imc</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1211,7 +1211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As listas são uma estrutura de dados poderosa e flexível em R, capazes de armazenar diferentes tipos de elementos, como vetores, matrizes, arrays, data frames e até outras listas. Essa flexibilidade torna as listas ideais para agrupar dados heterogêneos em uma única estrutura.</p>
 <section id="criando-listas" class="level3" data-number="5.7.1">
 <h3 data-number="5.7.1" class="anchored" data-anchor-id="criando-listas"><span class="header-section-number">5.7.1</span> Criando Listas</h3>
-<p>Para criar uma lista em R, utilizamos a função <code>list()</code>. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Alias, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.</p>
+<p>Para criar uma lista em R, utilizamos a função <code>list()</code>. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Aliás, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a lista de pacientes</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>pacientes <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
@@ -1289,7 +1289,7 @@ $fumante
 [1] FALSE</code></pre>
 </div>
 </div>
-<p>Podemos usar esse mesmo operador <code>$</code> em sequencia para acessar um informação de uma lista que está dentro de outro lista. Poe exemplo o sexo do paciente_1.</p>
+<p>Podemos usar esse mesmo operador <code>$</code> em sequência para acessar uma informação de uma lista que está dentro de outra lista. Por exemplo o sexo do paciente_1.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando uma informação de uma lista, dentro de outro lista</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>pacientes<span class="sc">$</span>paciente_1<span class="sc">$</span>sexo</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1313,7 +1313,7 @@ $fumante
 <pre><code>[1] "Feminino"</code></pre>
 </div>
 </div>
-<p>Na seção de análises estatísticas você verá que muitos das análises tem como resultado uma lista e voê precisará acessar os elementos dessa lista para obter as informções específicas que deseja, tal como, por exemplo, o valor de p.&nbsp;Vamos criar uma matriz de exemplo e realizar um teste do chi quadrado.</p>
+<p>Na seção de análises estatísticas você verá que muitas das análises têm como resultado uma lista e você precisará acessar os elementos dessa lista para obter as informações específicas que deseja, tal como, por exemplo, o valor de p.&nbsp;Vamos criar uma matriz de exemplo e realizar um teste do chi quadrado.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">13</span>,<span class="dv">29</span>,<span class="dv">17</span>,<span class="dv">12</span>,<span class="dv">21</span>),<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">2</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>mytest <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(mydata,<span class="at">correct=</span><span class="cn">FALSE</span>)</span>
@@ -1344,7 +1344,7 @@ X-squared = 1.8963, df = 2, p-value = 0.3875</code></pre>
  - attr(*, "class")= chr "htest"</code></pre>
 </div>
 </div>
-<p>Observe que o resultado do teste chi-quadrado é uma lista. Para acessarmos o valor de p vamos prescisar acessar essa lista usando o operador <code>$</code>. Podemos, se precisarmos, armazenar esse valor numa variável.</p>
+<p>Observe que o resultado do teste chi-quadrado é uma lista. Para acessarmos o valor de p vamos precisar acessar essa lista usando o operador <code>$</code>. Podemos, se precisarmos, armazenar esse valor numa variável.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> mytest<span class="sc">$</span>p.value</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1357,16 +1357,16 @@ X-squared = 1.8963, df = 2, p-value = 0.3875</code></pre>
 </section>
 <section id="nomes-de-variáveis-e-objetos" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="nomes-de-variáveis-e-objetos"><span class="header-section-number">5.8</span> Nomes de Variáveis e Objetos</h2>
-<p>Uma variável é um objeto que armazena dados, tais como valores numéricos, datas, caracteres, palavras, valores lógicos etc. Uma variável é um objeto para armazenar um determinado tipo de dado de uma pesquisa. Se uma variável de minha pesquisa é a medida da pressão dos pacientes, posso no R criar um a variável chamada <code>pa</code>, <code>nivel.pressorico</code> ou <code>pressao.arterial</code> para armazenar esse conjunto de dados.</p>
+<p>Uma variável é um objeto que armazena dados, tais como valores numéricos, datas, caracteres, palavras, valores lógicos etc. Uma variável é um objeto para armazenar um determinado tipo de dado de uma pesquisa. Se uma variável de minha pesquisa é a medida da pressão dos pacientes, posso no R criar uma variável chamada <code>pa</code>, <code>nivel.pressorico</code> ou <code>pressao.arterial</code> para armazenar esse conjunto de dados.</p>
 <section id="estilos-de-nomeação-de-variáveis-e-objetos" class="level3" data-number="5.8.1">
 <h3 data-number="5.8.1" class="anchored" data-anchor-id="estilos-de-nomeação-de-variáveis-e-objetos"><span class="header-section-number">5.8.1</span> Estilos de nomeação de variáveis e objetos</h3>
 <p>Como você deve ter notado, variáveis devem ter nomes fáceis de serem compreendidos, nomes que mostrem o que significam. Se uma variável serve para armazenar a glicemia é mais adequado que essa variável seja denominada <code>glicemia</code> do que apenas <code>x</code>. Por outro lado, devemos usar nomes sucintos e evitar nomes grandes, <code>glicemia</code> é mais apropriado do que <code>nivel.de.glicose</code>, que é demasiadamente extenso.</p>
 </section>
 <section id="nomes-compostos" class="level3" data-number="5.8.2">
 <h3 data-number="5.8.2" class="anchored" data-anchor-id="nomes-compostos"><span class="header-section-number">5.8.2</span> Nomes compostos</h3>
-<p>Entretanto, quando houver necessidade de usar nomes compostos, um modo dequado é usar um ponto separando as palavras, tais como: <code>glico.fem</code> ou <code>idade.media</code>.</p>
-<p>Evite usar o underline em variáveis, a separação de palavras pelo o underline é geralmente usado para nomear arquivos tais como: <code>research_results_fase_1.csv</code>.</p>
-<p>Evite usar maiúsculas para separar as palavras de uma variável, pois esse estilo geralmente é usado para nomear funções, tal como em <code>solveEquation</code>. Veja que as palavras são separadas pelo uso de uma maiúscula no início das palavras, exceto a primeira. Esse modo criar nomes é geralmente usado para nomearmos funções, portanto, vamos evitar fazer isso ao criarmos nomes de variáveis.</p>
+<p>Entretanto, quando houver necessidade de usar nomes compostos, um modo adequado é usar um ponto separando as palavras, tais como: <code>glico.fem</code> ou <code>idade.media</code>.</p>
+<p>Evite usar o underline em variáveis, a separação de palavras pelo underline é geralmente usado para nomear arquivos tais como: <code>research_results_fase_1.csv</code>.</p>
+<p>Evite usar maiúsculas para separar as palavras de uma variável, pois esse estilo geralmente é usado para nomear funções, tal como em <code>solveEquation</code>. Veja que as palavras são separadas pelo uso de uma maiúscula no início das palavras, exceto a primeira. Esse modo de criar nomes é geralmente usado para nomearmos funções, portanto, vamos evitar fazer isso ao criarmos nomes de variáveis.</p>
 <p>Além dessa dica, existem regras formais para criar nomes de variáveis:<br>
 1. O nome de uma variável deve SEMPRE começar com uma letra.<br>
 2. O nome de uma variável NÃO pode começar com números ou caracteres especiais.<br>
@@ -1386,10 +1386,10 @@ X-squared = 1.8963, df = 2, p-value = 0.3875</code></pre>
 <li><code>class()</code> - retorna o tipo de objeto</li>
 <li><code>typeof()</code> - retorna o tipo de dados do objeto</li>
 <li><code>str()</code> - retorna a estrutura do objeto</li>
-<li><code>length()</code> -retorna o tamanho do objeto</li>
+<li><code>length()</code> - retorna o tamanho do objeto</li>
 <li><code>attributes()</code> - retorna os metadados do objeto</li>
 </ul>
-<p>Veja o funcionamento dessas funções aplicada a uma variável simples:</p>
+<p>Veja o funcionamento dessas funções aplicadas a uma variável simples:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma variável numérica</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
@@ -1510,7 +1510,7 @@ X-squared = 1.8963, df = 2, p-value = 0.3875</code></pre>
 <pre><code> chr [1:3] "bananas" "maçãs" "melão"</code></pre>
 </div>
 </div>
-<p>Veja agora como a função <code>str()</code> nos ajuda a compreender melhor a estrutura de conjunto de dados num dataset, usando o dataset <code>esoph</code> do R, que contém dados de um estudo de caso controle de câncer de esôfago na frança.</p>
+<p>Veja agora como a função <code>str()</code> nos ajuda a compreender melhor a estrutura de conjunto de dados num dataset, usando o dataset <code>esoph</code> do R, que contém dados de um estudo de caso controle de câncer de esôfago na França.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(esoph)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1530,7 +1530,7 @@ X-squared = 1.8963, df = 2, p-value = 0.3875</code></pre>
 </div>
 <ul>
 <li>A variável <code>agegp</code> indica a faixa etária do participante e tem seis níveis de faixas etárias</li>
-<li>A variável <code>alcgp</code> indica a quantidade de alcool que o participante consome em gramas por dia e tem 4 níveis</li>
+<li>A variável <code>alcgp</code> indica a quantidade de álcool que o participante consome em gramas por dia e tem 4 níveis</li>
 <li>A variável <code>tobgp</code> indica a quantidade de tabaco que o participante consome em gramas por dia e tem 4 níveis</li>
 <li>As variáveis <code>ncases</code> e <code>ncontrols</code> são numéricas.</li>
 </ul>

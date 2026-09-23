@@ -435,7 +435,7 @@ div.csl-indent {
 <p>Até agora, a maioria dos exemplos usados foram de bancos de dados do próprio R e, portanto, não foi necessário ler ou carregar nenhum banco de dados. Entretanto, ler dados externos é uma das primeiras etapas de um processo de análise de dados. Com o R podemos ler dados em diversos formatos.</p>
 <section id="formatos-de-arquivos-de-dados." class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="formatos-de-arquivos-de-dados."><span class="header-section-number">10.1</span> Formatos de arquivos de dados.</h2>
-<p>Vamos primeiro entender esses diferentes formatos de arquivos de dados. Cada documento digital possui uma estrutura particular. Por exemplos, aquivos do Word (<code>.doc</code> ou <code>.docx</code>) possuem uma estrutura própria da Microsoft, que o aplicativo Word compreende e, portanto, consegue abrir. Arquivos do tipo PDF (<code>.pdf</code>) possuem uma outra estrutura e, portanto, necessitam de softwares que saibam ler essa estrutura para poderem serem abertos.</p>
+<p>Vamos primeiro entender esses diferentes formatos de arquivos de dados. Cada documento digital possui uma estrutura particular. Por exemplo, arquivos do Word (<code>.doc</code> ou <code>.docx</code>) possuem uma estrutura própria da Microsoft, que o aplicativo Word compreende e, portanto, consegue abrir. Arquivos do tipo PDF (<code>.pdf</code>) possuem uma outra estrutura e, portanto, necessitam de softwares que saibam ler essa estrutura para poderem ser abertos.</p>
 <p>Existem diversos formatos de arquivos para armazenar dados, cada um apropriado para ser lido por determinados aplicativos. As letras finais em cada arquivo, depois do ponto final (extensão), indicam o tipo de arquivo. Vejamos alguns tipos comuns de arquivos</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -453,8 +453,8 @@ div.csl-indent {
 <section id="os-arquivos-.csv" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="os-arquivos-.csv"><span class="header-section-number">10.2</span> Os arquivos .csv</h2>
 <p>A extensão <code>.csv</code> no final do nome de um arquivo indica que esse é um arquivo de dados no formato separado por vírgulas. A estrutura desse arquivo é bastante simples: existem várias linhas, cada linha com vários dados, separados por vírgulas.</p>
-<p>Existem, entretanto variações nesse formato, por exemplo, no Brasil as casas decimais são separadas por vírgulas, nesse caso o delimitador dos valores não poderia ser a vírgula e é usado então o ponto e vírgula. Portanto, ao ler dados no formato <code>.csv</code> é sempre importante informar se os dados são separados por <code>,</code> ou <code>;</code> e se o separador do decimal é a virgula, ou o ponto final. Caso contrário a leitura dos dados poderá ser corrompida. Um outro detalhe é que, em alguns arquivos, os valores faltantes são indicados por <code>NA</code>, em outros por um espaço em branco, ou por outro símbolo. É importante informar ao R como esses valores faltantes estão indicados no arquivo.</p>
-<p>Um arquivo de dados do tipo <code>.csv</code> pode ser visualizado através de qualquer leitor simples de texto, tal como o TextEdit do Mac ou o o Notepad no Windows. Abaixo podemos ver como um conjunto de dados simples está gravada num arquivo separado por vírgulas. Observe que a primeira linha representa o nome das variáveis.</p>
+<p>Existem, entretanto variações nesse formato, por exemplo, no Brasil as casas decimais são separadas por vírgulas, nesse caso o delimitador dos valores não poderia ser a vírgula e é usado então o ponto e vírgula. Portanto, ao ler dados no formato <code>.csv</code> é sempre importante informar se os dados são separados por <code>,</code> ou <code>;</code> e se o separador do decimal é a vírgula, ou o ponto final. Caso contrário a leitura dos dados poderá ser corrompida. Um outro detalhe é que, em alguns arquivos, os valores faltantes são indicados por <code>NA</code>, em outros por um espaço em branco, ou por outro símbolo. É importante informar ao R como esses valores faltantes estão indicados no arquivo.</p>
+<p>Um arquivo de dados do tipo <code>.csv</code> pode ser visualizado através de qualquer leitor simples de texto, tal como o TextEdit do Mac ou o Notepad no Windows. Abaixo podemos ver como um conjunto de dados simples está gravado num arquivo separado por vírgulas. Observe que a primeira linha representa o nome das variáveis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -480,7 +480,7 @@ div.csl-indent {
 </section>
 <section id="lendo-dados-com-o-menu-do-rstudio." class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="lendo-dados-com-o-menu-do-rstudio."><span class="header-section-number">10.3</span> Lendo dados com o menu do RStudio.</h2>
-<p>O painel <strong>Enviroment</strong> possui uma aba chamada <strong>Import Dataset</strong>. Ao clicar nessa opção, podemos escolher que tipo de dados serão importatos (lidos): Texto, Excel, SPSS, SAS ou STATA. Para ler arquivos do tipo <code>.csv</code> podemos usar qualquer das duas primeiras opções <strong>From Text (base)</strong> ou <strong>From Text (readr)</strong>, como mostra a figura abaixo.</p>
+<p>O painel <strong>Environment</strong> possui uma aba chamada <strong>Import Dataset</strong>. Ao clicar nessa opção, podemos escolher que tipo de dados serão importados (lidos): Texto, Excel, SPSS, SAS ou STATA. Para ler arquivos do tipo <code>.csv</code> podemos usar qualquer das duas primeiras opções <strong>From Text (base)</strong> ou <strong>From Text (readr)</strong>, como mostra a figura abaixo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -491,7 +491,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Você deverá escolher o aquivo <code>.csv</code> que deseja carregar no R. Será aberta uma aba para definir algumas opções.</p>
+<p>Você deverá escolher o arquivo <code>.csv</code> que deseja carregar no R. Será aberta uma aba para definir algumas opções.</p>
 <p>A figura abaixo mostra a janela de opções que será aberta ao clicar em <strong>From Text (base)</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -508,29 +508,29 @@ div.csl-indent {
 <ol type="1">
 <li>Heading: Há um cabeçalho com o nome das variáveis?<br>
 </li>
-<li>As linhas tem nomes?<br>
+<li>As linhas têm nomes?<br>
 </li>
-<li>Qual o elemento que separa os valores? Virgula, ponto e vírgula, tabulação ou outro?<br>
+<li>Qual o elemento que separa os valores? Vírgula, ponto e vírgula, tabulação ou outro?<br>
 </li>
-<li>Qual o element que separal o decimal: Vírgula ou ponto final?<br>
+<li>Qual o elemento que separa o decimal: Vírgula ou ponto final?<br>
 </li>
 <li>Há elementos entre aspas? Qual tipo de aspas são usados: ” ” ou ’ ’ ?<br>
 </li>
-<li>Há algum simbolo para comentários?<br>
+<li>Há algum símbolo para comentários?<br>
 </li>
-<li>Como estão registrados os valore NA: NA, em branco, ou de outra forma?<br>
+<li>Como estão registrados os valores NA: NA, em branco, ou de outra forma?<br>
 </li>
 <li>Você deseja que os elementos em texto sejam carregados no formato <code>factor</code>?</li>
 </ol>
-<p>O R já deverá ter escolhido a maioria desses parâmetros. Se deu tudo certo, os dados deverão aparecer na janela inferior, chamada de data frame, todos alinhados em colunas como mostrado a imagem acima. Agora basta clicar em <code>import</code>.</p>
-<p>Entretanto, apesar da facilidade de importar dados dessa forma. Essa não é a maneira ideal. A melhor técnica é criar o código que irá realizar a importação e incoporar esse código no início de seu script. Assim, automatizamos o processo de leitura dos dados e evitamos ter de clicar na função <code>Import Dataset</code> toda vez que formos trabalhar com nossos dados.</p>
+<p>O R já deverá ter escolhido a maioria desses parâmetros. Se deu tudo certo, os dados deverão aparecer na janela inferior, chamada de data frame, todos alinhados em colunas como mostrado na imagem acima. Agora basta clicar em <code>import</code>.</p>
+<p>Entretanto, apesar da facilidade de importar dados dessa forma, essa não é a maneira ideal. A melhor técnica é criar o código que irá realizar a importação e incorporar esse código no início de seu script. Assim, automatizamos o processo de leitura dos dados e evitamos ter de clicar na função <code>Import Dataset</code> toda vez que formos trabalhar com nossos dados.</p>
 </section>
 <section id="lendo-dados-com-read.csv" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="lendo-dados-com-read.csv"><span class="header-section-number">10.4</span> Lendo dados com <code>read.csv()</code></h2>
-<p>Caso o arquivo esteja no formato <code>.csv</code> com as seus valores separados por vírgula (que é o padrão usual), podemos usar a função <code>read.csv( )</code> para carregar os dados, bastando indicar o nome do arquivo a ser lido. Se por acaso o arquivo se chama <code>diabetes.csv</code>, então o comando de leitura será:</p>
+<p>Caso o arquivo esteja no formato <code>.csv</code> com os seus valores separados por vírgula (que é o padrão usual), podemos usar a função <code>read.csv( )</code> para carregar os dados, bastando indicar o nome do arquivo a ser lido. Se por acaso o arquivo se chama <code>diabetes.csv</code>, então o comando de leitura será:</p>
 <p><code>read.csv(file = "diabetes.csv")</code>.</p>
 <p>O primeiro argumento da função <code>read.csv</code> é o mais importante, é o <strong>caminho</strong> e o <strong>nome do arquivo</strong> a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Capítulo 4</span></a>).</p>
-<p>O código acima ira funcionar se o arquivo chamado <code>diabetes.csv</code> estiver dentro do atual diretório de trabalho do R.</p>
+<p>O código acima irá funcionar se o arquivo chamado <code>diabetes.csv</code> estiver dentro do atual diretório de trabalho do R.</p>
 <p>Se o arquivo estiver numa pasta chamada <code>dataset</code>, dentro do diretório de trabalho, então teremos de incluir esse caminho no nome, tudo dentro das aspas, como abaixo:</p>
 <p><code>read.csv(file = "dataset/diabetes.csv")</code>.</p>
 <p>Ou seja, com os dados no formato <code>csv</code>, a leitura dos dados é extremamente fácil com o comando acima. Esse comando lê o arquivo chamado <code>diabetes.csv</code>, que está na pasta <code>dataset</code>, dentro do diretório de trabalho atual.</p>
@@ -562,13 +562,13 @@ div.csl-indent {
 <ul>
 <li>Lê um arquivo denominado <code>diabetes.csv</code>; que está na pasta <code>dataset</code><br>
 </li>
-<li>No qual há um cabeçalho com os nomes da variáveis: <code>header = TRUE</code><br>
+<li>No qual há um cabeçalho com os nomes das variáveis: <code>header = TRUE</code><br>
 </li>
 <li>Cujos dados estão separados por vírgula: <code>sep = ","</code><br>
 </li>
 <li>Cujos decimais são identificados pelo ponto final : <code>dec  = "."</code><br>
 </li>
-<li>E os valores faltantes estão intensificados no arquivo pelas letras NA: <code>na.strings = "NA"</code>.<br>
+<li>E os valores faltantes estão identificados no arquivo pelas letras NA: <code>na.strings = "NA"</code>.<br>
 </li>
 <li>Finalmente, esse data frame é armazenado num objeto chamado <code>diabetes</code>.</li>
 </ul>
@@ -594,7 +594,7 @@ div.csl-indent {
 </section>
 <section id="lendo-dados-com-readr" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="lendo-dados-com-readr"><span class="header-section-number">10.6</span> Lendo dados com <code>readr</code></h2>
-<p>O pacote <code>readr</code> do <code>tidyverse</code> fornece funções para leitura mais amigável de dados tabulados (como <code>.csv</code>, <code>.tsv</code> e <code>.fwf</code>), sendo preferírel em relação às funções base do R.</p>
+<p>O pacote <code>readr</code> do <code>tidyverse</code> fornece funções para leitura mais amigável de dados tabulados (como <code>.csv</code>, <code>.tsv</code> e <code>.fwf</code>), sendo preferível em relação às funções base do R.</p>
 <p>O pacote <code>readr</code> vem também com diversos bancos de dados para servirem de exemplo, que podem ser acessados com a função <code>readr_example()</code>. Para a lista completa dos exemplos basta usar esse comando como mostrado a seguir.</p>
 <p>Lembre-se que para usar as funções de algum pacote é preciso primeiro instalar o pacote com o comando <code>install.packages()</code> no console. Além disso, no corpo do código, é preciso inserir o comando <code>library()</code> com o nome do pacote que será usado. Só precisamos inserir o comando <code>library()</code> uma única vez. O estilo ideal de escrever é sempre carregar os pacotes necessários no início do código.</p>
 <div class="cell">
@@ -611,7 +611,7 @@ div.csl-indent {
 [15] "whitespace-sample.txt"      </code></pre>
 </div>
 </div>
-<p>Quando inserimos o nome do do banco de dados desejado como argumento da função, o resultado é o endereço do banco de dados em seu computador.</p>
+<p>Quando inserimos o nome do banco de dados desejado como argumento da função, o resultado é o endereço do banco de dados em seu computador.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readr_example</span>(<span class="st">"chickens.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -675,8 +675,8 @@ dbl (1): eggs_laid
 <p>Observe que a função <code>read_csv()</code> mostra os detalhes do que ela fez:<br>
 1. Mostra que o arquivo lido tinha 5 linhas e 4 colunas.<br>
 2. Mostra que interpretou que o delimitador entre os elementos era a vírgula: <code>Delimiter: ","</code>.<br>
-3. Mostra que intrepretou as variáveis <code>chicken</code>, <code>sex</code> e <code>motto</code> como texto (<code>char</code>, caracteres).<br>
-4. Mostra que intrepretou a variável <code>eggs_laid</code> como numérica (<code>double</code>).<br>
+3. Mostra que interpretou as variáveis <code>chicken</code>, <code>sex</code> e <code>motto</code> como texto (<code>char</code>, caracteres).<br>
+4. Mostra que interpretou a variável <code>eggs_laid</code> como numérica (<code>double</code>).<br>
 5. Explica que você pode usar o comando <code>spec()</code> para ver as especificações das colunas<br>
 6. Explica que você pode usar o argumento <code>show_col_types = FALSE</code> para que o comando não mostre essas explicações todas.</p>
 <div class="cell">
@@ -712,8 +712,8 @@ dbl (1): eggs_laid
 </section>
 <section id="a-função-read_csv" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="a-função-read_csv"><span class="header-section-number">10.7</span> A função <code>read_csv()</code></h2>
-<p>As funções de leitura do pacote <code>readr</code> tem diversas vantagens sobre as funções básicas de leitura de dados do R.</p>
-<p>Em primeiro lugar, ao ler os dados usando <code>read_csv()</code> é criada uma <code>tibble</code> e não um <code>data frame</code>. E como já discutirmos antes, uma <code>tibble</code> é uma versão melhorada de um <code>data frame</code>.</p>
+<p>As funções de leitura do pacote <code>readr</code> têm diversas vantagens sobre as funções básicas de leitura de dados do R.</p>
+<p>Em primeiro lugar, ao ler os dados usando <code>read_csv()</code> é criada uma <code>tibble</code> e não um <code>data frame</code>. E como já discutimos antes, uma <code>tibble</code> é uma versão melhorada de um <code>data frame</code>.</p>
 <p>Além disso, a função <code>read_csv()</code> é mais rápida que a versão base do R.</p>
 <p>Em resumo, sugiro usar a função <code>read_csv()</code> ou <code>read_csv2()</code> do pacote <code>readr</code> em vez das funções base do R <code>read.csv()</code> e <code>read.csv2()</code>.</p>
 <section id="argumentos-de-read_csv-ou-read_csv2" class="level4" data-number="10.7.0.1">
@@ -722,7 +722,7 @@ dbl (1): eggs_laid
 <p>O primeiro argumento é o mais importante, é o caminho e o nome do arquivo a ser lido. Um detalhe importante é saber qual é o <code>working directory</code> que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (<a href="04-R-Projects.html" class="quarto-xref"><span>Capítulo 4</span></a>).</p>
 <p>O arquivo <code>diabetes.csv</code> que eu tenho em meu computador está salvo na pasta <code>dataset</code>, dentro da pasta do meu projeto. Portanto, preciso informar isso nos argumentos da função <code>read_csv()</code>.</p>
 <p>É necessário também armazenar os dados lidos num objeto, que irei chamar de <code>diabetes</code>. Obs: eu poderia escolher outro nome, não é necessário que o objeto que irá armazenar os dados tenha o mesmo nome que o arquivo com os dados.</p>
-<p>Eu fiz o download dos dados (<a href="https://hbiostat.org/data/repo/diabetes.csv" class="uri">https://hbiostat.org/data/repo/diabetes.csv</a>) e salvei esses dados numa pasta chamada <code>dataset</code> em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para portugues.</p>
+<p>Eu fiz o download dos dados (<a href="https://hbiostat.org/data/repo/diabetes.csv" class="uri">https://hbiostat.org/data/repo/diabetes.csv</a>) e salvei esses dados numa pasta chamada <code>dataset</code> em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para português.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -772,7 +772,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 #   bp.2d &lt;dbl&gt;, waist &lt;dbl&gt;, hip &lt;dbl&gt;, time.ppn &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Observe que as variáveis <code>location</code>, <code>gender</code> e <code>frame</code> foram intrepretadas como <code>char</code>. Essas variáveis são melhor analisadas quando são do tipo <code>factor</code>. Temos duas alternativas para resolver esse problema:</p>
+<p>Observe que as variáveis <code>location</code>, <code>gender</code> e <code>frame</code> foram interpretadas como <code>char</code>. Essas variáveis são melhor analisadas quando são do tipo <code>factor</code>. Temos duas alternativas para resolver esse problema:</p>
 <ol type="1">
 <li>Transformar em <code>factor</code> depois de ler, com a função <code>as.factor()</code>.</li>
 <li>Indicar que são <code>factor</code> na própria função <code>read_csv()</code>.</li>
@@ -878,7 +878,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
   ..   hip = col_double(),
   ..   time.ppn = col_double()
   .. )
- - attr(*, "problems")=&lt;pointer: 0x76e0fcae80&gt; </code></pre>
+ - attr(*, "problems")=&lt;pointer: 0x7753bf9590&gt; </code></pre>
 </div>
 </div>
 <p><strong>Transformando variáveis em factor no momento da leitura dos dados</strong></p>
@@ -932,7 +932,7 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
   ..   hip = col_double(),
   ..   time.ppn = col_double()
   .. )
- - attr(*, "problems")=&lt;pointer: 0x76e0fcae30&gt; </code></pre>
+ - attr(*, "problems")=&lt;pointer: 0x7753bf95a0&gt; </code></pre>
 </div>
 </div>
 </section>
@@ -941,10 +941,10 @@ dbl (16): id, chol, stab.glu, hdl, ratio, glyhb, age, height, weight, bp.1s,...
 <h2 data-number="10.8" class="anchored" data-anchor-id="lendo-arquivos-em-outros-formatos"><span class="header-section-number">10.8</span> Lendo arquivos em outros formatos</h2>
 <p>O R também pode ler arquivos em outros formatos, tal como Excel, SAS, STATA, SPSS etc. Existem pacotes específicos para ler cada um desses formatos.<br>
 </p>
-<p>O pacote <code>readxl</code> serve para ler arquivos do Excel, sendo capaz de ler <code>.xls</code> quanto os novos formatos <code>.xlsx</code>. A função para ler esses arquivos é <code>read_excel()</code>.<br>
+<p>O pacote <code>readxl</code> serve para ler arquivos do Excel, sendo capaz de ler tanto <code>.xls</code> quanto os novos formatos <code>.xlsx</code>. A função para ler esses arquivos é <code>read_excel()</code>.<br>
 O pacote <code>xml2</code> é capaz de ler arquivos XML com a função <code>read_xml()</code>; o pacote <code>XML</code>, mais antigo, faz o mesmo com <code>xmlParse()</code> ou <code>xmlToDataFrame()</code>.<br>
-Os pacotes <code>rjson</code> e <code>jsonlite</code> tem funções para leitura arquivos JSON. A função para ler esses arquivos é <code>fromJSON()</code>.<br>
-O pacote <code>haven</code> do tidyverse é capaz de ler vários de vários tipos, tais como SAS, SPSS e STATA, através das seguintes funções: <code>read_sas()</code>, <code>read_sav()</code>, <code>read_por()</code>, <code>read_dta()</code>, <code>read_xpt()</code>.<br>
+Os pacotes <code>rjson</code> e <code>jsonlite</code> têm funções para leitura de arquivos JSON. A função para ler esses arquivos é <code>fromJSON()</code>.<br>
+O pacote <code>haven</code> do tidyverse é capaz de ler arquivos de vários tipos, tais como SAS, SPSS e STATA, através das seguintes funções: <code>read_sas()</code>, <code>read_sav()</code>, <code>read_por()</code>, <code>read_dta()</code>, <code>read_xpt()</code>.<br>
 O pacote <code>foreign</code> possui também funções para ler arquivos SPSS, a função para ler esses arquivos é <code>read.spss()</code>.</p>
 <p><strong>Tabela de Funções e Pacotes de Leitura de Dados</strong></p>
 <table class="caption-top table">

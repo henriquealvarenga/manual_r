@@ -441,9 +441,9 @@ window.Quarto = {
 
 <p>As funções são a base de uma linguagem de programação. Assim como uma função matemática, na computação uma função recebe um conjunto de dados, processa esses dados e retorna um resultado. Os dados inseridos numa função são chamados de <strong>argumentos</strong> da função. Os resultados da função são chamados de <strong>output</strong> da função. E geralmente usamos o termo <em>retornar</em> para nos referirmos ao output da função, os resultados da função.</p>
 <p>O R possui diversas funções prontas para serem usadas, mas também permite que você crie suas próprias funções. Isso será útil quando uma determinada análise tem de ser feita diversas vezes, evitando que você precise reescrever o código dessa análise toda vez que tiver de fazê-la novamente.</p>
-<p>Já vimos em capítulos anteriores algumas funções como <code>str(x)</code>, que retorna a estrutura do objeto x; a funcção <code>c()</code>, que combina os objetos num vetor; e algumas funções matemáticas como <code>mean()</code>, <code>median()</code>, <code>sd()</code> que retornam a média, a mediana e o desvio padrão de um conjunto de dados numéricos. Todos dados inseridos numa função são denominados <code>argumentos</code> da função.</p>
+<p>Já vimos em capítulos anteriores algumas funções como <code>str(x)</code>, que retorna a estrutura do objeto x; a função <code>c()</code>, que combina os objetos num vetor; e algumas funções matemáticas como <code>mean()</code>, <code>median()</code>, <code>sd()</code> que retornam a média, a mediana e o desvio padrão de um conjunto de dados numéricos. Todos dados inseridos numa função são denominados <code>argumentos</code> da função.</p>
 <p>Uma função pode receber como input (argumento) um valor numérico e dar como resultado o dobro desse valor. Uma outra função recebe como input um valor numérico e dá como resultado o seno desse valor. Outra função recebe um valor numérico e dá como resultado a raiz quadrada desse valor, etc.</p>
-<p>Vejamos um exemplo simples de como extrair a raiz quadrada de um número no R. O nome da função é <code>sqrt()</code>, é uma abreviação de <em>square root</em>, ou raiz quadrada. Inserimos na função o número cuja raiz quadrada desejamos saber. Esse valor é o argumento dessa função. Portanto, para obter a raiz quadrada de basta usar a função <code>sqrt()</code> com o valor desejado.</p>
+<p>Vejamos um exemplo simples de como extrair a raiz quadrada de um número no R. O nome da função é <code>sqrt()</code>, é uma abreviação de <em>square root</em>, ou raiz quadrada. Inserimos na função o número cuja raiz quadrada desejamos saber. Esse valor é o argumento dessa função. Portanto, para obter a raiz quadrada de 225 basta usar a função <code>sqrt()</code> com o valor desejado.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">225</span>) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -455,8 +455,8 @@ window.Quarto = {
 <h2 data-number="8.1" class="anchored" data-anchor-id="sec-arguments"><span class="header-section-number">8.1</span> Argumentos de uma função</h2>
 <p>Existem dois tipos de argumentos de função:</p>
 <ol type="1">
-<li><strong>dados</strong>, argumentos para calcular o que se pretented;</li>
-<li><strong>controles</strong>, argumentos controlam outros aspectos da funcão, por exemplo como lidar com dados faltantes.</li>
+<li><strong>dados</strong>, argumentos para calcular o que se pretende;</li>
+<li><strong>controles</strong>, argumentos que controlam outros aspectos da função, por exemplo como lidar com dados faltantes.</li>
 </ol>
 <p>A função <code>mean()</code> é um exemplo de função que possui argumentos de dados e argumentos de controle. Os argumentos de dados são os valores numéricos que serão usados para calcular a média. Os argumentos de controle são os argumentos que controlam o comportamento da função, como por exemplo, o argumento <code>na.rm</code> que indica se a função deve remover ou não os valores faltantes.</p>
 <div class="cell">
@@ -468,17 +468,17 @@ window.Quarto = {
 </div>
 <p>Os argumentos de uma função são os parâmetros sobre os quais a função realiza alguma operação. Por exemplo, na função <span class="math inline">\(f(x)=sen(x)\)</span>, <span class="math inline">\(x\)</span> é o argumento da função. A operação de calcular o seno será realizada sobre o valor de <span class="math inline">\(x\)</span>. Da mesma forma, nas funções <span class="math inline">\(f(x)=\sqrt{x}\)</span>, <span class="math inline">\(f(x)=2x\)</span>, e <span class="math inline">\(f(x)=x^2\)</span>, <span class="math inline">\(x\)</span> é o argumento das funções.</p>
 <p>Algumas funções possuem mais de um argumento, tal como a função logarítmica <span class="math inline">\(f(x,b)=\log _{b} (x)\)</span>. Para calcularmos o logaritmo de <span class="math inline">\(x\)</span> na base <span class="math inline">\(b\)</span> , precisamos informar à função o valor de <span class="math inline">\(x\)</span> e de <span class="math inline">\(b\)</span>. Então <span class="math inline">\(x\)</span> e <span class="math inline">\(b\)</span> são os argumentos da função <span class="math inline">\(f(x,b)=\log _{b} (x)\)</span>.</p>
-<p>Esse é um exemplo de função que precisa de dois argumentos para ser executada. No R a função para calcular o logaritmo de nra base seria escrita da seguinte maneira:</p>
+<p>Esse é um exemplo de função que precisa de dois argumentos para ser executada. No R a função para calcular o logaritmo de 2 na base 10 seria escrita da seguinte maneira:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.30103</code></pre>
 </div>
 </div>
-<p>Toda função no R tem a seguinte estrutura: <code>nome(argumento, argumento, argumento, …)</code>. Ou seja, o nome da função, seguido dos argumentos da função entre parênteses. Observe que não há espaços entre o nome da função e os parênteses com os argumentos. Os argumentos, por sua vez, são separados por vírgulas. A inserção dos argumentos numa função pode ser feito de duas maneiras:</p>
+<p>Toda função no R tem a seguinte estrutura: <code>nome(argumento, argumento, argumento, …)</code>. Ou seja, o nome da função, seguido dos argumentos da função entre parênteses. Observe que não há espaços entre o nome da função e os parênteses com os argumentos. Os argumentos, por sua vez, são separados por vírgulas. A inserção dos argumentos numa função pode ser feita de duas maneiras:</p>
 <p>-Pela ordem<br>
 -Pelo nome do argumento</p>
-<p>A função logaritmo interpreta o primeiro o valor como sendo <span class="math inline">\(x\)</span> e o segundo valor como sendo a base <span class="math inline">\(b\)</span>. Mas podemos escrever essa função explicitando cada argumento individualmente. Essa forma de escrever, embora mais longa, deixa a função mais compreensiva para o leitor. Além disso, quando inserimos os argumentos pelo nome, a ordem não importa, pois já estamos indicando ao R o significado de cada argumento.</p>
+<p>A função logaritmo interpreta o primeiro valor como sendo <span class="math inline">\(x\)</span> e o segundo valor como sendo a base <span class="math inline">\(b\)</span>. Mas podemos escrever essa função explicitando cada argumento individualmente. Essa forma de escrever, embora mais longa, deixa a função mais compreensível para o leitor. Além disso, quando inserimos os argumentos pelo nome, a ordem não importa, pois já estamos indicando ao R o significado de cada argumento.</p>
 <p>Veja abaixo as diferentes formas de inserir os argumentos numa função no R.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inserindo os argumentos pela ordem</span></span>
@@ -494,7 +494,7 @@ window.Quarto = {
 <pre><code>[1] 0.30103</code></pre>
 </div>
 </div>
-<p>Além disso, para facilitar o uso, muitas funções no R já tem argumentos padronizados, <em>default</em>. Ou seja, caso não sejam informados, o R irá usar o valor padrão desses argumentos. A função logaritmo no R tem como padrão o logaritmo natural, a base <span class="math inline">\(e\)</span>. Então, se a base não for inserida como argumento, o R interpretará que deverá ser usado o valor padrão. Veja abaixo o exemplo, para calcular o logaritmo natural de 10 - <span class="math inline">\(log _{e} (10)\)</span> - simplesmente digitamos no R:</p>
+<p>Além disso, para facilitar o uso, muitas funções no R já têm argumentos padronizados, <em>default</em>. Ou seja, caso não sejam informados, o R irá usar o valor padrão desses argumentos. A função logaritmo no R tem como padrão o logaritmo natural, a base <span class="math inline">\(e\)</span>. Então, se a base não for inserida como argumento, o R interpretará que deverá ser usado o valor padrão. Veja abaixo o exemplo, para calcular o logaritmo natural de 10 - <span class="math inline">\(log _{e} (10)\)</span> - simplesmente digitamos no R:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usando a o argumento default (padrão) da função logaritmo no R</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># será calculado o logaritmo natural (base e) de 10</span></span>
@@ -520,13 +520,13 @@ window.Quarto = {
 </section>
 <section id="criando-suas-próprias-funções" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="criando-suas-próprias-funções"><span class="header-section-number">8.2</span> Criando suas próprias funções</h2>
-<p>O R permite que você crie também suas próprias funções. Isso será útil quando uma determinada análise tem de ser feita diversas vezes, evitando que você precise reescrever o código dessa análise toda vez que tiver de fazê-la novamente.</p>
-<p>Para criar uma função precisamos: 1. Dar um nome para a função a ser criada. 2. Definir os argumentos da função. 3. Definir o que a função irá <em>retornar</em>, seu <em>ouput</em>.</p>
+<p>Vamos agora criar nossas próprias funções.</p>
+<p>Para criar uma função precisamos: 1. Dar um nome para a função a ser criada. 2. Definir os argumentos da função. 3. Definir o que a função irá <em>retornar</em>, seu <em>output</em>.</p>
 <p>Suponha que você tenha em seu banco de dados a altura e o peso dos pacientes e necessite calcular o imc (índice de massa corporal). Podemos facilmente criar uma função que recebe os valores do peso e da altura como argumentos, calcula o IMC e <em>retorna</em> esse valor. O termo <em>retornar</em> é usualmente usado para se referir ao objeto que a função devolve depois de receber seus argumentos.</p>
 <p>Então:<br>
 1. O nome da função será: <code>imc</code>.<br>
 2. Os argumentos da função serão: <code>peso</code> e <code>altura</code>.<br>
-3. A função calcular e <em>retornar</em> um valor numérico.<br>
+3. A função irá calcular e <em>retornar</em> um valor numérico.<br>
 </p>
 <p>Com essas informações, basta colocar tudo isso na função.<br>
 </p>
@@ -551,7 +551,7 @@ O comando <code>return()</code> é usado para indicar o que a função irá <em>
 <section id="funções-anônimas" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="funções-anônimas"><span class="header-section-number">8.3</span> Funções anônimas</h2>
 <p>As funções que criamos com o comando <code>function()</code> acima todas tiveram um nome. Entretanto, o R também permite criar funções anônimas, ou seja, sem nome. Elas também são criadas com o comando <code>function()</code> e são usadas para realizar operações simples e rápidas, quando não há necessidade de reutilizar a função novamente. Funções anônimas são frequentemente utilizadas em conjunto com funções da família <code>apply</code>, como <code>lapply</code>, <code>sapply</code>, que aplicam uma função (anônima) a cada elemento de uma lista ou vetor. Essa combinação permite transformar e processar dados de maneira eficiente e elegante, tornando-as uma ferramenta poderosa para a manipulação e análise de dados em R.</p>
-<p>Entretanto, as funções da família <code>apply</code> são bastante sofisticdas, e estão além do escopo desse livro de introdução ao R. Para mais informações sobre essas funções, consulte a documentação do R ou o livro <em>R for Data Science</em> de Hadley Wickham e Garrett Grolemund.</p>
+<p>Entretanto, as funções da família <code>apply</code> são bastante sofisticadas, e estão além do escopo desse livro de introdução ao R. Para mais informações sobre essas funções, consulte a documentação do R ou o livro <em>R for Data Science</em> de Hadley Wickham e Garrett Grolemund.</p>
 
 
 </section>

@@ -432,7 +432,7 @@ div.csl-indent {
 </header>
 
 
-<p>Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base o R, os data frames e as tibbles são o coração do R.</p>
+<p>Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base do R, os data frames e as tibbles são o coração do R.</p>
 <p>Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (<a href="09-R-Packages.html" class="quarto-xref"><span>Capítulo 9</span></a>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
@@ -455,11 +455,11 @@ div.csl-indent {
 </div>
 </div>
 <p>O R possui vários datasets (conjuntos de dados) para facilitar o aprendizado. Para saber mais sobre os datasets inclusos no R digite no console o comando abaixo: <code>data()</code></p>
-<p>Podemos carregar os datasets já inclusos no R com a função mesma função <code>data()</code>, bastando incluir como argumento o nome do dataset desejado. No exemplo a seguir iremos carregar o dataset <code>USArrests</code>. Este dataset contém estatísticas das prisões por 100.000 habitantes por assalto, assassinato e estupro em cada um dos 50 estados dos EUA em 1973, como também a porcentagem da população urbana.</p>
+<p>Podemos carregar os datasets já inclusos no R com a mesma função <code>data()</code>, bastando incluir como argumento o nome do dataset desejado. No exemplo a seguir iremos carregar o dataset <code>USArrests</code>. Este dataset contém estatísticas das prisões por 100.000 habitantes por assalto, assassinato e estupro em cada um dos 50 estados dos EUA em 1973, como também a porcentagem da população urbana.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(USArrests)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Como esse dataset carregado podemos agora visualizar os dados simplesmente digitando o nome do dataset no console.</p>
+<p>Com esse dataset carregado podemos agora visualizar os dados simplesmente digitando o nome do dataset no console.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USArrests)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -542,14 +542,14 @@ Colorado      7.9     204       78 38.7</code></pre>
 3  Fabiano    48</code></pre>
 </div>
 </div>
-<p>A última linha acima criou o data frame, com as as duas colunas (nome e idade) e as 3 linhas, uma para cada participante da pesquisa e armazenou esse data frame no objeto <code>staff</code>. Veja que o objeto <code>staff</code> é um <code>data.frame</code> do R.</p>
+<p>A última linha acima criou o data frame, com as duas colunas (nome e idade) e as 3 linhas, uma para cada participante da pesquisa e armazenou esse data frame no objeto <code>staff</code>. Veja que o objeto <code>staff</code> é um <code>data.frame</code> do R.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(staff)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
 </div>
-<p>Podemos visualizarmos a estrutura desse data frame com a função <code>str(staff)</code>.</p>
+<p>Podemos visualizar a estrutura desse data frame com a função <code>str(staff)</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(staff)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -600,7 +600,7 @@ Colorado      7.9     204       78 38.7</code></pre>
 3     Maria          20           9</code></pre>
 </div>
 </div>
-<p>Esse data frame é um exemplo de dados no formado wide (largo). E é muitas vezes a forma usual de um conjunto de dados.</p>
+<p>Esse data frame é um exemplo de dados no formato wide (largo). E é muitas vezes a forma usual de um conjunto de dados.</p>
 <p>Entretanto, frequentemente, precisamos colocar esses dados numa outra disposição que facilita a análise dos dados. O formato long (comprido) é essa outra forma.</p>
 <p>Podemos ajustar esse data frame no formato long, colocando o tipo de tratamento numa coluna e o resultado noutra coluna. Ou seja, as duas colunas anteriores chamadas <code>tratamentoA</code> e <code>tratamentoB</code> serão juntadas em uma única coluna, chamada <code>tratamento</code> e os resultados passarão a ser uma única coluna.</p>
 <p>Veja no exemplo abaixo a transformação desse conjunto de dados para o formato long:</p>
@@ -626,7 +626,7 @@ Colorado      7.9     204       78 38.7</code></pre>
 </section>
 <section id="tibbles-os-dataframes-do-tidyverse" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="tibbles-os-dataframes-do-tidyverse"><span class="header-section-number">6.3</span> <code>Tibbles</code>, os dataframes do tidyverse</h2>
-<p>Tibbles são data frames mais amigáveis. As <code>tiblles</code> foram criadas para resolver alguns problemas dos data frames e fazem parte do pacote <code>tibble</code> do <code>tidyverse</code>. Veremos nos capítulos adiante o que são pacotes, o que é o <code>tidyverse</code>.</p>
+<p>Tibbles são data frames mais amigáveis. As <code>tibbles</code> foram criadas para resolver alguns problemas dos data frames e fazem parte do pacote <code>tibble</code> do <code>tidyverse</code>. Veremos nos capítulos adiante o que são pacotes, o que é o <code>tidyverse</code>.</p>
 <p>Tibbles são a versão moderna dos data frames do R. Um dataframe é uma estrutura de dados em R que organiza dados em uma tabela, onde cada coluna pode conter um tipo diferente de dados (como números, texto, ou datas). Cada linha do dataframe representa uma observação.</p>
 <p>Por exemplo, imagine que você tem uma tabela com informações sobre pacientes:</p>
 <table class="caption-top table">
@@ -893,7 +893,7 @@ Colorado      7.9     204       78 38.7</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transformando o data frame numa tibble</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(diabetes)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando que os dados agora esão armazenados numa tibble</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando que os dados agora estão armazenados numa tibble</span></span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [403 × 18] (S3: tbl_df/tbl/data.frame)
@@ -965,7 +965,7 @@ Colorado      7.9     204       78 38.7</code></pre>
   ..   quadril = col_double(),
   ..   time.ppn = col_double()
   .. )
- - attr(*, "problems")=&lt;pointer: 0x7626ce6560&gt; </code></pre>
+ - attr(*, "problems")=&lt;pointer: 0x7af4fc2f00&gt; </code></pre>
 </div>
 </div>
 

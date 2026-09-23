@@ -444,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>O número [1] entre colchetes que aparece antes do resultado indica que o valor apresentado é o 1º da lista de resultados. Nesse caso só existe um valor, então essa informação não tem utilidade. Em alguns casos o resultado da operação é um conjunto de números, ocupando mais de uma linha, nesses casos, esse nº entre colchetes pode ter alguma utilidade.</p>
 <section id="precedência-de-operações" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="precedência-de-operações"><span class="header-section-number">7.1.1</span> Precedência de Operações</h3>
-<p>Assim como na matemática, também no R existem regras de precedência de operações com um detalhe: os parênteses sempre tem preferência, ou precedência, sendo usados para colocarmos as operações na ordem desejada. ou seja, as operações entre parênteses tem prioridade sobre outras operações. Veja o exemplo abaixo</p>
+<p>Assim como na matemática, também no R existem regras de precedência de operações com um detalhe: os parênteses sempre têm preferência, ou precedência, sendo usados para colocarmos as operações na ordem desejada. Ou seja, as operações entre parênteses têm prioridade sobre outras operações. Veja o exemplo abaixo</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span><span class="sc">*</span><span class="dv">3</span>) <span class="sc">+</span> <span class="dv">2</span> </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x<span class="sc">+</span>y)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">"Maria"</span> </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Observe que ao criar uma variável para armazenar uma palavra ou um caractere, é necessário colocar essa palavra entre aspas. O R entende que está entre aspas é uma palavra ou um texto e não um número.</p>
+<p>Observe que ao criar uma variável para armazenar uma palavra ou um caractere, é necessário colocar essa palavra entre aspas. O R entende que o que está entre aspas é uma palavra ou um texto e não um número.</p>
 </section>
 <section id="operadores-de-comparação-relacionais" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="operadores-de-comparação-relacionais"><span class="header-section-number">7.3</span> Operadores de Comparação (Relacionais)</h2>
@@ -488,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Perceba que o operador de igualdade é o <code>==</code> e não o <code>=</code>. O simbolo <code>=</code> é o operador de atribuição e não de igualdade. É frequente a confusão entre entre esses operadores. Devido a isso, no R é usual utilizarmos o <code>&lt;-</code>como o operador de atribuição.</p>
+<p>Perceba que o operador de igualdade é o <code>==</code> e não o <code>=</code>. O símbolo <code>=</code> é o operador de atribuição e não de igualdade. É frequente a confusão entre esses operadores. Devido a isso, no R é usual utilizarmos o <code>&lt;-</code> como o operador de atribuição.</p>
 <p>Veja nos códigos abaixo exemplos do uso dos operadores relacionais. Perceba que o resultado é sempre uma variável lógica (<code>TRUE</code> ou <code>FALSE</code>).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">&lt;</span> <span class="dv">5</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>idade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">40</span>, <span class="dv">48</span>) </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>staff  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(nome, idade) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Para extrairmos os valores da variábel nessa coluna com as idades basta usarmos <code>staff$idade</code>, como abaixo:</p>
+<p>Para extrairmos os valores da variável nessa coluna com as idades basta usarmos <code>staff$idade</code>, como abaixo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>staff<span class="sc">$</span>idade </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -597,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
-<p>Podemos criar sequencias decrescentes</p>
+<p>Podemos criar sequências decrescentes</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">90</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -605,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code> [1] 100  99  98  97  96  95  94  93  92  91  90</code></pre>
 </div>
 </div>
-<p>Podemos criar sequencias combinadas com o uso da função de concatenação <code>c()</code>, tal como mostrado a seguir:</p>
+<p>Podemos criar sequências combinadas com o uso da função de concatenação <code>c()</code>, tal como mostrado a seguir:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinando duas sequências</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">15</span>, <span class="dv">20</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -618,9 +618,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="operador-de-fórmulas" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="operador-de-fórmulas"><span class="header-section-number">7.7</span> Operador de Fórmulas <code>~</code></h2>
 <p>O operador <code>~</code> é utilizado para expressar a relação entre variáveis, indicando a dependência de uma variável resposta em relação a uma ou mais variáveis preditoras. Ele é amplamente utilizado na criação de fórmulas, que são objetos da classe <code>formula</code> no R.</p>
-<p>A sintaxe básica do operador <code>~</code> é: <code>resposta ~ preditores</code>, Onde <code>resposta</code> é a variável dependente e <code>preditores</code> são as variáveis independentes. É possível haver mais de uma variável preditora. Nesse caso as variáveis preditoras são agregadas com o operador <code>+</code>. Por exemplo: <code>resposta ~ preditor1 + preditor2 + preditor3</code>.</p>
+<p>A sintaxe básica do operador <code>~</code> é: <code>resposta ~ preditores</code>, onde <code>resposta</code> é a variável dependente e <code>preditores</code> são as variáveis independentes. É possível haver mais de uma variável preditora. Nesse caso as variáveis preditoras são agregadas com o operador <code>+</code>. Por exemplo: <code>resposta ~ preditor1 + preditor2 + preditor3</code>.</p>
 <p>Suponha que temos um conjunto de dados sobre o peso e a altura de indivíduos e queremos criar um modelo que descreva o peso em função da altura. Podemos criar um objeto da classe fórmula simplesmente escrevendo <code>peso ~ altura</code>. Observe que os objetos da classe fórmula não são avaliados numericamente, a não ser quando são inseridos em alguma função.</p>
-<p>Esse é justamente o poder das fórmulas no R, permitem capturar os relações entre variáveis sem avaliá-las para que possam ser interpretadas por alguma função.</p>
+<p>Esse é justamente o poder das fórmulas no R, permitem capturar as relações entre variáveis sem avaliá-las para que possam ser interpretadas por alguma função.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>meus_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">peso   =</span> <span class="fu">c</span>(<span class="dv">60</span>,    <span class="dv">65</span>,    <span class="dv">70</span>,    <span class="dv">75</span>,    <span class="dv">80</span>,    <span class="dv">85</span>,      <span class="dv">90</span>,    <span class="dv">95</span>,     <span class="dv">100</span>,    <span class="dv">110</span>),</span>
@@ -639,7 +639,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="formulas-dentro-de-funções" class="level3" data-number="7.7.1">
 <h3 data-number="7.7.1" class="anchored" data-anchor-id="formulas-dentro-de-funções"><span class="header-section-number">7.7.1</span> Formulas dentro de funções</h3>
 <p>Podemos inserir fórmulas como argumentos de funções. Por exemplo, na construção de um boxplot comparativo: <code>boxplot(y~x, dataframe)</code>.</p>
-<p>O código acima pode ser traduzido da seguinte forma: faça um boxplot da distribuição da variável numérica <code>y</code> estratificando de acordo com a variável categórica <code>x</code>, a partir dos dados do data frame indicado. Podemos fazer isso usando os dados criado no código acima.</p>
+<p>O código acima pode ser traduzido da seguinte forma: faça um boxplot da distribuição da variável numérica <code>y</code> estratificando de acordo com a variável categórica <code>x</code>, a partir dos dados do data frame indicado. Podemos fazer isso usando os dados criados no código acima.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usando os dados criados na etapa anterior:</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(peso<span class="sc">~</span>sexo,<span class="at">data=</span>meus_dados)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -686,7 +686,7 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 </section>
 <section id="pipe" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="pipe"><span class="header-section-number">7.8</span> Operador pipe <code>|&gt;</code></h2>
-<p>Pipe, na língua inglesa, significa tubo ou tubulação. Na computação pipe é uma forma de simplificar uma série de comandos em sequência. O nome desse operador tem a ver com o fato de criar uma sequencia de ações, encaminhando os resultados de uma função para a próxima função como se estivessem sendo carregados por um tubo. Esse operador faz parte do pacote <code>magrittr</code> e é automaticamente instalado juntamente com o <code>tidyverse</code>. A partir da versão 4.1, o R passou a ter um operador pipe próprio, sem a necessidade de novos pacotes. Ambos tem funções similares e se comportam de forma parecida, com alguns detalhes diferentes. Esses operadores usam simbolos diferentes, mas funcionam de forma parecida e não entraremos em detalhes das sutis diferenças entre eles.</p>
+<p>Pipe, na língua inglesa, significa tubo ou tubulação. Na computação pipe é uma forma de simplificar uma série de comandos em sequência. O nome desse operador tem a ver com o fato de criar uma sequência de ações, encaminhando os resultados de uma função para a próxima função como se estivessem sendo carregados por um tubo. Esse operador faz parte do pacote <code>magrittr</code> e é automaticamente instalado juntamente com o <code>tidyverse</code>. A partir da versão 4.1, o R passou a ter um operador pipe próprio, sem a necessidade de novos pacotes. Ambos têm funções similares e se comportam de forma parecida, com alguns detalhes diferentes. Esses operadores usam símbolos diferentes, mas funcionam de forma parecida e não entraremos em detalhes das sutis diferenças entre eles.</p>
 <ul>
 <li><p>Operador pipe do pacote <code>magrittr</code>: <code>%&gt;%</code></p></li>
 <li><p>Operador pipe do R (4.1 e acima): <code>|&gt;</code></p></li>
@@ -695,7 +695,7 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 <p>Podemos fazer isso de três formas:</p>
 <ol type="1">
 <li>Aninhando as operações em parênteses ou</li>
-<li>criando variáveis intermediários em cada etapa.</li>
+<li>criando variáveis intermediárias em cada etapa.</li>
 <li>Usando o operador pipe.</li>
 </ol>
 <p>Vejamos como isso seria feito e quais as deficiências das duas primeiras abordagens.</p>
@@ -710,9 +710,9 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 <pre><code>[1] 10.02</code></pre>
 </div>
 </div>
-<p>Essa forma de fazer as operações não é nada elegante. O código fica difícil de ser lido e de ser compreendido. Erros são comuns e corrigi-los é ainda mais difícil. Um modo alternativo é fazer cada operação de uma vez, armazenado o resultado em variáveis intermediárias em cada etapa</p>
+<p>Essa forma de fazer as operações não é nada elegante. O código fica difícil de ser lido e de ser compreendido. Erros são comuns e corrigi-los é ainda mais difícil. Um modo alternativo é fazer cada operação de uma vez, armazenando o resultado em variáveis intermediárias em cada etapa</p>
 <p><strong>2º modo:</strong> Fazendo cada operação separadamente, usando variáveis intermediárias</p>
-<p>Calcule a média dos valores de x e armazenando o resultado em x2</p>
+<p>Calcule a média dos valores de x e armazene o resultado em x2</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -735,8 +735,8 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 <pre><code>[1] 10.02</code></pre>
 </div>
 </div>
-<p>Esse modo de realizar essa sequencia de operações é mais fácil de ser compreendido, já que cada etapa do processo é feita separadamente. Entretanto, tem o inconveniente de ser necessário a criação de diversas variáveis intermediárias, o que polui desnecessáriamente o ambiente de trabalho.</p>
-<p><strong>3º modo</strong>: Usando o operador pipe <code>%&gt;%</code></p>
+<p>Esse modo de realizar essa sequência de operações é mais fácil de ser compreendido, já que cada etapa do processo é feita separadamente. Entretanto, tem o inconveniente de ser necessária a criação de diversas variáveis intermediárias, o que polui desnecessariamente o ambiente de trabalho.</p>
+<p><strong>3º modo</strong>: Usando o operador pipe <code>%&gt;%</code> ou <code>|&gt;</code></p>
 <p>Veja agora como fazer essas operações de forma elegante com o operador pipe.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">mean</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -759,7 +759,7 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 <li>ENTÃO arredonde para 2 casas decimais.</li>
 </ol>
 <p>Veja como é muito mais natural e mais fácil compreender esse código. O que o operador pipe fez foi enviar o resultado de cada operação para a operação seguinte, como se estivesse passando por um tubo.</p>
-<p>O operador pipe pode ser colocado em diversas linhas para facilitar ainda mais a visualização e compreensão da sequencia de códigos. Essa é o estilo adequado de se usar o operador pipe.</p>
+<p>O operador pipe pode ser colocado em diversas linhas para facilitar ainda mais a visualização e compreensão da sequência de códigos. Esse é o estilo adequado de se usar o operador pipe.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usando o pipe %&gt;% do pacote magrittr</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span>   </span>
@@ -782,7 +782,7 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 </div>
 <p>Vamos ver como funciona o operador pipe em data frames usando como um exemplo o dataset <code>mpg</code> do pacote <code>ggplot2</code>.</p>
 <p>Imagine que você precisa extrair a média da quilometragem percorrida na estrada, por carros da marca Ford com tração nas 4 rodas, arredondando o resultado para 2 casas decimais depois da vírgula. Não se preocupe em entender as funções <code>filter()</code>, <code>select()</code> e <code>pull()</code>. Essas funções serão explicadas no capítulo sobre o <code>tidyverse</code>. O objetivo agora é apenas entender como usar o operador pipe <code>%&gt;%</code>.</p>
-<p>Sem o uso do operador pipe o código poderia ser feita de duas formas: criando datasets intermediários em cada etapa ou aninhando as operações em parênteses.</p>
+<p>Sem o uso do operador pipe o código poderia ser feito de duas formas: criando datasets intermediários em cada etapa ou aninhando as operações em parênteses.</p>
 <p><strong>Modo 1:</strong> Usando comandos aninhados um dentro do outro com parênteses.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregando o dataset mpg</span></span>
@@ -852,7 +852,7 @@ F-statistic:  1121 on 1 and 8 DF,  p-value: 6.905e-10</code></pre>
 <li>Arredonde o resultado para 2 casas decimais (<code>round()</code>)</li>
 </ol>
 <p>Depois de um certo tempo você irá se acostumar com o operador pipe e perceberá o quanto ele é útil, pois as operações são colocadas numa sequência bem mais compreensível.</p>
-<p>O operador pipe do R tem algumas vantagens. Em primeiro lugar, não depende de nenhum pacote; sem segundo lugar, é mais curto para se digitar; em terceiro lugar, é mais rápido.</p>
+<p>O operador pipe do R tem algumas vantagens. Em primeiro lugar, não depende de nenhum pacote; em segundo lugar, é mais curto para se digitar; em terceiro lugar, é mais rápido.</p>
 
 
 </section>

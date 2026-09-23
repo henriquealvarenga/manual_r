@@ -472,58 +472,58 @@ window.Quarto = {
 </header>
 
 
-<p>A simulação é uma ferramenta bastante útil em diversas situações. Pode ser usada em contextos simples, tais como simulações para uso em sala de aula, como também em contextos profissionais permitindo que pesquisadores de diversas áreas possam compreender melhor fenômenos complexos, testar hipóteses e prever resultados em situações onde experimentos reais podem ser inviáveis, caros ou demorados. A linguagem R, com inúmeras funções e pacotes dedicados para a realização de simulações.</p>
+<p>A simulação é uma ferramenta bastante útil em diversas situações. Pode ser usada em contextos simples, tais como simulações para uso em sala de aula, como também em contextos profissionais permitindo que pesquisadores de diversas áreas possam compreender melhor fenômenos complexos, testar hipóteses e prever resultados em situações onde experimentos reais podem ser inviáveis, caros ou demorados. A linguagem R conta com inúmeras funções e pacotes dedicados para a realização de simulações.</p>
 <p>Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (<a href="09-R-Packages.html" class="quarto-xref"><span>Capítulo 9</span></a>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Neste capítulo, exploraremos o uso de R para realizar simulações. Dicutiremos inicialmente a geração de sequencias e repetições, a geração de númeroso aleatórios, a importância de garantir a reprodutibilidade em simulações, utilizando a função <code>set.seed</code>, e depois as funções <code>sample</code> e <code>replicate</code>, que nos permitem gerar amostras aleatórias e replicar dados.</p>
+<p>Neste capítulo, exploraremos o uso de R para realizar simulações. Discutiremos inicialmente a geração de sequências e repetições, a geração de números aleatórios, a importância de garantir a reprodutibilidade em simulações, utilizando a função <code>set.seed</code>, e depois as funções <code>sample</code> e <code>replicate</code>, que nos permitem gerar amostras aleatórias e replicar dados.</p>
 <p>Também discutiremos e exploraremos técnicas avançadas como simulações de Monte Carlo, Bootstrapping e Cadeias de Markov Monte Carlo (MCMC).</p>
 <section id="sequências-no-r" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="sequências-no-r"><span class="header-section-number">15.1</span> Sequências no R</h2>
 <section id="operador-de-sequenciação" class="level3" data-number="15.1.1">
 <h3 data-number="15.1.1" class="anchored" data-anchor-id="operador-de-sequenciação"><span class="header-section-number">15.1.1</span> Operador de Sequenciação</h3>
-<p>Às vezes precisamos criar uma sequência, e o modo mais fácil de criar uma sequencia numérica é usar a função <code>c()</code> juntamente com o operador <code>:</code>.</p>
-<p>Iremos criar diversas sequências a armazenar o resultado em variáveis. Lembre-se que para mostrar o conteúdo das variável, basta digitar o nome da variável. Nas linhas de código a seguir faremos desse modo.</p>
-<p><strong>Criando uma sequencia crescente de 1 em 1</strong></p>
+<p>Às vezes precisamos criar uma sequência, e o modo mais fácil de criar uma sequência numérica é usar a função <code>c()</code> juntamente com o operador <code>:</code>.</p>
+<p>Iremos criar diversas sequências e armazenar o resultado em variáveis. Lembre-se que para mostrar o conteúdo das variáveis, basta digitar o nome da variável. Nas linhas de código a seguir faremos desse modo.</p>
+<p><strong>Criando uma sequência crescente de 1 em 1</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequencia crescente de 1 a 10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequência crescente de 1 a 10</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
-<p><strong>Criando uma sequencia decrescente de 1 em 1</strong></p>
+<p><strong>Criando uma sequência decrescente de 1 em 1</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequencia decrescente de 20 a 10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequência decrescente de 20 a 10</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x3</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 20 19 18 17 16 15 14 13 12 11 10</code></pre>
 </div>
 </div>
-<p><strong>Criando sequencia variadas</strong></p>
+<p><strong>Criando sequências variadas</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequencia de 1 a 10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequência de 1 a 10</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># depois insere o número 20, </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e depois cria uma nova sequencia de 30 a 40</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e depois cria uma nova sequência de 30 a 40</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span><span class="sc">:</span><span class="dv">40</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x4</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 20 30 31 32 33 34 35 36 37 38 39 40</code></pre>
 </div>
 </div>
-<p>Quando precisamos de sequencia numérica com intervalos diferentes de 1, é preciso usar a função <code>seq()</code>, na qual podemos especificar o tamanho da diferença entre os números.</p>
+<p>Quando precisamos de sequência numérica com intervalos diferentes de 1, é preciso usar a função <code>seq()</code>, na qual podemos especificar o tamanho da diferença entre os números.</p>
 </section>
 <section id="a-função-seq" class="level3" data-number="15.1.2">
 <h3 data-number="15.1.2" class="anchored" data-anchor-id="a-função-seq"><span class="header-section-number">15.1.2</span> A função <code>seq()</code></h3>
 <p><strong>Usando <code>seq()</code> com argumentos explícitos</strong></p>
-<p>A função <code>seq()</code> tem como argumentos o valor inicial da sequencia (<code>from</code>) , o valor final (<code>to</code>) e o tamanho do salto entre cada elemento da sequencia (<code>by</code>) .</p>
+<p>A função <code>seq()</code> tem como argumentos o valor inicial da sequência (<code>from</code>) , o valor final (<code>to</code>) e o tamanho do salto entre cada elemento da sequência (<code>by</code>) .</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cria uma sequencia de 1 a 10, aumentando 1 de cada vez, explicitando os argumentos</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cria uma sequência de 1 a 10, aumentando 1 de cada vez, explicitando os argumentos</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -532,7 +532,7 @@ window.Quarto = {
 <p><strong>Usando <code>seq()</code> com argumentos na ordem</strong></p>
 <p>Argumentos podem ser também passados para a função apenas colocando-os na ordem correta. Toda função tem uma ordem de apresentação dos argumentos. Podemos explicitar isso como fizemos antes, ou apenas inserir na ordem correta como abaixo.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cria uma sequencia de 1 a 10, aumentando 1 de cada vez</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cria uma sequência de 1 a 10, aumentando 1 de cada vez</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -540,7 +540,7 @@ window.Quarto = {
 </div>
 <p><strong>Usando a função <code>seq()</code> estipulando um intervalo de 0.5</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequencia de 1 a 10 aumentando 0.5 de cada vez</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequência de 1 a 10 aumentando 0.5 de cada vez</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
@@ -549,7 +549,7 @@ window.Quarto = {
 </div>
 <p><strong>Usando a função <code>seq()</code> com intervalo negativo</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequencia de 5 até 1, diminuindo 0.2 a cada vez</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria uma sequência de 5 até 1, diminuindo 0.2 a cada vez</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 5.0 4.8 4.6 4.4 4.2 4.0 3.8 3.6 3.4 3.2 3.0 2.8 2.6 2.4 2.2 2.0 1.8 1.6 1.4
@@ -596,7 +596,7 @@ window.Quarto = {
 <pre><code>[1] 1 1 2 2 2 3 3 3 3</code></pre>
 </div>
 </div>
-<p>Como podemos ver, função <code>rep()</code> é bastante flexível, permitindo especificar quantas vezes cada elemento deve ser repetido (<code>times</code>) ou quantas vezes cada elemento do vetor deve ser repetido (<code>each</code>).</p>
+<p>Como podemos ver, a função <code>rep()</code> é bastante flexível, permitindo especificar quantas vezes cada elemento deve ser repetido (<code>times</code>) ou quantas vezes cada elemento do vetor deve ser repetido (<code>each</code>).</p>
 </section>
 <section id="a-função-replicate" class="level3" data-number="15.2.3">
 <h3 data-number="15.2.3" class="anchored" data-anchor-id="a-função-replicate"><span class="header-section-number">15.2.3</span> A Função <code>replicate()</code></h3>
@@ -608,17 +608,17 @@ window.Quarto = {
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Repetir esse processo 5 vezes com replicate</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">10</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]      [,2]      [,3]      [,4]       [,5]
- [1,] 0.51764030 0.1456723 0.3474756 0.5023594 0.70882098
- [2,] 0.84655672 0.3036507 0.2819038 0.3339352 0.23028197
- [3,] 0.82256669 0.5555865 0.3603248 0.8302948 0.42255523
- [4,] 0.68343569 0.5001535 0.6386522 0.8203720 0.09147383
- [5,] 0.74995380 0.0169983 0.7428824 0.6454127 0.78037253
- [6,] 0.08416510 0.8569260 0.7784458 0.8880880 0.67230716
- [7,] 0.26353199 0.6001840 0.8749471 0.1790991 0.07303066
- [8,] 0.94024889 0.8088252 0.6331729 0.6962538 0.89231182
- [9,] 0.08670103 0.2962082 0.4910570 0.9981328 0.47400491
-[10,] 0.16827682 0.8322495 0.2737274 0.9507772 0.08732423</code></pre>
+<pre><code>            [,1]      [,2]       [,3]       [,4]      [,5]
+ [1,] 0.67997104 0.6258401 0.13686418 0.91262410 0.5176495
+ [2,] 0.39440942 0.4804227 0.77513013 0.47869353 0.7811568
+ [3,] 0.06621824 0.2537902 0.99707099 0.17953304 0.1982693
+ [4,] 0.67484150 0.7068584 0.64256749 0.13183790 0.7313487
+ [5,] 0.18385445 0.4733945 0.58839888 0.25606757 0.5043841
+ [6,] 0.06379154 0.5350889 0.82840769 0.66236857 0.5119926
+ [7,] 0.56749226 0.5534675 0.73695796 0.28381141 0.3676966
+ [8,] 0.74228094 0.1129942 0.55828465 0.08844775 0.9867156
+ [9,] 0.35278409 0.3336136 0.85812534 0.08478459 0.3698812
+[10,] 0.09801409 0.6775562 0.05595658 0.33463139 0.8359090</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -626,22 +626,22 @@ window.Quarto = {
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]      [,2]      [,3]       [,4]       [,5]
- [1,] 0.4875249 0.4237604 0.7037878 0.41491648 0.28835796
- [2,] 0.7810879 0.9309962 0.3191944 0.30606816 0.41619793
- [3,] 0.6779686 0.1926415 0.1979739 0.85410891 0.56294374
- [4,] 0.3988601 0.7859572 0.1580131 0.46726898 0.06394342
- [5,] 0.2427309 0.6083242 0.4699334 0.95052412 0.29328405
- [6,] 0.7576445 0.4899454 0.1555254 0.46505695 0.05143760
- [7,] 0.4554615 0.4866505 0.4722005 0.08800572 0.29217325
- [8,] 0.6572592 0.7767650 0.7121434 0.14645083 0.95196994
- [9,] 0.4243530 0.7118725 0.8605194 0.91217628 0.80007252
-[10,] 0.7243082 0.7694271 0.5397026 0.93775641 0.03169381</code></pre>
+<pre><code>            [,1]      [,2]      [,3]        [,4]       [,5]
+ [1,] 0.34926817 0.5517917 0.7824998 0.566604455 0.07750899
+ [2,] 0.39845716 0.5799785 0.8922763 0.004764389 0.70040379
+ [3,] 0.66372280 0.6155686 0.7183900 0.506068351 0.10723619
+ [4,] 0.56539707 0.9827286 0.5271306 0.540195334 0.89711552
+ [5,] 0.38701254 0.9444080 0.5873885 0.019694751 0.21873789
+ [6,] 0.23749182 0.3724926 0.1835051 0.853816243 0.23358733
+ [7,] 0.40982822 0.9423618 0.7562341 0.232172831 0.32462583
+ [8,] 0.40474212 0.6868779 0.9549461 0.175684214 0.45651812
+ [9,] 0.05407213 0.1493630 0.4834582 0.236237106 0.48385109
+[10,] 0.46059112 0.4045580 0.8929543 0.524947514 0.36285621</code></pre>
 </div>
 </div>
-<p><strong>Exemplo 2: Simulação de Lançamento moeda</strong></p>
+<p><strong>Exemplo 2: Simulação de Lançamento de moeda</strong></p>
 <p>A função <code>sample()</code> serve para realizarmos amostragens. Podemos usar a função <code>replicate()</code> para simular várias repetições de amostragens.</p>
-<p>Vamos criar um objeto simulando uma moeda e usar a função <code>sample()</code> para sortear um dos valores desse objeto (cara ou coroa). O argumento <code>replace = TRUE</code> é necessário, pois os valores possíveis podem ser repetido em cada sorteio.</p>
+<p>Vamos criar um objeto simulando uma moeda e usar a função <code>sample()</code> para sortear um dos valores desse objeto (cara ou coroa). O argumento <code>replace = TRUE</code> é necessário, pois os valores possíveis podem ser repetidos em cada sorteio.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cria o objeto moeda</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>moeda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cara"</span>,<span class="st">"coroa"</span>)</span>
@@ -657,9 +657,9 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replicando 5 vezes os dois lançamentos</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">sample</span>(moeda, <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1]    [,2]    [,3]    [,4]   [,5]  
-[1,] "coroa" "coroa" "cara"  "cara" "cara"
-[2,] "coroa" "cara"  "coroa" "cara" "cara"</code></pre>
+<pre><code>     [,1]    [,2]    [,3]    [,4]    [,5]   
+[1,] "cara"  "coroa" "cara"  "coroa" "cara" 
+[2,] "coroa" "coroa" "coroa" "cara"  "coroa"</code></pre>
 </div>
 </div>
 </section>
@@ -669,7 +669,7 @@ window.Quarto = {
 <p>Números aleatórios são valores gerados de tal forma que cada número tem a mesma probabilidade de ser escolhido. Eles desempenham um papel essencial em diversas áreas da ciência e tecnologia, permitindo a criação de simulações, modelagens estatísticas e testes que replicam a aleatoriedade do mundo real.</p>
 <p>Na ciência, a geração de números aleatórios é fundamental por várias razões. As simulações, por exemplo, permitem replicar fenômenos naturais ou processos clínicos, como a progressão de doenças ou a resposta a tratamentos, de maneira controlada. Na amostragem, a seleção aleatória de amostras de uma população garante que cada membro tenha a mesma chance de ser incluído, o que é crucial para a validade estatística dos estudos. Em ensaios clínicos, a randomização dos pacientes para diferentes grupos de tratamento minimiza o viés e assegura que os grupos sejam comparáveis, promovendo resultados mais confiáveis.</p>
 <p>A geração de números aleatórios também permite criar conjuntos numéricos que seguem diferentes distribuições estatísticas, como a distribuição uniforme, onde todos os valores dentro de um intervalo têm a mesma probabilidade de ocorrer; a distribuição normal, onde a maioria dos valores se concentra em torno da média, formando a conhecida curva em forma de sino; e a distribuição exponencial, usada para modelar o tempo entre eventos independentes que ocorrem a uma taxa constante.</p>
-<p>A história da geração de números aleatórios na computação é bastante interessante. No início, métodos mecânicos, como roletas e sorteios com cartas, eram usados para gerar números aleatórios. Com o advento dos computadores, a necessidade de métodos mais rápidos e eficientes levou ao desenvolvimento de algoritmos que usam uma fórmulas matemática para produzir uma sequência de números pseudoaleatórios. Embora esses números não sejam verdadeiramente aleatórios, eles são suficientemente aleatórios para a maioria das aplicações práticas.</p>
+<p>A história da geração de números aleatórios na computação é bastante interessante. No início, métodos mecânicos, como roletas e sorteios com cartas, eram usados para gerar números aleatórios. Com o advento dos computadores, a necessidade de métodos mais rápidos e eficientes levou ao desenvolvimento de algoritmos que usam uma fórmula matemática para produzir uma sequência de números pseudoaleatórios. Embora esses números não sejam verdadeiramente aleatórios, eles são suficientemente aleatórios para a maioria das aplicações práticas.</p>
 <p>Os números pseudoaleatórios gerados por algoritmos, produzem sequências de números que parecem aleatórios, mas que na verdade seguem uma lógica predefinida. Esses algoritmos começam com um valor inicial chamado de “semente” (ou “seed” em inglês). Se a mesma semente for usada, a sequência de números gerada será sempre a mesma. Em inúmeras situações é importante definir o valor inicial do gerador de números pseudoaleatórios. Ao fixar essa semente, você garante que os resultados da geração de números aleatórios possam ser reproduzidos. Isso significa que, se você e outra pessoa executarem o mesmo código com a mesma semente, ambos obterão exatamente os mesmos números aleatórios.</p>
 <p>Na linguagem R a função <code>set.seed()</code> define o valor inicial do gerador de números pseudoaleatórios. Ao fixar essa semente, você garante que os resultados da geração de números aleatórios possam ser reproduzidos. Isso significa que, se você e outra pessoa executarem o mesmo código com a mesma semente, ambos obterão exatamente os mesmos números aleatórios.</p>
 <p>No capítulo sobre distribuições (<a href="14-Distributions.html" class="quarto-xref"><span>Capítulo 14</span></a>) vimos que podemos criar conjuntos de números aleatórios com diferentes distribuições, usando as funções <code>runif()</code> (distribuição uniforme), <code>rnorm()</code> (distribuição normal), <code>rt()</code> (distribuição t), <code>rchisq()</code> (distribuição Chi-quadrado) etc.</p>
@@ -677,13 +677,13 @@ window.Quarto = {
 </section>
 <section id="amostragens" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="amostragens"><span class="header-section-number">15.4</span> Amostragens</h2>
-<p>O R possui uma função para simular amostras randomizadas: a função <code>sample()</code>. O primeiro argumento dessa função é a população (objeto que contenha os valores da população). O segundo argumento é o tamanho a amostra a ser retirada.</p>
+<p>O R possui uma função para simular amostras randomizadas: a função <code>sample()</code>. O primeiro argumento dessa função é a população (objeto que contenha os valores da população). O segundo argumento é o tamanho da amostra a ser retirada.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando, de forma aleatória, 5 números entre 1 e 10</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  4  2  5  7 10</code></pre>
+<pre><code>[1] 1 2 9 6 5</code></pre>
 </div>
 </div>
 <p>Para obtermos sempre os mesmos resultados precisamos definir a semente com <code>set.seed()</code>.</p>
@@ -695,7 +695,7 @@ window.Quarto = {
 <pre><code>[1] 2 9 7 3 1</code></pre>
 </div>
 </div>
-<p>Por padrão essa função realiza uma amostragem sem reposição, ou seja, uma vez retirada o elemento, esse mesmo elemento não pode ser retirado novamente. Por exemplo, se desejo simular um jogo de bingo, no qual há 100 bolinhas, não podemos retirar a mesma bolinha mais de uma vez. Esse é um exemplo de retirada sem reposição. O código abaixo simularmo uma sequencia aletória de retirada de 5 bolinhas de bingo num total de 100:</p>
+<p>Por padrão essa função realiza uma amostragem sem reposição, ou seja, uma vez retirado o elemento, esse mesmo elemento não pode ser retirado novamente. Por exemplo, se desejo simular um jogo de bingo, no qual há 100 bolinhas, não podemos retirar a mesma bolinha mais de uma vez. Esse é um exemplo de retirada sem reposição. O código abaixo simula uma sequência aleatória de retirada de 5 bolinhas de bingo num total de 100:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -703,7 +703,7 @@ window.Quarto = {
 <pre><code>[1] 41 85 94 71 19</code></pre>
 </div>
 </div>
-<p>Para simularmos situações nas quais é possível a repetição de um determinado elemento, precisamos alterar o parametro replace para <code>replace=TRUE</code>.</p>
+<p>Para simularmos situações nas quais é possível a repetição de um determinado elemento, precisamos alterar o parâmetro replace para <code>replace=TRUE</code>.</p>
 <p>Por exemplo, imagine que queremos simular a jogada de dois dados. Cada dado pode resultar em um valor de 1 a 6. Nesse caso, queremos sortear dois números de 1 a 6, mas é possível repetir o valor, pois os dados podem mostrar o mesmo valor.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -722,7 +722,7 @@ window.Quarto = {
 [2,]    5    2    3    6    3    5    2    1    6     5</code></pre>
 </div>
 </div>
-<p>O código acima pode ser escrito de forma mais suscinta como abaixo, sem a criação de uma variável intermediária.</p>
+<p>O código acima pode ser escrito de forma mais sucinta como abaixo, sem a criação de uma variável intermediária.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">10</span>, <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -758,7 +758,7 @@ window.Quarto = {
 <pre><code>[1]  0.97438263 -0.68377329 -0.51091755  0.08220176 -0.62645515</code></pre>
 </div>
 </div>
-<p>Finalmente, a função sample não se limita a números. Podemos criar conjuntos de texto para serem sorteados. Por exemplos, nomes de pessoas ou cores. Podemos simular a jogada de uma moeda, com valores sendo nesse caso <code>cara</code> ou <code>coroa.</code></p>
+<p>Como já vimos no exemplo da moeda, a função <code>sample()</code> não se limita a números: podemos sortear textos, como nomes de pessoas ou cores. Aqui sorteamos um único lançamento:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>moeda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cara"</span>, <span class="st">"coroa"</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(moeda, <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -779,10 +779,10 @@ window.Quarto = {
 <li>Repetir o processo muitas vezes para obter uma distribuição de resultados.</li>
 <li>Estudar os resultados gerados para fazer previsões ou tomar decisões.</li>
 </ul>
-<p>Por exemplo, Imagine que você está jogando roleta em um cassino e quer calcular a probabilidade de ganhar ao apostar no número 7. Em uma roleta europeia, há 37 casas numeradas de 0 a 36.</p>
+<p>Por exemplo, imagine que você está jogando roleta em um cassino e quer calcular a probabilidade de ganhar ao apostar no número 7. Em uma roleta europeia, há 37 casas numeradas de 0 a 36.</p>
 <p><strong>Passos da Simulação de Monte Carlo:</strong></p>
 <ul>
-<li>Modelo do poblema: a roleta tem 37 casas (0 a 36) e você ganha se a bola cair no número 7.</li>
+<li>Modelo do problema: a roleta tem 37 casas (0 a 36) e você ganha se a bola cair no número 7.</li>
 <li>Gerar resultados aleatórios: simular várias rodadas de roleta para ver quantas vezes a bola cai no número 7.</li>
 <li>Repetir várias vezes: repetir a simulação muitas vezes (por exemplo, 10.000 vezes) para obter uma distribuição dos resultados.</li>
 <li>Analisar os resultados: calcular a proporção de vezes que você ganhou (bola caiu no número 7).</li>
@@ -812,8 +812,8 @@ window.Quarto = {
 </section>
 <section id="estimando-áreas-com-a-simulação-de-monte-carlo" class="level3" data-number="15.5.2">
 <h3 data-number="15.5.2" class="anchored" data-anchor-id="estimando-áreas-com-a-simulação-de-monte-carlo"><span class="header-section-number">15.5.2</span> Estimando Áreas com a Simulação de Monte Carlo</h3>
-<p>Vamos demonstrar como a Simulação de Monte Carlo pode ser usada para calcular a área abaixo da curva da função <span class="math inline">\(y = x^2\)</span> entre os valores 4 e 6. A área abaixo da curva pode ser estimada como sendo a área do retangulo entre os pontos 4 e 6 multiplicada pela razão entre da área abaixo da curva a a área do quadrado. Entretanto, a área abaixo da curva é justamente o que queremos saber.</p>
-<p>A Simulação de Monte Carlo pode nos ajudar nesse problema, pois podemos fazer uma analogia da área numa região com a quantidade de pontos aleatórios que cabem nessa região. Assim, podemos estimar essa proporção entra as áreas através da razão entre a quantidade de pontos aleatórios que caem abaixo da curva pelo total de pontos dentro do retângulo.</p>
+<p>Vamos demonstrar como a Simulação de Monte Carlo pode ser usada para calcular a área abaixo da curva da função <span class="math inline">\(y = x^2\)</span> entre os valores 4 e 6. A área abaixo da curva pode ser estimada como sendo a área do retângulo entre os pontos 4 e 6 multiplicada pela razão entre a área abaixo da curva e a área do quadrado. Entretanto, a área abaixo da curva é justamente o que queremos saber.</p>
+<p>A Simulação de Monte Carlo pode nos ajudar nesse problema, pois podemos fazer uma analogia da área numa região com a quantidade de pontos aleatórios que cabem nessa região. Assim, podemos estimar essa proporção entre as áreas através da razão entre a quantidade de pontos aleatórios que caem abaixo da curva pelo total de pontos dentro do retângulo.</p>
 <p><span class="math display">\[
 \frac{\text{Área abaixo da curva}}{\text{Área do retângulo}} = \frac{\text{pontos abaixo da curva}}{\text{pontos totais no retangulo}}   
 \]</span></p>
@@ -841,7 +841,7 @@ window.Quarto = {
 </div>
 <p>Para estimar a área sob a curva usando a simulação de Monte Carlo, seguimos os seguintes passos:</p>
 <ol type="1">
-<li><strong>Definir o modelo</strong>: No nosso caso, o mnodelo é a função <span class="math inline">\(y = x^2\)</span> e os limites são <code>x = 4</code> e <code>x = 6</code>.</li>
+<li><strong>Definir o modelo</strong>: No nosso caso, o modelo é a função <span class="math inline">\(y = x^2\)</span> e os limites são <code>x = 4</code> e <code>x = 6</code>.</li>
 <li><strong>Gerar Pontos Aleatórios</strong>: Geramos pontos aleatórios dentro do retângulo que envolve a região de interesse. Este retângulo vai de x = 4 a x = 6 e de y = 0 até o valor máximo de y (neste caso, y = 36, porque <span class="math inline">\(6^2 = 36\)</span>).</li>
 <li><strong>Contar Pontos Abaixo da Curva</strong>: Verificamos quantos pontos aleatórios caem abaixo da curva <span class="math inline">\(y = x^2\)</span>.</li>
 <li><strong>Calcular a Área</strong>: A proporção de pontos abaixo da curva, multiplicada pela área do retângulo, nos dá a estimativa da área abaixo da curva.</li>
@@ -928,7 +928,7 @@ window.Quarto = {
 <p><span class="math inline">\(R=\frac{\pi r^2}{4r^2}\)</span> que pode ser simplificada para <span class="math inline">\(R=\frac{\pi}{4}\)</span>.</p>
 <p>Ou seja <span class="math inline">\(\pi=4R\)</span></p>
 <p>Então, para calcular <span class="math inline">\(\pi\)</span>, basta multiplicar por 4 a razão entre a área do círculo e a do quadrado.</p>
-<p>A Simulação de Monte Carlo nos permite fazer um aproximação dessa razão. Podemos criar muitos pontos aleatórios no quadrado e depois simplesmente contar o número que estão dentro do círculo. A proporção desses pontos dentro com o total será a aproximação da razão da áreas.</p>
+<p>A Simulação de Monte Carlo nos permite fazer uma aproximação dessa razão. Podemos criar muitos pontos aleatórios no quadrado e depois simplesmente contar o número que estão dentro do círculo. A proporção desses pontos dentro com o total será a aproximação da razão das áreas.</p>
 <p>Primeiro, vamos gerar um conjunto aleatório de pontos em um quadrado e depois determinar quais estão dentro do círculo.</p>
 <p>Para criar os pontos, usaremos um quadrado com comprimento lateral de 1 centrado em (x, y) = (0, 0), então nossos pontos precisam estar entre as coordenadas x = (-0,5, 0,5) e y = (- 0,5, 0,5):</p>
 <div class="cell">
@@ -936,7 +936,7 @@ window.Quarto = {
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>pontos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(trials, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> <span class="fu">runif</span>(trials, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Para determinar quais pontos estão dentro do círculo (que tem um raio de 0,5), basta calcular a distância de cada ponto até o centro, o que nada mais é que a diagonal de um triângulo, que pode ser calculada com o teorema de pitágoras. Se essa diagonal for menor que o raio, então o ponto está dentro do círculo. Para isso iremos criar uma variável lógica chamada <code>pontosDentro</code>, que terá o valor <code>TRUE</code> se o ponto estiver dentro do círculo.</p>
+<p>Para determinar quais pontos estão dentro do círculo (que tem um raio de 0,5), basta calcular a distância de cada ponto até o centro, o que nada mais é que a diagonal de um triângulo, que pode ser calculada com o teorema de Pitágoras. Se essa diagonal for menor que o raio, então o ponto está dentro do círculo. Para isso iremos criar uma variável lógica chamada <code>pontosDentro</code>, que terá o valor <code>TRUE</code> se o ponto estiver dentro do círculo.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>pontos <span class="ot">&lt;-</span> pontos <span class="sc">|&gt;</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">raio =</span> <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>),</span>
@@ -952,7 +952,7 @@ window.Quarto = {
 6 -0.29190945 -0.16056017 0.3331527         TRUE</code></pre>
 </div>
 </div>
-<p>O desenho abaixo mostra a simulação, colorindo de forma diferentes os pontos dentro e fora do círculo:</p>
+<p>O desenho abaixo mostra a simulação, colorindo de forma diferente os pontos dentro e fora do círculo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pontos) <span class="sc">+</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> pontosDentro), <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -996,12 +996,12 @@ window.Quarto = {
 </section>
 <section id="bootstrapping" class="level2" data-number="15.6">
 <h2 data-number="15.6" class="anchored" data-anchor-id="bootstrapping"><span class="header-section-number">15.6</span> Bootstrapping</h2>
-<p>O bootstrap é um método computacional para estimar a precisão de medidas estatísticas, baseado na reamostragem com reposição (<em>replacement</em>). Um dos principais uso do Boostrap é para calcular o intervalo de confiança para qualquer tipo de medida estatística <span class="citation" data-cites="dogan2017">(<a href="references.html#ref-dogan2017" role="doc-biblioref">Dogan 2017</a>)</span>.</p>
-<p>O método de bootstrap simples envolve pegar o conjunto de dados original, usando um computador, fazer uma amostragem com reposição para formar uma nova amostra (chamada de <em>reamostra</em>, <em>amostra de bootstrap</em> ou <em>boostrap sample</em>) que também é de tamanho N. A amostra de bootstrap é retirada de o original usando amostragem com substituição (por exemplo, podemos ‘reamostrar’ 5 vezes de [1,2,3,4,5] e obter [2,5,4,4,1]). Esse processo é repetido milhares de vezes. Em seguida, para cada uma dessas amostras de bootstrap, calculamos a estatística de interesse, chamada de “estimativa de bootstrap e seu intervalo de confiança.</p>
-<p>Entretanto, excetuando-se a média, é muito difícil conhecer a precisão de outras estimativas. O algoritmo de boostrap serve justamente para isso, para estimarmos a precisão de medidas estatísticas.</p>
-<p>Pra fins de exemplo, vamos comparar o intervalo de confiança de uma média calculado calculado com o método boostrap e calculado com a fórmula tradicional <span class="math inline">\(\bar{x} \pm 1.96\times \frac{\sigma}{\sqrt{n}}\)</span>, onde <span class="math inline">\(\bar{x}\)</span> é a média, <span class="math inline">\({\sigma}\)</span> é o desvio padrão e <span class="math inline">\({n}\)</span> é o tamanho da amostra.</p>
-<p>Suponha que estamos interessados na altura média das pessoas de uma cidade. Não podemos medir todas as pessoas da cidade, por isso, em vez disso, amostramos apenas uma pequena parte dela. Suponha que a amostra seja de tamanho N; isto é, medimos as alturas de N indivíduos. Dessa única amostra, apenas uma estimativa da média pode ser obtida. Entretanto, precisamos de alguma noção da variabilidade da média que calculamos. Apesar ser fácil aavaliar o erro padrão da média, esse exemplo serve para entendermos como funciona o boostrap.</p>
-<p>Para fins desse exemplo, vamos usar gerar de forma randomizada uma população de 100.000 pessoas, com distribuição normal, com média de altura de 175cm e desvio padrão de 20cm. E vamos retirar desse população uma amostra com 200 pessoas. Em seguida vamos retirar uma amostra dessa população e então calcular o intervalo de confiança da média da população e da amostra.</p>
+<p>O bootstrap é um método computacional para estimar a precisão de medidas estatísticas, baseado na reamostragem com reposição (<em>replacement</em>). Um dos principais usos do Bootstrap é para calcular o intervalo de confiança para qualquer tipo de medida estatística <span class="citation" data-cites="dogan2017">(<a href="references.html#ref-dogan2017" role="doc-biblioref">Dogan 2017</a>)</span>.</p>
+<p>O método de bootstrap simples envolve pegar o conjunto de dados original, usando um computador, fazer uma amostragem com reposição para formar uma nova amostra (chamada de <em>reamostra</em>, <em>amostra de bootstrap</em> ou <em>bootstrap sample</em>) que também é de tamanho N. A amostra de bootstrap é retirada do original usando amostragem com substituição (por exemplo, podemos ‘reamostrar’ 5 vezes de [1,2,3,4,5] e obter [2,5,4,4,1]). Esse processo é repetido milhares de vezes. Em seguida, para cada uma dessas amostras de bootstrap, calculamos a estatística de interesse, chamada de “estimativa de bootstrap” e seu intervalo de confiança.</p>
+<p>Entretanto, excetuando-se a média, é muito difícil conhecer a precisão de outras estimativas. O algoritmo de bootstrap serve justamente para isso, para estimarmos a precisão de medidas estatísticas.</p>
+<p>Para fins de exemplo, vamos comparar o intervalo de confiança de uma média calculado com o método bootstrap e calculado com a fórmula tradicional <span class="math inline">\(\bar{x} \pm 1.96\times \frac{\sigma}{\sqrt{n}}\)</span>, onde <span class="math inline">\(\bar{x}\)</span> é a média, <span class="math inline">\({\sigma}\)</span> é o desvio padrão e <span class="math inline">\({n}\)</span> é o tamanho da amostra.</p>
+<p>Suponha que estamos interessados na altura média das pessoas de uma cidade. Não podemos medir todas as pessoas da cidade, por isso, em vez disso, amostramos apenas uma pequena parte dela. Suponha que a amostra seja de tamanho N; isto é, medimos as alturas de N indivíduos. Dessa única amostra, apenas uma estimativa da média pode ser obtida. Entretanto, precisamos de alguma noção da variabilidade da média que calculamos. Apesar de ser fácil avaliar o erro padrão da média, esse exemplo serve para entendermos como funciona o bootstrap.</p>
+<p>Para fins desse exemplo, vamos gerar de forma randomizada uma população de 100.000 pessoas, com distribuição normal, com média de altura de 175cm e desvio padrão de 20cm. E vamos retirar dessa população uma amostra com 200 pessoas. Em seguida vamos retirar uma amostra dessa população e então calcular o intervalo de confiança da média da população e da amostra.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">175</span>, <span class="at">sd =</span> <span class="dv">20</span> )</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>OriginalSample <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1043,7 +1043,7 @@ mean of x
 </div>
 <p>Agora vamos calcular a média de cada uma das amostras de bootstrap e então calcular o intervalo de confiança.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando uma vetor "means" com as médias de cada uma das amostras do boostrap</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando um vetor "means" com as médias de cada uma das amostras do bootstrap</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">apply</span>(bootSamples, <span class="dv">2</span>, mean)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">

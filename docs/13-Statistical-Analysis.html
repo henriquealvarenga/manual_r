@@ -450,7 +450,7 @@ window.Quarto = {
   <li><a href="#extraindo-os-resultados-do-teste-t" id="toc-extraindo-os-resultados-do-teste-t" class="nav-link" data-scroll-target="#extraindo-os-resultados-do-teste-t"><span class="header-section-number">13.3.2</span> Extraindo os resultados do teste t</a></li>
   </ul></li>
   <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">13.4</span> ANOVA</a></li>
-  <li><a href="#wilcoxon-rank-sum-test-man-whitney-test" id="toc-wilcoxon-rank-sum-test-man-whitney-test" class="nav-link" data-scroll-target="#wilcoxon-rank-sum-test-man-whitney-test"><span class="header-section-number">13.5</span> Wilcoxon rank sum test (Man-Whitney test)</a></li>
+  <li><a href="#wilcoxon-rank-sum-test-mann-whitney-test" id="toc-wilcoxon-rank-sum-test-mann-whitney-test" class="nav-link" data-scroll-target="#wilcoxon-rank-sum-test-mann-whitney-test"><span class="header-section-number">13.5</span> Wilcoxon rank sum test (Mann-Whitney test)</a></li>
   <li><a href="#teste-do-chi-quadrado" id="toc-teste-do-chi-quadrado" class="nav-link" data-scroll-target="#teste-do-chi-quadrado"><span class="header-section-number">13.6</span> Teste do Chi Quadrado</a></li>
   <li><a href="#teste-exato-de-fisher" id="toc-teste-exato-de-fisher" class="nav-link" data-scroll-target="#teste-exato-de-fisher"><span class="header-section-number">13.7</span> Teste exato de Fisher</a></li>
   <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link" data-scroll-target="#regressão-linear"><span class="header-section-number">13.8</span> Regressão Linear</a>
@@ -458,7 +458,7 @@ window.Quarto = {
   <li><a href="#aspectos-históricos" id="toc-aspectos-históricos" class="nav-link" data-scroll-target="#aspectos-históricos"><span class="header-section-number">13.8.1</span> Aspectos Históricos</a></li>
   <li><a href="#regressão-linear-modelos-lineares" id="toc-regressão-linear-modelos-lineares" class="nav-link" data-scroll-target="#regressão-linear-modelos-lineares"><span class="header-section-number">13.8.2</span> Regressão linear (modelos Lineares)</a></li>
   <li><a href="#regressão-linear-no-r" id="toc-regressão-linear-no-r" class="nav-link" data-scroll-target="#regressão-linear-no-r"><span class="header-section-number">13.8.3</span> Regressão linear no R</a></li>
-  <li><a href="#regressão-linear-multivariada-no-r" id="toc-regressão-linear-multivariada-no-r" class="nav-link" data-scroll-target="#regressão-linear-multivariada-no-r"><span class="header-section-number">13.8.4</span> Regressão Linear multivariada no R</a></li>
+  <li><a href="#regressão-linear-múltipla-no-r" id="toc-regressão-linear-múltipla-no-r" class="nav-link" data-scroll-target="#regressão-linear-múltipla-no-r"><span class="header-section-number">13.8.4</span> Regressão Linear múltipla no R</a></li>
   <li><a href="#regressão-linear-com-o-pacote-broom" id="toc-regressão-linear-com-o-pacote-broom" class="nav-link" data-scroll-target="#regressão-linear-com-o-pacote-broom"><span class="header-section-number">13.8.5</span> Regressão Linear com o pacote broom</a></li>
   <li><a href="#pacote-stargazer" id="toc-pacote-stargazer" class="nav-link" data-scroll-target="#pacote-stargazer"><span class="header-section-number">13.8.6</span> Pacote stargazer</a></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">13.8.7</span> Referências</a></li>
@@ -467,7 +467,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#passo-a-passo-da-regressão-logística-no-r" id="toc-passo-a-passo-da-regressão-logística-no-r" class="nav-link" data-scroll-target="#passo-a-passo-da-regressão-logística-no-r"><span class="header-section-number">13.9.1</span> Passo a passo da regressão logística no R</a></li>
   <li><a href="#etapas-da-análise-de-regressão" id="toc-etapas-da-análise-de-regressão" class="nav-link" data-scroll-target="#etapas-da-análise-de-regressão"><span class="header-section-number">13.9.2</span> Etapas da análise de regressão</a></li>
-  <li><a href="#escolhendo-das-variáveis-para-o-modelo" id="toc-escolhendo-das-variáveis-para-o-modelo" class="nav-link" data-scroll-target="#escolhendo-das-variáveis-para-o-modelo"><span class="header-section-number">13.9.3</span> Escolhendo das variáveis para o modelo</a></li>
+  <li><a href="#escolhendo-as-variáveis-para-o-modelo" id="toc-escolhendo-as-variáveis-para-o-modelo" class="nav-link" data-scroll-target="#escolhendo-as-variáveis-para-o-modelo"><span class="header-section-number">13.9.3</span> Escolhendo as variáveis para o modelo</a></li>
   <li><a href="#divisão-do-dataset" id="toc-divisão-do-dataset" class="nav-link" data-scroll-target="#divisão-do-dataset"><span class="header-section-number">13.9.4</span> Divisão do Dataset</a></li>
   <li><a href="#ajustando-o-modelo-com-a-função-glm" id="toc-ajustando-o-modelo-com-a-função-glm" class="nav-link" data-scroll-target="#ajustando-o-modelo-com-a-função-glm"><span class="header-section-number">13.9.5</span> Ajustando o modelo com a função <code>glm</code></a></li>
   <li><a href="#calculando-a-acurácia-do-modelo" id="toc-calculando-a-acurácia-do-modelo" class="nav-link" data-scroll-target="#calculando-a-acurácia-do-modelo"><span class="header-section-number">13.9.6</span> Calculando a acurácia do modelo</a></li>
@@ -550,9 +550,9 @@ window.Quarto = {
 </section>
 <section id="teste-de-shapiro-wilk" class="level3" data-number="13.1.2">
 <h3 data-number="13.1.2" class="anchored" data-anchor-id="teste-de-shapiro-wilk"><span class="header-section-number">13.1.2</span> Teste de Shapiro-Wilk</h3>
-<p>O teste de Shapiro-Wilk é um teste estatístico utilizado para avaliar a normalidade dos dados. A hipótese nula do teste é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.</p>
+<p>O teste de Shapiro-Wilk é um teste estatístico utilizado para avaliar a normalidade dos dados. A hipótese nula do teste é que os dados seguem uma distribuição normal. Ou seja, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada: não encontramos evidência contra a normalidade. Note a diferença: o teste não prova que os dados são normais, apenas não detectou um desvio da normalidade, o que é mais fácil de acontecer em amostras pequenas.</p>
 <p>O argumento principal do teste de Shapiro-Wilk é o conjunto de dados que queremos testar. O resultado do teste é a estatística <span class="math inline">\(W\)</span> e o valor-p.&nbsp;<span class="math inline">\(W\)</span> indica o quão bem os dados se ajustam a uma distribuição normal. O valor <span class="math inline">\(W\)</span> próximo a 1 indica que os dados provavelmente serão distribuídos normalmente, enquanto um valor significativamente menor que 1 sugere afastamento da normalidade. O valor-p é a probabilidade de obter um valor de W tão extremo quanto o observado, sob a hipótese nula de que os dados seguem uma distribuição normal.</p>
-<p>O código abaixo mostra como implementar o teste de Shapiro-Wilk no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Shapiro-Wilk. Como já sabemos que nossos dados tem uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
+<p>O código abaixo mostra como implementar o teste de Shapiro-Wilk no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Shapiro-Wilk. Como já sabemos que nossos dados têm uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
@@ -570,7 +570,7 @@ data:  dados
 W = 0.9956, p-value = 0.9876</code></pre>
 </div>
 </div>
-<p>Observe que o valor-p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.</p>
+<p>Observe que o valor-p foi realmente maior que o nível de significância: não há evidência contra a normalidade, como esperado.</p>
 <p>Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Shapiro-Wilk. Observe que o valor-p desse teste deve ser menor que o nível de significância.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
@@ -602,11 +602,11 @@ W = 0.82218, p-value = 1.263e-09</code></pre>
 </section>
 <section id="teste-de-kolmogorov-smirnov" class="level3" data-number="13.1.3">
 <h3 data-number="13.1.3" class="anchored" data-anchor-id="teste-de-kolmogorov-smirnov"><span class="header-section-number">13.1.3</span> Teste de Kolmogorov-Smirnov</h3>
-<p>O teste de Kolmogorov-Smirnov é um outro teste estatístico utilizado para avaliar a normalidade dos dados. Da mesma forma que o teste de Shapiro-Wilki, a hipótese nula do teste de de Kolmogorov-Smirnov é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.</p>
-<p>O teste te Kolmorov-Smirnov também pode ser usado para testar se os dados vem de outras distribuições, pois o teste na verdade verifica se duas distribuições são iguais, ou seja, se uma amostra vem de uma distribuição em particular. Quando desejamos saber se a amostra tem uma distribuiçao normal, o teste de Kolmogorov-Smirnov compara a distribuição empírica dos dados com a distribuição teórica normal.</p>
+<p>O teste de Kolmogorov-Smirnov é um outro teste estatístico utilizado para avaliar a normalidade dos dados. Da mesma forma que o teste de Shapiro-Wilk, a hipótese nula do teste de Kolmogorov-Smirnov é que os dados seguem uma distribuição normal. Ou seja, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada: não encontramos evidência contra a normalidade. Note a diferença: o teste não prova que os dados são normais, apenas não detectou um desvio da normalidade, o que é mais fácil de acontecer em amostras pequenas.</p>
+<p>O teste de Kolmogorov-Smirnov também pode ser usado para testar se os dados vêm de outras distribuições, pois o teste na verdade verifica se duas distribuições são iguais, ou seja, se uma amostra vem de uma distribuição em particular. Quando desejamos saber se a amostra tem uma distribuição normal, o teste de Kolmogorov-Smirnov compara a distribuição empírica dos dados com a distribuição teórica normal.</p>
 <p>O argumento principal do teste de Kolmogorov-Smirnov também é o conjunto de dados que queremos testar. Mas também precisamos especificar a distribuição teórica que queremos testar. No nosso caso isso será feito com a string “pnorm”, que indica que queremos testar se os dados seguem uma distribuição normal. Além disso precisamos também especificar os parâmetros da distribuição teórica, que no caso da distribuição normal são a média e o desvio padrão. O mais indicado é usar a média e o desvio padrão dos dados, como fizemos no exemplo abaixo.</p>
 <p>O resultado do teste é a estatística <span class="math inline">\(D\)</span> e o valor-p.&nbsp;<span class="math inline">\(D\)</span> é a maior diferença entre a função de distribuição acumulada empírica dos dados e a função de distribuição acumulada teórica. O valor-p é a probabilidade de obter um valor de <span class="math inline">\(D\)</span> tão extremo quanto o observado, sob a hipótese nula de que os dados seguem uma distribuição normal.</p>
-<p>O código abaixo mostra como implementar o teste de Kolmogorov-Smirnov no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Kolmogorov-Smirnov. Como já sabemos que nossos dados tem uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
+<p>O código abaixo mostra como implementar o teste de Kolmogorov-Smirnov no R. Primeiro, geramos um conjunto de dados que segue uma distribuição normal e, em seguida, fazemos o teste de Kolmogorov-Smirnov. Como já sabemos que nossos dados têm uma distribuição normal, o valor-p desse teste deve ser maior que o nível de significância.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
@@ -625,7 +625,8 @@ D = 0.047014, p-value = 0.9799
 alternative hypothesis: two-sided</code></pre>
 </div>
 </div>
-<p>Observe que o valor de p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.</p>
+<p>Observe que o valor de p foi realmente maior que o nível de significância: não há evidência contra a normalidade, como esperado.</p>
+<p>Um detalhe importante: aqui informamos ao teste a média e o desvio padrão calculados da própria amostra. A rigor, o teste de Kolmogorov-Smirnov supõe que esses parâmetros sejam conhecidos de antemão; quando são estimados dos dados, o teste fica conservador (o valor-p sai maior do que deveria). A versão corrigida para esse caso é o teste de Lilliefors, disponível na função <code>lillie.test()</code> do pacote <code>nortest</code>. Na prática, para avaliar normalidade o teste de Shapiro-Wilk é preferível.</p>
 <p>Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Kolmogorov-Smirnov. Observe que o valor-p desse teste deve ser menor que o nível de significância.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
@@ -674,7 +675,7 @@ alternative hypothesis: two-sided</code></pre>
 </div>
 </div>
 <p>O valor encontrado, -0.8, indica que essa é uma correlação negativa e forte. A mensagem é clara, quanto maior as cilindradas, menor a distância percorrida com 1 galão de gasolina, ou seja, carros 1.0 são mais econômicos mesmo.</p>
-<p>O valor coeficiente de determinação <span class="math inline">\(r^2\)</span> pode ser obtido elevando-se a função <code>cor()</code> ao quadrado.</p>
+<p>O valor do coeficiente de determinação <span class="math inline">\(r^2\)</span> pode ser obtido elevando-se a função <code>cor()</code> ao quadrado.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(mpg<span class="sc">$</span>displ, mpg<span class="sc">$</span>cty)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -727,7 +728,7 @@ sample estimates:
                                </code></pre>
 </div>
 </div>
-<p>Devido as valores <code>NA</code> nas variáveis <code>Ozone</code> e <code>Solar.R</code>, a função <code>cor()</code> não calcula o coeficiente de correlação:</p>
+<p>Devido aos valores <code>NA</code> nas variáveis <code>Ozone</code> e <code>Solar.R</code>, a função <code>cor()</code> não calcula o coeficiente de correlação:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(airquality<span class="sc">$</span>Ozone, airquality<span class="sc">$</span>Solar.R)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -832,7 +833,7 @@ sample estimates:
 <section id="scatter-plot-gráficos-de-dispersão" class="level3" data-number="13.2.3">
 <h3 data-number="13.2.3" class="anchored" data-anchor-id="scatter-plot-gráficos-de-dispersão"><span class="header-section-number">13.2.3</span> Scatter plot (gráficos de dispersão)</h3>
 <p>A forma mais simples de visualizar a correlação entre duas variáveis é através de um gráfico de scatter plot. Essa relação pode ser mostrada de forma ainda mais explícita quando inserimos no gráfico uma reta que representa a correlação linear entre essas variáveis. Essa reta, chamada de reta de regressão linear, representa o modelo matemático de correlação entre essas duas variáveis.</p>
-<p>A função básica do R para criar um scatterplot e simplesmente <code>plot()</code> e a inserção da linha de regressão é feita com a função <code>abline()</code> e <code>lm()</code>, de linear model. Vejamos como plotar um gráfico de correlação entre os níveis de ozônio e a radiação solar com esses comandos, usando o dataset <code>airquality</code> do R.</p>
+<p>A função básica do R para criar um scatterplot é simplesmente <code>plot()</code> e a inserção da linha de regressão é feita com a função <code>abline()</code> e <code>lm()</code>, de linear model. Vejamos como plotar um gráfico de correlação entre os níveis de ozônio e a radiação solar com esses comandos, usando o dataset <code>airquality</code> do R.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Solar.R <span class="sc">~</span> Ozone, <span class="at">data =</span> airquality)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(Solar.R <span class="sc">~</span> Ozone, <span class="at">data =</span> airquality))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -892,11 +893,11 @@ sample estimates:
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x=</span>Ozone, <span class="at">y=</span>Solar.R))  <span class="sc">+</span> </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlação entre níveis de Ozônio e Radiaçao solar"</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlação entre níveis de Ozônio e Radiação solar"</span>,</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Nova Iorque de maio a setembro de 1973"</span>,</span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"fonte: dataset airquality"</span>) <span class="sc">+</span></span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Radiação Solar"</span>) <span class="sc">+</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Niveis de Ozônio"</span>) <span class="sc">+</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Níveis de Ozônio"</span>) <span class="sc">+</span></span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
@@ -910,7 +911,7 @@ sample estimates:
 </section>
 <section id="teste-t-de-student" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="teste-t-de-student"><span class="header-section-number">13.3</span> Teste t de Student</h2>
-<p>O test t de Student foi criado em 1908 por William Sealy Gosset <span class="citation" data-cites="Student">(<a href="references.html#ref-Student" role="doc-biblioref">Student 1908</a>)</span>, matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de pequeno tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.</p>
+<p>O teste t de Student foi criado em 1908 por William Sealy Gosset <span class="citation" data-cites="Student">(<a href="references.html#ref-Student" role="doc-biblioref">Student 1908</a>)</span>, matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.</p>
 <p>Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (<a href="09-R-Packages.html" class="quarto-xref"><span>Capítulo 9</span></a>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
@@ -919,7 +920,7 @@ sample estimates:
 </div>
 <p>A importância dada ao departamento científico da Guinness era tamanha que o uso de métodos estatísticos na fabricação da cerveja era considerado um segredo industrial. Alguns autores argumentam que foi esse o motivo pelo qual Gosset publicou o artigo sobre o teste t em 1908 sob o pseudônimo “Student” e o teste t passou a ser conhecido como teste t de Student.</p>
 <p>O teste t de Student (ou simplesmente teste t) compara as médias de dois conjuntos numéricos e avalia se as diferenças entre essas médias são significativas. Quando existem 3 ou mais grupos o teste t não pode ser usado e nesse caso podemos usar o Anova, discutido no capítulo seguinte.</p>
-<p>A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes de depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.</p>
+<p>A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes e depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.</p>
 <section id="os-3-tipos-de-teste-t-de-student" class="level3" data-number="13.3.1">
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="os-3-tipos-de-teste-t-de-student"><span class="header-section-number">13.3.1</span> Os 3 tipos de teste t de Student</h3>
 <p>Existem 3 tipos comuns de teste t:<br>
@@ -928,7 +929,7 @@ sample estimates:
 - Teste t para uma amostra, para comparar a média de uma amostra com a média de uma população.</p>
 <section id="teste-t-para-amostras-independentes" class="level4" data-number="13.3.1.1">
 <h4 data-number="13.3.1.1" class="anchored" data-anchor-id="teste-t-para-amostras-independentes"><span class="header-section-number">13.3.1.1</span> Teste t para amostras independentes</h4>
-<p>O Teste t para amostras independentes é o teste padrão, ou default do test t do R.</p>
+<p>O Teste t para amostras independentes é o teste padrão, ou default do teste t do R.</p>
 <p>O R tem uma função muito simples de usar para realizar o teste t: <code>t.test()</code>. Para usar essa função basta incluir como argumentos os valores obtidos de cada grupo da pesquisa e essa função do R já calcula a média de cada grupo e faz a comparação estatística.</p>
 <p>Veja o exemplo a seguir, no qual existem dois grupos diferentes de pacientes (<code>controle</code> e <code>experimental</code>), com os valores de uma medida fictícia. Vamos primeiro criar dois conjuntos de dados numéricos, representando os valores individuais de alguma medida de um Ensaio Clínico Randomizado.</p>
 <div class="cell">
@@ -996,9 +997,9 @@ sample estimates:
 </div>
 </div>
 <p>Mas um gráfico não é suficiente.</p>
-<p>Para comparar a média de cada um desses dois grupos, usamos a função <code>t.test()</code> como mostrado a seguir. Podemos fazer o test t de várias formas.</p>
+<p>Para comparar a média de cada um desses dois grupos, usamos a função <code>t.test()</code> como mostrado a seguir. Podemos fazer o teste t de várias formas.</p>
 <ol type="1">
-<li>Podemos usar os vetores numéricos comom argumentos.<br>
+<li>Podemos usar os vetores numéricos como argumentos.<br>
 </li>
 <li>Podemos usar o data frame wide (ou tibble), selecionando as colunas como argumentos usando o operador <code>$</code>.<br>
 </li>
@@ -1024,7 +1025,7 @@ mean of x mean of y
 </div>
 </div>
 <p><strong>2. Teste t com data frame wide</strong></p>
-<p>Se o data frame com os dados está no formaro wide (tidy format), ou seja, se há uma coluna para cada amostra, para realizar o test t, basta usar o operador <code>$</code> para acessar as variáveis do data frame a serem comparadas.</p>
+<p>Se o data frame com os dados está no formato wide (tidy format), ou seja, se há uma coluna para cada amostra, para realizar o teste t, basta usar o operador <code>$</code> para acessar as variáveis do data frame a serem comparadas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(result<span class="sc">$</span>controle, result<span class="sc">$</span>experimental)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1081,7 +1082,7 @@ sample estimates:
 </section>
 <section id="teste-t-para-amostras-dependentes-ou-pareadas" class="level4" data-number="13.3.1.2">
 <h4 data-number="13.3.1.2" class="anchored" data-anchor-id="teste-t-para-amostras-dependentes-ou-pareadas"><span class="header-section-number">13.3.1.2</span> Teste t para amostras dependentes ou pareadas</h4>
-<p>Se as amostras são dependentes, ou pareadas, precisamos incluir essa informação nos argumentos no teste. Vamos usar o mesmo data frame criado anteriormente, supondo que as medidas numéricas fossem de uma mesma amostra em dois momentos do tempo. Nesse caso o teste t deve ser um test pareado. Basta inserir o argumento <code>paired = TRUE</code>.</p>
+<p>Se as amostras são dependentes, ou pareadas, precisamos incluir essa informação nos argumentos no teste. Vamos usar o mesmo data frame criado anteriormente, supondo que as medidas numéricas fossem de uma mesma amostra em dois momentos do tempo. Nesse caso o teste t deve ser um teste pareado. Basta inserir o argumento <code>paired = TRUE</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(controle, experimental, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1118,8 +1119,8 @@ mean difference
 </section>
 <section id="teste-t-para-uma-amostra." class="level4" data-number="13.3.1.3">
 <h4 data-number="13.3.1.3" class="anchored" data-anchor-id="teste-t-para-uma-amostra."><span class="header-section-number">13.3.1.3</span> Teste t para uma amostra.</h4>
-<p>No caso de uma amostras, para comparar a média de uma amostra com uma média já conhecida, basta inserir nos argumentos do teste t a amostras e o valor da média a ser comparada, como mostrado abaixo.</p>
-<p>Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e usar o conjunto de dados chamdo experimental como se fosse nossa única amostra. E vamos inserir um valor arbitrário da média a ser comparada (<code>mu = 30</code>).</p>
+<p>No caso de uma amostra, para comparar a média de uma amostra com uma média já conhecida, basta inserir nos argumentos do teste t a amostra e o valor da média a ser comparada, como mostrado abaixo.</p>
+<p>Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e usar o conjunto de dados chamado experimental como se fosse nossa única amostra. E vamos inserir um valor arbitrário da média a ser comparada (<code>mu = 30</code>).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(result<span class="sc">$</span>experimental, <span class="at">mu=</span> <span class="dv">30</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1157,9 +1158,9 @@ mean of x
 </section>
 <section id="extraindo-os-resultados-do-teste-t" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="extraindo-os-resultados-do-teste-t"><span class="header-section-number">13.3.2</span> Extraindo os resultados do teste t</h3>
-<p>O output dos testes estatísticos no R é uma lista com diversos resultados, que podem ser acessados com o operador <code>$</code>, tal como elementos de um data frame. Podemos verificar a estrutura dessa lista com o comando <code>str()</code>. Mas para isso é preciso armazenar o resultado do test num objeto. Chamaremos aqui esse objeto de <code>test.results</code>.</p>
+<p>O output dos testes estatísticos no R é uma lista com diversos resultados, que podem ser acessados com o operador <code>$</code>, tal como elementos de um data frame. Podemos verificar a estrutura dessa lista com o comando <code>str()</code>. Mas para isso é preciso armazenar o resultado do teste num objeto. Chamaremos aqui esse objeto de <code>test.results</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># armazemando os resultados do test num objeto chamado test.results</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># armazenando os resultados do teste num objeto chamado test.results</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>test.results <span class="ot">&lt;-</span> <span class="fu">t.test</span>(scores<span class="sc">~</span>grupo, <span class="at">data=</span>result.long)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
@@ -1237,7 +1238,7 @@ mean of x
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A ideia central do teste Anova é decompor a variabilidade total dos dados em duas partes: a variabilidade entre os grupos e a variabilidade dentro dos grupos. Se as médias dos grupos forem estatisticamente diferentes, espera-se que a variabilidade entre os grupos seja maior do que a variabilidade dentro dos grupos.</p>
-<p>Para exemplificarmos o uso do teste ANOVA vamo usar o dataset PlantGrowth do R. Esse dataset contém o peso das plantas cultivadas sob duas condições de tratamento diferentes e um grupo controle. São, portanto, 3 grupos diferentes de tratamento. Para ter mais informações sobre esse dataset basta digitar <code>?PlantGrowth</code> no console.</p>
+<p>Para exemplificarmos o uso do teste ANOVA vamos usar o dataset PlantGrowth do R. Esse dataset contém o peso das plantas cultivadas sob duas condições de tratamento diferentes e um grupo controle. São, portanto, 3 grupos diferentes de tratamento. Para ter mais informações sobre esse dataset basta digitar <code>?PlantGrowth</code> no console.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># armazenando o dataset num objeto chamado mydata.</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> PlantGrowth</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1311,8 +1312,8 @@ Residuals   27 10.492  0.3886
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>A coluna Pr(&gt;F) indica o valor de p do teste ANOVA. Como o valor foi menor que 0.05 podemos interpretar que algumas das média dos grupo são estatisticamente diferentes, mas não sabemos que pares são estatisticamente diferentes.</p>
-<p>Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences, para realizar comparações múltiplas de pares entre as médias dos grupos.</p>
+<p>A coluna Pr(&gt;F) indica o valor de p do teste ANOVA. Como o valor foi menor que 0.05 podemos interpretar que algumas das médias dos grupos são estatisticamente diferentes, mas não sabemos que pares são estatisticamente diferentes.</p>
+<p>Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences), para realizar comparações múltiplas de pares entre as médias dos grupos.</p>
 <p>A função <code>TukeyHSD()</code> usa o modelo ANOVA que já criamos como argumento.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(modelo_ANOVA)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1336,16 +1337,16 @@ trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
 <strong>p adj</strong>: p-valor após ajuste para as comparações múltiplas.</p>
 <p>Pode ser visto no resultado acima que apenas a diferença entre <code>trt2</code> e <code>trt1</code> é significativa com um valor p ajustado de 0,012.</p>
 </section>
-<section id="wilcoxon-rank-sum-test-man-whitney-test" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="wilcoxon-rank-sum-test-man-whitney-test"><span class="header-section-number">13.5</span> Wilcoxon rank sum test (Man-Whitney test)</h2>
-<p>Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. Os testes Wilcoxon rank sum test (Mann-Whitney test) é o equivalentes não paramétricos do teste t.</p>
+<section id="wilcoxon-rank-sum-test-mann-whitney-test" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="wilcoxon-rank-sum-test-mann-whitney-test"><span class="header-section-number">13.5</span> Wilcoxon rank sum test (Mann-Whitney test)</h2>
+<p>Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. O teste Wilcoxon rank sum test (Mann-Whitney test) é o equivalente não paramétrico do teste t.</p>
 <p>Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (<a href="09-R-Packages.html" class="quarto-xref"><span>Capítulo 9</span></a>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento <code>paired = TRUE</code>.</p>
-<p>Veja como realizar os Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no test t realizado anteriormente.</p>
+<p>Veja como realizar o Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no teste t realizado anteriormente.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criando os vetores com os dados:</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>controle     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">26</span>, <span class="dv">26</span>)</span>
@@ -1380,7 +1381,7 @@ W = 32.5, p-value = 0.02086
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
-<p>Na mensagem de aviso acima o termo “ties” significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de “empates” ou ties”. Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.</p>
+<p>Na mensagem de aviso acima o termo “ties” significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de “empates” ou “ties”. Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.</p>
 </section>
 <section id="teste-do-chi-quadrado" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="teste-do-chi-quadrado"><span class="header-section-number">13.6</span> Teste do Chi Quadrado</h2>
@@ -1397,7 +1398,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
 </div>
-<p>O testo do chi-quadrado pode ser usado para avaliar se o uso do capacete reduziu o nº de casos de TCE entre os ciclistas. Precisamos apenas construir uma tabela com esses dados no R, o que pode ser feito através da função <code>matrix()</code>, ou com as funções <code>data.frame()</code> ou <code>tibble()</code>. Veremos como fazer das duas formas.</p>
+<p>O teste do chi-quadrado pode ser usado para avaliar se o uso do capacete reduziu o nº de casos de TCE entre os ciclistas. Precisamos apenas construir uma tabela com esses dados no R, o que pode ser feito através da função <code>matrix()</code>, ou com as funções <code>data.frame()</code> ou <code>tibble()</code>. Veremos como fazer das duas formas.</p>
 <p>Usando a função <code>matrix()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">218</span>,<span class="dv">130</span>,<span class="dv">428</span>), </span>
@@ -1422,7 +1423,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 2        130         428</code></pre>
 </div>
 </div>
-<p>Podemos melhorar o data frame dicionando legendas:</p>
+<p>Podemos melhorar o data frame adicionando legendas:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">comCapacete  =</span> <span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">130</span>), </span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">semCapacete  =</span> <span class="fu">c</span>(<span class="dv">218</span>,<span class="dv">428</span>), </span>
@@ -1564,7 +1565,7 @@ X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
  - attr(*, "class")= chr "htest"</code></pre>
 </div>
 </div>
-<p>O valor de p pode ser extraido com o comando <code>result_chi$p.value</code>, como feito abaixo:</p>
+<p>O valor de p pode ser extraído com o comando <code>result_chi$p.value</code>, como feito abaixo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>result_chi<span class="sc">$</span>p.value</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1575,9 +1576,9 @@ X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
 <section id="teste-exato-de-fisher" class="level2" data-number="13.7">
 <h2 data-number="13.7" class="anchored" data-anchor-id="teste-exato-de-fisher"><span class="header-section-number">13.7</span> Teste exato de Fisher</h2>
 <p>O teste exato de Fisher é utilizado na análise de tabelas de contingência quando a amostra é pequena, embora seja válido para todo tamanho de amostra. Foi desenvolvido por Ronald Fisher. Fisher disse ter concebido o teste depois de um comentário da Dra. Muriel Bristol, que afirmou ser capaz de detectar se o chá ou o leite foi adicionado primeiro em sua xícara. Ele testou seu pedido no experimento “dama apreciadora de chá”, contado em diversos livros de história da estatística, inclusive num livro com esse mesmo título: “The Lady Tasting Tea” de David Salsburg <span class="citation" data-cites="Salsburg2001">(<a href="references.html#ref-Salsburg2001" role="doc-biblioref">Salsburg 2001</a>)</span>.</p>
-<p>Fisher projetou um experimento em que a senhora recebia 8 xícaras de chá, 4 com leite primeiro, 4 com chá primeiro, em ordem aleatória. Ela então provou cada xícara e relatou quais quatro ela achava que tinham leite adicionado primeiro. <strong>Ela acertou todas as 8 chícaras</strong>.</p>
+<p>Fisher projetou um experimento em que a senhora recebia 8 xícaras de chá, 4 com leite primeiro, 4 com chá primeiro, em ordem aleatória. Ela então provou cada xícara e relatou quais quatro ela achava que tinham leite adicionado primeiro. <strong>Ela acertou todas as 8 xícaras</strong>.</p>
 <p>A pergunta que Fisher fez foi: “como testamos se ela realmente é habilidosa nisso ou se está apenas adivinhando?”</p>
-<p>Vamos construir uma tabela de contingência, com os valores VERDADEIROS nas colunas e as resultados nas linhas.</p>
+<p>Vamos construir uma tabela de contingência, com os valores VERDADEIROS nas colunas e os resultados nas linhas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>tea_tasting <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Leite_Primeiro  =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">0</span>), </span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Cha_Primeiro    =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>), </span>
@@ -1590,7 +1591,7 @@ Respondeu que era Chá Primeiro                0            4</code></pre>
 </div>
 </div>
 <p>Para usar o teste de Fisher no R basta inserirmos a tabela de contingência como argumento da função <code>fisher.test()</code>.</p>
-<p>Entretanto, há mais um detalhe a ser analisado. Um dos parâmetros do teste é se ele é bicaudal ou unicaldal. O padrão é que o R realize um teste bicaudal (<code>two.sided</code>). Entretanto, Fisher testou se a senhora Muriel era <strong>melhor</strong> do que o acaso e não se sua habilidade era <strong>diferente</strong> do acaso e, portanto, ele usou um teste unilateral.</p>
+<p>Entretanto, há mais um detalhe a ser analisado. Um dos parâmetros do teste é se ele é bicaudal ou unicaudal. O padrão é que o R realize um teste bicaudal (<code>two.sided</code>). Entretanto, Fisher testou se a senhora Muriel era <strong>melhor</strong> do que o acaso e não se sua habilidade era <strong>diferente</strong> do acaso e, portanto, ele usou um teste unilateral.</p>
 <p>Para encontrarmos o mesmo resultado, precisamos ajustar esse argumento, inserindo <code>alternative = "greater"</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tea_tasting, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1642,8 +1643,8 @@ alternative hypothesis: two.sided</code></pre>
 <p>A análise de regressão também pode ser aplicada em contextos epidemiológicos, como no estudo da relação entre fatores socioeconômicos e a incidência de doenças crônicas. Por exemplo, ao investigar como renda, nível de escolaridade e acesso a serviços de saúde influenciam a prevalência de hipertensão, a regressão permite identificar quais desses fatores têm maior contribuição para o desenvolvimento da condição. Esses insights são essenciais para o planejamento de políticas públicas de saúde que visem reduzir desigualdades e melhorar a qualidade de vida da população.</p>
 <p>A utilidade da regressão vai além da simples previsão: ela oferece insights sobre as relações entre variáveis e permite o controle estatístico de variáveis de confusão, o que é particularmente importante em estudos observacionais nas áreas da saúde e medicina. Compreender os fundamentos da análise de regressão ajuda a fortalecer a interpretação de dados, a tomada de decisões baseada em evidências e o planejamento de intervenções eficazes. Além disso, ao incluir múltiplas variáveis em um modelo, podemos isolar o efeito específico de cada uma delas, o que é crucial para evitar interpretações equivocadas causadas por fatores de confusão.</p>
 <p>Além da regressão linear, existem também modelos de regressão múltipla não linear, que permitem capturar relações mais complexas entre as variáveis. Esses modelos são úteis quando a relação entre as variáveis não pode ser bem representada por uma linha reta, como em situações onde os efeitos são exponenciais ou curvilíneos. Por exemplo, o crescimento de certos tipos de tumores pode ser mais bem modelado por uma regressão não linear, que consegue capturar padrões de crescimento acelerado ou desacelerado. Assim, enquanto a regressão linear é uma ferramenta poderosa para muitas situações, a regressão não linear expande as possibilidades de modelagem para relações mais complexas.</p>
-<p>Um outro tipo de regressão, denominada de regressão logística (ou regressão logit ou modelo logit), é utilizada quando a variável de resposta é categórica, mais especificamente, binária (dicotômica). Por exemplo, para prever o óbito (sim ou não), um diagnóstico (diabético ou não diabético), ou se um tumor é maligno ou benigno, a partir de uma ou mais variáveis preditoras..</p>
-<p>Existem vários tipos de regressão regressão, tais como regressão de Poisson, regressão Probit, regressão ordinal, regressão quantílica, regressão Elastic Net, regressão polinomial, regressão Splines, regressão de Cox, regressão Stepwise, regressão hierárquica, regressão de mínimos quadrados parciais (PLS), regressão log-log, regressão suavizada (Loess/Lowess) e regressão Bayesiana. Entretanto, esses tipos estão fora do escopo desse texto.</p>
+<p>Um outro tipo de regressão, denominada de regressão logística (ou regressão logit ou modelo logit), é utilizada quando a variável de resposta é categórica, mais especificamente, binária (dicotômica). Por exemplo, para prever o óbito (sim ou não), um diagnóstico (diabético ou não diabético), ou se um tumor é maligno ou benigno, a partir de uma ou mais variáveis preditoras.</p>
+<p>Existem vários tipos de regressão, tais como regressão de Poisson, regressão Probit, regressão ordinal, regressão quantílica, regressão Elastic Net, regressão polinomial, regressão Splines, regressão de Cox, regressão Stepwise, regressão hierárquica, regressão de mínimos quadrados parciais (PLS), regressão log-log, regressão suavizada (Loess/Lowess) e regressão Bayesiana. Entretanto, esses tipos estão fora do escopo desse texto.</p>
 <p>O diagrama abaixo mostra os tipos de regressão mais simples e usuais</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -1656,9 +1657,9 @@ alternative hypothesis: two.sided</code></pre>
     B --&gt; D[Regressão Linear]
     B --&gt; E[Regressão Não Linear]
     D --&gt; F[Univariada]
-    D --&gt; G[Multivariada]
+    D --&gt; G[Múltipla]
     E --&gt; H[Univariada]
-    E --&gt; I[Multivariada]
+    E --&gt; I[Múltipla]
     C --&gt; J[Regressão Logística]
     J --&gt; K[Binária]
     J --&gt; L[Multinomial]
@@ -1695,7 +1696,7 @@ alternative hypothesis: two.sided</code></pre>
 <h3 data-number="13.8.2" class="anchored" data-anchor-id="regressão-linear-modelos-lineares"><span class="header-section-number">13.8.2</span> Regressão linear (modelos Lineares)</h3>
 <p>A correlação entre duas variáveis numéricas analisa se há alguma associação entre elas, bem como a força e a direção dessa associação, mas não descreve relações de causalidade. É um ditado comum na ciência dizer que <strong>correlação não implica causalidade</strong>. A análise de regressão vai além, pois o interesse não está apenas na intensidade ou direção da correlação, mas também na natureza dessa relação. Na análise de regressão, o pesquisador estabelece quais são as variáveis independentes (preditoras) e qual é a variável dependente (de desfecho). O objetivo é construir um modelo matemático que possa prever o desfecho a partir das variáveis preditoras. Na regressão linear, o modelo criado é simplesmente uma reta. O modelo gerado pela regressão linear é a equação da reta que mais se ajusta aos dados (<em>best fit line</em>), ou seja, o modelo calcula os parâmetros da inclinação (<span class="math inline">\(a\)</span>) e intercepto (<span class="math inline">\(b\)</span>) da reta <span class="math inline">\(y = ax + b\)</span>.</p>
 <p>O objetivo da análise de regressão é encontrar os coeficientes (<span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>) dessa reta. Com isso poderemos saber o valor da variável de desfecho, dado um valor qualquer da variável preditora.</p>
-<p>Podemos inserir nesse modelo mais de uma variável preditora, transformando uma regressão univariada em uma regressão multivariada, e nesse caso nossa equação teria mais de um parâmetro de inclinação: <span class="math inline">\(\color{blue}{y = a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4 + b}\)</span>. Aqui, cada variável preditora (<span class="math inline">\(\color{blue} {x_1, x_2, x_3, x_4}\)</span>) tem seu próprio coeficiente (<span class="math inline">\(\color{blue}{a_1, a_2, a_3, a_4}\)</span>). A regressão multivariada envolve descobrir os melhores valores desses coeficientes.</p>
+<p>Podemos inserir nesse modelo mais de uma variável preditora, transformando uma regressão simples em uma regressão múltipla (também chamada de multivariável; o termo “multivariada” é reservado aos modelos com mais de um desfecho), e nesse caso nossa equação teria mais de um parâmetro de inclinação: <span class="math inline">\(\color{blue}{y = a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4 + b}\)</span>. Aqui, cada variável preditora (<span class="math inline">\(\color{blue} {x_1, x_2, x_3, x_4}\)</span>) tem seu próprio coeficiente (<span class="math inline">\(\color{blue}{a_1, a_2, a_3, a_4}\)</span>). A regressão múltipla envolve descobrir os melhores valores desses coeficientes.</p>
 <p>A análise de regressão linear é usada quando a variável de resposta é numérica, ou seja, quando pretendemos criar um modelo matemático para prever um valor numérico a partir de uma ou mais variáveis. Por exemplo, podemos criar um modelo linear para prever o quanto a glicemia aumenta de acordo com a quantidade calórica ingerida, ou podemos criar modelos lineares complexos, com mais de uma variável preditora, tal como para analisar o quanto a pressão arterial depende do peso, do sexo e da idade.</p>
 <section id="pressupostos-do-modelo-de-regressão-linear" class="level4" data-number="13.8.2.1">
 <h4 data-number="13.8.2.1" class="anchored" data-anchor-id="pressupostos-do-modelo-de-regressão-linear"><span class="header-section-number">13.8.2.1</span> Pressupostos do Modelo de Regressão Linear</h4>
@@ -1718,7 +1719,7 @@ alternative hypothesis: two.sided</code></pre>
 <p><span class="math display">\[
 e_i = y_i - \hat{y}_i
 \]</span></p>
-<p>Onde <span class="math inline">\(e_i\)</span> é o resíduo, <span class="math inline">\(y_i\)</span>é o valor observado e <span class="math inline">\(\hat{y}_i\)</span> é o valor predito pelo modelo. O objetivo da regressão linear é minimizar esses resíduos, de forma que a reta de regressão seja a melhor possível em termos de ajuste aos dados.</p>
+<p>Onde <span class="math inline">\(e_i\)</span> é o resíduo, <span class="math inline">\(y_i\)</span> é o valor observado e <span class="math inline">\(\hat{y}_i\)</span> é o valor predito pelo modelo. O objetivo da regressão linear é minimizar esses resíduos, de forma que a reta de regressão seja a melhor possível em termos de ajuste aos dados.</p>
 <p>No gráfico, os resíduos são representados por linhas verticais que ligam cada ponto da amostra à reta de regressão. Essas linhas mostram visualmente o erro de predição para cada ponto.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1729,7 +1730,7 @@ e_i = y_i - \hat{y}_i
 </div>
 </div>
 </div>
-<p>Observe no gráfico acima as linhas vermelhas verticais entre os pontos dos dados reais e a reta de regressão. Essas distâncias representam os erros do modelo. A fórmula para computar esses cada um desses erros é <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>.</p>
+<p>Observe no gráfico acima as linhas vermelhas verticais entre os pontos dos dados reais e a reta de regressão. Essas distâncias representam os erros do modelo. A fórmula para computar cada um desses erros é <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>.</p>
 <p>O que o algoritmo da função <code>lm()</code> faz é tentar reduzir a soma desses erros através de uma técnica conhecida como <strong>Método dos Quadrados Mínimos</strong>.</p>
 </section>
 <section id="o-método-dos-quadrados-mínimos" class="level4" data-number="13.8.2.3">
@@ -1743,7 +1744,7 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2
 </section>
 <section id="exemplo-visual" class="level4" data-number="13.8.2.4">
 <h4 data-number="13.8.2.4" class="anchored" data-anchor-id="exemplo-visual"><span class="header-section-number">13.8.2.4</span> Exemplo Visual</h4>
-<p>Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> que minimizam a RSS para criar a equação da reta.No gráfico acima, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.</p>
+<p>Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> que minimizam a RSS para criar a equação da reta. No gráfico acima, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.</p>
 <p>Veja na tabela abaixo, na última linha, que a soma dos erros é zero, mas o RSS é um número positivo.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1854,8 +1855,8 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2
 </section>
 <section id="regressão-linear-no-r" class="level3" data-number="13.8.3">
 <h3 data-number="13.8.3" class="anchored" data-anchor-id="regressão-linear-no-r"><span class="header-section-number">13.8.3</span> Regressão linear no R</h3>
-<p>Vamos agora praticar a análise de regresão linear univariada (uma variável) no R passo a passo. Lembre-se que o objetivo da regressão linear é encontrar os coeficientes da equação que servirá de modelo para podermos fazer predições. No caso da regressão linear univariada, na qual temos apenas uma variável preditora, nosso modelo será uma reta <span class="math inline">\(y=ax+b\)</span>. O objetivo da regressão será então encontrar os melhores valores dos parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>.</p>
-<p>O <strong>primeiro passo</strong> é ter um dataframe com os valores de x e y, ou seja, com os dados que temos das variáveis de interesse. Vamos usar dados fictícios de número de drinks por semana (<code>drinks</code>) e consumo de tabaco (<code>tobacco</code>) como variável preditoras e níveis séricos de GGT como variável de desfecho (<code>y=ggt</code>). Para fins de uma análise univariada vamos utilizar apenas a variável <code>drinks</code> como preditora.</p>
+<p>Vamos agora praticar a análise de regressão linear univariada (uma variável) no R passo a passo. Lembre-se que o objetivo da regressão linear é encontrar os coeficientes da equação que servirá de modelo para podermos fazer predições. No caso da regressão linear univariada, na qual temos apenas uma variável preditora, nosso modelo será uma reta <span class="math inline">\(y=ax+b\)</span>. O objetivo da regressão será então encontrar os melhores valores dos parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>.</p>
+<p>O <strong>primeiro passo</strong> é ter um dataframe com os valores de x e y, ou seja, com os dados que temos das variáveis de interesse. Vamos usar dados fictícios de número de drinks por semana (<code>drinks</code>) e consumo de tabaco (<code>tobacco</code>) como variáveis preditoras e níveis séricos de GGT como variável de desfecho (<code>y=ggt</code>). Para fins de uma análise univariada vamos utilizar apenas a variável <code>drinks</code> como preditora.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dados fictícios </span></span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>drinks  <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">25</span>,<span class="dv">28</span>,<span class="dv">30</span>) <span class="co"># drinks por semana</span></span>
@@ -1880,7 +1881,7 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2
 <p><code>model &lt;- lm(ggt~drinks, data=df)</code></p>
 <p>Com isso, a função <code>lm()</code> irá encontrar os melhores valores para os parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> da reta de regressão.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando a função lm() para criar o modelo de regressão linear e armazendo esse modelo no objeto chamado model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando a função lm() para criar o modelo de regressão linear e armazenando esse modelo no objeto chamado model</span></span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ggt<span class="sc">~</span>drinks, <span class="at">data=</span>df)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Veja como implementar isso tudo de uma vez no código abaixo:</p>
@@ -1893,7 +1894,7 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2
 <span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o dataframe com os dados</span></span>
 <span id="cb131-7"><a href="#cb131-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(drinks, ggt, tobacco)</span>
 <span id="cb131-8"><a href="#cb131-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-9"><a href="#cb131-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando a função lm() para criar o modelo de regressão linear e armazendo esse modelo no objeto chamado model</span></span>
+<span id="cb131-9"><a href="#cb131-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando a função lm() para criar o modelo de regressão linear e armazenando esse modelo no objeto chamado model</span></span>
 <span id="cb131-10"><a href="#cb131-10" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ggt<span class="sc">~</span>drinks, <span class="at">data=</span>df)</span>
 <span id="cb131-11"><a href="#cb131-11" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ggt<span class="sc">~</span>tobacco, <span class="at">data=</span>df)</span>
 <span id="cb131-12"><a href="#cb131-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -1944,8 +1945,8 @@ F-statistic:   182 on 1 and 13 DF,  p-value: 5.072e-09</code></pre>
 <p>O <strong>R-quadrado ajustado</strong> (Adjusted R-squared), localizado abaixo dos coeficientes, é de <strong>92,82%</strong>. Isso indica que o modelo explica aproximadamente 92,8% da variação nos níveis séricos de GGT, demonstrando que o número de drinks por semana é um forte preditor desses níveis.</p>
 <p>Em resumo, os dados apresentados no modelo de regressão mostram claramente que, conforme aumenta o consumo semanal de drinks, há um aumento significativo nos níveis séricos de GGT. Essa relação é estatisticamente significativa e está evidenciada nos coeficientes e nos indicadores de ajuste do modelo fornecidos no resultado.</p>
 </section>
-<section id="regressão-linear-multivariada-no-r" class="level3" data-number="13.8.4">
-<h3 data-number="13.8.4" class="anchored" data-anchor-id="regressão-linear-multivariada-no-r"><span class="header-section-number">13.8.4</span> Regressão Linear multivariada no R</h3>
+<section id="regressão-linear-múltipla-no-r" class="level3" data-number="13.8.4">
+<h3 data-number="13.8.4" class="anchored" data-anchor-id="regressão-linear-múltipla-no-r"><span class="header-section-number">13.8.4</span> Regressão Linear múltipla no R</h3>
 <p>Frequentemente uma única variável preditora não será capaz de explicar toda variação da variável de desfecho. Na verdade, na medicina é raro que uma resposta dependa de apenas uma única variável. Com o R podemos facilmente inserir mais de uma variável preditora em nosso modelo de regressão linear.</p>
 <p>Com duas variáveis nossa reta de regressão se transforma num plano, e nosso modelo que antes era uma simples equação da reta se transforma numa equação de um plano. Assim como a regressão linear simples define uma linha no plano (x,y), o modelo de regressão linear múltipla com duas variáveis <span class="math inline">\(Y = a_1x_1 + a_2x_2 + b\)</span> é a equação de um plano no espaço <span class="math inline">\(x_1, x_2, Y\)</span>. Neste modelo, <span class="math inline">\(a_1\)</span> representa a inclinação do plano em relação ao eixo <span class="math inline">\(x_1\)</span> e <span class="math inline">\(a_2\)</span> representa a inclinação do plano em relação ao eixo <span class="math inline">\(x_2\)</span>.</p>
 <p>Com mais de 2 variáveis preditoras não há mais uma visualização possível, mas isso não impede que sejam usadas quantas variáveis forem necessárias. O formato básico do modelo é bastante simples, tal como no modelo simples, usando o operador <code>~</code> para separar a variável de desfecho das preditoras e usando o operador <code>+</code> para somar as variáveis preditoras.</p>
@@ -1989,7 +1990,7 @@ F-statistic: 91.39 on 2 and 12 DF,  p-value: 5.467e-08</code></pre>
 </div>
 <p>Os resultados da análise de regressão múltipla, que agora incluem tanto o número de drinks consumidos por semana quanto o consumo de tabaco como preditores dos níveis séricos de GGT, oferecem uma compreensão mais detalhada dos fatores que influenciam esses níveis. Observamos que o coeficiente associado à variável <code>drinks</code> é <strong>2,8249</strong>, indicando que, mantendo constante o consumo de tabaco, cada drink adicional por semana está associado a um aumento médio de aproximadamente <strong>2,82 unidades</strong> nos níveis de GGT. Este resultado é altamente significativo estatisticamente, com um valor de <strong>p</strong> de <strong>0,000673</strong>, destacado pelos três asteriscos <code>***</code>.</p>
 <p>Por outro lado, o coeficiente para <code>tobacco</code> é <strong>-0,5998</strong>, sugerindo que, mantendo constante o consumo de drinks, cada unidade adicional de consumo de tabaco está associada a uma <strong>redução média de 0,60 unidades</strong> nos níveis de GGT. No entanto, o valor de <strong>p</strong> para <code>tobacco</code> é <strong>0,340202</strong>, indicando que este resultado <strong>não é estatisticamente significativo</strong>.</p>
-<p>A falta de significância estatística para a variável <code>tobacco</code> no modelo múltiplo, apesar de poder ser significativa quando analisada isoladamente, é provavelmente causada pela <strong>multicolinearidade</strong> — uma situação em que <code>tobacco</code> e <code>drinks</code> estão correlacionados entre si. Isso significa que ambos os preditores compartilham informações semelhantes sobre a variação nos níveis de GGT. Veja no gráfico abaixo como há uma forte correlação linear entre o consumo de alcool e cigarro nesse dataset.</p>
+<p>A falta de significância estatística para a variável <code>tobacco</code> no modelo múltiplo, apesar de poder ser significativa quando analisada isoladamente, é provavelmente causada pela <strong>multicolinearidade</strong> — uma situação em que <code>tobacco</code> e <code>drinks</code> estão correlacionados entre si. Isso significa que ambos os preditores compartilham informações semelhantes sobre a variação nos níveis de GGT. Veja no gráfico abaixo como há uma forte correlação linear entre o consumo de álcool e cigarro nesse dataset.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>cor_tobacco_alcool <span class="ot">&lt;-</span> <span class="fu">cor</span>(df<span class="sc">$</span>drinks, df<span class="sc">$</span>tobacco)</span>
 <span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2025,7 +2026,7 @@ F-statistic: 91.39 on 2 and 12 DF,  p-value: 5.467e-08</code></pre>
 <p><code>tidy()</code>: constrói um quadro de dados que resume as estatísticas do modelo. Isso inclui coeficientes e valores p para cada termo em uma regressão, informações por cluster em aplicativos de armazenamento em cluster ou informações por teste para funções de teste múltiplo.</p>
 <p><code>glance()</code>: constrói um resumo conciso de uma linha do modelo. Isso normalmente contém valores como <span class="math inline">\(r^2\)</span>, <span class="math inline">\(r^2\)</span> ajustado e erro padrão residual que são computados uma vez para o modelo inteiro.</p>
 <p><code>augment()</code>: adiciona colunas aos dados originais que foram modelados. Isso inclui previsões, resíduos e atribuições de cluster.</p>
-<p>Como veremos adiante, A função <code>tidy()</code> também pode ser aplicada a objetos <code>htest</code>, como aqueles produzidos por funções internas populares como <code>t.test()</code>, <code>cor.test()</code> e <code>wilcox.test()</code>.</p>
+<p>Como veremos adiante, a função <code>tidy()</code> também pode ser aplicada a objetos <code>htest</code>, como aqueles produzidos por funções internas populares como <code>t.test()</code>, <code>cor.test()</code> e <code>wilcox.test()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model3)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2155,7 +2156,7 @@ z= \ln\left(\frac{p}{1 - p}\right)
 <p>Onde <span class="math inline">\(\frac{p}{1 - p}\)</span> representa as odds do evento ocorrer. Essa forma logarítmica lineariza a relação, permitindo que os coeficientes sejam estimados usando métodos estatísticos apropriados, como a máxima verossimilhança.</p>
 <section id="passo-a-passo-da-regressão-logística-no-r" class="level3" data-number="13.9.1">
 <h3 data-number="13.9.1" class="anchored" data-anchor-id="passo-a-passo-da-regressão-logística-no-r"><span class="header-section-number">13.9.1</span> Passo a passo da regressão logística no R</h3>
-<p>Vamos explorar a regressão logística usando o dataset <code>SAheart</code> do pacote <code>bestglm</code>. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas <span class="citation" data-cites="Rossouw1983">(<a href="references.html#ref-Rossouw1983" role="doc-biblioref">Rossouw et al. 1983</a>)</span>. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.</p>
+<p>Vamos explorar a regressão logística usando o dataset <code>SAheart</code> do pacote <code>bestglm</code>. Esses dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas <span class="citation" data-cites="Rossouw1983">(<a href="references.html#ref-Rossouw1983" role="doc-biblioref">Rossouw et al. 1983</a>)</span>. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.</p>
 <section id="saheart" class="level4" data-number="13.9.1.1">
 <h4 data-number="13.9.1.1" class="anchored" data-anchor-id="saheart"><span class="header-section-number">13.9.1.1</span> SAheart</h4>
 <p>O dataset SAheart contém 462 observações e 10 variáveis:</p>
@@ -2295,10 +2296,10 @@ z= \ln\left(\frac{p}{1 - p}\right)
 </section>
 <section id="preparação-dos-dados" class="level4" data-number="13.9.2.2">
 <h4 data-number="13.9.2.2" class="anchored" data-anchor-id="preparação-dos-dados"><span class="header-section-number">13.9.2.2</span> Preparação dos dados</h4>
-<p>Na regressão logística, a normalização dos dados é um passo crucial no pré-processamento que garante que todas as variáveis do conjunto de dados contribuam de maneira equilibrada para o modelo. A função sigmoide utilizada na regressão logística é <strong>sensível às escalas das variáveis de entrada</strong>; variáveis com valores numéricos maiores podem ter um impacto desproporcional no processo de otimização, influenciando a convergência e o ajuste dos coeficientes.</p>
-<p>Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de <strong>0 a 15</strong>, enquanto o consumo de álcool varia de <strong>0 a 147 gramas por dia</strong>. Se essas variáveis forem usadas diretamente no modelo sem normalização, o consumo de álcool, por ter uma escala numérica significativamente maior, pode <strong>dominar o processo de ajuste</strong>, ofuscando o efeito da LDL e de outras variáveis com escalas menores.</p>
-<p>A normalização ajusta os valores para uma escala comum—geralmente entre 0 e 1 ou com média zero e desvio padrão um—permitindo que todas as variáveis tenham um <strong>impacto equilibrado</strong> no modelo. Isso melhora a eficiência do algoritmo de otimização e ajuda a garantir que o modelo capture de forma adequada as relações entre as variáveis independentes e a variável dependente.</p>
-<p>Em contraste, na regressão linear, a normalização dos dados <strong>geralmente não é necessária</strong>. Isso ocorre porque os coeficientes estimados na regressão linear se ajustam proporcionalmente às escalas das variáveis, e a interpretação dos coeficientes permanece direta: cada coeficiente representa a variação esperada na variável dependente para uma unidade de variação na variável independente correspondente. Normalizar as variáveis na regressão linear pode até dificultar a interpretação prática dos coeficientes, já que as unidades originais das variáveis são perdidas.</p>
+<p>A normalização das variáveis numéricas é um passo comum de pré-processamento, mas é preciso ser claro sobre o que ela faz e o que não faz. A função <code>glm()</code> do R estima os coeficientes da regressão logística por um algoritmo que <strong>não depende da escala das variáveis</strong>: normalizar ou não, as previsões e os valores-p saem iguais, e só os coeficientes mudam de unidade. A normalização passa a ser importante em dois casos: quando queremos <strong>comparar a magnitude dos coeficientes</strong> entre variáveis medidas em unidades diferentes, e quando usamos algoritmos que dependem da escala, como os métodos com regularização (lasso, ridge) e as redes neurais, muito usados em aprendizado de máquina.</p>
+<p>Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de <strong>0 a 15</strong>, enquanto o consumo de álcool varia de <strong>0 a 147 gramas por dia</strong>. Sem normalização, o coeficiente do álcool corresponde ao efeito de <strong>1 grama</strong> a mais por dia, e o do LDL ao efeito de <strong>1 unidade</strong> a mais: os dois números não são comparáveis entre si. Depois da normalização, cada coeficiente passa a representar o efeito de <strong>1 desvio padrão</strong> a mais da variável, o que permite compará-los.</p>
+<p>A normalização ajusta os valores para uma escala comum, geralmente entre 0 e 1 ou com média zero e desvio padrão um. O preço a pagar é a interpretação: os coeficientes deixam de estar nas unidades originais das variáveis.</p>
+<p>O mesmo raciocínio vale para a regressão linear do capítulo anterior: lá também os coeficientes se ajustam à escala das variáveis, e preferimos mantê-los nas unidades originais, em que cada coeficiente representa a variação esperada no desfecho para uma unidade a mais do preditor. Neste capítulo vamos normalizar para mostrar a técnica e para poder comparar os coeficientes.</p>
 <p>Existem várias formas de fazer a normalização dos dados, vamos usar aqui a técnica de normalização Z-score às variáveis numéricas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma função para normalizar os dados</span></span>
@@ -2315,7 +2316,7 @@ z= \ln\left(\frac{p}{1 - p}\right)
 <div class="cell">
 <div class="cell-output-display">
 <table class="lightable-classic caption-top table table-sm table-striped small">
-<caption>Primeiras linhas do Dataset SAheart depois a normalização</caption>
+<caption>Primeiras linhas do Dataset SAheart depois da normalização</caption>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; color: white !important; background-color: rgba(255, 87, 51, 255) !important; font-size: 15px;">sbp</th>
@@ -2413,9 +2414,9 @@ z= \ln\left(\frac{p}{1 - p}\right)
 </div>
 </section>
 </section>
-<section id="escolhendo-das-variáveis-para-o-modelo" class="level3" data-number="13.9.3">
-<h3 data-number="13.9.3" class="anchored" data-anchor-id="escolhendo-das-variáveis-para-o-modelo"><span class="header-section-number">13.9.3</span> Escolhendo das variáveis para o modelo</h3>
-<p>Um elemento fundamdental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.</p>
+<section id="escolhendo-as-variáveis-para-o-modelo" class="level3" data-number="13.9.3">
+<h3 data-number="13.9.3" class="anchored" data-anchor-id="escolhendo-as-variáveis-para-o-modelo"><span class="header-section-number">13.9.3</span> Escolhendo as variáveis para o modelo</h3>
+<p>Um elemento fundamental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.</p>
 <p>Um outro ponto importante é evitar usar variáveis altamente correlacionadas. Plotar gráficos de dispersão entre todas variáveis entre si pode ajudar a visualizar essas correlações.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SAheart)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2427,7 +2428,7 @@ z= \ln\left(\frac{p}{1 - p}\right)
 </div>
 </div>
 </div>
-<p>Como pode ser vito no gráfico acima, as variáveis adiposidade e obesidade parecem estar correlacionadas, o que pode ser mensurado com o código abaixo:</p>
+<p>Como pode ser visto no gráfico acima, as variáveis adiposidade e obesidade parecem estar correlacionadas, o que pode ser mensurado com o código abaixo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(SAheart<span class="sc">$</span>adiposity, SAheart<span class="sc">$</span>obesity)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2444,7 +2445,7 @@ sample estimates:
 0.7165563 </code></pre>
 </div>
 </div>
-<p>Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade tem uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.</p>
+<p>Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade têm uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.</p>
 </section>
 <section id="divisão-do-dataset" class="level3" data-number="13.9.4">
 <h3 data-number="13.9.4" class="anchored" data-anchor-id="divisão-do-dataset"><span class="header-section-number">13.9.4</span> Divisão do Dataset</h3>
@@ -2512,7 +2513,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </section>
 <section id="calculando-a-acurácia-do-modelo" class="level3" data-number="13.9.6">
 <h3 data-number="13.9.6" class="anchored" data-anchor-id="calculando-a-acurácia-do-modelo"><span class="header-section-number">13.9.6</span> Calculando a acurácia do modelo</h3>
-<p>Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma e não há como calcular o valor de <span class="math inline">\(r\)</span> ou <span class="math inline">\(r^2\)</span>.</p>
+<p>Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma, e não existe um <span class="math inline">\(r^2\)</span> com a mesma interpretação. Há medidas análogas, chamadas de pseudo-<span class="math inline">\(R^2\)</span> (como as de McFadden e de Nagelkerke), mas elas são menos usadas; o mais comum é avaliar o modelo pela sua capacidade de classificar corretamente, como faremos a seguir.</p>
 <p>Para calcular a <strong>acurácia</strong> de um modelo de regressão logística, seguimos um processo que nos ajuda a entender quão bem o modelo está prevendo os resultados. A regressão logística é usada quando queremos prever resultados que se enquadram em duas categorias distintas, como “sim” ou “não”, “positivo” ou “negativo”.</p>
 <p><strong>Passo a passo:</strong></p>
 <ol type="1">

@@ -442,7 +442,7 @@ window.Quarto = {
   <li><a href="#pnorm" id="toc-pnorm" class="nav-link" data-scroll-target="#pnorm"><span class="header-section-number">14.3.3</span> <code>pnorm</code></a></li>
   <li><a href="#qnorm" id="toc-qnorm" class="nav-link" data-scroll-target="#qnorm"><span class="header-section-number">14.3.4</span> <code>qnorm</code></a></li>
   </ul></li>
-  <li><a href="#distribuiçao-t-de-student" id="toc-distribuiçao-t-de-student" class="nav-link" data-scroll-target="#distribuiçao-t-de-student"><span class="header-section-number">14.4</span> Distribuiçao t de Student</a>
+  <li><a href="#distribuição-t-de-student" id="toc-distribuição-t-de-student" class="nav-link" data-scroll-target="#distribuição-t-de-student"><span class="header-section-number">14.4</span> Distribuição t de Student</a>
   <ul class="collapse">
   <li><a href="#rt" id="toc-rt" class="nav-link" data-scroll-target="#rt"><span class="header-section-number">14.4.1</span> <code>rt()</code></a></li>
   <li><a href="#dt" id="toc-dt" class="nav-link" data-scroll-target="#dt"><span class="header-section-number">14.4.2</span> <code>dt()</code></a></li>
@@ -489,7 +489,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Na medicina, esses conceitos são aplicados de várias maneiras. Ensaios clínicos utilizam distribuições teóricas para determinar a significância dos resultados dos testes de tratamento, por exemplo, modelando a distribuição dos resultados com a distribuição normal. Estudos epidemiológicos usam distribuições para modelar a incidência e prevalência de doenças, como a distribuição de Poisson para modelar o número de novos casos em um determinado período. A análise de sobrevivência utiliza a distribuição exponencial para modelar o tempo de sobrevivência dos pacientes após um tratamento ou o tempo até a ocorrência de um evento específico, como a recaída de uma doença. Distribuições teóricas de probabilidade são, portanto, elementos fundamentais da análise estatística.</p>
-<p>O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantiles (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.</p>
+<p>O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantis (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.</p>
 <p><img src="images/distributions_table.png" class="img-fluid"></p>
 <section id="definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="definindo-o-ponto-de-partida-para-a-geração-de-números-aleatórios"><span class="header-section-number">14.1</span> Definindo o ponto de partida para a geração de números aleatórios</h2>
@@ -499,12 +499,12 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará em uma sequência diferente de 5 números.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.8092981 -1.9263744 -0.3317427 -0.2912367 -1.1799787</code></pre>
+<pre><code>[1]  0.1872419  0.5319381 -0.3295648 -0.5209226 -0.2732500</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará sempre em na mesma sequencia de 5 números.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterar o argumento da função set.seed irá mudar a sequencia de números.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará sempre na mesma sequência de 5 números.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterar o argumento da função set.seed irá mudar a sequência de números.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -517,7 +517,7 @@ window.Quarto = {
 <h2 data-number="14.2" class="anchored" data-anchor-id="distribuição-uniforme"><span class="header-section-number">14.2</span> Distribuição Uniforme</h2>
 <section id="runif" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="runif"><span class="header-section-number">14.2.1</span> <code>runif</code></h3>
-<p>A função <code>runif()</code> gera um conjunto randomizado de números a partir de um distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.</p>
+<p>A função <code>runif()</code> gera um conjunto randomizado de números a partir de uma distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.</p>
 <p>Veja abaixo como criar um conjunto randomizado de 20 números distribuídos de forma uniforme entre 0 e 1.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
@@ -529,7 +529,7 @@ window.Quarto = {
 [19] 0.86969085 0.34034900</code></pre>
 </div>
 </div>
-<p>podemos arrendondar esses valores com a função round().</p>
+<p>podemos arredondar esses valores com a função round().</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arredondando para 2 casas decimais</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ru1, <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -549,7 +549,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Entretanto, a medida que aumentando o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função <code>runif(</code>) e os histogramas dessas distribuições.</p>
+<p>Entretanto, à medida que aumentamos o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função <code>runif(</code>) e os histogramas dessas distribuições.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ru2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
@@ -571,7 +571,7 @@ window.Quarto = {
 </section>
 <section id="dunif" class="level3" data-number="14.2.2">
 <h3 data-number="14.2.2" class="anchored" data-anchor-id="dunif"><span class="header-section-number">14.2.2</span> <code>dunif</code></h3>
-<p>A função <code>dunif()</code> calcula a função de densidade de probabilidade (PDF) da distribuição uniforme, ou seja, a probabilidade de que uma variável aleatória seja igual a um determinado valor. A função <code>dunif()</code> tem três argumentos:</p>
+<p>A função <code>dunif()</code> calcula a função de densidade de probabilidade (PDF) da distribuição uniforme. Atenção: numa distribuição contínua, a probabilidade de a variável ser exatamente igual a um valor é zero; a densidade mede o quanto a probabilidade se concentra em torno daquele valor, e é a área sob a curva de densidade (calculada por <code>punif()</code>, logo abaixo) que dá probabilidades. A função <code>dunif()</code> tem três argumentos:</p>
 <ul>
 <li>x: o valor no qual calcular o PDF</li>
 <li>min: o limite inferior da distribuição</li>
@@ -584,7 +584,7 @@ window.Quarto = {
 <pre><code>[1] 0.01</code></pre>
 </div>
 </div>
-<p>Isso significa que a probabilidade de uma variável aleatória dessa distribuição ser igual a 5 é 0.01.</p>
+<p>A densidade é 0.01 em qualquer ponto entre 0 e 100, porque na distribuição uniforme ela é constante e igual a 1/(max − min) = 1/100. Como consequência, a probabilidade de a variável cair num intervalo qualquer é o comprimento do intervalo vezes 0.01: por exemplo, entre 5 e 15 é 0.10.</p>
 </section>
 <section id="punif" class="level3" data-number="14.2.3">
 <h3 data-number="14.2.3" class="anchored" data-anchor-id="punif"><span class="header-section-number">14.2.3</span> <code>punif</code></h3>
@@ -607,7 +607,7 @@ window.Quarto = {
 </section>
 <section id="qunif" class="level3" data-number="14.2.4">
 <h3 data-number="14.2.4" class="anchored" data-anchor-id="qunif"><span class="header-section-number">14.2.4</span> <code>qunif</code></h3>
-<p>A função <code>qunif()</code> calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.</p>
+<p>A função <code>qunif()</code> calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada uma probabilidade como entrada, a função retorna o valor que tem essa probabilidade.</p>
 <p>A função <code>qunif()</code> requer três argumentos:</p>
 <ul>
 <li>p: a probabilidade<br>
@@ -627,10 +627,10 @@ window.Quarto = {
 </section>
 <section id="distribuição-normal" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="distribuição-normal"><span class="header-section-number">14.3</span> Distribuição Normal</h2>
-<p>A mais importante das distribuições de probabilidade teóricas é a distribuição normal. Diversos fenômenos na natureza seguem um padrão de distribuição simétrico e em forma de sino. Devido a essa forma, essa distribuição de frequências ficou conhecida como distribuição em sino (bell shaped). Como tantos fenômenos são distribuídos dessa forma, a busca por um modelo matemático para modelar essa distribuição tem uma longa e interessante trajetória na ciência, envolvendo diversos grandes matemáticos. O modelo matemático dessa curva se começou a ser construído por volta do ano de 1733 com o trabalho do matemático Abraham Demoivre, quando buscava modelos para prever resultados de jogos de azar e em 1786 por Pierre Laplace, um astrônomo e matemático. No entanto, a curva normal como modelo para a distribuição de erros na teoria científica é mais comumente associada a um astrônomo e matemático alemão, Karl Friedrich Gauss, que encontrou uma nova derivação da fórmula para a curva em 1809 <span class="citation" data-cites="gordon2006normal">(<a href="references.html#ref-gordon2006normal" role="doc-biblioref">Gordon 2006</a>)</span>. Por esse motivo, a curva normal às vezes é referida como a curva “Gaussiana”. Em 1835, outro matemático e astrônomo, Lambert Quetelet, usou o modelo para descrever características fisiológicas e sociais humanas. Quetelet acreditava que “normal” significava média e que os desvios da média eram os erros da natureza. Apesar da visão distorcida de Quetelet, ele foi o primeiro matemático a estender o uso da curva de distribuição normal para os campos das ciências sociais e biomédicas <span class="citation" data-cites="stahl2006evolution">(<a href="references.html#ref-stahl2006evolution" role="doc-biblioref">Stahl 2006</a>)</span>.</p>
+<p>A mais importante das distribuições de probabilidade teóricas é a distribuição normal. Diversos fenômenos na natureza seguem um padrão de distribuição simétrico e em forma de sino. Devido a essa forma, essa distribuição de frequências ficou conhecida como distribuição em sino (bell shaped). Como tantos fenômenos são distribuídos dessa forma, a busca por um modelo matemático para modelar essa distribuição tem uma longa e interessante trajetória na ciência, envolvendo diversos grandes matemáticos. O modelo matemático dessa curva começou a ser construído por volta do ano de 1733 com o trabalho do matemático Abraham Demoivre, quando buscava modelos para prever resultados de jogos de azar e em 1786 por Pierre Laplace, um astrônomo e matemático. No entanto, a curva normal como modelo para a distribuição de erros na teoria científica é mais comumente associada a um astrônomo e matemático alemão, Karl Friedrich Gauss, que encontrou uma nova derivação da fórmula para a curva em 1809 <span class="citation" data-cites="gordon2006normal">(<a href="references.html#ref-gordon2006normal" role="doc-biblioref">Gordon 2006</a>)</span>. Por esse motivo, a curva normal às vezes é referida como a curva “Gaussiana”. Em 1835, outro matemático e astrônomo, Lambert Quetelet, usou o modelo para descrever características fisiológicas e sociais humanas. Quetelet acreditava que “normal” significava média e que os desvios da média eram os erros da natureza. Apesar da visão distorcida de Quetelet, ele foi o primeiro matemático a estender o uso da curva de distribuição normal para os campos das ciências sociais e biomédicas <span class="citation" data-cites="stahl2006evolution">(<a href="references.html#ref-stahl2006evolution" role="doc-biblioref">Stahl 2006</a>)</span>.</p>
 <section id="rnorm" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="rnorm"><span class="header-section-number">14.3.1</span> <code>rnorm</code></h3>
-<p>A função <code>rnorm()</code> gera um conjunto de números randomizados a partir de um distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função <code>rnorm()</code> utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.</p>
+<p>A função <code>rnorm()</code> gera um conjunto de números randomizados a partir de uma distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função <code>rnorm()</code> utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.</p>
 <p>Gerando um conjunto randomizado de 1000 números distribuídos de forma normal com média = 0 e desvio padrão = 1.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
@@ -768,22 +768,22 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Observe que a função <code>pnorm(x)</code> usou os valores padrões de media = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().</p>
-<p>Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) <span class="citation" data-cites="Silva2009">(<a href="references.html#ref-Silva2009" role="doc-biblioref">Silva e Monteiro 2009</a>)</span> como exemplo. Nesse estudo foi a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.</p>
+<p>Observe que a função <code>pnorm(x)</code> usou os valores padrões de média = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().</p>
+<p>Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) <span class="citation" data-cites="Silva2009">(<a href="references.html#ref-Silva2009" role="doc-biblioref">Silva e Monteiro 2009</a>)</span> como exemplo. Nesse estudo a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9896954</code></pre>
 </div>
 </div>
-<p>A função <code>pnorm(x)</code> calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, Para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:</p>
+<p>A função <code>pnorm(x)</code> calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01030459</code></pre>
 </div>
 </div>
-<p>Ou seja, aproximadamente 1% dos homens brasileiros dessa amostra tem altura superior a 190cm.</p>
+<p>Ou seja, aproximadamente 1% dos homens brasileiros dessa amostra têm altura superior a 190cm.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -796,8 +796,8 @@ window.Quarto = {
 </section>
 <section id="qnorm" class="level3" data-number="14.3.4">
 <h3 data-number="14.3.4" class="anchored" data-anchor-id="qnorm"><span class="header-section-number">14.3.4</span> <code>qnorm</code></h3>
-<p>A função <code>qnorm()</code> faz o calculo inverso da função <code>pnorm()</code>. é utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p.&nbsp;O argumento da função <code>qnorm(p)</code> é extamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.</p>
-<p>Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo do qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:</p>
+<p>A função <code>qnorm()</code> faz o cálculo inverso da função <code>pnorm()</code>. É utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p.&nbsp;O argumento da função <code>qnorm(p)</code> é exatamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.</p>
+<p>Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo da qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.99</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -816,12 +816,12 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="distribuiçao-t-de-student" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="distribuiçao-t-de-student"><span class="header-section-number">14.4</span> Distribuiçao t de Student</h2>
-<p>A distribuição t de Student (também conhecida como distribuição t) foi introduzida por William Sealy Gosset em 1908, sento usada para estimar a média de variáveis aleatórias normalmente distribuídas para as quais o tamanho da amostra é pequeno e o desvio padrão é desconhecido. A distribuição t parece muito semelhante à distribuição normal, e converge para a curva normal à medida que o tamanho da amostra aumenta.</p>
+<section id="distribuição-t-de-student" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="distribuição-t-de-student"><span class="header-section-number">14.4</span> Distribuição t de Student</h2>
+<p>A distribuição t de Student (também conhecida como distribuição t) foi introduzida por William Sealy Gosset em 1908, sendo usada para estimar a média de variáveis aleatórias normalmente distribuídas para as quais o tamanho da amostra é pequeno e o desvio padrão é desconhecido. A distribuição t parece muito semelhante à distribuição normal, e converge para a curva normal à medida que o tamanho da amostra aumenta.</p>
 <section id="rt" class="level3" data-number="14.4.1">
 <h3 data-number="14.4.1" class="anchored" data-anchor-id="rt"><span class="header-section-number">14.4.1</span> <code>rt()</code></h3>
-<p>A função <code>rt()</code> cria conjunto randomizado de números a partir de um distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (<em>degrees of freedom</em> - df).</p>
+<p>A função <code>rt()</code> cria conjunto randomizado de números a partir de uma distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (<em>degrees of freedom</em> - df).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
@@ -888,8 +888,8 @@ window.Quarto = {
 </section>
 <section id="pt" class="level3" data-number="14.4.3">
 <h3 data-number="14.4.3" class="anchored" data-anchor-id="pt"><span class="header-section-number">14.4.3</span> <code>pt()</code></h3>
-<p>A função <code>pt(q)</code> é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantile).</p>
-<p>Os argumentos dessa função são o quantile (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função <code>pt()</code> e a a interpretação visual da função.</p>
+<p>A função <code>pt(q)</code> é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantil).</p>
+<p>Os argumentos dessa função são o quantil (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função <code>pt()</code> e a interpretação visual da função.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -908,7 +908,7 @@ window.Quarto = {
 </section>
 <section id="qt" class="level3" data-number="14.4.4">
 <h3 data-number="14.4.4" class="anchored" data-anchor-id="qt"><span class="header-section-number">14.4.4</span> <code>qt()</code></h3>
-<p>A função <code>qt()</code>, faz o inverso da função <code>pt()</code>: dada uma área abaixo da curva de distribuição t, a função retorna o quantile (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantile.</p>
+<p>A função <code>qt()</code>, faz o inverso da função <code>pt()</code>: dada uma área abaixo da curva de distribuição t, a função retorna o quantil (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantil.</p>
 <p>Como exemplo, usamos a probabilidade 0.9490303, que é justamente o resultado de <code>pt(q = 2, df = 5)</code> calculado acima. A função devolve então o quantil 2.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.9490303</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -923,7 +923,7 @@ window.Quarto = {
 <p>A distribuição qui-quadrado é frequentemente usada em testes estatísticos, como o teste de independência em tabelas de contingência ou o teste de ajuste (goodness-of-fit).</p>
 <section id="rchisq" class="level3" data-number="14.5.1">
 <h3 data-number="14.5.1" class="anchored" data-anchor-id="rchisq"><span class="header-section-number">14.5.1</span> <code>rchisq()</code></h3>
-<p>A função <code>rchisq()</code> cria conjunto randomizado de números a partir de um distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).</p>
+<p>A função <code>rchisq()</code> cria conjunto randomizado de números a partir de uma distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
@@ -955,7 +955,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>E também podemos usar a o argumento add=TRUE para inserir várias curvas no mesmo gráfico.</p>
+<p>E também podemos usar o argumento add=TRUE para inserir várias curvas no mesmo gráfico.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">1</span> ),<span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">2</span> ),<span class="at">col=</span><span class="st">"red"</span>,         <span class="at">add=</span><span class="cn">TRUE</span>)</span>
@@ -983,7 +983,7 @@ window.Quarto = {
 <li><code>q</code> é o valor da estatística qui-quadrado para o qual você deseja calcular a probabilidade acumulada.</li>
 <li><code>df</code> é o número de graus de liberdade da distribuição.</li>
 </ul>
-<p>Por padrão a funçõa retorna probabilidade acumulada do valor da estatística ser menor ou igual a <code>q</code>. Caso deseje a probabilidade de ser <strong>maior ou igual</strong> a <code>q</code> é necessário acrescentar o argumento <code>lower.tail=FALSE</code></p>
+<p>Por padrão a função retorna probabilidade acumulada do valor da estatística ser menor ou igual a <code>q</code>. Caso deseje a probabilidade de ser <strong>maior ou igual</strong> a <code>q</code> é necessário acrescentar o argumento <code>lower.tail=FALSE</code></p>
 <p>Suponha que você tenha uma estatística qui-quadrado de 6 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 6)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="at">q =</span> <span class="dv">6</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1026,7 +1026,7 @@ window.Quarto = {
 </section>
 <section id="resumo" class="level2" data-number="14.7">
 <h2 data-number="14.7" class="anchored" data-anchor-id="resumo"><span class="header-section-number">14.7</span> Resumo</h2>
-<p>O R possui essas funções de densidade, densidade cumulativa, quantil e numeros randomizados para diversas funções. O quadro abaixo resume esse capítulo.</p>
+<p>O R possui essas funções de densidade, densidade cumulativa, quantil e números randomizados para diversas funções. O quadro abaixo resume esse capítulo.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
