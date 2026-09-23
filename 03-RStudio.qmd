@@ -2,15 +2,15 @@
 
 ## RStudio - Primeiros passos
 
-O R é uma linguagem, uma linguagem escrita. Da mesma forma que precisamos de um papel ou um processador de texto para escrevermos uma carta, também precisamos de um meio onde escrever nossos comandos na linguagem R. Qualquer editor de textos simples poderia servir para escrevermos na linguagem R, o TextEdit no Mac. Entretanto, usar um software específico para escrevermos comandos na linguagem R facilita muito o trabalho. O RStudio é justamente isso e muito mais. E um ambiente completo para escrever todo um projeto de análises estatísticas com a linguagem R.
+O R é uma linguagem, uma linguagem escrita. Da mesma forma que precisamos de um papel ou um processador de texto para escrevermos uma carta, também precisamos de um meio onde escrever nossos comandos na linguagem R. Qualquer editor de textos simples poderia servir para escrevermos na linguagem R, como o TextEdit no Mac. Entretanto, usar um software específico para escrevermos comandos na linguagem R facilita muito o trabalho. O RStudio é justamente isso e muito mais. É um ambiente completo para escrever todo um projeto de análises estatísticas com a linguagem R.
 
-## Video Aula
+## Vídeo Aula
 
-Link para video aula de primeiros passos com o RStudio: <https://youtu.be/P8lIjQmRiuU>
+Link para vídeo aula de primeiros passos com o RStudio: <https://youtu.be/P8lIjQmRiuU>
 
 ## Os Painéis do RStudio
 
-O RStudio possui 4 painéis principais: Editor, Console, Ambiente (Enviroment) e Arquivos (Files). Cada um desses painéis pode conter diversas abas para visualização de outras informações. Cada um desses painéis pode ser redimensionado conforme o desejo do usuário. Veremos sucintamente para que servem cada um deles.
+O RStudio possui 4 painéis principais: Editor, Console, Ambiente (Environment) e Arquivos (Files). Cada um desses painéis pode conter diversas abas para visualização de outras informações. Cada um desses painéis pode ser redimensionado conforme o desejo do usuário. Veremos sucintamente para que servem cada um deles.
 
 ```{r RStudio-4Panels, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Os 4 Paineis do RStudio.'}
 knitr::include_graphics("images/RStudio_4_panels.png")
@@ -22,11 +22,11 @@ O console é o local no qual podemos digitar e executar comandos de forma direta
 
 ### Editor
 
-O Editor é o painel no qual serão exibidos os editores de texto do RStudio. No Editor podemos criar documentos de diversos tipos, tais como Scripts, Notebooks etc.. O importante é que esses documentos podem ser salvos para uso posterior. Veremos adiante que os documentos do tipo RNotebook e Quarto são bastante poderosos e versáteis para análises estatísticas.
+O Editor é o painel no qual serão exibidos os editores de texto do RStudio. No Editor podemos criar documentos de diversos tipos, tais como Scripts, Notebooks etc. O importante é que esses documentos podem ser salvos para uso posterior. Veremos adiante que os documentos do tipo RNotebook e Quarto são bastante poderosos e versáteis para análises estatísticas.
 
-### Ambiente (Enviroment)
+### Ambiente (Environment)
 
-O painel Ambiente possui várias abas: Environment, History, Connections. A primeira, chamada de Enviroment (ambiente), exibe as variáveis e objetos que estão na memória durante uma sessão do RStudio. Nessa aba podemos visualizar as variáveis à medida que são criadas, modificadas e deletadas. A segunda aba, chamada de History, contém a lista de todos os comandos que foram executados pelo R nas últimas sessões. A terceira aba, Connections, é usada em projetos mais avançados, para mostrar as conexões do RStudio com bancos de dados. Não usaremos essa aba nesse curso.
+O painel Ambiente possui várias abas: Environment, History, Connections. A primeira, chamada de Environment (ambiente), exibe as variáveis e objetos que estão na memória durante uma sessão do RStudio. Nessa aba podemos visualizar as variáveis à medida que são criadas, modificadas e deletadas. A segunda aba, chamada de History, contém a lista de todos os comandos que foram executados pelo R nas últimas sessões. A terceira aba, Connections, é usada em projetos mais avançados, para mostrar as conexões do RStudio com bancos de dados. Não usaremos essa aba nesse curso.
 
 ### Arquivos e Gráficos (Files e Plots)
 
@@ -36,9 +36,9 @@ O painel Files também possui várias abas: Files, Plots, Packages, Help e Viewe
 
 ### R Script
 
-No cinema ou no teatro um script é o texto escrito do diálogos dos personagens. Na ciência da computação um script é um texto escrito em alguma linguagem de programação. No nosso caso, R Script é um texto com comandos da linguagem R. Ou seja, em última análise, um script é nada mais que um documento de texto, que pode ser salvo, assim como podemos salvar documentos que escrevemos com o uso de processadores de texto. Tal como salvamos documentos do Word, também podemos salvar os Scripts escritos no RStudio.
+No cinema ou no teatro um script é o texto escrito dos diálogos dos personagens. Na ciência da computação um script é um texto escrito em alguma linguagem de programação. No nosso caso, R Script é um texto com comandos da linguagem R. Ou seja, em última análise, um script é nada mais que um documento de texto, que pode ser salvo, assim como podemos salvar documentos que escrevemos com o uso de processadores de texto. Tal como salvamos documentos do Word, também podemos salvar os Scripts escritos no RStudio.
 
-Um script contém a sequencia de comandos que desejamos que sejam executados pelo R, escrito na linguagem R. Podemos também escrever os comandos diretamente no console, entretanto os comando assim escritos não podem ser salvos. A vantagem de escrever os comandos num documento de texto é justamente poder salvar esse documento para uso posterior. Em computação é usual denominarmos os comandos num documento de texto como nosso código. Em especial, quando esse código está escrito na linguagem R, é usual denominar esses comando de código em R ou simplesmente de R code. Um Script contém principalmente códigos, mas deve conter também comentários, que explicam o código.
+Um script contém a sequência de comandos que desejamos que sejam executados pelo R, escrito na linguagem R. Podemos também escrever os comandos diretamente no console, entretanto os comandos assim escritos não podem ser salvos. A vantagem de escrever os comandos num documento de texto é justamente poder salvar esse documento para uso posterior. Em computação é usual denominarmos os comandos num documento de texto como nosso código. Em especial, quando esse código está escrito na linguagem R, é usual denominar esses comandos de código em R ou simplesmente de R code. Um Script contém principalmente códigos, mas deve conter também comentários, que explicam o código.
 
 #### Comentários no R - \#
 
@@ -82,7 +82,7 @@ Os documentos tipo Quarto também são criados no RStudio por meio da extensão 
 
 Além disso, os documentos tipo Quarto no RStudio permitem a utilização de recursos avançados, como a inclusão de gráficos interativos, tabelas dinâmicas e widgets, que possibilitam a interação do usuário com os resultados obtidos. Também é possível personalizar o tema visual do documento, alterando cores, fontes e outros aspectos de design.
 
-Uma vez criado o documento tipo Quarto, é possível exportá-lo em diversos formatos, como PDF, HTML e Word, mantendo a formatação e a interatividade dos elementos. Isso permite a compartilhamento dos resultados e da metodologia utilizada com outros usuários e colaboradores.
+Uma vez criado o documento tipo Quarto, é possível exportá-lo em diversos formatos, como PDF, HTML e Word, mantendo a formatação e a interatividade dos elementos. Isso permite o compartilhamento dos resultados e da metodologia utilizada com outros usuários e colaboradores.
 
 Em resumo, o documento tipo Quarto no RStudio é uma ferramenta poderosa para análises de dados, que combina a linguagem R com o formato Markdown e permite a organização, a documentação e a interação com os resultados obtidos.
 

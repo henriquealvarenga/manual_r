@@ -26,7 +26,7 @@ cor(mpg$cty,mpg$displ)
 
 O valor encontrado, `r round(cor(mpg$cty, mpg$displ), 2)`, indica que essa é uma correlação negativa e forte. A mensagem é clara, quanto maior as cilindradas, menor a distância percorrida com 1 galão de gasolina, ou seja, carros 1.0 são mais econômicos mesmo.
 
-O valor coeficiente de determinação $r^2$ pode ser obtido elevando-se a função `cor()` ao quadrado.
+O valor do coeficiente de determinação $r^2$ pode ser obtido elevando-se a função `cor()` ao quadrado.
 
 ```{r}
 r2 <- cor(mpg$displ, mpg$cty)^2
@@ -53,7 +53,7 @@ Podemos verificar a existência de valores NA com o comando `summary()`
 summary(airquality)
 ```
 
-Devido as valores `NA` nas variáveis `Ozone` e `Solar.R`, a função `cor()` não calcula o coeficiente de correlação:
+Devido aos valores `NA` nas variáveis `Ozone` e `Solar.R`, a função `cor()` não calcula o coeficiente de correlação:
 
 ```{r}
 cor(airquality$Ozone, airquality$Solar.R)
@@ -119,7 +119,7 @@ iris |>
 
 A forma mais simples de visualizar a correlação entre duas variáveis é através de um gráfico de scatter plot. Essa relação pode ser mostrada de forma ainda mais explícita quando inserimos no gráfico uma reta que representa a correlação linear entre essas variáveis. Essa reta, chamada de reta de regressão linear, representa o modelo matemático de correlação entre essas duas variáveis.
 
-A função básica do R para criar um scatterplot e simplesmente `plot()` e a inserção da linha de regressão é feita com a função `abline()` e `lm()`, de linear model. Vejamos como plotar um gráfico de correlação entre os níveis de ozônio e a radiação solar com esses comandos, usando o dataset `airquality` do R.
+A função básica do R para criar um scatterplot é simplesmente `plot()` e a inserção da linha de regressão é feita com a função `abline()` e `lm()`, de linear model. Vejamos como plotar um gráfico de correlação entre os níveis de ozônio e a radiação solar com esses comandos, usando o dataset `airquality` do R.
 
 ```{r}
 plot(Solar.R ~ Ozone, data = airquality)
@@ -157,10 +157,10 @@ O ggplot tem também inúmeras outras possibilidades de ajustes. No código a se
 ggplot(airquality, aes(x=Ozone, y=Solar.R))  + 
   geom_point() + 
   geom_smooth(method = lm) +
-  labs(title = "Correlação entre níveis de Ozônio e Radiaçao solar",
+  labs(title = "Correlação entre níveis de Ozônio e Radiação solar",
        subtitle = "Nova Iorque de maio a setembro de 1973",
        caption = "fonte: dataset airquality") +
   ylab("Radiação Solar") +
-  xlab("Niveis de Ozônio") +
+  xlab("Níveis de Ozônio") +
   theme_classic()
 ```

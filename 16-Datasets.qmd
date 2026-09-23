@@ -78,7 +78,7 @@ data(PlantGrowth)
 
 ## SAheart
 
-dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
+Dataset `SAheart` do pacote `bestglm`. Esses dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
 
 ```{r}
 # código para acessar o dataset SAheart, que vem com o pacote bestglm

@@ -1,6 +1,6 @@
 # Data Frames e Tibbles {#sec-dataframes}
 
-Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base o R, os data frames e as tibbles são o coração do R.
+Data frames e Tibbles são os objetos do R para armazenar dados. Se os vetores são a base do R, os data frames e as tibbles são o coração do R.
 
 Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
 
@@ -23,13 +23,13 @@ knitr::include_graphics("images/diabetes_datasetScreenShot.png")
 
 O R possui vários datasets (conjuntos de dados) para facilitar o aprendizado. Para saber mais sobre os datasets inclusos no R digite no console o comando abaixo: `data()`
 
-Podemos carregar os datasets já inclusos no R com a função mesma função `data()`, bastando incluir como argumento o nome do dataset desejado. No exemplo a seguir iremos carregar o dataset `USArrests`. Este dataset contém estatísticas das prisões por 100.000 habitantes por assalto, assassinato e estupro em cada um dos 50 estados dos EUA em 1973, como também a porcentagem da população urbana.
+Podemos carregar os datasets já inclusos no R com a mesma função `data()`, bastando incluir como argumento o nome do dataset desejado. No exemplo a seguir iremos carregar o dataset `USArrests`. Este dataset contém estatísticas das prisões por 100.000 habitantes por assalto, assassinato e estupro em cada um dos 50 estados dos EUA em 1973, como também a porcentagem da população urbana.
 
 ```{r}
 data(USArrests)
 ```
 
-Como esse dataset carregado podemos agora visualizar os dados simplesmente digitando o nome do dataset no console.
+Com esse dataset carregado podemos agora visualizar os dados simplesmente digitando o nome do dataset no console.
 
 ```{r}
 head(USArrests)
@@ -67,13 +67,13 @@ staff  <- data.frame(nome, idade)
 staff
 ```
 
-A última linha acima criou o data frame, com as as duas colunas (nome e idade) e as 3 linhas, uma para cada participante da pesquisa e armazenou esse data frame no objeto `staff`. Veja que o objeto `staff` é um `data.frame` do R.
+A última linha acima criou o data frame, com as duas colunas (nome e idade) e as 3 linhas, uma para cada participante da pesquisa e armazenou esse data frame no objeto `staff`. Veja que o objeto `staff` é um `data.frame` do R.
 
 ```{r}
 class(staff)
 ```
 
-Podemos visualizarmos a estrutura desse data frame com a função `str(staff)`.
+Podemos visualizar a estrutura desse data frame com a função `str(staff)`.
 
 ```{r}
 str(staff)
@@ -116,7 +116,7 @@ result <- data.frame(pacientes, tratamentoA, tratamentoB)
 result
 ```
 
-Esse data frame é um exemplo de dados no formado wide (largo). E é muitas vezes a forma usual de um conjunto de dados.
+Esse data frame é um exemplo de dados no formato wide (largo). E é muitas vezes a forma usual de um conjunto de dados.
 
 Entretanto, frequentemente, precisamos colocar esses dados numa outra disposição que facilita a análise dos dados. O formato long (comprido) é essa outra forma.
 
@@ -137,7 +137,7 @@ Sugiro a leitura do artigo **Tidy Data** de Hadley Wickham, publicado no Journal
 
 ## `Tibbles`, os dataframes do tidyverse
 
-Tibbles são data frames mais amigáveis. As `tiblles` foram criadas para resolver alguns problemas dos data frames e fazem parte do pacote `tibble` do `tidyverse`. Veremos nos capítulos adiante o que são pacotes, o que é o `tidyverse`.
+Tibbles são data frames mais amigáveis. As `tibbles` foram criadas para resolver alguns problemas dos data frames e fazem parte do pacote `tibble` do `tidyverse`. Veremos nos capítulos adiante o que são pacotes, o que é o `tidyverse`.
 
 Tibbles são a versão moderna dos data frames do R. Um dataframe é uma estrutura de dados em R que organiza dados em uma tabela, onde cada coluna pode conter um tipo diferente de dados (como números, texto, ou datas). Cada linha do dataframe representa uma observação.
 
@@ -279,7 +279,7 @@ str(diabetes)
 # transformando o data frame numa tibble
 diabetes <- as_tibble(diabetes)
 
-# verificando que os dados agora esão armazenados numa tibble
+# verificando que os dados agora estão armazenados numa tibble
 str(diabetes)
 ```
 

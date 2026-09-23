@@ -2,8 +2,9 @@
 
 Levantamento feito em 23/09/2026, durante a revisão de código da 2ª edição. O que
 está aqui foi visto e deixado de lado de propósito: é trabalho de estrutura e de
-conteúdo, não de correção. A revisão da 2ª edição cuidou só do código e do texto
-que descreve o código.
+conteúdo, não de correção. A revisão da 2ª edição cuidou do código, do texto que descreve o código e, numa
+segunda passada no mesmo dia, dos erros de português, das afirmações conceituais
+e das duplicações entre seções. O que sobrou aqui exige escrever conteúdo novo.
 
 ## Capítulos incompletos
 
@@ -35,37 +36,19 @@ que descreve o código.
 - `13.5`: anuncia três formas de montar a tabela (matrix, data.frame, tibble) e
   mostra duas.
 
-## Duplicações entre capítulos
-
-- `cut()`: seção inteira repetida em `11.3` e `11.5`, com os mesmos erros.
-- `summary(mtcars)` e conversão com `as.factor`: `11.5` e `11.6`, quase literal
-  ("19 carros automáticos e 13 manuais" nas duas).
-- `by()` versus `group_by()`: `11.2` e `11.5`.
-- `count()`: `11.2` e `11.4`.
-- `fct_recode()`: `11.3` e `11.4`. O conceito de factor aparece em `05`, `11.3` e `11.4`.
-- Operador `:` e `seq()`: `05`, `07` e `15`. Pipe: `05` e `07`. `na.rm`: `08`, `11.1`,
-  `11.5`. `pivot_longer()`: `06`, `11.1`, `13.2`, `13.4`. `as.factor()`: `05` e `10`.
-  `esoph`: `05` e `11.6`. Descrição do `diabetes`: `06`, `11.6`, `16`.
-- Dentro do próprio `12`: duas seções "Conclusão". Dentro do `15`: moeda/`sample`
-  duas vezes e dois parágrafos idênticos sobre `set.seed()`. Dentro do `08`: o
-  parágrafo de abertura repete mais adiante.
-- Recodificação ensinada de três jeitos: `05` (`recode_factor`, agora `case_match`),
-  `11.2` (`case_match`) e `11.3`/`11.4` (`fct_recode`).
 
 ## Capítulo 16 (Datasets)
 
 Não lista `USArrests` (06), `esoph` (05, 11.6), `diamonds` (12), `father.son` do
 UsingR (13.6), `chickens.csv` do readr (10) nem `raw-data.csv` (11.0).
 
-## Afirmações conceituais a rever
 
-- `13.0`: "p > α indica que os dados seguem distribuição normal" (quatro vezes);
-  Kolmogorov-Smirnov com média e DP estimados da própria amostra (Lilliefors).
-- `11.1`: diz que imputar pela média evita inflar o desvio padrão.
-- `13.7`: "normalizar é crucial" na logística e não na linear; "não há como
-  calcular r²" na logística (há pseudo-R²).
-- `14`: interpreta `dunif(5, ...)` como probabilidade de "ser igual a 5".
-- `13.6`: chama de "multivariada" a regressão multivariável (vários preditores).
+## Repetições que ficaram (servem de lembrete, não são literais)
+
+- Operador `:` e `seq()`: `05`, `07` e `15`. Pipe: `05` e `07`. `na.rm`: `08`, `11.1`,
+  `11.5`. `pivot_longer()`: `06`, `11.1`, `13.2`, `13.4`. `as.factor()`: `05` e `10`.
+  `esoph`: `05` e `11.6`. `fct_recode()`: `11.3` (apresentação) e `11.4` (uso).
+- Uniformizar "chi-quadrado" (13.5) versus "qui-quadrado" (14): decidir a grafia.
 
 ## Estilo de nomes
 
@@ -87,29 +70,6 @@ UsingR (13.6), `chickens.csv` do readr (10) nem `raw-data.csv` (11.0).
 - Screenshots do RStudio em `images/` que envelhecem com a interface.
 - Imagens sem uso: `Plane.png`, `arguments.jpg`, `Tabelas do  Livro.numbers`.
 
-## Erros de português na prosa
-
-Só os evidentes, por arquivo (não corrigidos na revisão da 2ª edição):
-
-- **01**: "progamação", "Willey", "no Starch", "gens", "distribuidos", "liguagem", "contrição"
-- **03**: "Enviroment" (também em 10)
-- **05**: "Frequentente", "estancamento do câncer" (estadiamento), "tando", "Poe exemplo", "voê", "informções", "prescisar"
-- **06**: "linhasa" (também em 11.6), "tiblles", "esão"
-- **08**: "funcção", "pretented", "de nra base", "ouput", "sofisticdas"
-- **09**: "Enviroment Protection Agency"
-- **10**: "importatos", "element que separal", "intensificados", "preferírel", "intrepretou"
-- **11.1**: "usare", "não suporte"
-- **11.2**: "vriáveis", "bestaras", "coódigo", "dadoc", "à um objeto"
-- **11.3**: "naão", "É ainda que", pacote "aligner" (não existe), "colpasar", "tible"
-- **11.6**: frase que começa com "do pacote `psych`", "espoa"
-- **12**: "Gráficos fom ggplot", "tibgle", "sobrbe", "acoerd", "nõa"
-- **13.0**: "Shapiro-Wilki", "Kolmorov-Smirnov"
-- **13.3**: "vamo"
-- **13.5**: "unicaldal", "chícaras"
-- **13.6**: "regressão regressão", "armazendo"
-- **13.7**: "fundamdental", "vito"
-- **14**: "sento", "funçõa"
-- **15**: frase incompleta na abertura, "Dicutiremos", "númeroso", "server", "Boostrap", "aavaliar", "calculado calculado"
 
 ## Miscelânea técnica
 

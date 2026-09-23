@@ -11,7 +11,7 @@ library(ggplot2)
 
 A ideia central do teste Anova é decompor a variabilidade total dos dados em duas partes: a variabilidade entre os grupos e a variabilidade dentro dos grupos. Se as médias dos grupos forem estatisticamente diferentes, espera-se que a variabilidade entre os grupos seja maior do que a variabilidade dentro dos grupos.
 
-Para exemplificarmos o uso do teste ANOVA vamo usar o dataset PlantGrowth do R. Esse dataset contém o peso das plantas cultivadas sob duas condições de tratamento diferentes e um grupo controle. São, portanto, 3 grupos diferentes de tratamento. Para ter mais informações sobre esse dataset basta digitar `?PlantGrowth` no console.
+Para exemplificarmos o uso do teste ANOVA vamos usar o dataset PlantGrowth do R. Esse dataset contém o peso das plantas cultivadas sob duas condições de tratamento diferentes e um grupo controle. São, portanto, 3 grupos diferentes de tratamento. Para ter mais informações sobre esse dataset basta digitar `?PlantGrowth` no console.
 
 ```{r}
 # armazenando o dataset num objeto chamado mydata.
@@ -63,9 +63,9 @@ Depois de armazenar o modelo ANOVA na variável que denominamos `modelo_ANOVA`, 
 summary(modelo_ANOVA)
 ```
 
-A coluna Pr(\>F) indica o valor de p do teste ANOVA. Como o valor foi menor que 0.05 podemos interpretar que algumas das média dos grupo são estatisticamente diferentes, mas não sabemos que pares são estatisticamente diferentes.
+A coluna Pr(\>F) indica o valor de p do teste ANOVA. Como o valor foi menor que 0.05 podemos interpretar que algumas das médias dos grupos são estatisticamente diferentes, mas não sabemos que pares são estatisticamente diferentes.
 
-Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences, para realizar comparações múltiplas de pares entre as médias dos grupos.
+Como o teste ANOVA é significativo, podemos calcular Tukey HSD (Tukey Honest Significant Differences), para realizar comparações múltiplas de pares entre as médias dos grupos.
 
 A função `TukeyHSD()` usa o modelo ANOVA que já criamos como argumento.
 

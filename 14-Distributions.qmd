@@ -10,7 +10,7 @@ library(ggplot2)
 
 Na medicina, esses conceitos são aplicados de várias maneiras. Ensaios clínicos utilizam distribuições teóricas para determinar a significância dos resultados dos testes de tratamento, por exemplo, modelando a distribuição dos resultados com a distribuição normal. Estudos epidemiológicos usam distribuições para modelar a incidência e prevalência de doenças, como a distribuição de Poisson para modelar o número de novos casos em um determinado período. A análise de sobrevivência utiliza a distribuição exponencial para modelar o tempo de sobrevivência dos pacientes após um tratamento ou o tempo até a ocorrência de um evento específico, como a recaída de uma doença. Distribuições teóricas de probabilidade são, portanto, elementos fundamentais da análise estatística.
 
-O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantiles (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.
+O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantis (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.
 
 ![](images/distributions_table.png)
 
@@ -26,8 +26,8 @@ rnorm(5)
 ```
 
 ```{r}
-# Cada execução desse código resultará sempre em na mesma sequencia de 5 números.
-# Alterar o argumento da função set.seed irá mudar a sequencia de números.
+# Cada execução desse código resultará sempre na mesma sequência de 5 números.
+# Alterar o argumento da função set.seed irá mudar a sequência de números.
 set.seed(1)
 rnorm(5)
 ```
@@ -38,7 +38,7 @@ A semente deve ser sempre um número inteiro. Diferentes números de sementes le
 
 ### `runif`
 
-A função `runif()` gera um conjunto randomizado de números a partir de um distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.
+A função `runif()` gera um conjunto randomizado de números a partir de uma distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.
 
 Veja abaixo como criar um conjunto randomizado de 20 números distribuídos de forma uniforme entre 0 e 1.
 
@@ -47,7 +47,7 @@ ru1 <- runif(n = 20, min = 0, max = 1)
 ru1
 ```
 
-podemos arrendondar esses valores com a função round().
+podemos arredondar esses valores com a função round().
 
 ```{r}
 # arredondando para 2 casas decimais
@@ -60,7 +60,7 @@ Podemos visualizar um histograma dessa distribuição com a função `hist()`. V
 hist(ru1)
 ```
 
-Entretanto, a medida que aumentando o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função `runif(`) e os histogramas dessas distribuições.
+Entretanto, à medida que aumentamos o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função `runif(`) e os histogramas dessas distribuições.
 
 ```{r}
 ru1 <- runif(n = 10, min = 0, max = 1)
@@ -108,7 +108,7 @@ punif(5, min = 0, max = 100)
 
 ### `qunif`
 
-A função `qunif()` calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.
+A função `qunif()` calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada uma probabilidade como entrada, a função retorna o valor que tem essa probabilidade.
 
 A função `qunif()` requer três argumentos:
 
@@ -124,11 +124,11 @@ qunif(0.05, min = 0, max = 100)
 
 ## Distribuição Normal
 
-A mais importante das distribuições de probabilidade teóricas é a distribuição normal. Diversos fenômenos na natureza seguem um padrão de distribuição simétrico e em forma de sino. Devido a essa forma, essa distribuição de frequências ficou conhecida como distribuição em sino (bell shaped). Como tantos fenômenos são distribuídos dessa forma, a busca por um modelo matemático para modelar essa distribuição tem uma longa e interessante trajetória na ciência, envolvendo diversos grandes matemáticos. O modelo matemático dessa curva se começou a ser construído por volta do ano de 1733 com o trabalho do matemático Abraham Demoivre, quando buscava modelos para prever resultados de jogos de azar e em 1786 por Pierre Laplace, um astrônomo e matemático. No entanto, a curva normal como modelo para a distribuição de erros na teoria científica é mais comumente associada a um astrônomo e matemático alemão, Karl Friedrich Gauss, que encontrou uma nova derivação da fórmula para a curva em 1809 [@gordon2006normal]. Por esse motivo, a curva normal às vezes é referida como a curva "Gaussiana". Em 1835, outro matemático e astrônomo, Lambert Quetelet, usou o modelo para descrever características fisiológicas e sociais humanas. Quetelet acreditava que "normal" significava média e que os desvios da média eram os erros da natureza. Apesar da visão distorcida de Quetelet, ele foi o primeiro matemático a estender o uso da curva de distribuição normal para os campos das ciências sociais e biomédicas [@stahl2006evolution].
+A mais importante das distribuições de probabilidade teóricas é a distribuição normal. Diversos fenômenos na natureza seguem um padrão de distribuição simétrico e em forma de sino. Devido a essa forma, essa distribuição de frequências ficou conhecida como distribuição em sino (bell shaped). Como tantos fenômenos são distribuídos dessa forma, a busca por um modelo matemático para modelar essa distribuição tem uma longa e interessante trajetória na ciência, envolvendo diversos grandes matemáticos. O modelo matemático dessa curva começou a ser construído por volta do ano de 1733 com o trabalho do matemático Abraham Demoivre, quando buscava modelos para prever resultados de jogos de azar e em 1786 por Pierre Laplace, um astrônomo e matemático. No entanto, a curva normal como modelo para a distribuição de erros na teoria científica é mais comumente associada a um astrônomo e matemático alemão, Karl Friedrich Gauss, que encontrou uma nova derivação da fórmula para a curva em 1809 [@gordon2006normal]. Por esse motivo, a curva normal às vezes é referida como a curva "Gaussiana". Em 1835, outro matemático e astrônomo, Lambert Quetelet, usou o modelo para descrever características fisiológicas e sociais humanas. Quetelet acreditava que "normal" significava média e que os desvios da média eram os erros da natureza. Apesar da visão distorcida de Quetelet, ele foi o primeiro matemático a estender o uso da curva de distribuição normal para os campos das ciências sociais e biomédicas [@stahl2006evolution].
 
 ### `rnorm`
 
-A função `rnorm()` gera um conjunto de números randomizados a partir de um distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função `rnorm()` utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.
+A função `rnorm()` gera um conjunto de números randomizados a partir de uma distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função `rnorm()` utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.
 
 Gerando um conjunto randomizado de 1000 números distribuídos de forma normal com média = 0 e desvio padrão = 1.
 
@@ -308,21 +308,21 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
                        axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
-Observe que a função `pnorm(x)` usou os valores padrões de media = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().
+Observe que a função `pnorm(x)` usou os valores padrões de média = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().
 
-Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) [@Silva2009] como exemplo. Nesse estudo foi a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.
+Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) [@Silva2009] como exemplo. Nesse estudo a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.
 
 ```{r}
 pnorm(190, mean=173.1, sd=7.3)
 ```
 
-A função `pnorm(x)` calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, Para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:
+A função `pnorm(x)` calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:
 
 ```{r}
 1 - pnorm(190, mean=173.1, sd=7.3)
 ```
 
-Ou seja, aproximadamente 1% dos homens brasileiros dessa amostra tem altura superior a 190cm.
+Ou seja, aproximadamente 1% dos homens brasileiros dessa amostra têm altura superior a 190cm.
 
 ```{r,echo=FALSE}
 # Estudo da ANAC - Agencia Nacional de Aviação Civil
@@ -387,9 +387,9 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
 
 ### `qnorm`
 
-A função `qnorm()` faz o calculo inverso da função `pnorm()`. é utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p. O argumento da função `qnorm(p)` é extamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.
+A função `qnorm()` faz o cálculo inverso da função `pnorm()`. É utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p. O argumento da função `qnorm(p)` é exatamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.
 
-Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo do qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:
+Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo da qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:
 
 ```{r}
 qnorm(0.99, mean=173.1, sd=7.3)
@@ -458,13 +458,13 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
                        axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
-## Distribuiçao t de Student
+## Distribuição t de Student
 
-A distribuição t de Student (também conhecida como distribuição t) foi introduzida por William Sealy Gosset em 1908, sento usada para estimar a média de variáveis aleatórias normalmente distribuídas para as quais o tamanho da amostra é pequeno e o desvio padrão é desconhecido. A distribuição t parece muito semelhante à distribuição normal, e converge para a curva normal à medida que o tamanho da amostra aumenta.
+A distribuição t de Student (também conhecida como distribuição t) foi introduzida por William Sealy Gosset em 1908, sendo usada para estimar a média de variáveis aleatórias normalmente distribuídas para as quais o tamanho da amostra é pequeno e o desvio padrão é desconhecido. A distribuição t parece muito semelhante à distribuição normal, e converge para a curva normal à medida que o tamanho da amostra aumenta.
 
 ### `rt()`
 
-A função `rt()` cria conjunto randomizado de números a partir de um distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (*degrees of freedom* - df).
+A função `rt()` cria conjunto randomizado de números a partir de uma distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (*degrees of freedom* - df).
 
 ```{r}
 set.seed(1)
@@ -554,9 +554,9 @@ col =    c(       "black",   "brown",   "blue",    "red",  "green"))
 
 ### `pt()`
 
-A função `pt(q)` é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantile).
+A função `pt(q)` é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantil).
 
-Os argumentos dessa função são o quantile (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função `pt()` e a a interpretação visual da função.
+Os argumentos dessa função são o quantil (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função `pt()` e a interpretação visual da função.
 
 ```{r}
 pt(q = 2, df = 5)
@@ -631,7 +631,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
 
 ### `qt()`
 
-A função `qt()`, faz o inverso da função `pt()`: dada uma área abaixo da curva de distribuição t, a função retorna o quantile (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantile.
+A função `qt()`, faz o inverso da função `pt()`: dada uma área abaixo da curva de distribuição t, a função retorna o quantil (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantil.
 
 Como exemplo, usamos a probabilidade 0.9490303, que é justamente o resultado de `pt(q = 2, df = 5)` calculado acima. A função devolve então o quantil 2.
 
@@ -645,7 +645,7 @@ A distribuição qui-quadrado é frequentemente usada em testes estatísticos, c
 
 ### `rchisq()`
 
-A função `rchisq()` cria conjunto randomizado de números a partir de um distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).
+A função `rchisq()` cria conjunto randomizado de números a partir de uma distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).
 
 ```{r}
 set.seed(1)
@@ -667,7 +667,7 @@ curve(dchisq(x, df=3),
       ylab="Chi Square Density")
 ```
 
-E também podemos usar a o argumento add=TRUE para inserir várias curvas no mesmo gráfico.
+E também podemos usar o argumento add=TRUE para inserir várias curvas no mesmo gráfico.
 
 ```{r}
 curve(dchisq(x, df=1 ),col="black", xlim=c(0,30), ylim=c(0,0.6), ylab="Chi Square Density")
@@ -690,7 +690,7 @@ A função pchisq em R é usada para calcular a distribuição acumulada (CDF) d
 -   `q` é o valor da estatística qui-quadrado para o qual você deseja calcular a probabilidade acumulada.
 -   `df` é o número de graus de liberdade da distribuição.
 
-Por padrão a funçõa retorna probabilidade acumulada do valor da estatística ser menor ou igual a `q`. Caso deseje a probabilidade de ser **maior ou igual** a `q` é necessário acrescentar o argumento `lower.tail=FALSE`
+Por padrão a função retorna probabilidade acumulada do valor da estatística ser menor ou igual a `q`. Caso deseje a probabilidade de ser **maior ou igual** a `q` é necessário acrescentar o argumento `lower.tail=FALSE`
 
 Suponha que você tenha uma estatística qui-quadrado de 6 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 6)
 
@@ -752,7 +752,7 @@ As funções para distribuição de Poisson seguem o mesmo padrão das anteriore
 
 ## Resumo
 
-O R possui essas funções de densidade, densidade cumulativa, quantil e numeros randomizados para diversas funções. O quadro abaixo resume esse capítulo.
+O R possui essas funções de densidade, densidade cumulativa, quantil e números randomizados para diversas funções. O quadro abaixo resume esse capítulo.
 
 | Distribuição      | PDF (`d`)             | CDF (`p`)             | Quantil (`q`)         | Aleatório (`r`)       |
 |---------------|---------------|---------------|---------------|---------------|

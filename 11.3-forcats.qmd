@@ -1,6 +1,6 @@
 ## Trabalhando com dados categóricos com `forcats` {#sec-forcats}
 
-No campo da análise de dados, especialmente na área médica, os dados categóricos desempenham um papel crucial. Seja categorizando pacientes pelo genero, agrupando tratamentos ou analisando respostas de pesquisas, gerenciar essas variáveis categóricas de maneira eficiente é essencial. O pacote `forcats`, parte da coleção `tidyverse`, oferece um conjunto de ferramentas especificamente projetadas para trabalhar com fatores no R.
+No campo da análise de dados, especialmente na área médica, os dados categóricos desempenham um papel crucial. Seja categorizando pacientes pelo gênero, agrupando tratamentos ou analisando respostas de pesquisas, gerenciar essas variáveis categóricas de maneira eficiente é essencial. O pacote `forcats`, parte da coleção `tidyverse`, oferece um conjunto de ferramentas especificamente projetadas para trabalhar com fatores no R.
 
 Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
 
@@ -17,7 +17,7 @@ Neste capítulo, você aprenderá a aproveitar as capacidades do forcats para ag
 
 ### Variáveis categóricas e `factor` do R
 
-R usa o tipo `factor` para lidar com variáveis categóricas, isto é, variáveis que possuem um conjunto fixo e conhecido de valores possíveis. O objetivo do pacote `forcats` é fornecer um conjunto de ferramentas que resolva problemas comuns com esse tipo de variável, incluindo a alteração da ordem dos níveis ou dos valores. Esse tipo de variável no R é também útil quando pretendemos apresentar os dados de forma que naão seja a ordem alfabética.
+R usa o tipo `factor` para lidar com variáveis categóricas, isto é, variáveis que possuem um conjunto fixo e conhecido de valores possíveis. O objetivo do pacote `forcats` é fornecer um conjunto de ferramentas que resolva problemas comuns com esse tipo de variável, incluindo a alteração da ordem dos níveis ou dos valores. Esse tipo de variável no R é também útil quando pretendemos apresentar os dados de forma que não seja a ordem alfabética.
 
 Por exemplo, se temos um conjunto de dados com os meses do ano, a ordenação correta não é a ordem alfabética, mas sim a sequência dos meses.
 
@@ -68,13 +68,13 @@ meses_erro <- factor(meses_erro, levels = meses)
 sort(meses_erro)
 ```
 
-O mês de Fevereiro não apareceu quando pedimos ao R para ordenar os valores, pois não havia um mes chamado "Fevereiro". O data frame tinha um mês chamado "Fevereirooo" e portanto, o comando `sort()` ignorou esse mês, já que não havia entre os níveis um mês com esse nome.
+O mês de Fevereiro não apareceu quando pedimos ao R para ordenar os valores, pois não havia um mês chamado "Fevereiro". O data frame tinha um mês chamado "Fevereirooo" e portanto, o comando `sort()` ignorou esse mês, já que não havia entre os níveis um mês com esse nome.
 
-Isso pode ser problemático, pois a exclusão foi feita de forma invisível, ou seja, o R não explicitou essa exclusão. É ainda que o pacote `forcats` mostra sua utilidade.
+Isso pode ser problemático, pois a exclusão foi feita de forma invisível, ou seja, o R não explicitou essa exclusão. É aí que o pacote `forcats` mostra sua utilidade.
 
 ### Manipulando variáveis categóricas com `forcats`
 
-O pacote `forcats` é um pacote popular do R desenvolvido por Hadley Wickham que faz parte da coleção de pacotes do `tidyverse` Ele é projetado para trabalhar com dados categóricos, especificamente `factors` Algumas vantagens do pacote `forcats` incluem:
+O pacote `forcats` é um pacote popular do R desenvolvido por Hadley Wickham que faz parte da coleção de pacotes do `tidyverse`. Ele é projetado para trabalhar com dados categóricos, especificamente `factors`. Algumas vantagens do pacote `forcats` incluem:
 
 *Consistência*: O pacote segue os princípios do `tidyverse`, garantindo uma interface consistente e intuitiva para trabalhar com `factors`.
 
@@ -86,7 +86,7 @@ O pacote `forcats` é um pacote popular do R desenvolvido por Hadley Wickham que
 
 *Visualização*: ao usar o `ggplot2`, outro pacote do `tidyverse`, as funções `forcats` podem ser usadas para personalizar a ordem das categorias exibidas, o que pode levar a gráficos mais informativos e esteticamente agradáveis.
 
-*Compatibilidade*: como parte da ordenação, o `forcats` funciona perfeitamente com outros pacotes de ordenação como `dplyr`, `aligner` e `ggplot2`, tornando-o uma excelente opção para gerenciar e visualizar dados categóricos em um fluxo de trabalho de dados organizado.
+*Compatibilidade*: como parte do `tidyverse`, o `forcats` funciona perfeitamente com os outros pacotes da coleção, como `dplyr`, `tidyr` e `ggplot2`, tornando-o uma excelente opção para gerenciar e visualizar dados categóricos em um fluxo de trabalho de dados organizado.
 
 *Documentação*: O pacote forcats vem com documentação abrangente e possui forte suporte da comunidade, tornando mais fácil para os usuários encontrar soluções para suas dúvidas e problemas.
 
@@ -134,9 +134,9 @@ ggplot(data) +
 
 ### Agrupando categorias
 
-As vezes desejamos colpasar algumas categorias mais específicas para outras mais genéricas. Por exemplo, podemos criar grupos de `legumes` e `frutas` a partir dos dados da tible anterior.
+Às vezes desejamos colapsar algumas categorias mais específicas para outras mais genéricas. Por exemplo, podemos criar grupos de `legumes` e `frutas` a partir dos dados da tibble anterior.
 
-O código a seguir reune cria uma variável `tipo`, com dois grupos (`fruta` e `legume`). Para isso reúne sob o rótulo `fruta` os produtos "abacaxi", "goiaba", "limão", "uva T" e "kiwi"; e sob o rótulo `legume` os produtos "vagem" e "jilo".
+O código a seguir cria uma variável `tipo`, com dois grupos (`fruta` e `legume`). Para isso reúne sob o rótulo `fruta` os produtos "abacaxi", "goiaba", "limão", "uva T" e "kiwi"; e sob o rótulo `legume` os produtos "vagem" e "jilo".
 
 ```{r}
 data <- data |>
@@ -149,7 +149,7 @@ data
 
 ### Recodificando variáveis categóricas {#sec-recodingfactors}
 
-Podemos recodificar os níveis da variáveis categórica `produto` usando `fct_recode()`.
+Podemos recodificar os níveis da variável categórica `produto` usando `fct_recode()`.
 
 Vamos recodificar:\
 `uva T` para `Uva Thompson`\

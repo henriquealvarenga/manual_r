@@ -77,7 +77,7 @@ Onde $\frac{p}{1 - p}$ representa as odds do evento ocorrer. Essa forma logarít
 
 ### Passo a passo da regressão logística no R
 
-Vamos explorar a regressão logística usando o dataset `SAheart` do pacote `bestglm`. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
+Vamos explorar a regressão logística usando o dataset `SAheart` do pacote `bestglm`. Esses dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas [@Rossouw1983]. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.
 
 #### SAheart
 
@@ -147,7 +147,7 @@ SAheart[numericvars] <- lapply(SAheart[numericvars], normalize)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart depois a normalização",
+head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart depois da normalização",
       booktabs = TRUE, 
       row.names = FALSE, 
       digits=2) |>
@@ -162,9 +162,9 @@ Além disso, um outro passo geralmente é necessário. É preciso que as variáv
 SAheart$famhist <- as.factor(SAheart$famhist)
 ```
 
-### Escolhendo das variáveis para o modelo
+### Escolhendo as variáveis para o modelo
 
-Um elemento fundamdental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.
+Um elemento fundamental para um modelo de regressão logística bem-sucedido é selecionar as variáveis adequadas para inclusão no modelo. Embora seja tentador incluir o máximo possível de variáveis de entrada, isso pode enfraquecer associações verdadeiras e resultar em grandes erros padrão com intervalos de confiança amplos e imprecisos, ou, inversamente, identificar associações espúrias. É essencial levar em conta a plausibilidade científica e a relevância clínica da associação. Por exemplo, análises univariadas de fatores de risco para infarto do miocárdio podem mostrar que cabelos grisalhos e calvície estão associados à ocorrência da doença. No entanto, essas associações são cientificamente implausíveis e, portanto, não devem ser incluídas em uma análise de regressão logística. A associação entre cabelos grisalhos e calvície provavelmente é apenas resultado desses fatores serem encontrados em indivíduos mais velhos e é a idade o fator que interessa e não a calvície ou cabelos grisalhos. Uma outra técnica para escolher as variáveis de interesse envolve examinar a relação entre o resultado e cada preditor individualmente e, em seguida, usar apenas as variáveis que atendem a um critério predefinido de significância para executar um modelo multivariável.
 
 Um outro ponto importante é evitar usar variáveis altamente correlacionadas. Plotar gráficos de dispersão entre todas variáveis entre si pode ajudar a visualizar essas correlações.
 
@@ -172,13 +172,13 @@ Um outro ponto importante é evitar usar variáveis altamente correlacionadas. P
 plot(SAheart)
 ```
 
-Como pode ser vito no gráfico acima, as variáveis adiposidade e obesidade parecem estar correlacionadas, o que pode ser mensurado com o código abaixo:
+Como pode ser visto no gráfico acima, as variáveis adiposidade e obesidade parecem estar correlacionadas, o que pode ser mensurado com o código abaixo:
 
 ```{r}
 cor.test(SAheart$adiposity, SAheart$obesity)
 ```
 
-Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade tem uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.
+Mesmo sem esses dados, seria plausível imaginar que o nível de obesidade e de adiposidade têm uma correlação forte, sendo adequado inserir apenas uma dessas duas variáveis no modelo.
 
 ### Divisão do Dataset
 

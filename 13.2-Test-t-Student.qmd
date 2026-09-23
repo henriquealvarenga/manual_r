@@ -1,6 +1,6 @@
 ## Teste t de Student
 
-O test t de Student foi criado em 1908 por William Sealy Gosset [@Student], matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de pequeno tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.
+O teste t de Student foi criado em 1908 por William Sealy Gosset [@Student], matemático e estatístico que trabalhava na cervejaria Guinness, em Dublin, na Irlanda. A Guinness considerava de grande importância recrutar os melhores graduados de Oxford e Cambridge para os cargos de bioquímico e estatístico de testes de sua cerveja para monitorar a qualidade da bebida. O teste t, desenvolvido por Gosset, para monitorar a qualidade da cerveja tipo stout tinha como grande diferencial o fato de poder ser aplicado em amostras de tamanho pequeno, permitindo fazer inferências com um menor número de elementos, reduzindo os custos da pesquisa.
 
 Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
 
@@ -14,7 +14,7 @@ A importância dada ao departamento científico da Guinness era tamanha que o us
 
 O teste t de Student (ou simplesmente teste t) compara as médias de dois conjuntos numéricos e avalia se as diferenças entre essas médias são significativas. Quando existem 3 ou mais grupos o teste t não pode ser usado e nesse caso podemos usar o Anova, discutido no capítulo seguinte.
 
-A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes de depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.
+A necessidade de determinar se duas médias de amostras são diferentes entre si é uma situação extremamente frequente em pesquisas científicas. Por exemplo se um grupo experimental difere de um grupo controle, se uma amostra difere da população, se um grupo difere antes e depois de um procedimento. Nessas diversas situações, um método bastante comum é a comparação das médias da medida de interesse. Por exemplo, a média de peso de dois grupos submetidos a diferentes dietas.
 
 ### Os 3 tipos de teste t de Student
 
@@ -25,7 +25,7 @@ Existem 3 tipos comuns de teste t:\
 
 #### Teste t para amostras independentes
 
-O Teste t para amostras independentes é o teste padrão, ou default do test t do R.
+O Teste t para amostras independentes é o teste padrão, ou default do teste t do R.
 
 O R tem uma função muito simples de usar para realizar o teste t: `t.test()`. Para usar essa função basta incluir como argumentos os valores obtidos de cada grupo da pesquisa e essa função do R já calcula a média de cada grupo e faz a comparação estatística.
 
@@ -63,9 +63,9 @@ ggplot(result.long) +
 
 Mas um gráfico não é suficiente.
 
-Para comparar a média de cada um desses dois grupos, usamos a função `t.test()` como mostrado a seguir. Podemos fazer o test t de várias formas.
+Para comparar a média de cada um desses dois grupos, usamos a função `t.test()` como mostrado a seguir. Podemos fazer o teste t de várias formas.
 
-1.  Podemos usar os vetores numéricos comom argumentos.\
+1.  Podemos usar os vetores numéricos como argumentos.\
 2.  Podemos usar o data frame wide (ou tibble), selecionando as colunas como argumentos usando o operador `$`.\
 3.  podemos usar o data frame (ou tibble) no formato long.
 
@@ -79,7 +79,7 @@ t.test(controle, experimental)
 
 **2. Teste t com data frame wide**
 
-Se o data frame com os dados está no formaro wide (tidy format), ou seja, se há uma coluna para cada amostra, para realizar o test t, basta usar o operador `$` para acessar as variáveis do data frame a serem comparadas.
+Se o data frame com os dados está no formato wide (tidy format), ou seja, se há uma coluna para cada amostra, para realizar o teste t, basta usar o operador `$` para acessar as variáveis do data frame a serem comparadas.
 
 ```{r}
 t.test(result$controle, result$experimental)
@@ -103,7 +103,7 @@ t.test(scores~grupo, data=result.long)
 
 #### Teste t para amostras dependentes ou pareadas
 
-Se as amostras são dependentes, ou pareadas, precisamos incluir essa informação nos argumentos no teste. Vamos usar o mesmo data frame criado anteriormente, supondo que as medidas numéricas fossem de uma mesma amostra em dois momentos do tempo. Nesse caso o teste t deve ser um test pareado. Basta inserir o argumento `paired = TRUE`.
+Se as amostras são dependentes, ou pareadas, precisamos incluir essa informação nos argumentos no teste. Vamos usar o mesmo data frame criado anteriormente, supondo que as medidas numéricas fossem de uma mesma amostra em dois momentos do tempo. Nesse caso o teste t deve ser um teste pareado. Basta inserir o argumento `paired = TRUE`.
 
 ```{r}
 t.test(controle, experimental, paired = TRUE)
@@ -117,9 +117,9 @@ Entretanto, quando usamos a sintaxe do teste com o operador `~` não podemos ins
 
 #### Teste t para uma amostra.
 
-No caso de uma amostras, para comparar a média de uma amostra com uma média já conhecida, basta inserir nos argumentos do teste t a amostras e o valor da média a ser comparada, como mostrado abaixo.
+No caso de uma amostra, para comparar a média de uma amostra com uma média já conhecida, basta inserir nos argumentos do teste t a amostra e o valor da média a ser comparada, como mostrado abaixo.
 
-Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e usar o conjunto de dados chamdo experimental como se fosse nossa única amostra. E vamos inserir um valor arbitrário da média a ser comparada (`mu = 30`).
+Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e usar o conjunto de dados chamado experimental como se fosse nossa única amostra. E vamos inserir um valor arbitrário da média a ser comparada (`mu = 30`).
 
 ```{r}
 t.test(result$experimental, mu= 30)
@@ -133,10 +133,10 @@ with(result, t.test(experimental, mu = 30))
 
 ### Extraindo os resultados do teste t
 
-O output dos testes estatísticos no R é uma lista com diversos resultados, que podem ser acessados com o operador `$`, tal como elementos de um data frame. Podemos verificar a estrutura dessa lista com o comando `str()`. Mas para isso é preciso armazenar o resultado do test num objeto. Chamaremos aqui esse objeto de `test.results`.
+O output dos testes estatísticos no R é uma lista com diversos resultados, que podem ser acessados com o operador `$`, tal como elementos de um data frame. Podemos verificar a estrutura dessa lista com o comando `str()`. Mas para isso é preciso armazenar o resultado do teste num objeto. Chamaremos aqui esse objeto de `test.results`.
 
 ```{r}
-# armazemando os resultados do test num objeto chamado test.results
+# armazenando os resultados do teste num objeto chamado test.results
 test.results <- t.test(scores~grupo, data=result.long)
 ```
 

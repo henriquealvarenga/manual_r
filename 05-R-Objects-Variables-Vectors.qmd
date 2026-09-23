@@ -27,7 +27,7 @@ As estruturas de dados, por outro lado, referem-se às maneiras como esses valor
 
 **Vetores (Vectors)** são estruturas unidimensionais homogêneas, onde todos os elementos são do mesmo tipo. **Fatores (Factors)** são usados para representar dados categóricos e são uma forma especializada de vetor. **Listas (Lists)** são estruturas heterogêneas, onde os elementos podem ser de diferentes tipos, oferecendo uma flexibilidade significativa na manipulação de dados complexos.
 
-**Matrizes (Matrices)** são bidimensionais e homogêneas, adequadas para dados tabulares. **Arrays** são uma extensão das matrizes para múltiplas dimensões, mantendo a homogeneidade dos dados. **Data Frames** são estruturas bidimensionais heterogêneas, onde cada coluna pode conter diferentes tipos de dados, sendo amplamente usados para manipulação de dados tabulares em análises estatísticas. Veremos adiantes que as **Tibbles** são data frames modernos.
+**Matrizes (Matrices)** são bidimensionais e homogêneas, adequadas para dados tabulares. **Arrays** são uma extensão das matrizes para múltiplas dimensões, mantendo a homogeneidade dos dados. **Data Frames** são estruturas bidimensionais heterogêneas, onde cada coluna pode conter diferentes tipos de dados, sendo amplamente usados para manipulação de dados tabulares em análises estatísticas. Veremos adiante que as **Tibbles** são data frames modernos.
 
 Além disso, existem tipos especializados para trabalhar com datas e tempos, como **Date** para datas e **POSIXct**/**POSIXlt** para datetimes, permitindo a manipulação eficiente de informações temporais.
 
@@ -60,9 +60,9 @@ Entretanto, antes de estudarmos os objetos do R, será útil rever os tipos de d
 
 ## Variáveis no R
 
-A ciência depende de dados, que são gerados a partir de alguma forma de coleta ou transformação de outros dados. Tudo que poder ser contado ou quantificado será armazenado numa variável. Uma variável deve ser entendida como um objeto que contém os resultados dessa coleta ou transformação de dados.
+A ciência depende de dados, que são gerados a partir de alguma forma de coleta ou transformação de outros dados. Tudo que pode ser contado ou quantificado será armazenado numa variável. Uma variável deve ser entendida como um objeto que contém os resultados dessa coleta ou transformação de dados.
 
-Mas dados podem ser coletados de diferentes modos: algumas dados são provenientes de algo que foi contado, outros dados provém de algo que foi medido. Contar e medir fornecem diferentes tipos de dados. Podemos por exemplo, contar o número de pessoas com AIDS, o número de eleitores de um determinado político, o número de óbitos, de nascimentos etc. Por outro lado, podemos medir o perímetro cefálico de crianças recém-nascidas, o nível pressórico ou de glicemia de um grupo de pacientes, etc.
+Mas dados podem ser coletados de diferentes modos: alguns dados são provenientes de algo que foi contado, outros dados provêm de algo que foi medido. Contar e medir fornecem diferentes tipos de dados. Podemos por exemplo, contar o número de pessoas com AIDS, o número de eleitores de um determinado político, o número de óbitos, de nascimentos etc. Por outro lado, podemos medir o perímetro cefálico de crianças recém-nascidas, o nível pressórico ou de glicemia de um grupo de pacientes, etc.
 
 ## Tipos de Variáveis
 
@@ -79,19 +79,19 @@ Veremos também que na computação existem outros tipos de variáveis, tais com
 
 #### Variáveis Categóricas ou Qualitativas
 
-Algumas variáveis são nomes que expressão uma qualidade (que podem ter ou não uma ordenação). Em estatística essas variáveis são chamadas categóricas e podem se dividir em nominais ou ordinais. Os dados que não possuem nenhuma ordenação, são armazenados em variáveis categóricas nominais.
+Algumas variáveis são nomes que expressam uma qualidade (que podem ter ou não uma ordenação). Em estatística essas variáveis são chamadas categóricas e podem se dividir em nominais ou ordinais. Os dados que não possuem nenhuma ordenação, são armazenados em variáveis categóricas nominais.
 
 Variáveis categóricas nominais expressam qualidades, mas sem uma ordenação, tal como sexo, raça, local de nascimento etc.
 
-Variáveis categóricas ordinais também expressão qualidades, mas tem uma ordenação, tais como grau de obesidade (leve, moderado, grave), estancamento do câncer (estágio I, estágio II, estágio III) etc.
+Variáveis categóricas ordinais também expressam qualidades, mas têm uma ordenação, tais como grau de obesidade (leve, moderado, grave), estadiamento do câncer (estágio I, estágio II, estágio III) etc.
 
-No R as variáveis categóricas são chamados de `factor`, independente de serem nominais ou ordinais. Caso sejam variáveis categóricas ordinais, ou seja, caso exista uma ordem certa entre os elementos, existem meios de indicar isso para o R.
+No R as variáveis categóricas são chamadas de `factor`, independente de serem nominais ou ordinais. Caso sejam variáveis categóricas ordinais, ou seja, caso exista uma ordem certa entre os elementos, existem meios de indicar isso para o R.
 
-Frequentente precisamos indicar ao R que uma determinada variável é categórica. Em algumas situações o R pode interpretar uma variável como numérica quando na verdade é categórica. É usual em pesquisas em os sexos sejam codificados com números, por exemplo 0 = Masculino, 1 = Feminino. Nesse caso, a variável `sexo` iria ser interpretada no R como um vetor numérico. Entretanto, os elementos desse vetor não representam números de verdade, mas são apenas símbolos para indicar os sexo masculino ou feminino.
+Frequentemente precisamos indicar ao R que uma determinada variável é categórica. Em algumas situações o R pode interpretar uma variável como numérica quando na verdade é categórica. É usual em pesquisas que os sexos sejam codificados com números, por exemplo 0 = Masculino, 1 = Feminino. Nesse caso, a variável `sexo` iria ser interpretada no R como um vetor numérico. Entretanto, os elementos desse vetor não representam números de verdade, mas são apenas símbolos para indicar o sexo masculino ou feminino.
 
 Vejamos um exemplo num conjunto fictício de dados de uma pesquisa com nomes, sexo e idade de alguns participantes. Esse conjunto de dados será armazenado num objeto do tipo data frame. Esse tipo de objeto será discutido mais adiante, por enquanto basta entender que um data frame é como uma planilha, com linhas e colunas. Nesse exemplo nosso data frame será denominado de `df`. Poderíamos escolher qualquer outro nome. Iremos discutir mais sobre esses objetos no capítulo adiante sobre Dataframes e Tibbles (@sec-dataframes).
 
-No código abaixo você irá ver também um operador do R, o operador de atribuição: `<-` que indica que o que está à direita do operador será atribuido ao objeto à esquerda. Iremos detalhar mais sobre isso no capítulo adiante sobre operadores do R (@sec-operators).
+No código abaixo você irá ver também um operador do R, o operador de atribuição: `<-` que indica que o que está à direita do operador será atribuído ao objeto à esquerda. Iremos detalhar mais sobre isso no capítulo adiante sobre operadores do R (@sec-operators).
 
 ```{r}
 # criando os vetores com os dados
@@ -158,7 +158,7 @@ df
 
 As variáveis categóricas não podem ser usadas em operações aritméticas. Não podemos, por exemplo, calcular a média desse tipo de variável. O que podemos fazer com variáveis categóricas é construir tabelas de frequências de cada categoria.
 
-Ou seja, podemos pedir ao R para contar o número absoluto ou a freqüência relativa dos resultados. A função para tabular os dados de variáveis categóricas é `table()`.
+Ou seja, podemos pedir ao R para contar o número absoluto ou a frequência relativa dos resultados. A função para tabular os dados de variáveis categóricas é `table()`.
 
 ```{r}
 table(df$sexo)
@@ -243,7 +243,7 @@ summary(idade)
 
 #### Variáveis Lógicas
 
-Variáveis lógicas são aquelas que armazenam resultados de operações lógicas. Operações lógicas são aquelas realizadas através de relacionais: igual, maior, maior ou igual, menor, menor ou igual, etc. Como já vimos resultado dessas operação não é um número, mas sim FALSO ou VERDADEIRO, e esse resultado pode ser armazenada numa variável. No exemplo uma operação lógica é realizada e seu resultado é colocado numa variável chamada teste.
+Variáveis lógicas são aquelas que armazenam resultados de operações lógicas. Operações lógicas são aquelas realizadas através de relacionais: igual, maior, maior ou igual, menor, menor ou igual, etc. Como já vimos, o resultado dessas operações não é um número, mas sim FALSO ou VERDADEIRO, e esse resultado pode ser armazenado numa variável. No exemplo uma operação lógica é realizada e seu resultado é colocado numa variável chamada teste.
 
 ```{r}
 a <- 2
@@ -276,19 +276,19 @@ A função `c()`, abreviação de "combine" ou "concatenate" (combinar ou concat
 
 A forma mais comum de criar um vetor no R é através do uso do comando `c()` como mostrado a seguir.
 
-##### Criando um vetor numérico determinado conjunto de números
+##### Criando um vetor numérico com um determinado conjunto de números
 
 ```{r}
 idades <- c(45, 32, 24, 23, 55, 56) 
 ```
 
-##### Criando um vetor com uma sequencia de números
+##### Criando um vetor com uma sequência de números
 
 ```{r}
 x <- c(1:10)
 ```
 
-No exemplo acima vimos um novo operador `:` (dois pontos), que cria uma sequencia de números. No capítulo sobre operadores do R (@sec-operators) iremos discutir melhor o que são operadores e quais os operadores do R.
+No exemplo acima vimos um novo operador `:` (dois pontos), que cria uma sequência de números. No capítulo sobre operadores do R (@sec-operators) iremos discutir melhor o que são operadores e quais os operadores do R.
 
 Mais adiante veremos como podemos agrupar um conjunto de vetores num objeto chamado de data frame, formado por colunas e linhas tal como uma planilha.
 
@@ -416,7 +416,7 @@ imc <- peso_kg/altura2
 imc
 ```
 
-Poderiamos também ter feito tudo isso de forma mais simples numa única operação:
+Poderíamos também ter feito tudo isso de forma mais simples numa única operação:
 
 ```{r}
 imc <- (peso_lib * 0.45359237)/(altura_metros^2)
@@ -550,7 +550,7 @@ As listas são uma estrutura de dados poderosa e flexível em R, capazes de arma
 
 ### Criando Listas
 
-Para criar uma lista em R, utilizamos a função `list()`. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Alias, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.
+Para criar uma lista em R, utilizamos a função `list()`. Podemos incluir qualquer tipo e quantidade de elementos dentro de uma lista. Aliás, uma lista pode conter até mesmo outras listas. O exemplo abaixo é uma lista de pacientes, onde cada paciente é uma lista com diversos elementos.
 
 ```{r}
 # Criando a lista de pacientes
@@ -606,7 +606,7 @@ Os elementos de uma lista podem ser acessados de várias maneiras. A notação `
 pacientes$paciente_1
 ```
 
-Podemos usar esse mesmo operador `$` em sequencia para acessar um informação de uma lista que está dentro de outro lista. Poe exemplo o sexo do paciente_1.
+Podemos usar esse mesmo operador `$` em sequência para acessar uma informação de uma lista que está dentro de outra lista. Por exemplo o sexo do paciente_1.
 
 ```{r}
 # Acessando uma informação de uma lista, dentro de outro lista
@@ -627,7 +627,7 @@ Veremos adiante que diversos pacotes do R possuem funcionalidades para melhorar 
 pluck(pacientes, "paciente_1", "sexo")
 ```
 
-Na seção de análises estatísticas você verá que muitos das análises tem como resultado uma lista e voê precisará acessar os elementos dessa lista para obter as informções específicas que deseja, tal como, por exemplo, o valor de p. Vamos criar uma matriz de exemplo e realizar um teste do chi quadrado.
+Na seção de análises estatísticas você verá que muitas das análises têm como resultado uma lista e você precisará acessar os elementos dessa lista para obter as informações específicas que deseja, tal como, por exemplo, o valor de p. Vamos criar uma matriz de exemplo e realizar um teste do chi quadrado.
 
 ```{r}
 mydata <- matrix(c(35,13,29,17,12,21),nrow=3,ncol=2)
@@ -639,7 +639,7 @@ mytest
 str(mytest)
 ```
 
-Observe que o resultado do teste chi-quadrado é uma lista. Para acessarmos o valor de p vamos prescisar acessar essa lista usando o operador `$`. Podemos, se precisarmos, armazenar esse valor numa variável.
+Observe que o resultado do teste chi-quadrado é uma lista. Para acessarmos o valor de p vamos precisar acessar essa lista usando o operador `$`. Podemos, se precisarmos, armazenar esse valor numa variável.
 
 ```{r}
 p <- mytest$p.value
@@ -650,7 +650,7 @@ Resumindo, as listas são uma ferramenta essencial em R para trabalhar com dados
 
 ## Nomes de Variáveis e Objetos
 
-Uma variável é um objeto que armazena dados, tais como valores numéricos, datas, caracteres, palavras, valores lógicos etc. Uma variável é um objeto para armazenar um determinado tipo de dado de uma pesquisa. Se uma variável de minha pesquisa é a medida da pressão dos pacientes, posso no R criar um a variável chamada `pa`, `nivel.pressorico` ou `pressao.arterial` para armazenar esse conjunto de dados.
+Uma variável é um objeto que armazena dados, tais como valores numéricos, datas, caracteres, palavras, valores lógicos etc. Uma variável é um objeto para armazenar um determinado tipo de dado de uma pesquisa. Se uma variável de minha pesquisa é a medida da pressão dos pacientes, posso no R criar uma variável chamada `pa`, `nivel.pressorico` ou `pressao.arterial` para armazenar esse conjunto de dados.
 
 ### Estilos de nomeação de variáveis e objetos
 
@@ -658,11 +658,11 @@ Como você deve ter notado, variáveis devem ter nomes fáceis de serem compreen
 
 ### Nomes compostos
 
-Entretanto, quando houver necessidade de usar nomes compostos, um modo dequado é usar um ponto separando as palavras, tais como: `glico.fem` ou `idade.media`.
+Entretanto, quando houver necessidade de usar nomes compostos, um modo adequado é usar um ponto separando as palavras, tais como: `glico.fem` ou `idade.media`.
 
-Evite usar o underline em variáveis, a separação de palavras pelo o underline é geralmente usado para nomear arquivos tais como: `research_results_fase_1.csv`.
+Evite usar o underline em variáveis, a separação de palavras pelo underline é geralmente usado para nomear arquivos tais como: `research_results_fase_1.csv`.
 
-Evite usar maiúsculas para separar as palavras de uma variável, pois esse estilo geralmente é usado para nomear funções, tal como em `solveEquation`. Veja que as palavras são separadas pelo uso de uma maiúscula no início das palavras, exceto a primeira. Esse modo criar nomes é geralmente usado para nomearmos funções, portanto, vamos evitar fazer isso ao criarmos nomes de variáveis.
+Evite usar maiúsculas para separar as palavras de uma variável, pois esse estilo geralmente é usado para nomear funções, tal como em `solveEquation`. Veja que as palavras são separadas pelo uso de uma maiúscula no início das palavras, exceto a primeira. Esse modo de criar nomes é geralmente usado para nomearmos funções, portanto, vamos evitar fazer isso ao criarmos nomes de variáveis.
 
 Além dessa dica, existem regras formais para criar nomes de variáveis:\
 1. O nome de uma variável deve SEMPRE começar com uma letra.\
@@ -683,10 +683,10 @@ A linguagem R possui muitas funções para examinar as características de objet
 -   `class()` - retorna o tipo de objeto
 -   `typeof()` - retorna o tipo de dados do objeto
 -   `str()` - retorna a estrutura do objeto
--   `length()` -retorna o tamanho do objeto
+-   `length()` - retorna o tamanho do objeto
 -   `attributes()` - retorna os metadados do objeto
 
-Veja o funcionamento dessas funções aplicada a uma variável simples:
+Veja o funcionamento dessas funções aplicadas a uma variável simples:
 
 ```{r}
 # criando uma variável numérica
@@ -740,7 +740,7 @@ attributes(frutas)
 str(frutas)
 ```
 
-Veja agora como a função `str()` nos ajuda a compreender melhor a estrutura de conjunto de dados num dataset, usando o dataset `esoph` do R, que contém dados de um estudo de caso controle de câncer de esôfago na frança.
+Veja agora como a função `str()` nos ajuda a compreender melhor a estrutura de conjunto de dados num dataset, usando o dataset `esoph` do R, que contém dados de um estudo de caso controle de câncer de esôfago na França.
 
 ```{r}
 str(esoph)
@@ -756,6 +756,6 @@ Usando o comando `?esoph` podemos descobrir o significado exato de cada variáve
 ```
 
 -   A variável `agegp` indica a faixa etária do participante e tem seis níveis de faixas etárias
--   A variável `alcgp` indica a quantidade de alcool que o participante consome em gramas por dia e tem 4 níveis
+-   A variável `alcgp` indica a quantidade de álcool que o participante consome em gramas por dia e tem 4 níveis
 -   A variável `tobgp` indica a quantidade de tabaco que o participante consome em gramas por dia e tem 4 níveis
 -   As variáveis `ncases` e `ncontrols` são numéricas.

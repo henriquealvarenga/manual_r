@@ -10,7 +10,7 @@ Vamos usar os dados de uma pesquisa sobre a efetividade dos capacetes de bicicle
 knitr::include_graphics("images/Tabela2x2_Capacete.png")
 ```
 
-O testo do chi-quadrado pode ser usado para avaliar se o uso do capacete reduziu o nº de casos de TCE entre os ciclistas. Precisamos apenas construir uma tabela com esses dados no R, o que pode ser feito através da função `matrix()`, ou com as funções `data.frame()` ou `tibble()`. Veremos como fazer das duas formas.
+O teste do chi-quadrado pode ser usado para avaliar se o uso do capacete reduziu o nº de casos de TCE entre os ciclistas. Precisamos apenas construir uma tabela com esses dados no R, o que pode ser feito através da função `matrix()`, ou com as funções `data.frame()` ou `tibble()`. Veremos como fazer das duas formas.
 
 Usando a função `matrix()`:
 
@@ -32,7 +32,7 @@ dat1 <- data.frame(c(17,130), c(218,428))
 dat1
 ```
 
-Podemos melhorar o data frame dicionando legendas:
+Podemos melhorar o data frame adicionando legendas:
 
 ```{r}
 dat2 <- data.frame(comCapacete  = c(17,130), 
@@ -109,7 +109,7 @@ result_chi <- chisq.test(tab5)
 str(result_chi)
 ```
 
-O valor de p pode ser extraido com o comando `result_chi$p.value`, como feito abaixo:
+O valor de p pode ser extraído com o comando `result_chi$p.value`, como feito abaixo:
 
 ```{r}
 result_chi$p.value
@@ -119,11 +119,11 @@ result_chi$p.value
 
 O teste exato de Fisher é utilizado na análise de tabelas de contingência quando a amostra é pequena, embora seja válido para todo tamanho de amostra. Foi desenvolvido por Ronald Fisher. Fisher disse ter concebido o teste depois de um comentário da Dra. Muriel Bristol, que afirmou ser capaz de detectar se o chá ou o leite foi adicionado primeiro em sua xícara. Ele testou seu pedido no experimento "dama apreciadora de chá", contado em diversos livros de história da estatística, inclusive num livro com esse mesmo título: "The Lady Tasting Tea" de David Salsburg [@Salsburg2001].
 
-Fisher projetou um experimento em que a senhora recebia 8 xícaras de chá, 4 com leite primeiro, 4 com chá primeiro, em ordem aleatória. Ela então provou cada xícara e relatou quais quatro ela achava que tinham leite adicionado primeiro. **Ela acertou todas as 8 chícaras**.
+Fisher projetou um experimento em que a senhora recebia 8 xícaras de chá, 4 com leite primeiro, 4 com chá primeiro, em ordem aleatória. Ela então provou cada xícara e relatou quais quatro ela achava que tinham leite adicionado primeiro. **Ela acertou todas as 8 xícaras**.
 
 A pergunta que Fisher fez foi: "como testamos se ela realmente é habilidosa nisso ou se está apenas adivinhando?"
 
-Vamos construir uma tabela de contingência, com os valores VERDADEIROS nas colunas e as resultados nas linhas.
+Vamos construir uma tabela de contingência, com os valores VERDADEIROS nas colunas e os resultados nas linhas.
 
 ```{r}
 tea_tasting <- data.frame(Leite_Primeiro  = c(4,0), 
@@ -134,7 +134,7 @@ tea_tasting
 
 Para usar o teste de Fisher no R basta inserirmos a tabela de contingência como argumento da função `fisher.test()`.
 
-Entretanto, há mais um detalhe a ser analisado. Um dos parâmetros do teste é se ele é bicaudal ou unicaldal. O padrão é que o R realize um teste bicaudal (`two.sided`). Entretanto, Fisher testou se a senhora Muriel era **melhor** do que o acaso e não se sua habilidade era **diferente** do acaso e, portanto, ele usou um teste unilateral.
+Entretanto, há mais um detalhe a ser analisado. Um dos parâmetros do teste é se ele é bicaudal ou unicaudal. O padrão é que o R realize um teste bicaudal (`two.sided`). Entretanto, Fisher testou se a senhora Muriel era **melhor** do que o acaso e não se sua habilidade era **diferente** do acaso e, portanto, ele usou um teste unilateral.
 
 Para encontrarmos o mesmo resultado, precisamos ajustar esse argumento, inserindo `alternative = "greater"`.
 

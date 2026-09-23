@@ -30,9 +30,9 @@ A utilidade da regressão vai além da simples previsão: ela oferece insights s
 
 Além da regressão linear, existem também modelos de regressão múltipla não linear, que permitem capturar relações mais complexas entre as variáveis. Esses modelos são úteis quando a relação entre as variáveis não pode ser bem representada por uma linha reta, como em situações onde os efeitos são exponenciais ou curvilíneos. Por exemplo, o crescimento de certos tipos de tumores pode ser mais bem modelado por uma regressão não linear, que consegue capturar padrões de crescimento acelerado ou desacelerado. Assim, enquanto a regressão linear é uma ferramenta poderosa para muitas situações, a regressão não linear expande as possibilidades de modelagem para relações mais complexas.
 
-Um outro tipo de regressão, denominada de regressão logística (ou regressão logit ou modelo logit), é utilizada quando a variável de resposta é categórica, mais especificamente, binária (dicotômica). Por exemplo, para prever o óbito (sim ou não), um diagnóstico (diabético ou não diabético), ou se um tumor é maligno ou benigno, a partir de uma ou mais variáveis preditoras..
+Um outro tipo de regressão, denominada de regressão logística (ou regressão logit ou modelo logit), é utilizada quando a variável de resposta é categórica, mais especificamente, binária (dicotômica). Por exemplo, para prever o óbito (sim ou não), um diagnóstico (diabético ou não diabético), ou se um tumor é maligno ou benigno, a partir de uma ou mais variáveis preditoras.
 
-Existem vários tipos de regressão regressão, tais como regressão de Poisson, regressão Probit, regressão ordinal, regressão quantílica, regressão Elastic Net, regressão polinomial, regressão Splines, regressão de Cox, regressão Stepwise, regressão hierárquica, regressão de mínimos quadrados parciais (PLS), regressão log-log, regressão suavizada (Loess/Lowess) e regressão Bayesiana. Entretanto, esses tipos estão fora do escopo desse texto.
+Existem vários tipos de regressão, tais como regressão de Poisson, regressão Probit, regressão ordinal, regressão quantílica, regressão Elastic Net, regressão polinomial, regressão Splines, regressão de Cox, regressão Stepwise, regressão hierárquica, regressão de mínimos quadrados parciais (PLS), regressão log-log, regressão suavizada (Loess/Lowess) e regressão Bayesiana. Entretanto, esses tipos estão fora do escopo desse texto.
 
 O diagrama abaixo mostra os tipos de regressão mais simples e usuais
 
@@ -119,7 +119,7 @@ $$
 e_i = y_i - \hat{y}_i
 $$
 
-Onde $e_i$ é o resíduo, $y_i$é o valor observado e $\hat{y}_i$ é o valor predito pelo modelo. O objetivo da regressão linear é minimizar esses resíduos, de forma que a reta de regressão seja a melhor possível em termos de ajuste aos dados.
+Onde $e_i$ é o resíduo, $y_i$ é o valor observado e $\hat{y}_i$ é o valor predito pelo modelo. O objetivo da regressão linear é minimizar esses resíduos, de forma que a reta de regressão seja a melhor possível em termos de ajuste aos dados.
 
 No gráfico, os resíduos são representados por linhas verticais que ligam cada ponto da amostra à reta de regressão. Essas linhas mostram visualmente o erro de predição para cada ponto.
 
@@ -185,7 +185,7 @@ ggplot(dados, aes(x = x, y = y)) +
 
 ```
 
-Observe no gráfico acima as linhas vermelhas verticais entre os pontos dos dados reais e a reta de regressão. Essas distâncias representam os erros do modelo. A fórmula para computar esses cada um desses erros é $e_i = y_i - \hat{y}_i$.
+Observe no gráfico acima as linhas vermelhas verticais entre os pontos dos dados reais e a reta de regressão. Essas distâncias representam os erros do modelo. A fórmula para computar cada um desses erros é $e_i = y_i - \hat{y}_i$.
 
 O que o algoritmo da função `lm()` faz é tentar reduzir a soma desses erros através de uma técnica conhecida como **Método dos Quadrados Mínimos**.
 
@@ -203,7 +203,7 @@ Isso significa que, ao usar o método dos quadrados mínimos, o modelo está ten
 
 #### Exemplo Visual
 
-Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros $a$ e $b$ que minimizam a RSS para criar a equação da reta.No gráfico acima, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.
+Veja no exemplo abaixo a equação de uma reta que melhor se ajusta aos pontos do gráfico. O que o algoritmo da regressão linear fez foi encontrar os parâmetros $a$ e $b$ que minimizam a RSS para criar a equação da reta. No gráfico acima, podemos observar os pontos de dados reais, a reta de regressão ajustada e as linhas vermelhas verticais que representam os resíduos. O método dos quadrados mínimos ajusta essa reta de modo que a soma dos quadrados das distâncias entre os pontos e a reta (os resíduos) seja a menor possível.
 
 Veja na tabela abaixo, na última linha, que a soma dos erros é zero, mas o RSS é um número positivo.
 
@@ -333,9 +333,9 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ### Regressão linear no R
 
-Vamos agora praticar a análise de regresão linear univariada (uma variável) no R passo a passo. Lembre-se que o objetivo da regressão linear é encontrar os coeficientes da equação que servirá de modelo para podermos fazer predições. No caso da regressão linear univariada, na qual temos apenas uma variável preditora, nosso modelo será uma reta $y=ax+b$. O objetivo da regressão será então encontrar os melhores valores dos parâmetros $a$ e $b$.
+Vamos agora praticar a análise de regressão linear univariada (uma variável) no R passo a passo. Lembre-se que o objetivo da regressão linear é encontrar os coeficientes da equação que servirá de modelo para podermos fazer predições. No caso da regressão linear univariada, na qual temos apenas uma variável preditora, nosso modelo será uma reta $y=ax+b$. O objetivo da regressão será então encontrar os melhores valores dos parâmetros $a$ e $b$.
 
-O **primeiro passo** é ter um dataframe com os valores de x e y, ou seja, com os dados que temos das variáveis de interesse. Vamos usar dados fictícios de número de drinks por semana (`drinks`) e consumo de tabaco (`tobacco`) como variável preditoras e níveis séricos de GGT como variável de desfecho (`y=ggt`). Para fins de uma análise univariada vamos utilizar apenas a variável `drinks` como preditora.
+O **primeiro passo** é ter um dataframe com os valores de x e y, ou seja, com os dados que temos das variáveis de interesse. Vamos usar dados fictícios de número de drinks por semana (`drinks`) e consumo de tabaco (`tobacco`) como variáveis preditoras e níveis séricos de GGT como variável de desfecho (`y=ggt`). Para fins de uma análise univariada vamos utilizar apenas a variável `drinks` como preditora.
 
 ```{r}
 # dados fictícios 
@@ -369,7 +369,7 @@ O código vai ficar assim:
 Com isso, a função `lm()` irá encontrar os melhores valores para os parâmetros $a$ e $b$ da reta de regressão.
 
 ```{r}
-# Usando a função lm() para criar o modelo de regressão linear e armazendo esse modelo no objeto chamado model
+# Usando a função lm() para criar o modelo de regressão linear e armazenando esse modelo no objeto chamado model
 model <- lm(ggt~drinks, data=df)
 ```
 
@@ -384,7 +384,7 @@ ggt     <- c(13,14,12,23,20,29,30,39,36,48,40,45,48,65,75)
 # Criando o dataframe com os dados
 df <- data.frame(drinks, ggt, tobacco)
 
-# Usando a função lm() para criar o modelo de regressão linear e armazendo esse modelo no objeto chamado model
+# Usando a função lm() para criar o modelo de regressão linear e armazenando esse modelo no objeto chamado model
 model1 <- lm(ggt~drinks, data=df)
 model2 <- lm(ggt~tobacco, data=df)
 
@@ -535,7 +535,7 @@ Os resultados da análise de regressão múltipla, que agora incluem tanto o nú
 
 Por outro lado, o coeficiente para `tobacco` é **-0,5998**, sugerindo que, mantendo constante o consumo de drinks, cada unidade adicional de consumo de tabaco está associada a uma **redução média de 0,60 unidades** nos níveis de GGT. No entanto, o valor de **p** para `tobacco` é **0,340202**, indicando que este resultado **não é estatisticamente significativo**.
 
-A falta de significância estatística para a variável `tobacco` no modelo múltiplo, apesar de poder ser significativa quando analisada isoladamente, é provavelmente causada pela **multicolinearidade** — uma situação em que `tobacco` e `drinks` estão correlacionados entre si. Isso significa que ambos os preditores compartilham informações semelhantes sobre a variação nos níveis de GGT. Veja no gráfico abaixo como há uma forte correlação linear entre o consumo de alcool e cigarro nesse dataset.
+A falta de significância estatística para a variável `tobacco` no modelo múltiplo, apesar de poder ser significativa quando analisada isoladamente, é provavelmente causada pela **multicolinearidade** — uma situação em que `tobacco` e `drinks` estão correlacionados entre si. Isso significa que ambos os preditores compartilham informações semelhantes sobre a variação nos níveis de GGT. Veja no gráfico abaixo como há uma forte correlação linear entre o consumo de álcool e cigarro nesse dataset.
 
 ```{r}
 cor_tobacco_alcool <- cor(df$drinks, df$tobacco)
@@ -573,7 +573,7 @@ Este pacote fornece três métodos que organizam as informações de um modelo e
 
 `augment()`: adiciona colunas aos dados originais que foram modelados. Isso inclui previsões, resíduos e atribuições de cluster.
 
-Como veremos adiante, A função `tidy()` também pode ser aplicada a objetos `htest`, como aqueles produzidos por funções internas populares como `t.test()`, `cor.test()` e `wilcox.test()`.
+Como veremos adiante, a função `tidy()` também pode ser aplicada a objetos `htest`, como aqueles produzidos por funções internas populares como `t.test()`, `cor.test()` e `wilcox.test()`.
 
 ```{r}
 tidy(model3)

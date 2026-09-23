@@ -6,7 +6,7 @@ Até agora, a maioria dos exemplos usados foram de bancos de dados do próprio R
 
 ## Formatos de arquivos de dados.
 
-Vamos primeiro entender esses diferentes formatos de arquivos de dados. Cada documento digital possui uma estrutura particular. Por exemplos, aquivos do Word (`.doc` ou `.docx`) possuem uma estrutura própria da Microsoft, que o aplicativo Word compreende e, portanto, consegue abrir. Arquivos do tipo PDF (`.pdf`) possuem uma outra estrutura e, portanto, necessitam de softwares que saibam ler essa estrutura para poderem serem abertos.
+Vamos primeiro entender esses diferentes formatos de arquivos de dados. Cada documento digital possui uma estrutura particular. Por exemplo, arquivos do Word (`.doc` ou `.docx`) possuem uma estrutura própria da Microsoft, que o aplicativo Word compreende e, portanto, consegue abrir. Arquivos do tipo PDF (`.pdf`) possuem uma outra estrutura e, portanto, necessitam de softwares que saibam ler essa estrutura para poderem ser abertos.
 
 Existem diversos formatos de arquivos para armazenar dados, cada um apropriado para ser lido por determinados aplicativos. As letras finais em cada arquivo, depois do ponto final (extensão), indicam o tipo de arquivo. Vejamos alguns tipos comuns de arquivos
 
@@ -22,9 +22,9 @@ Um dos formatos mais usuais para arquivar dados é o `.csv`, que em inglês sign
 
 A extensão `.csv` no final do nome de um arquivo indica que esse é um arquivo de dados no formato separado por vírgulas. A estrutura desse arquivo é bastante simples: existem várias linhas, cada linha com vários dados, separados por vírgulas.
 
-Existem, entretanto variações nesse formato, por exemplo, no Brasil as casas decimais são separadas por vírgulas, nesse caso o delimitador dos valores não poderia ser a vírgula e é usado então o ponto e vírgula. Portanto, ao ler dados no formato `.csv` é sempre importante informar se os dados são separados por `,` ou `;` e se o separador do decimal é a virgula, ou o ponto final. Caso contrário a leitura dos dados poderá ser corrompida. Um outro detalhe é que, em alguns arquivos, os valores faltantes são indicados por `NA`, em outros por um espaço em branco, ou por outro símbolo. É importante informar ao R como esses valores faltantes estão indicados no arquivo.
+Existem, entretanto variações nesse formato, por exemplo, no Brasil as casas decimais são separadas por vírgulas, nesse caso o delimitador dos valores não poderia ser a vírgula e é usado então o ponto e vírgula. Portanto, ao ler dados no formato `.csv` é sempre importante informar se os dados são separados por `,` ou `;` e se o separador do decimal é a vírgula, ou o ponto final. Caso contrário a leitura dos dados poderá ser corrompida. Um outro detalhe é que, em alguns arquivos, os valores faltantes são indicados por `NA`, em outros por um espaço em branco, ou por outro símbolo. É importante informar ao R como esses valores faltantes estão indicados no arquivo.
 
-Um arquivo de dados do tipo `.csv` pode ser visualizado através de qualquer leitor simples de texto, tal como o TextEdit do Mac ou o o Notepad no Windows. Abaixo podemos ver como um conjunto de dados simples está gravada num arquivo separado por vírgulas. Observe que a primeira linha representa o nome das variáveis.
+Um arquivo de dados do tipo `.csv` pode ser visualizado através de qualquer leitor simples de texto, tal como o TextEdit do Mac ou o Notepad no Windows. Abaixo podemos ver como um conjunto de dados simples está gravado num arquivo separado por vírgulas. Observe que a primeira linha representa o nome das variáveis.
 
 ```{r csv-files, echo=FALSE, out.width='100%', fig.show='hold', fig.cap="csv_files"}
 knitr::include_graphics("images/csv1.png")
@@ -40,13 +40,13 @@ Existem diversos modos de carregar dados no R. Podemos fazer isso usando os menu
 
 ## Lendo dados com o menu do RStudio.
 
-O painel **Enviroment** possui uma aba chamada **Import Dataset**. Ao clicar nessa opção, podemos escolher que tipo de dados serão importatos (lidos): Texto, Excel, SPSS, SAS ou STATA. Para ler arquivos do tipo `.csv` podemos usar qualquer das duas primeiras opções **From Text (base)** ou **From Text (readr)**, como mostra a figura abaixo.
+O painel **Environment** possui uma aba chamada **Import Dataset**. Ao clicar nessa opção, podemos escolher que tipo de dados serão importados (lidos): Texto, Excel, SPSS, SAS ou STATA. Para ler arquivos do tipo `.csv` podemos usar qualquer das duas primeiras opções **From Text (base)** ou **From Text (readr)**, como mostra a figura abaixo.
 
 ```{r ImportDataset, echo=FALSE, out.width='100%', fig.show='hold', fig.cap="ImportDataset"}
 knitr::include_graphics("images/import_dataset.png")
 ```
 
-Você deverá escolher o aquivo `.csv` que deseja carregar no R. Será aberta uma aba para definir algumas opções.
+Você deverá escolher o arquivo `.csv` que deseja carregar no R. Será aberta uma aba para definir algumas opções.
 
 A figura abaixo mostra a janela de opções que será aberta ao clicar em **From Text (base)**.
 
@@ -57,27 +57,27 @@ knitr::include_graphics("images/import_dataset_artrite.png")
 **Você deverá informar ao R alguns parâmetros:**.\
 
 1.  Heading: Há um cabeçalho com o nome das variáveis?\
-2.  As linhas tem nomes?\
-3.  Qual o elemento que separa os valores? Virgula, ponto e vírgula, tabulação ou outro?\
-4.  Qual o element que separal o decimal: Vírgula ou ponto final?\
+2.  As linhas têm nomes?\
+3.  Qual o elemento que separa os valores? Vírgula, ponto e vírgula, tabulação ou outro?\
+4.  Qual o elemento que separa o decimal: Vírgula ou ponto final?\
 5.  Há elementos entre aspas? Qual tipo de aspas são usados: " " ou ' ' ?\
-6.  Há algum simbolo para comentários?\
-7.  Como estão registrados os valore NA: NA, em branco, ou de outra forma?\
+6.  Há algum símbolo para comentários?\
+7.  Como estão registrados os valores NA: NA, em branco, ou de outra forma?\
 8.  Você deseja que os elementos em texto sejam carregados no formato `factor`?
 
-O R já deverá ter escolhido a maioria desses parâmetros. Se deu tudo certo, os dados deverão aparecer na janela inferior, chamada de data frame, todos alinhados em colunas como mostrado a imagem acima. Agora basta clicar em `import`.
+O R já deverá ter escolhido a maioria desses parâmetros. Se deu tudo certo, os dados deverão aparecer na janela inferior, chamada de data frame, todos alinhados em colunas como mostrado na imagem acima. Agora basta clicar em `import`.
 
-Entretanto, apesar da facilidade de importar dados dessa forma. Essa não é a maneira ideal. A melhor técnica é criar o código que irá realizar a importação e incoporar esse código no início de seu script. Assim, automatizamos o processo de leitura dos dados e evitamos ter de clicar na função `Import Dataset` toda vez que formos trabalhar com nossos dados.
+Entretanto, apesar da facilidade de importar dados dessa forma, essa não é a maneira ideal. A melhor técnica é criar o código que irá realizar a importação e incorporar esse código no início de seu script. Assim, automatizamos o processo de leitura dos dados e evitamos ter de clicar na função `Import Dataset` toda vez que formos trabalhar com nossos dados.
 
 ## Lendo dados com `read.csv()`
 
-Caso o arquivo esteja no formato `.csv` com as seus valores separados por vírgula (que é o padrão usual), podemos usar a função `read.csv( )` para carregar os dados, bastando indicar o nome do arquivo a ser lido. Se por acaso o arquivo se chama `diabetes.csv`, então o comando de leitura será:
+Caso o arquivo esteja no formato `.csv` com os seus valores separados por vírgula (que é o padrão usual), podemos usar a função `read.csv( )` para carregar os dados, bastando indicar o nome do arquivo a ser lido. Se por acaso o arquivo se chama `diabetes.csv`, então o comando de leitura será:
 
 `read.csv(file = "diabetes.csv")`.
 
 O primeiro argumento da função `read.csv` é o mais importante, é o **caminho** e o **nome do arquivo** a ser lido. Um detalhe importante é saber qual é o `working directory` que você está usando. Lembre-se que a melhor forma de trabalhar no RStudio é criando um projeto, que define o diretório de trabalho como a pasta do projeto. Já detalhamos isso em capítulos anteriores sobre Working Directories e Projetos do RStudio (@sec-projects).
 
-O código acima ira funcionar se o arquivo chamado `diabetes.csv` estiver dentro do atual diretório de trabalho do R.
+O código acima irá funcionar se o arquivo chamado `diabetes.csv` estiver dentro do atual diretório de trabalho do R.
 
 Se o arquivo estiver numa pasta chamada `dataset`, dentro do diretório de trabalho, então teremos de incluir esse caminho no nome, tudo dentro das aspas, como abaixo:
 
@@ -114,10 +114,10 @@ diabetes <- read.table(file       ="dataset/diabetes.csv",
 O código acima faz o seguinte:
 
 -   Lê um arquivo denominado `diabetes.csv`; que está na pasta `dataset`\
--   No qual há um cabeçalho com os nomes da variáveis: `header = TRUE`\
+-   No qual há um cabeçalho com os nomes das variáveis: `header = TRUE`\
 -   Cujos dados estão separados por vírgula: `sep = ","`\
 -   Cujos decimais são identificados pelo ponto final : `dec  = "."`\
--   E os valores faltantes estão intensificados no arquivo pelas letras NA: `na.strings = "NA"`.\
+-   E os valores faltantes estão identificados no arquivo pelas letras NA: `na.strings = "NA"`.\
 -   Finalmente, esse data frame é armazenado num objeto chamado `diabetes`.
 
 ## Lendo arquivos na internet
@@ -150,7 +150,7 @@ mydata <- read.csv("dataset/diabetes_hbiostat.csv")
 
 ## Lendo dados com `readr`
 
-O pacote `readr` do `tidyverse` fornece funções para leitura mais amigável de dados tabulados (como `.csv`, `.tsv` e `.fwf`), sendo preferírel em relação às funções base do R.
+O pacote `readr` do `tidyverse` fornece funções para leitura mais amigável de dados tabulados (como `.csv`, `.tsv` e `.fwf`), sendo preferível em relação às funções base do R.
 
 O pacote `readr` vem também com diversos bancos de dados para servirem de exemplo, que podem ser acessados com a função `readr_example()`. Para a lista completa dos exemplos basta usar esse comando como mostrado a seguir.
 
@@ -161,7 +161,7 @@ library(readr)
 readr_example()
 ```
 
-Quando inserimos o nome do do banco de dados desejado como argumento da função, o resultado é o endereço do banco de dados em seu computador.
+Quando inserimos o nome do banco de dados desejado como argumento da função, o resultado é o endereço do banco de dados em seu computador.
 
 ```{r}
 readr_example("chickens.csv")
@@ -190,8 +190,8 @@ galinhas <- readr_example("chickens.csv") |>
 Observe que a função `read_csv()` mostra os detalhes do que ela fez:\
 1. Mostra que o arquivo lido tinha 5 linhas e 4 colunas.\
 2. Mostra que interpretou que o delimitador entre os elementos era a vírgula: `Delimiter: ","`.\
-3. Mostra que intrepretou as variáveis `chicken`, `sex` e `motto` como texto (`char`, caracteres).\
-4. Mostra que intrepretou a variável `eggs_laid` como numérica (`double`).\
+3. Mostra que interpretou as variáveis `chicken`, `sex` e `motto` como texto (`char`, caracteres).\
+4. Mostra que interpretou a variável `eggs_laid` como numérica (`double`).\
 5. Explica que você pode usar o comando `spec()` para ver as especificações das colunas\
 6. Explica que você pode usar o argumento `show_col_types = FALSE` para que o comando não mostre essas explicações todas.
 
@@ -214,9 +214,9 @@ spec(galinhas)
 
 ## A função `read_csv()`
 
-As funções de leitura do pacote `readr` tem diversas vantagens sobre as funções básicas de leitura de dados do R.
+As funções de leitura do pacote `readr` têm diversas vantagens sobre as funções básicas de leitura de dados do R.
 
-Em primeiro lugar, ao ler os dados usando `read_csv()` é criada uma `tibble` e não um `data frame`. E como já discutirmos antes, uma `tibble` é uma versão melhorada de um `data frame`.
+Em primeiro lugar, ao ler os dados usando `read_csv()` é criada uma `tibble` e não um `data frame`. E como já discutimos antes, uma `tibble` é uma versão melhorada de um `data frame`.
 
 Além disso, a função `read_csv()` é mais rápida que a versão base do R.
 
@@ -232,7 +232,7 @@ O arquivo `diabetes.csv` que eu tenho em meu computador está salvo na pasta `da
 
 É necessário também armazenar os dados lidos num objeto, que irei chamar de `diabetes`. Obs: eu poderia escolher outro nome, não é necessário que o objeto que irá armazenar os dados tenha o mesmo nome que o arquivo com os dados.
 
-Eu fiz o download dos dados (<https://hbiostat.org/data/repo/diabetes.csv>) e salvei esses dados numa pasta chamada `dataset` em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para portugues.
+Eu fiz o download dos dados (<https://hbiostat.org/data/repo/diabetes.csv>) e salvei esses dados numa pasta chamada `dataset` em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para português.
 
 ```{r}
 diabetes <- read_csv("dataset/diabetes.csv")
@@ -250,7 +250,7 @@ Para mostrar a `tibble` basta digitar no console o nome da `tibble`:
 diabetes
 ```
 
-Observe que as variáveis `location`, `gender` e `frame` foram intrepretadas como `char`. Essas variáveis são melhor analisadas quando são do tipo `factor`. Temos duas alternativas para resolver esse problema:
+Observe que as variáveis `location`, `gender` e `frame` foram interpretadas como `char`. Essas variáveis são melhor analisadas quando são do tipo `factor`. Temos duas alternativas para resolver esse problema:
 
 1.  Transformar em `factor` depois de ler, com a função `as.factor()`.
 2.  Indicar que são `factor` na própria função `read_csv()`.
@@ -325,10 +325,10 @@ str(diabetes)
 
 O R também pode ler arquivos em outros formatos, tal como Excel, SAS, STATA, SPSS etc. Existem pacotes específicos para ler cada um desses formatos.\
 
-O pacote `readxl` serve para ler arquivos do Excel, sendo capaz de ler `.xls` quanto os novos formatos `.xlsx`. A função para ler esses arquivos é `read_excel()`.\
+O pacote `readxl` serve para ler arquivos do Excel, sendo capaz de ler tanto `.xls` quanto os novos formatos `.xlsx`. A função para ler esses arquivos é `read_excel()`.\
 O pacote `xml2` é capaz de ler arquivos XML com a função `read_xml()`; o pacote `XML`, mais antigo, faz o mesmo com `xmlParse()` ou `xmlToDataFrame()`.\
-Os pacotes `rjson` e `jsonlite` tem funções para leitura arquivos JSON. A função para ler esses arquivos é `fromJSON()`.\
-O pacote `haven` do tidyverse é capaz de ler vários de vários tipos, tais como SAS, SPSS e STATA, através das seguintes funções: `read_sas()`, `read_sav()`, `read_por()`, `read_dta()`, `read_xpt()`.\
+Os pacotes `rjson` e `jsonlite` têm funções para leitura de arquivos JSON. A função para ler esses arquivos é `fromJSON()`.\
+O pacote `haven` do tidyverse é capaz de ler arquivos de vários tipos, tais como SAS, SPSS e STATA, através das seguintes funções: `read_sas()`, `read_sav()`, `read_por()`, `read_dta()`, `read_xpt()`.\
 O pacote `foreign` possui também funções para ler arquivos SPSS, a função para ler esses arquivos é `read.spss()`.
 
 **Tabela de Funções e Pacotes de Leitura de Dados**

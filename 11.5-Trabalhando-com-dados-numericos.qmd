@@ -11,11 +11,11 @@ library(ggplot2)
 
 ### Estatística Descritiva para dados numéricos
 
-Vamos examinar as principais funções do R para descrever numéricamente um conjunto de dados: as medidas de centralidade (media, mediana), de partição (percentis) e de dispersão (amplitude, variância e desvio padrão). Veremos como aplicar essas funções em vetores e em data frames ou `tibbles.`
+Vamos examinar as principais funções do R para descrever numericamente um conjunto de dados: as medidas de centralidade (média, mediana), de partição (percentis) e de dispersão (amplitude, variância e desvio padrão). Veremos como aplicar essas funções em vetores e em data frames ou `tibbles.`
 
 #### Medidas de Centralidade
 
-As principais medidas de centralidade, ou posição, (média e mediana) são facilmente calculadas no R com as funções `mean()` e `median()`. Essa funções recebem valores numéricos como argumentos. Para exemplificar essas funções vamos usar novamente um vetor numérico simulando um conjunto de idades e pesos. Observe que no conjunto de pesos há uma dado faltante (NA). Podemos inserir tanto o próprio vetor isolado como argumento, como também uma coluna do data frame ou tibble como mostraremos adiante. nos próximos exemplos iremos usar geralmente a forma do tidyverse para calcular medidas estatísticas em variáveis de um data frame, usando o operador \$ para acessarmos as colulnas.
+As principais medidas de centralidade, ou posição, (média e mediana) são facilmente calculadas no R com as funções `mean()` e `median()`. Essas funções recebem valores numéricos como argumentos. Para exemplificar essas funções vamos usar novamente um vetor numérico simulando um conjunto de idades e pesos. Observe que no conjunto de pesos há um dado faltante (NA). Podemos inserir tanto o próprio vetor isolado como argumento, como também uma coluna do data frame ou tibble como mostraremos adiante. Nos próximos exemplos iremos usar geralmente a forma do tidyverse para calcular medidas estatísticas em variáveis de um data frame, usando o operador \$ para acessarmos as colunas.
 
 ```{r}
 # cria um conjunto de idades (anos)
@@ -31,7 +31,7 @@ df <- tibble(idade, peso)
 mean(idade)
 ```
 
-Para calculara a média do peso, será necessário incluir o argumento `na.rm=TRUE`, pois a variável contem valores `NA`. Veja o resultado do cálculo com e sem esse argumento.
+Para calcular a média do peso, será necessário incluir o argumento `na.rm=TRUE`, pois a variável contém valores `NA`. Veja o resultado do cálculo com e sem esse argumento.
 
 ```{r}
 # calcula a média do peso, sem retirar os NA (o R não consegue calcular)
@@ -117,7 +117,7 @@ quantile(df$peso, 0.25, na.rm = TRUE)
 ```
 
 ```{r}
-# a função range retornao valor mínimo e máximo do conjunto numérico indicado como argumento
+# a função range retorna o valor mínimo e máximo do conjunto numérico indicado como argumento
 range(df$idade)
 ```
 
@@ -148,7 +148,7 @@ Quando for necessário estimar o desvio padrão ou variância levando em conside
 Vejamos isso nos próximos exemplos.
 
 ```{r}
-# criando um vetor de dados distribuidos de frorma normal com 100 elementos
+# criando um vetor de dados distribuidos de forma normal com 100 elementos
 set.seed(1)
 n=100
 x <- rnorm(n)
@@ -194,7 +194,7 @@ A função `by()` agrupa a variável desejada segundo alguma outra variável cat
 -   INDICES: uma variável categórica (factor) que define a separação dos grupos.\
 -   FUN: uma função a ser aplicada aos subconjuntos data frame.
 
-O dataset `mtcars` do R é um conjunto de dados sobre 32 carros de 1973-1974, com dados sobre 10 aspectos do design dos carros. Nesse dataset variável `am` representa a marcha do carro, sendo 0 = câmbio automático, 1 = câmbio manual. Podemos, portanto, aplicar a função `summary()` no dataset mtcars através da função `by()`, estratificando alguma variável de acordo com o tipo de câmbio (manual ou automático) e aplicando o comando em cada grupo.
+O dataset `mtcars` do R é um conjunto de dados sobre 32 carros de 1973-1974, com dados sobre 10 aspectos do design dos carros. Nesse dataset a variável `am` representa a marcha do carro, sendo 0 = câmbio automático, 1 = câmbio manual. Podemos, portanto, aplicar a função `summary()` no dataset mtcars através da função `by()`, estratificando alguma variável de acordo com o tipo de câmbio (manual ou automático) e aplicando o comando em cada grupo.
 
 Veja como fazer isso no código abaixo.
 
@@ -212,7 +212,7 @@ Note que a variável `am` (e também `cyl`, `vs`, `gear` e `carb`) está codific
 
 #### Agrupando com `group_by()`
 
-Vamos usar a função `group_by()` para separar grupos antes de calcular alguma medida estatística. Como exemplo, vamos comparar de níveis de glicose entre grupos com diferentes hábitos de exercício. Para isso precisaremos agrupar os dados numéricos dos níveis de glicose com base nas categorias de exercício (ex: Sedentário, Moderado, Intenso). Para isso será preciso carregar o pacote `dplyr.` Iremos também usar uma variável para armazenar os dados para análise e usar o operador pipe para melhorar a estética do código.
+Vamos usar a função `group_by()` para separar grupos antes de calcular alguma medida estatística. Como exemplo, vamos comparar os níveis de glicose entre grupos com diferentes hábitos de exercício. Para isso precisaremos agrupar os dados numéricos dos níveis de glicose com base nas categorias de exercício (ex: Sedentário, Moderado, Intenso). Para isso será preciso carregar o pacote `dplyr.` Iremos também usar uma variável para armazenar os dados para análise e usar o operador pipe para melhorar a estética do código.
 
 ```{r, warning=FALSE, message=FALSE}
 # Criando o data frame com 15 pacientes
@@ -269,9 +269,9 @@ O código acima agrupou diversos dados segundo o tipo de transmissão (transmiss
 
 As funções `summary()` do R base e `summarise()` ou `summarize()` do pacote `dplyr` servem para resumir um conjunto de dados.
 
-A diferença nas funções `summarise()` ou `summarize()` do `dplyr` precisamos especificar quais medidas estatísticas serão calculadas. Apesar de dar um trabalho a mais escrever o código, você tem muito mais flexibilidade, podendo criar um novo dataframe com qualquer medida de interesse.
+A diferença é que nas funções `summarise()` ou `summarize()` do `dplyr` precisamos especificar quais medidas estatísticas serão calculadas. Apesar de dar um trabalho a mais escrever o código, você tem muito mais flexibilidade, podendo criar um novo dataframe com qualquer medida de interesse.
 
-Outro ponto importante é que a função `summary()` do R retorna um objeto do tipo `tabela`, enquanto as funções `summarise()` ou `summarize()` do pacote `dplyr` retornam um objeto do tipo `data frame`, que é muito mais flexivel de usar e extrair dados do que uma tabela.
+Outro ponto importante é que a função `summary()` do R retorna um objeto do tipo `tabela`, enquanto as funções `summarise()` ou `summarize()` do pacote `dplyr` retornam um objeto do tipo `data frame`, que é muito mais flexível de usar e extrair dados do que uma tabela.
 
 Para verificar novamente como usar essa função veja o capítulo sobre o pacote `dplyr` (@sec-dplyr).
 
@@ -285,19 +285,19 @@ A função `cut()` nos permite criar uma variável categórica a partir de uma v
 
 Veja que o parâmetro breaks pode usar `-Inf` como limite inferior e `Inf` como limite superior. Entre esses limites extremos serão definidos os pontos de corte. Podemos colocar quantos pontos desejarmos, mas é sempre prudente evitar excessos.
 
-Veja também que com 2 pontos intermediários serão criados 3 categorias. Por padrão os intervalos são do abertos à esquerda e fechados à direita, tal como em (x1, x2\]. De tal forma que o intervalo termina no valores indicados, incluindo esse valor.
+Veja também que com 2 pontos intermediários serão criados 3 categorias. Por padrão os intervalos são abertos à esquerda e fechados à direita, tal como em (x1, x2\]. De tal forma que o intervalo termina nos valores indicados, incluindo esse valor.
 
 ```{r cut1, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Cut'}
 knitr::include_graphics(rep("images/cut1.png", 1))
 ```
 
-Vamos continuar usando o dataset `mpg`. Para exemplificar o uso da função `cut()` vamos criar uma variável categórica `cty_cat` a partir `cty` (milhas percorridas na cidade com 1 galão de combustível). A variável `cty` é numérica, com valores variando de 9 milhas a 35 milhas. Vamos definir 3 categorias de carros:
+Vamos continuar usando o dataset `mpg`. Para exemplificar o uso da função `cut()` vamos criar uma variável categórica `cty_cat` a partir de `cty` (milhas percorridas na cidade com 1 galão de combustível). A variável `cty` é numérica, com valores variando de 9 milhas a 35 milhas. Vamos definir 3 categorias de carros:
 
 ```{r cut2, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='Cut'}
 knitr::include_graphics(rep("images/cut2.png", 1))
 ```
 
-Como o intervalo é fechado à direita, o valor do ponto de corte pertence ao intervalo anterior, ou seja, será parte da 1ª categoria, portanto, o primeiro ponto de corte deve ser 15, já que definimos o primeiro intervalo como menor ou igual a 15. O segundo ponto de corte será 20, pois será o limite superior da segunda categoria é menor ou igual a 20. O código ficará então:
+Como o intervalo é fechado à direita, o valor do ponto de corte pertence ao intervalo anterior, ou seja, será parte da 1ª categoria, portanto, o primeiro ponto de corte deve ser 15, já que definimos o primeiro intervalo como menor ou igual a 15. O segundo ponto de corte será 20, pois o limite superior da segunda categoria é menor ou igual a 20. O código ficará então:
 
 ```{r}
 data(mpg) # carregando o dataset mpg na memória
@@ -331,7 +331,7 @@ class(mpg$cty_cat)
 unique(mpg$cty_cat)
 ```
 
-Observe que apesar dos valores da variável `cty_cat` serem 0, 1 e 2, essa variável é uma variável categórica e esses valores não representam números no R. Poderíamos muito tem ter nomeado essas categorias de A, B e C ou usar a função `fct_recode()` do pacote `forcats` para tornar esses dados mais compreensíveis.
+Observe que apesar dos valores da variável `cty_cat` serem 0, 1 e 2, essa variável é uma variável categórica e esses valores não representam números no R. Poderíamos muito bem ter nomeado essas categorias de A, B e C ou usar a função `fct_recode()` do pacote `forcats` para tornar esses dados mais compreensíveis.
 
 ```{r, message=FALSE, warning=FALSE}
 mpg <- mpg |>
@@ -349,7 +349,7 @@ table(mpg$cty_cat)
 
 Mas podemos melhorar ainda mais esse código usando a função `count()` do `dplyr` já tratada em capítulos anteriores (@sec-count) e usando o operador pipe.
 
-Veja que no código abaixo começamos com o dataset `mpg`, seguido do operador pipe para *passar* esse datase para a função `count()`. E inserimos como argumento da função `count()` o nome da variável categórica a ser usada.
+Veja que no código abaixo começamos com o dataset `mpg`, seguido do operador pipe para *passar* esse dataset para a função `count()`. E inserimos como argumento da função `count()` o nome da variável categórica a ser usada.
 
 ```{r, message=FALSE, warning=FALSE}
 mpg |> count(cty_cat)
@@ -359,13 +359,13 @@ mpg |> count(cty_cat)
 
 Às vezes precisamos criar uma variável categórica com apenas dois valores a partir de uma variável numérica. Nesse caso, para criar uma variável dicotômica a partir de uma variável numérica a função `ifelse()` é mais simples de usar.
 
-Para exemplificar vamos criar uma nova variável categoria denominada de `hwy_cat` a partir da variável `hwy` (milhas percorridas com um galão na estrada). Iremos definir como `BEBEMUITO` os carros que fizerem menos de 20 milhas na estrada e como `ECONOMICO` os outros.
+Para exemplificar vamos criar uma nova variável categórica denominada de `hwy_cat` a partir da variável `hwy` (milhas percorridas com um galão na estrada). Iremos definir como `BEBEMUITO` os carros que fizerem menos de 20 milhas na estrada e como `ECONOMICO` os outros.
 
 A função ifelse tem o seguinte formato: \> ifelse(condição, rótulo.da.condição.verdadeira, rótulo.da.condição.falsa)
 
 > O código fica então da seguinte maneira Condição: Testa se valor da variável hwy é menor que 20. Quando a condição for verdadeira, - o rótulo será o primeiro (“BEBEMUITO”), - se não o rótulo será o seguinte (“ECONOMICO”).
 
-O código acima na liguagem R é o seguinte:
+O código acima na linguagem R é o seguinte:
 
 ```{r}
 mpg$hwy_cat <- ifelse(mpg$hwy<20, "BEBEMUITO", "ECONOMICO")

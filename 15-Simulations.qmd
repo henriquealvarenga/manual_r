@@ -1,6 +1,6 @@
 # Simulações
 
-A simulação é uma ferramenta bastante útil em diversas situações. Pode ser usada em contextos simples, tais como simulações para uso em sala de aula, como também em contextos profissionais permitindo que pesquisadores de diversas áreas possam compreender melhor fenômenos complexos, testar hipóteses e prever resultados em situações onde experimentos reais podem ser inviáveis, caros ou demorados. A linguagem R, com inúmeras funções e pacotes dedicados para a realização de simulações.
+A simulação é uma ferramenta bastante útil em diversas situações. Pode ser usada em contextos simples, tais como simulações para uso em sala de aula, como também em contextos profissionais permitindo que pesquisadores de diversas áreas possam compreender melhor fenômenos complexos, testar hipóteses e prever resultados em situações onde experimentos reais podem ser inviáveis, caros ou demorados. A linguagem R conta com inúmeras funções e pacotes dedicados para a realização de simulações.
 
 Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
 
@@ -10,7 +10,7 @@ library(ggforce)
 library(dplyr)
 ```
 
-Neste capítulo, exploraremos o uso de R para realizar simulações. Dicutiremos inicialmente a geração de sequencias e repetições, a geração de númeroso aleatórios, a importância de garantir a reprodutibilidade em simulações, utilizando a função `set.seed`, e depois as funções `sample` e `replicate`, que nos permitem gerar amostras aleatórias e replicar dados.
+Neste capítulo, exploraremos o uso de R para realizar simulações. Discutiremos inicialmente a geração de sequências e repetições, a geração de números aleatórios, a importância de garantir a reprodutibilidade em simulações, utilizando a função `set.seed`, e depois as funções `sample` e `replicate`, que nos permitem gerar amostras aleatórias e replicar dados.
 
 Também discutiremos e exploraremos técnicas avançadas como simulações de Monte Carlo, Bootstrapping e Cadeias de Markov Monte Carlo (MCMC).
 
@@ -18,46 +18,46 @@ Também discutiremos e exploraremos técnicas avançadas como simulações de Mo
 
 ### Operador de Sequenciação
 
-Às vezes precisamos criar uma sequência, e o modo mais fácil de criar uma sequencia numérica é usar a função `c()` juntamente com o operador `:`.
+Às vezes precisamos criar uma sequência, e o modo mais fácil de criar uma sequência numérica é usar a função `c()` juntamente com o operador `:`.
 
-Iremos criar diversas sequências a armazenar o resultado em variáveis. Lembre-se que para mostrar o conteúdo das variável, basta digitar o nome da variável. Nas linhas de código a seguir faremos desse modo.
+Iremos criar diversas sequências e armazenar o resultado em variáveis. Lembre-se que para mostrar o conteúdo das variáveis, basta digitar o nome da variável. Nas linhas de código a seguir faremos desse modo.
 
-**Criando uma sequencia crescente de 1 em 1**
+**Criando uma sequência crescente de 1 em 1**
 
 ```{r}
-# cria uma sequencia crescente de 1 a 10
+# cria uma sequência crescente de 1 a 10
 x2 <- c(1:10)
 x2
 ```
 
-**Criando uma sequencia decrescente de 1 em 1**
+**Criando uma sequência decrescente de 1 em 1**
 
 ```{r}
-# cria uma sequencia decrescente de 20 a 10
+# cria uma sequência decrescente de 20 a 10
 x3 <- c(20:10)
 x3
 ```
 
-**Criando sequencia variadas**
+**Criando sequências variadas**
 
 ```{r}
-# cria uma sequencia de 1 a 10
+# cria uma sequência de 1 a 10
 # depois insere o número 20, 
-# e depois cria uma nova sequencia de 30 a 40
+# e depois cria uma nova sequência de 30 a 40
 x4 <- c(1:10, 20, 30:40)
 x4
 ```
 
-Quando precisamos de sequencia numérica com intervalos diferentes de 1, é preciso usar a função `seq()`, na qual podemos especificar o tamanho da diferença entre os números.
+Quando precisamos de sequência numérica com intervalos diferentes de 1, é preciso usar a função `seq()`, na qual podemos especificar o tamanho da diferença entre os números.
 
 ### A função `seq()` 
 
 **Usando `seq()` com argumentos explícitos**
 
-A função `seq()` tem como argumentos o valor inicial da sequencia (`from`) , o valor final (`to`) e o tamanho do salto entre cada elemento da sequencia (`by`) .
+A função `seq()` tem como argumentos o valor inicial da sequência (`from`) , o valor final (`to`) e o tamanho do salto entre cada elemento da sequência (`by`) .
 
 ```{r}
-#cria uma sequencia de 1 a 10, aumentando 1 de cada vez, explicitando os argumentos
+#cria uma sequência de 1 a 10, aumentando 1 de cada vez, explicitando os argumentos
 seq(from = 1, to = 10, by = 1)
 ```
 
@@ -66,21 +66,21 @@ seq(from = 1, to = 10, by = 1)
 Argumentos podem ser também passados para a função apenas colocando-os na ordem correta. Toda função tem uma ordem de apresentação dos argumentos. Podemos explicitar isso como fizemos antes, ou apenas inserir na ordem correta como abaixo.
 
 ```{r}
-#cria uma sequencia de 1 a 10, aumentando 1 de cada vez
+#cria uma sequência de 1 a 10, aumentando 1 de cada vez
 seq(1, 10, 1)
 ```
 
 **Usando a função `seq()` estipulando um intervalo de 0.5**
 
 ```{r}
-# cria uma sequencia de 1 a 10 aumentando 0.5 de cada vez
+# cria uma sequência de 1 a 10 aumentando 0.5 de cada vez
 seq(1, 10, 0.5)
 ```
 
 **Usando a função `seq()` com intervalo negativo**
 
 ```{r}
-# cria uma sequencia de 5 até 1, diminuindo 0.2 a cada vez
+# cria uma sequência de 5 até 1, diminuindo 0.2 a cada vez
 seq(5, 1, -0.2)
 ```
 
@@ -121,7 +121,7 @@ rep(c(1, 2, 3), each = 2)
 rep(c(1, 2, 3), times = c(2, 3, 4))
 ```
 
-Como podemos ver, função `rep()` é bastante flexível, permitindo especificar quantas vezes cada elemento deve ser repetido (`times`) ou quantas vezes cada elemento do vetor deve ser repetido (`each`).
+Como podemos ver, a função `rep()` é bastante flexível, permitindo especificar quantas vezes cada elemento deve ser repetido (`times`) ou quantas vezes cada elemento do vetor deve ser repetido (`each`).
 
 ### A Função `replicate()`
 
@@ -142,11 +142,11 @@ runif(10) |>
   replicate(n=5)
 ```
 
-**Exemplo 2: Simulação de Lançamento moeda**
+**Exemplo 2: Simulação de Lançamento de moeda**
 
 A função `sample()` serve para realizarmos amostragens. Podemos usar a função `replicate()` para simular várias repetições de amostragens.
 
-Vamos criar um objeto simulando uma moeda e usar a função `sample()` para sortear um dos valores desse objeto (cara ou coroa). O argumento `replace = TRUE` é necessário, pois os valores possíveis podem ser repetido em cada sorteio.
+Vamos criar um objeto simulando uma moeda e usar a função `sample()` para sortear um dos valores desse objeto (cara ou coroa). O argumento `replace = TRUE` é necessário, pois os valores possíveis podem ser repetidos em cada sorteio.
 
 ```{r}
 # cria o objeto moeda
@@ -171,7 +171,7 @@ Na ciência, a geração de números aleatórios é fundamental por várias raz�
 
 A geração de números aleatórios também permite criar conjuntos numéricos que seguem diferentes distribuições estatísticas, como a distribuição uniforme, onde todos os valores dentro de um intervalo têm a mesma probabilidade de ocorrer; a distribuição normal, onde a maioria dos valores se concentra em torno da média, formando a conhecida curva em forma de sino; e a distribuição exponencial, usada para modelar o tempo entre eventos independentes que ocorrem a uma taxa constante.
 
-A história da geração de números aleatórios na computação é bastante interessante. No início, métodos mecânicos, como roletas e sorteios com cartas, eram usados para gerar números aleatórios. Com o advento dos computadores, a necessidade de métodos mais rápidos e eficientes levou ao desenvolvimento de algoritmos que usam uma fórmulas matemática para produzir uma sequência de números pseudoaleatórios. Embora esses números não sejam verdadeiramente aleatórios, eles são suficientemente aleatórios para a maioria das aplicações práticas.
+A história da geração de números aleatórios na computação é bastante interessante. No início, métodos mecânicos, como roletas e sorteios com cartas, eram usados para gerar números aleatórios. Com o advento dos computadores, a necessidade de métodos mais rápidos e eficientes levou ao desenvolvimento de algoritmos que usam uma fórmula matemática para produzir uma sequência de números pseudoaleatórios. Embora esses números não sejam verdadeiramente aleatórios, eles são suficientemente aleatórios para a maioria das aplicações práticas.
 
 Os números pseudoaleatórios gerados por algoritmos, produzem sequências de números que parecem aleatórios, mas que na verdade seguem uma lógica predefinida. Esses algoritmos começam com um valor inicial chamado de "semente" (ou "seed" em inglês). Se a mesma semente for usada, a sequência de números gerada será sempre a mesma. Em inúmeras situações é importante definir o valor inicial do gerador de números pseudoaleatórios. Ao fixar essa semente, você garante que os resultados da geração de números aleatórios possam ser reproduzidos. Isso significa que, se você e outra pessoa executarem o mesmo código com a mesma semente, ambos obterão exatamente os mesmos números aleatórios.
 
@@ -183,7 +183,7 @@ Veremos a seguir como usar o R para realizar amostragens e como associar as fun�
 
 ## Amostragens
 
-O R possui uma função para simular amostras randomizadas: a função `sample()`. O primeiro argumento dessa função é a população (objeto que contenha os valores da população). O segundo argumento é o tamanho a amostra a ser retirada.
+O R possui uma função para simular amostras randomizadas: a função `sample()`. O primeiro argumento dessa função é a população (objeto que contenha os valores da população). O segundo argumento é o tamanho da amostra a ser retirada.
 
 ```{r}
 # Selecionando, de forma aleatória, 5 números entre 1 e 10
@@ -199,14 +199,14 @@ x <- 1:10
 sample(x, 5)
 ```
 
-Por padrão essa função realiza uma amostragem sem reposição, ou seja, uma vez retirada o elemento, esse mesmo elemento não pode ser retirado novamente. Por exemplo, se desejo simular um jogo de bingo, no qual há 100 bolinhas, não podemos retirar a mesma bolinha mais de uma vez. Esse é um exemplo de retirada sem reposição. O código abaixo simularmo uma sequencia aletória de retirada de 5 bolinhas de bingo num total de 100:
+Por padrão essa função realiza uma amostragem sem reposição, ou seja, uma vez retirado o elemento, esse mesmo elemento não pode ser retirado novamente. Por exemplo, se desejo simular um jogo de bingo, no qual há 100 bolinhas, não podemos retirar a mesma bolinha mais de uma vez. Esse é um exemplo de retirada sem reposição. O código abaixo simula uma sequência aleatória de retirada de 5 bolinhas de bingo num total de 100:
 
 ```{r}
 x <- 1:100
 sample(x, 5)
 ```
 
-Para simularmos situações nas quais é possível a repetição de um determinado elemento, precisamos alterar o parametro replace para `replace=TRUE`.
+Para simularmos situações nas quais é possível a repetição de um determinado elemento, precisamos alterar o parâmetro replace para `replace=TRUE`.
 
 Por exemplo, imagine que queremos simular a jogada de dois dados. Cada dado pode resultar em um valor de 1 a 6. Nesse caso, queremos sortear dois números de 1 a 6, mas é possível repetir o valor, pois os dados podem mostrar o mesmo valor.
 
@@ -222,7 +222,7 @@ x <- 1:6
 replicate(n = 10, sample(x, 2, replace = TRUE))
 ```
 
-O código acima pode ser escrito de forma mais suscinta como abaixo, sem a criação de uma variável intermediária.
+O código acima pode ser escrito de forma mais sucinta como abaixo, sem a criação de uma variável intermediária.
 
 ```{r}
 replicate(10, sample(1:6, 2, replace = TRUE))
@@ -270,11 +270,11 @@ O procedimento dessa simulação geralmente envolve algumas etapas:
 -   Repetir o processo muitas vezes para obter uma distribuição de resultados.
 -   Estudar os resultados gerados para fazer previsões ou tomar decisões.
 
-Por exemplo, Imagine que você está jogando roleta em um cassino e quer calcular a probabilidade de ganhar ao apostar no número 7. Em uma roleta europeia, há 37 casas numeradas de 0 a 36.
+Por exemplo, imagine que você está jogando roleta em um cassino e quer calcular a probabilidade de ganhar ao apostar no número 7. Em uma roleta europeia, há 37 casas numeradas de 0 a 36.
 
 **Passos da Simulação de Monte Carlo:**
 
--   Modelo do poblema: a roleta tem 37 casas (0 a 36) e você ganha se a bola cair no número 7.
+-   Modelo do problema: a roleta tem 37 casas (0 a 36) e você ganha se a bola cair no número 7.
 -   Gerar resultados aleatórios: simular várias rodadas de roleta para ver quantas vezes a bola cai no número 7.
 -   Repetir várias vezes: repetir a simulação muitas vezes (por exemplo, 10.000 vezes) para obter uma distribuição dos resultados.
 -   Analisar os resultados: calcular a proporção de vezes que você ganhou (bola caiu no número 7).
@@ -303,9 +303,9 @@ A simulação de Monte Carlo não é apenas útil para calcular probabilidades e
 
 ### Estimando Áreas com a Simulação de Monte Carlo
 
-Vamos demonstrar como a Simulação de Monte Carlo pode ser usada para calcular a área abaixo da curva da função $y = x^2$ entre os valores 4 e 6. A área abaixo da curva pode ser estimada como sendo a área do retangulo entre os pontos 4 e 6 multiplicada pela razão entre da área abaixo da curva a a área do quadrado. Entretanto, a área abaixo da curva é justamente o que queremos saber.
+Vamos demonstrar como a Simulação de Monte Carlo pode ser usada para calcular a área abaixo da curva da função $y = x^2$ entre os valores 4 e 6. A área abaixo da curva pode ser estimada como sendo a área do retângulo entre os pontos 4 e 6 multiplicada pela razão entre a área abaixo da curva e a área do quadrado. Entretanto, a área abaixo da curva é justamente o que queremos saber.
 
-A Simulação de Monte Carlo pode nos ajudar nesse problema, pois podemos fazer uma analogia da área numa região com a quantidade de pontos aleatórios que cabem nessa região. Assim, podemos estimar essa proporção entra as áreas através da razão entre a quantidade de pontos aleatórios que caem abaixo da curva pelo total de pontos dentro do retângulo.
+A Simulação de Monte Carlo pode nos ajudar nesse problema, pois podemos fazer uma analogia da área numa região com a quantidade de pontos aleatórios que cabem nessa região. Assim, podemos estimar essa proporção entre as áreas através da razão entre a quantidade de pontos aleatórios que caem abaixo da curva pelo total de pontos dentro do retângulo.
 
 $$
 \frac{\text{Área abaixo da curva}}{\text{Área do retângulo}} = \frac{\text{pontos abaixo da curva}}{\text{pontos totais no retangulo}}   
@@ -402,7 +402,7 @@ ggplot() +
 
 Para estimar a área sob a curva usando a simulação de Monte Carlo, seguimos os seguintes passos:
 
-1.  **Definir o modelo**: No nosso caso, o mnodelo é a função $y = x^2$ e os limites são `x = 4` e `x = 6`.
+1.  **Definir o modelo**: No nosso caso, o modelo é a função $y = x^2$ e os limites são `x = 4` e `x = 6`.
 2.  **Gerar Pontos Aleatórios**: Geramos pontos aleatórios dentro do retângulo que envolve a região de interesse. Este retângulo vai de x = 4 a x = 6 e de y = 0 até o valor máximo de y (neste caso, y = 36, porque $6^2 = 36$).
 3.  **Contar Pontos Abaixo da Curva**: Verificamos quantos pontos aleatórios caem abaixo da curva $y = x^2$.
 4.  **Calcular a Área**: A proporção de pontos abaixo da curva, multiplicada pela área do retângulo, nos dá a estimativa da área abaixo da curva.
@@ -483,7 +483,7 @@ Ou seja $\pi=4R$
 
 Então, para calcular $\pi$, basta multiplicar por 4 a razão entre a área do círculo e a do quadrado.
 
-A Simulação de Monte Carlo nos permite fazer um aproximação dessa razão. Podemos criar muitos pontos aleatórios no quadrado e depois simplesmente contar o número que estão dentro do círculo. A proporção desses pontos dentro com o total será a aproximação da razão da áreas.
+A Simulação de Monte Carlo nos permite fazer uma aproximação dessa razão. Podemos criar muitos pontos aleatórios no quadrado e depois simplesmente contar o número que estão dentro do círculo. A proporção desses pontos dentro com o total será a aproximação da razão das áreas.
 
 Primeiro, vamos gerar um conjunto aleatório de pontos em um quadrado e depois determinar quais estão dentro do círculo.
 
@@ -495,7 +495,7 @@ pontos <- data.frame(x = runif(trials, -0.5, 0.5),
                      y = runif(trials, -0.5, 0.5))
 ```
 
-Para determinar quais pontos estão dentro do círculo (que tem um raio de 0,5), basta calcular a distância de cada ponto até o centro, o que nada mais é que a diagonal de um triângulo, que pode ser calculada com o teorema de pitágoras. Se essa diagonal for menor que o raio, então o ponto está dentro do círculo. Para isso iremos criar uma variável lógica chamada `pontosDentro`, que terá o valor `TRUE` se o ponto estiver dentro do círculo.
+Para determinar quais pontos estão dentro do círculo (que tem um raio de 0,5), basta calcular a distância de cada ponto até o centro, o que nada mais é que a diagonal de um triângulo, que pode ser calculada com o teorema de Pitágoras. Se essa diagonal for menor que o raio, então o ponto está dentro do círculo. Para isso iremos criar uma variável lógica chamada `pontosDentro`, que terá o valor `TRUE` se o ponto estiver dentro do círculo.
 
 ```{r, warning=FALSE, message=FALSE}
 pontos <- pontos |>
@@ -504,7 +504,7 @@ pontos <- pontos |>
 head(pontos)
 ```
 
-O desenho abaixo mostra a simulação, colorindo de forma diferentes os pontos dentro e fora do círculo:
+O desenho abaixo mostra a simulação, colorindo de forma diferente os pontos dentro e fora do círculo:
 
 ```{r}
 ggplot(pontos) +
@@ -539,17 +539,17 @@ piApprox
 
 ## Bootstrapping
 
-O bootstrap é um método computacional para estimar a precisão de medidas estatísticas, baseado na reamostragem com reposição (*replacement*). Um dos principais uso do Boostrap é para calcular o intervalo de confiança para qualquer tipo de medida estatística [@dogan2017].
+O bootstrap é um método computacional para estimar a precisão de medidas estatísticas, baseado na reamostragem com reposição (*replacement*). Um dos principais usos do Bootstrap é para calcular o intervalo de confiança para qualquer tipo de medida estatística [@dogan2017].
 
-O método de bootstrap simples envolve pegar o conjunto de dados original, usando um computador, fazer uma amostragem com reposição para formar uma nova amostra (chamada de *reamostra*, *amostra de bootstrap* ou *boostrap sample*) que também é de tamanho N. A amostra de bootstrap é retirada de o original usando amostragem com substituição (por exemplo, podemos 'reamostrar' 5 vezes de \[1,2,3,4,5\] e obter \[2,5,4,4,1\]). Esse processo é repetido milhares de vezes. Em seguida, para cada uma dessas amostras de bootstrap, calculamos a estatística de interesse, chamada de "estimativa de bootstrap e seu intervalo de confiança.
+O método de bootstrap simples envolve pegar o conjunto de dados original, usando um computador, fazer uma amostragem com reposição para formar uma nova amostra (chamada de *reamostra*, *amostra de bootstrap* ou *bootstrap sample*) que também é de tamanho N. A amostra de bootstrap é retirada do original usando amostragem com substituição (por exemplo, podemos 'reamostrar' 5 vezes de \[1,2,3,4,5\] e obter \[2,5,4,4,1\]). Esse processo é repetido milhares de vezes. Em seguida, para cada uma dessas amostras de bootstrap, calculamos a estatística de interesse, chamada de "estimativa de bootstrap" e seu intervalo de confiança.
 
-Entretanto, excetuando-se a média, é muito difícil conhecer a precisão de outras estimativas. O algoritmo de boostrap serve justamente para isso, para estimarmos a precisão de medidas estatísticas.
+Entretanto, excetuando-se a média, é muito difícil conhecer a precisão de outras estimativas. O algoritmo de bootstrap serve justamente para isso, para estimarmos a precisão de medidas estatísticas.
 
-Pra fins de exemplo, vamos comparar o intervalo de confiança de uma média calculado calculado com o método boostrap e calculado com a fórmula tradicional $\bar{x} \pm 1.96\times \frac{\sigma}{\sqrt{n}}$, onde $\bar{x}$ é a média, ${\sigma}$ é o desvio padrão e ${n}$ é o tamanho da amostra.
+Para fins de exemplo, vamos comparar o intervalo de confiança de uma média calculado com o método bootstrap e calculado com a fórmula tradicional $\bar{x} \pm 1.96\times \frac{\sigma}{\sqrt{n}}$, onde $\bar{x}$ é a média, ${\sigma}$ é o desvio padrão e ${n}$ é o tamanho da amostra.
 
-Suponha que estamos interessados na altura média das pessoas de uma cidade. Não podemos medir todas as pessoas da cidade, por isso, em vez disso, amostramos apenas uma pequena parte dela. Suponha que a amostra seja de tamanho N; isto é, medimos as alturas de N indivíduos. Dessa única amostra, apenas uma estimativa da média pode ser obtida. Entretanto, precisamos de alguma noção da variabilidade da média que calculamos. Apesar ser fácil aavaliar o erro padrão da média, esse exemplo serve para entendermos como funciona o boostrap.
+Suponha que estamos interessados na altura média das pessoas de uma cidade. Não podemos medir todas as pessoas da cidade, por isso, em vez disso, amostramos apenas uma pequena parte dela. Suponha que a amostra seja de tamanho N; isto é, medimos as alturas de N indivíduos. Dessa única amostra, apenas uma estimativa da média pode ser obtida. Entretanto, precisamos de alguma noção da variabilidade da média que calculamos. Apesar de ser fácil avaliar o erro padrão da média, esse exemplo serve para entendermos como funciona o bootstrap.
 
-Para fins desse exemplo, vamos usar gerar de forma randomizada uma população de 100.000 pessoas, com distribuição normal, com média de altura de 175cm e desvio padrão de 20cm. E vamos retirar desse população uma amostra com 200 pessoas. Em seguida vamos retirar uma amostra dessa população e então calcular o intervalo de confiança da média da população e da amostra.
+Para fins desse exemplo, vamos gerar de forma randomizada uma população de 100.000 pessoas, com distribuição normal, com média de altura de 175cm e desvio padrão de 20cm. E vamos retirar dessa população uma amostra com 200 pessoas. Em seguida vamos retirar uma amostra dessa população e então calcular o intervalo de confiança da média da população e da amostra.
 
 ```{r}
 pop <- rnorm(n = 100000, mean = 175, sd = 20 )
@@ -572,7 +572,7 @@ bootSamples <- replicate(1000, sample(OriginalSample, size = length(OriginalSamp
 Agora vamos calcular a média de cada uma das amostras de bootstrap e então calcular o intervalo de confiança.
 
 ```{r}
-# criando uma vetor "means" com as médias de cada uma das amostras do boostrap
+# criando um vetor "means" com as médias de cada uma das amostras do bootstrap
 means <- apply(bootSamples, 2, mean)
 ```
 

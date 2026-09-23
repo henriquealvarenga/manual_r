@@ -37,11 +37,11 @@ knitr::include_graphics(rep("images/long_dataframe.png", 1))
 
 #### A função `pivot_longer()` e `pivot_wider`
 
-Na seção sobre data frames mostramos que o layout mais comum de um data frame é chamado de **wide**, na qual as linhas representam observações e as colunas representam variáveis. Mas nem sempre os data frames vem organizados da forma como precisamos. Às vezes uma variável está distribuída em mais de uma coluna.
+Na seção sobre data frames mostramos que o layout mais comum de um data frame é chamado de **wide**, na qual as linhas representam observações e as colunas representam variáveis. Mas nem sempre os data frames vêm organizados da forma como precisamos. Às vezes uma variável está distribuída em mais de uma coluna.
 
-Num dataset que construimos em seções anteriores, por exemplo, existem duas colunas para representar os resultados de 2 diferentes tipos de tratamento, A e B. Essa separação pode ajudar a comparar visualmente os 2 tratamentos numa tabela.
+Num dataset que construímos em seções anteriores, por exemplo, existem duas colunas para representar os resultados de 2 diferentes tipos de tratamento, A e B. Essa separação pode ajudar a comparar visualmente os 2 tratamentos numa tabela.
 
-Mas, pode ser interessante agrupar essas duas colunas num única variável, que poderíamos chamar de tratamento. Ou seja, podemos representar esse dados de duas formas, chamadas de `wide` ou `long`.
+Mas, pode ser interessante agrupar essas duas colunas numa única variável, que poderíamos chamar de tratamento. Ou seja, podemos representar esses dados de duas formas, chamadas de `wide` ou `long`.
 
 Esse agrupamento de duas ou mais colunas em uma única variável é feito com a função `pivot_longer()`.
 
@@ -64,7 +64,7 @@ Veja que esse novo data frame possui 3 linhas e as colunas `tratamentoA` e `trat
 
 O que precisamos é unir essas duas últimas colunas (`tratamentoA` e `tratamentoB`) em uma única coluna que iremos denominar simplesmente de `tratamento`.
 
-Observe que o data frame no formato `long` terá 6 linhas, o dobro do anterior, e que os valores das duas antigas colunas(`tratamentoA` e `tratamentoB`) foram todos inseridos na coluna denominada `tratamento`. Observe que os resultados de cada tratamento foram colocados numa outra coluna que denominei de `scores`.
+Observe que o data frame no formato `long` terá 6 linhas, o dobro do anterior, e que os valores das duas antigas colunas (`tratamentoA` e `tratamentoB`) foram todos inseridos na coluna denominada `tratamento`. Observe que os resultados de cada tratamento foram colocados numa outra coluna que denominei de `scores`.
 
 Ou seja, não há perda de informação, apenas uma modificação do layout do data frame, que é usualmente denominado de **long**, pelo fato de ser mais comprido que o anterior.
 
@@ -103,7 +103,7 @@ result.long |> pivot_wider(names_from = "tratamento",
                             values_from = "scores")
 ```
 
-Vejamos como a transformação do data frame na versão long facilita a criação de um gráfico. Com esse novo formato, podemos usare a função `geom_boxplot` do `ggplot` para criar boxplots de cada tipo de tratamento, o que seria bem mais difícil no data frame do tipo wide.
+Vejamos como a transformação do data frame na versão long facilita a criação de um gráfico. Com esse novo formato, podemos usar a função `geom_boxplot` do `ggplot` para criar boxplots de cada tipo de tratamento, o que seria bem mais difícil no data frame do tipo wide.
 
 ```{r}
 ggplot(result.long) +
@@ -189,7 +189,7 @@ dados <- unite(dados_hm, col = "hora", horas, minutos, sep = ":")
 dados
 ```
 
-A função `unite()` não suporte múltiplas uniões em um único comando. Assim, para unir novamente também as colunas ano, mes e dia, precisamos de uma nova linha com unite.
+A função `unite()` não suporta múltiplas uniões em um único comando. Assim, para unir novamente também as colunas ano, mes e dia, precisamos de uma nova linha com unite.
 
 ```{r}
 # Usando unite duas vezes: horas e minutos em hora; ano, mes e dia em data
@@ -206,7 +206,7 @@ dados_hm
 
 #### Desconsiderar valores NA
 
-Como vimos anteriormente, nem todos argumentos são valores numéricos. Alguns argumentos servem para indicar como a função deve se comportar. Um argumento importante de muitas funções é o `na.rm = TRUE`. a expressão `na.rm=TRUE` é uma abreviação de REMOVE NOT AVAILABLE DATA, ou seja, remova os dados faltantes. Ao indicarmos que esse argumento é verdadeiro (`TRUE`), o R irá desconsiderar dados em branco ou faltantes ao fazer os cálculos. Sem esse argumento, frequentemente os cálculos não são realizados.
+Como vimos anteriormente, nem todos argumentos são valores numéricos. Alguns argumentos servem para indicar como a função deve se comportar. Um argumento importante de muitas funções é o `na.rm = TRUE`. A expressão `na.rm=TRUE` é uma abreviação de REMOVE NOT AVAILABLE DATA, ou seja, remova os dados faltantes. Ao indicarmos que esse argumento é verdadeiro (`TRUE`), o R irá desconsiderar dados em branco ou faltantes ao fazer os cálculos. Sem esse argumento, frequentemente os cálculos não são realizados.
 
 **Criando uma variável peso com valores NA**
 
@@ -223,7 +223,7 @@ mean(peso)
 
 Veja que o resultado obtido foi `NA`, ou seja, o R não conseguiu fazer os cálculos. Uma das formas de resolver esse problema é retirar os valores `NA` antes de fazer os cálculos. Isso pode ser feito através do argumento `na.rm = TRUE`.
 
-**Tentando calcular a média do peso, indicando ao R para retirar os valores NA com o o argumento na.rm = TRUE**
+**Tentando calcular a média do peso, indicando ao R para retirar os valores NA com o argumento na.rm = TRUE**
 
 ```{r}
 # calcula a média do peso, retirando os valores NA, utilizando o argumento na.rm = TRUE
@@ -270,9 +270,9 @@ mydata |>
   mean(na.rm = TRUE)
 ```
 
-Conseguimos calcular usando a função `mean()` com o argumento `na.rm=TRUE`. Entretanto, nem todas funções aceitam o argumento `na.rm=TRUE`. E as vezes precisamos retirar os valores `NA` numa sequencia diferente dentro do pipe. Podemos entáo resolver isso usando a função `drop_na()`.
+Conseguimos calcular usando a função `mean()` com o argumento `na.rm=TRUE`. Entretanto, nem todas funções aceitam o argumento `na.rm=TRUE`. E às vezes precisamos retirar os valores `NA` numa sequência diferente dentro do pipe. Podemos então resolver isso usando a função `drop_na()`.
 
-Vejamos o resultado usando a função `drop_na()`. Perceba que a função `drop_na()` precisa ser usada **antes** da função `pull()`. Isso é porque a função `drop_na()` atua em um data frame e a função `pull()` recebe um data frame e tem como output um vetor. Então, na sequencia do código, depois do `pull()` o que existe é um vetor e não um data frame. Por isso a função `drop_na()` não pode ser usada depois do `pull()`.
+Vejamos o resultado usando a função `drop_na()`. Perceba que a função `drop_na()` precisa ser usada **antes** da função `pull()`. Isso é porque a função `drop_na()` atua em um data frame e a função `pull()` recebe um data frame e tem como output um vetor. Então, na sequência do código, depois do `pull()` o que existe é um vetor e não um data frame. Por isso a função `drop_na()` não pode ser usada depois do `pull()`.
 
 ```{r}
 mydata |>

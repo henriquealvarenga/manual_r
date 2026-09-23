@@ -37,7 +37,7 @@ Essas funções são fundamentais para a manipulação e transformação de dado
 
 ### Filtrando linhas com `filter()`
 
-Num data frame as linhas representam as diferentes observações e as colunas representam as variáveis. Por exemplo, em pesquisas na área de saúde, geralmente cada linha representa um participante da pesquisa e as colunas as vriáveis da pesquisa.
+Num data frame as linhas representam as diferentes observações e as colunas representam as variáveis. Por exemplo, em pesquisas na área de saúde, geralmente cada linha representa um participante da pesquisa e as colunas as variáveis da pesquisa.
 
 Frequentemente precisamos acessar subgrupos de um grande conjunto de dados, ou seja, precisamos selecionar subgrupos nos quais desejamos fazer nossa análise. Isso é feito no R com a função `filter()` do pacote `dplyr` que faz parte do tidyverse.
 
@@ -55,13 +55,13 @@ Relembrando o significado de cada variável do dataset `mpg`:
 knitr::include_graphics(rep("images/mpg.png", 1))
 ```
 
-Sabemos que para acessar uma variável de um data frame usamos o operador `$` e que a variável com os nomes das montadores é manufacturer. Vamos então checar quais são as montadoras dos carros dessa pacote com o comando `unique()`. Essa função lista os elementos de um conjunto, sem repetição:
+Sabemos que para acessar uma variável de um data frame usamos o operador `$` e que a variável com os nomes das montadoras é manufacturer. Vamos então checar quais são as montadoras dos carros desse pacote com o comando `unique()`. Essa função lista os elementos de um conjunto, sem repetição:
 
 ```{r}
 unique(mpg$manufacturer)
 ```
 
-Como podemos ver, esse banco de dados tem carros de várias montadoras. Em análises estatísticas que é frequentemente necessário separar os dados de acordo com alguma regra, por exemplo, de acordo com a montadora. Podemos, por exemplo desejar analisar apenas os carros das montadoras tradicionais no Brasil (Ford, Chevrolet, Volkswagen). Vamos fazer um novo data frame com essas montadoras. Para isso usamos a função `filter()` como descrito anteriormente e criar um novo data frame chamado `cfv`, letras iniciais dessas montadoras.
+Como podemos ver, esse banco de dados tem carros de várias montadoras. Em análises estatísticas é frequentemente necessário separar os dados de acordo com alguma regra, por exemplo, de acordo com a montadora. Podemos, por exemplo desejar analisar apenas os carros das montadoras tradicionais no Brasil (Ford, Chevrolet, Volkswagen). Vamos fazer um novo data frame com essas montadoras. Para isso usamos a função `filter()` como descrito anteriormente e criamos um novo data frame chamado `cfv`, letras iniciais dessas montadoras.
 
 ```{r}
 cfv <- filter(mpg, manufacturer %in% c("chevrolet", "ford", "volkswagen"))
@@ -75,7 +75,7 @@ Veja que agora nosso data frame só possui essas três montadoras.
 unique(cfv$manufacturer)
 ```
 
-Podemos visualizar o consumo dessas três marcar selecionadas num boxplot comparativo, como feito a seguir:
+Podemos visualizar o consumo dessas três marcas selecionadas num boxplot comparativo, como feito a seguir:
 
 ```{r}
 boxplot(cty~manufacturer,   # plota o consumo de acordo com a montadora
@@ -85,13 +85,13 @@ boxplot(cty~manufacturer,   # plota o consumo de acordo com a montadora
 
 Podemos ver com essa análise inicial que os carros da volkswagen percorrem mais milhas com um galão que os carros da Chevrolet e da Ford. Mas quais são esses carros?
 
-Podemos usar o comando `filter()` para filtramos os dados de acordo com regras numéricas. Por exemplo, para sabermos quais são os carros que conseguem percorrer mais de 30 milhas com um galão usamos também a função `filter()` como abaixo, no qual criamos um novo data frame com o nome `bestcars`.
+Podemos usar o comando `filter()` para filtrarmos os dados de acordo com regras numéricas. Por exemplo, para sabermos quais são os carros que conseguem percorrer mais de 30 milhas com um galão usamos também a função `filter()` como abaixo, no qual criamos um novo data frame com o nome `bestcars`.
 
 ```{r}
 bestcars <- filter(cfv, cty > 30)
 ```
 
-Para mostrar o conteúdo desse novo data frame que chamamos de bestaras basta digitar o nome do data frame no console. E para saber apenas o nome dos modelos desses carros, basta usar o operador `$`, como mostrado abaixo:
+Para mostrar o conteúdo desse novo data frame que chamamos de bestcars basta digitar o nome do data frame no console. E para saber apenas o nome dos modelos desses carros, basta usar o operador `$`, como mostrado abaixo:
 
 ```{r}
 bestcars$model
@@ -122,14 +122,14 @@ Quando trabalhamos com datasets com centenas ou milhares de variáveis, usar a f
 
 ### Extraindo valores com `pull()`
 
-A função `pull()` funciona de forma parecida com o operador `$`. Ambos tem a função de extrair valores de um data frame. Já vimos como usar o operador `$` para extrair valores de uma variável e usar esses valores em funções estatísticas tais como `mean()`, `median()` e `sd()`. Vamos relembrar como isso foi feito usando o dataset `mpg`.
+A função `pull()` funciona de forma parecida com o operador `$`. Ambos têm a função de extrair valores de um data frame. Já vimos como usar o operador `$` para extrair valores de uma variável e usar esses valores em funções estatísticas tais como `mean()`, `median()` e `sd()`. Vamos relembrar como isso foi feito usando o dataset `mpg`.
 
 ```{r}
 # calculando a média das milhas por galão na cidade 
 mean(mpg$cty) 
 ```
 
-Mas as vezes são necessárias diversas operações antes de encontrar o conjunto numérico desejado para calcular uma média. Por exemplo, se quisermos calcular a média das milhas percorridas com um galão em automóveis do tipo SUV? vamos ver como podemos fazer isso usando o operador pipe `|>` e as funções `select()`, `filter()` e `pull()`.
+Mas às vezes são necessárias diversas operações antes de encontrar o conjunto numérico desejado para calcular uma média. Por exemplo, se quisermos calcular a média das milhas percorridas com um galão em automóveis do tipo SUV? Vamos ver como podemos fazer isso usando o operador pipe `|>` e as funções `select()`, `filter()` e `pull()`.
 
 ```{r}
 data(mpg)
@@ -138,7 +138,7 @@ mpg |> filter(class=="suv") |>
         mean()
 ```
 
-O código acima não deu erro, mas devolveu `NA` acompanhado de um aviso. O motivo é que o argumento passado pelo pipe para a função `mean()` não é um vetor, mas sim uma data frame (ou uma tibble). Podemos conferir isso no código abaixo, onde substituimos a função `mean()` pela função `class()` que informa o tipo de objeto.
+O código acima não deu erro, mas devolveu `NA` acompanhado de um aviso. O motivo é que o argumento passado pelo pipe para a função `mean()` não é um vetor, mas sim um data frame (ou uma tibble). Podemos conferir isso no código abaixo, onde substituímos a função `mean()` pela função `class()` que informa o tipo de objeto.
 
 ```{r}
 mpg |> filter(class=="suv") |>
@@ -146,7 +146,7 @@ mpg |> filter(class=="suv") |>
         class()
 ```
 
-Para que a função `mean()` possa calcular a média é necessário que o argumento passado para essa função seja um conjunto numérico, ou seja, um vetor numérico. É aí que entra a função `pull()`, que extrai os valores do data frame e repassa esse valores adiante pelo pipe. Vejamos agora como consertar o código.
+Para que a função `mean()` possa calcular a média é necessário que o argumento passado para essa função seja um conjunto numérico, ou seja, um vetor numérico. É aí que entra a função `pull()`, que extrai os valores do data frame e repassa esses valores adiante pelo pipe. Vejamos agora como consertar o código.
 
 ```{r}
 mpg |> filter(class=="suv") |>
@@ -165,7 +165,7 @@ No dataset `mpg` a medida da distância percorrida é dada em milhas. Podemos us
 mutate(cty.km = cty*1.609344, mpg) 
 ```
 
-O código acima por ser lido da seguinte maneira: crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344, proveniente do dataset `mpg`. Esse código, entretanto, tem um problema: o resultado dessa operação não foi salvo em nenhuma variável. Ao ser executado, esse código irá apenas mostrar todo o resultado sem salvar nada. Para que a nova variável seja salva é necessário acrescenta essa etapa no código como feito abaixo.
+O código acima pode ser lido da seguinte maneira: crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344, proveniente do dataset `mpg`. Esse código, entretanto, tem um problema: o resultado dessa operação não foi salvo em nenhuma variável. Ao ser executado, esse código irá apenas mostrar todo o resultado sem salvar nada. Para que a nova variável seja salva é necessário acrescentar essa etapa no código como feito abaixo.
 
 ```{r}
 mpg <- mutate(cty.km = cty*1.609344, mpg) 
@@ -178,7 +178,7 @@ mpg <- mpg |>
        mutate(cty.km = cty*1.609344) 
 ```
 
-O coódigo acima pode ser lido da seguinte forma: use o dataset `mpg`, crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344. Finalmente, acrescente essa nova variável no dataset `mpg`.
+O código acima pode ser lido da seguinte forma: use o dataset `mpg`, crie uma variável com o nome `cty.km` com valores iguais aos da variável `cty` multiplicado por 1.609344. Finalmente, acrescente essa nova variável no dataset `mpg`.
 
 Veja que, quando usamos o operador pipe, o dataset usado é informado antes do operador pipe e as funções a seguir já não precisam mais dessa informação nos seus argumentos.
 
@@ -227,7 +227,7 @@ pacientes_ordenados_mult <- arrange(pacientes, idade, cidade)
 pacientes_ordenados_mult
 ```
 
-### Agrupando dadoc com `group_by()` e `by()`
+### Agrupando dados com `group_by()` e `by()`
 
 As funções `by()` do R base e `group_by()` do `dplyr` no `tidyverse` são usadas para agrupar dados e aplicar operações sobre esses grupos. Ambas são ferramentas poderosas para manipulação de dados, mas possuem diferentes sintaxes e vantagens.
 
@@ -377,7 +377,7 @@ table(x)
 
 ```
 
-Podemos resolver esse problema recodificando o valor da variável "Feminino" para "Fem" e "Masculino" para “Masc". Observe que é preciso atribuir o resultado à um objeto para que a recodificação seja salva.
+Podemos resolver esse problema recodificando o valor da variável "Feminino" para "Fem" e "Masculino" para "Masc". Observe que é preciso atribuir o resultado a um objeto para que a recodificação seja salva.
 
 ```{r}
 x2 <- replace_values(x, "Feminino" ~ "Fem", "Masculino" ~ "Masc")
@@ -393,7 +393,7 @@ table(x3)
 
 A recodificação de variáveis pode servir também para reduzir o número de categorias de uma variável.
 
-Por exemplo, no dataset `mpg` a variável `trans` (tipo de transmissão) tem 10 categorias, ou seja, 10 diferentes de tipos de transmissão: 8 tipos de marchas automáticas e 2 tipos de marchas manuais.
+Por exemplo, no dataset `mpg` a variável `trans` (tipo de transmissão) tem 10 categorias, ou seja, 10 diferentes tipos de transmissão: 8 tipos de marchas automáticas e 2 tipos de marchas manuais.
 
 ```{r}
 unique(mpg$trans)
@@ -403,7 +403,7 @@ Para compararmos os carros com marchas automáticas com marchas manuais precisam
 
 Podemos fazer isso criando uma nova variável com apenas essas duas categorias.
 
-Podemos fazer isso usando função `mutate()` para criar uma nova variável `marcha`.
+Podemos fazer isso usando a função `mutate()` para criar uma nova variável `marcha`.
 
 Usaremos a função `recode_values()`, irmã da `replace_values()`, que serve para criar uma variável inteiramente nova a partir dos valores da variável `trans` (os valores não listados viram `NA`), e o operador `pipe` para facilitar tudo isso. Note que o lado esquerdo do `~` pode ser um vetor com vários valores antigos, o que evita repetir o valor novo linha a linha.
 
@@ -424,7 +424,7 @@ table(mpg$marcha)
 
 ### Combinando data frames com `bind_rows()` e `bind_cols()`
 
-Ao trabalhar com dados, muitas vezes é necessário combinar vários data frames em um único data frame. As funções `bind_rows()` e `bind_cols()` do pacote `dplyr` são projetada para concatenar data frames verticalmente, empilhando as linhas de cada data frame um em cima do outro, ou horizontalmente combinando suas colunas em um único data frame. Estas funções são particularmente útil quando se tem dados provenientes de diferentes fontes ou partes de um estudo que precisam ser unificados.
+Ao trabalhar com dados, muitas vezes é necessário combinar vários data frames em um único data frame. As funções `bind_rows()` e `bind_cols()` do pacote `dplyr` são projetadas para concatenar data frames verticalmente, empilhando as linhas de cada data frame um em cima do outro, ou horizontalmente combinando suas colunas em um único data frame. Estas funções são particularmente úteis quando se tem dados provenientes de diferentes fontes ou partes de um estudo que precisam ser unificados.
 
 #### Combinando por linhas com `bind_rows()`
 
@@ -483,7 +483,7 @@ pacientes_identificados
 
 #### Combinando por colunas `bind_cols()`
 
-As vezes é necessário combinar várias tabelas ou data frames lado a lado, unindo suas colunas. A função `bind_cols()` do pacote `dplyr` é projetada para concatenar data frames horizontalmente, combinando suas colunas em um único data frame. Esta função é útil quando você tem diferentes partes de dados que compartilham a mesma estrutura de linhas e deseja uni-los para formar um conjunto de dados completo.
+Às vezes é necessário combinar várias tabelas ou data frames lado a lado, unindo suas colunas. A função `bind_cols()` do pacote `dplyr` é projetada para concatenar data frames horizontalmente, combinando suas colunas em um único data frame. Esta função é útil quando você tem diferentes partes de dados que compartilham a mesma estrutura de linhas e deseja uni-los para formar um conjunto de dados completo.
 
 *Exemplo*: Combinar Dois Data Frames Lado a Lado
 
@@ -558,7 +558,7 @@ pacientes
 ```
 
 ```{r}
-# Contar o número de pacientes por genero
+# Contar o número de pacientes por sexo
 count(pacientes, sexo)
 ```
 

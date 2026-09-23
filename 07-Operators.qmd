@@ -29,7 +29,7 @@ O número \[1\] entre colchetes que aparece antes do resultado indica que o valo
 
 ### Precedência de Operações
 
-Assim como na matemática, também no R existem regras de precedência de operações com um detalhe: os parênteses sempre tem preferência, ou precedência, sendo usados para colocarmos as operações na ordem desejada. ou seja, as operações entre parênteses tem prioridade sobre outras operações. Veja o exemplo abaixo
+Assim como na matemática, também no R existem regras de precedência de operações com um detalhe: os parênteses sempre têm preferência, ou precedência, sendo usados para colocarmos as operações na ordem desejada. Ou seja, as operações entre parênteses têm prioridade sobre outras operações. Veja o exemplo abaixo
 
 ```{r}
 (4*3) + 2 
@@ -60,7 +60,7 @@ z <- (x+y)^2
 z <- "Maria" 
 ```
 
-Observe que ao criar uma variável para armazenar uma palavra ou um caractere, é necessário colocar essa palavra entre aspas. O R entende que está entre aspas é uma palavra ou um texto e não um número.
+Observe que ao criar uma variável para armazenar uma palavra ou um caractere, é necessário colocar essa palavra entre aspas. O R entende que o que está entre aspas é uma palavra ou um texto e não um número.
 
 ## Operadores de Comparação (Relacionais)
 
@@ -70,7 +70,7 @@ Operadores de comparação, ou relacionais, realizam ações de verificação da
 knitr::include_graphics(rep("images/OperadoresRelacionaisPNG.png", 1))
 ```
 
-Perceba que o operador de igualdade é o `==` e não o `=`. O simbolo `=` é o operador de atribuição e não de igualdade. É frequente a confusão entre entre esses operadores. Devido a isso, no R é usual utilizarmos o `<-`como o operador de atribuição.
+Perceba que o operador de igualdade é o `==` e não o `=`. O símbolo `=` é o operador de atribuição e não de igualdade. É frequente a confusão entre esses operadores. Devido a isso, no R é usual utilizarmos o `<-` como o operador de atribuição.
 
 Veja nos códigos abaixo exemplos do uso dos operadores relacionais. Perceba que o resultado é sempre uma variável lógica (`TRUE` ou `FALSE`).
 
@@ -122,7 +122,7 @@ idade <- c(45, 40, 48)
 staff  <- data.frame(nome, idade) 
 ```
 
-Para extrairmos os valores da variábel nessa coluna com as idades basta usarmos `staff$idade`, como abaixo:
+Para extrairmos os valores da variável nessa coluna com as idades basta usarmos `staff$idade`, como abaixo:
 
 ```{r}
 staff$idade 
@@ -163,14 +163,14 @@ x <- 1:10
 x
 ```
 
-Podemos criar sequencias decrescentes
+Podemos criar sequências decrescentes
 
 ```{r}
 x <- 100:90
 x
 ```
 
-Podemos criar sequencias combinadas com o uso da função de concatenação `c()`, tal como mostrado a seguir:
+Podemos criar sequências combinadas com o uso da função de concatenação `c()`, tal como mostrado a seguir:
 
 ```{r}
 # Combinando duas sequências
@@ -183,11 +183,11 @@ O operador de sequência `:` é muito eficiente para criar sequências simples d
 
 O operador `~` é utilizado para expressar a relação entre variáveis, indicando a dependência de uma variável resposta em relação a uma ou mais variáveis preditoras. Ele é amplamente utilizado na criação de fórmulas, que são objetos da classe `formula` no R.
 
-A sintaxe básica do operador `~` é: `resposta ~ preditores`, Onde `resposta` é a variável dependente e `preditores` são as variáveis independentes. É possível haver mais de uma variável preditora. Nesse caso as variáveis preditoras são agregadas com o operador `+`. Por exemplo: `resposta ~ preditor1 + preditor2 + preditor3`.
+A sintaxe básica do operador `~` é: `resposta ~ preditores`, onde `resposta` é a variável dependente e `preditores` são as variáveis independentes. É possível haver mais de uma variável preditora. Nesse caso as variáveis preditoras são agregadas com o operador `+`. Por exemplo: `resposta ~ preditor1 + preditor2 + preditor3`.
 
 Suponha que temos um conjunto de dados sobre o peso e a altura de indivíduos e queremos criar um modelo que descreva o peso em função da altura. Podemos criar um objeto da classe fórmula simplesmente escrevendo `peso ~ altura`. Observe que os objetos da classe fórmula não são avaliados numericamente, a não ser quando são inseridos em alguma função.
 
-Esse é justamente o poder das fórmulas no R, permitem capturar os relações entre variáveis sem avaliá-las para que possam ser interpretadas por alguma função.
+Esse é justamente o poder das fórmulas no R, permitem capturar as relações entre variáveis sem avaliá-las para que possam ser interpretadas por alguma função.
 
 ```{r}
 # Dados de exemplo
@@ -206,7 +206,7 @@ Este código cria uma fórmula que representa a relação entre peso e altura. A
 
 Podemos inserir fórmulas como argumentos de funções. Por exemplo, na construção de um boxplot comparativo: `boxplot(y~x, dataframe)`.
 
-O código acima pode ser traduzido da seguinte forma: faça um boxplot da distribuição da variável numérica `y` estratificando de acordo com a variável categórica `x`, a partir dos dados do data frame indicado. Podemos fazer isso usando os dados criado no código acima.
+O código acima pode ser traduzido da seguinte forma: faça um boxplot da distribuição da variável numérica `y` estratificando de acordo com a variável categórica `x`, a partir dos dados do data frame indicado. Podemos fazer isso usando os dados criados no código acima.
 
 ```{r}
 # usando os dados criados na etapa anterior:
@@ -227,7 +227,7 @@ summary(modelo)
 
 ## Operador pipe `|>` {#pipe}
 
-Pipe, na língua inglesa, significa tubo ou tubulação. Na computação pipe é uma forma de simplificar uma série de comandos em sequência. O nome desse operador tem a ver com o fato de criar uma sequencia de ações, encaminhando os resultados de uma função para a próxima função como se estivessem sendo carregados por um tubo. Esse operador faz parte do pacote `magrittr` e é automaticamente instalado juntamente com o `tidyverse`. A partir da versão 4.1, o R passou a ter um operador pipe próprio, sem a necessidade de novos pacotes. Ambos tem funções similares e se comportam de forma parecida, com alguns detalhes diferentes. Esses operadores usam simbolos diferentes, mas funcionam de forma parecida e não entraremos em detalhes das sutis diferenças entre eles.
+Pipe, na língua inglesa, significa tubo ou tubulação. Na computação pipe é uma forma de simplificar uma série de comandos em sequência. O nome desse operador tem a ver com o fato de criar uma sequência de ações, encaminhando os resultados de uma função para a próxima função como se estivessem sendo carregados por um tubo. Esse operador faz parte do pacote `magrittr` e é automaticamente instalado juntamente com o `tidyverse`. A partir da versão 4.1, o R passou a ter um operador pipe próprio, sem a necessidade de novos pacotes. Ambos têm funções similares e se comportam de forma parecida, com alguns detalhes diferentes. Esses operadores usam símbolos diferentes, mas funcionam de forma parecida e não entraremos em detalhes das sutis diferenças entre eles.
 
 -   Operador pipe do pacote `magrittr`: `%>%`
 
@@ -238,7 +238,7 @@ Veja um exemplo. Suponha que dado um vetor, você precise calcular a média dos 
 Podemos fazer isso de três formas:
 
 1.  Aninhando as operações em parênteses ou
-2.  criando variáveis intermediários em cada etapa.
+2.  criando variáveis intermediárias em cada etapa.
 3.  Usando o operador pipe.
 
 Vejamos como isso seria feito e quais as deficiências das duas primeiras abordagens.
@@ -255,11 +255,11 @@ x <- c(0,11,222,333,44,55,66,77,88,99,100,110)
 round(sqrt(mean(x)),2)
 ```
 
-Essa forma de fazer as operações não é nada elegante. O código fica difícil de ser lido e de ser compreendido. Erros são comuns e corrigi-los é ainda mais difícil. Um modo alternativo é fazer cada operação de uma vez, armazenado o resultado em variáveis intermediárias em cada etapa
+Essa forma de fazer as operações não é nada elegante. O código fica difícil de ser lido e de ser compreendido. Erros são comuns e corrigi-los é ainda mais difícil. Um modo alternativo é fazer cada operação de uma vez, armazenando o resultado em variáveis intermediárias em cada etapa
 
 **2º modo:** Fazendo cada operação separadamente, usando variáveis intermediárias
 
-Calcule a média dos valores de x e armazenando o resultado em x2
+Calcule a média dos valores de x e armazene o resultado em x2
 
 ```{r}
 x2 <- mean(x)
@@ -279,9 +279,9 @@ arredonde o valor de x3 para 2 casas decimais depois da vírgula
 round(x3, 2)
 ```
 
-Esse modo de realizar essa sequencia de operações é mais fácil de ser compreendido, já que cada etapa do processo é feita separadamente. Entretanto, tem o inconveniente de ser necessário a criação de diversas variáveis intermediárias, o que polui desnecessáriamente o ambiente de trabalho.
+Esse modo de realizar essa sequência de operações é mais fácil de ser compreendido, já que cada etapa do processo é feita separadamente. Entretanto, tem o inconveniente de ser necessária a criação de diversas variáveis intermediárias, o que polui desnecessariamente o ambiente de trabalho.
 
-**3º modo**: Usando o operador pipe `%>%`ou `|>`
+**3º modo**: Usando o operador pipe `%>%` ou `|>`
 
 Veja agora como fazer essas operações de forma elegante com o operador pipe.
 
@@ -303,7 +303,7 @@ O código acima pode ser lido da seguinte maneira:
 
 Veja como é muito mais natural e mais fácil compreender esse código. O que o operador pipe fez foi enviar o resultado de cada operação para a operação seguinte, como se estivesse passando por um tubo.
 
-O operador pipe pode ser colocado em diversas linhas para facilitar ainda mais a visualização e compreensão da sequencia de códigos. Essa é o estilo adequado de se usar o operador pipe.
+O operador pipe pode ser colocado em diversas linhas para facilitar ainda mais a visualização e compreensão da sequência de códigos. Esse é o estilo adequado de se usar o operador pipe.
 
 ```{r}
 # usando o pipe %>% do pacote magrittr
@@ -325,7 +325,7 @@ Vamos ver como funciona o operador pipe em data frames usando como um exemplo o 
 
 Imagine que você precisa extrair a média da quilometragem percorrida na estrada, por carros da marca Ford com tração nas 4 rodas, arredondando o resultado para 2 casas decimais depois da vírgula. Não se preocupe em entender as funções `filter()`, `select()` e `pull()`. Essas funções serão explicadas no capítulo sobre o `tidyverse`. O objetivo agora é apenas entender como usar o operador pipe `%>%`.
 
-Sem o uso do operador pipe o código poderia ser feita de duas formas: criando datasets intermediários em cada etapa ou aninhando as operações em parênteses.
+Sem o uso do operador pipe o código poderia ser feito de duas formas: criando datasets intermediários em cada etapa ou aninhando as operações em parênteses.
 
 **Modo 1:** Usando comandos aninhados um dentro do outro com parênteses.
 
@@ -392,4 +392,4 @@ O código acima pode ser lido da seguinte maneira:
 
 Depois de um certo tempo você irá se acostumar com o operador pipe e perceberá o quanto ele é útil, pois as operações são colocadas numa sequência bem mais compreensível.
 
-O operador pipe do R tem algumas vantagens. Em primeiro lugar, não depende de nenhum pacote; sem segundo lugar, é mais curto para se digitar; em terceiro lugar, é mais rápido.
+O operador pipe do R tem algumas vantagens. Em primeiro lugar, não depende de nenhum pacote; em segundo lugar, é mais curto para se digitar; em terceiro lugar, é mais rápido.

@@ -1,6 +1,6 @@
-## Wilcoxon rank sum test (Man-Whitney test)
+## Wilcoxon rank sum test (Mann-Whitney test)
 
-Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. Os testes Wilcoxon rank sum test (Mann-Whitney test) é o equivalentes não paramétricos do teste t.
+Nem sempre os dados numéricos seguem um padrão normal. Nesses casos a comparação das médias não pode ser feita com o teste t. Existem vários testes para uso nesses casos, chamados de testes não paramétricos. O teste Wilcoxon rank sum test (Mann-Whitney test) é o equivalente não paramétrico do teste t.
 
 Pacotes usados nesta seção, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (@sec-packages):
 
@@ -11,7 +11,7 @@ library(tidyr)
 
 O padrão no R é que esses testes sejam realizados para amostras não pareadas. Caso as amostras sejam pareadas será necessário incluir o argumento `paired = TRUE`.
 
-Veja como realizar os Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no test t realizado anteriormente.
+Veja como realizar o Wilcoxon rank sum test no R, para amostras independentes, tomando como exemplo os mesmos dados usados no teste t realizado anteriormente.
 
 ```{r}
 # criando os vetores com os dados:
@@ -36,4 +36,4 @@ Fazendo o Wilcoxon rank sum test quando os dados estão em uma única coluna, ou
 wilcox.test(data=result.long, scores~grupo)
 ```
 
-Na mensagem de aviso acima o termo "ties" significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de "empates" ou ties". Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.
+Na mensagem de aviso acima o termo "ties" significa que há valores repetidos na amostra. Se você tiver dois valores idênticos em seus dados, eles são chamados de "empates" ou "ties". Nesse caso, os ranks não são mais únicos e, portanto, os valores de p não podem ser calculados com exatidão.

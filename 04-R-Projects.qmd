@@ -18,7 +18,7 @@ Os diretórios de trabalho são importantes porque:
 
 -   **Reprodutibilidade**: Facilita a reprodução do trabalho, garantindo que todos os arquivos necessários estejam no mesmo lugar.
 
-O Working Directory (diretório de trabalho) é o local padrão onde o R procurará os arquivos que você deseja carregar e onde colocará todos os arquivos salvos. Toda sessão de trabalho com R tem uma diretório de trabalho associado. Para que o R possa ler um arquivo, é necessário que esse arquivo esteja na pasta do diretório de trabalho da sessão do R.
+O Working Directory (diretório de trabalho) é o local padrão onde o R procurará os arquivos que você deseja carregar e onde colocará todos os arquivos salvos. Toda sessão de trabalho com R tem um diretório de trabalho associado. Para que o R possa ler um arquivo, é necessário que esse arquivo esteja na pasta do diretório de trabalho da sessão do R.
 
 Se o arquivo a ser lido estiver em outra pasta, será invisível para o RStudio.
 
@@ -35,7 +35,7 @@ A função `setwd()` muda o working directory para o folder indicado como argume
 
 Além dessas funções, você pode mudar o diretório de trabalho diretamente no menu do RStudio.
 
-Podemos indicar ao R que diretório da sessão de trabalho seja o diretório aberto naa aba Files. Para isso:
+Podemos indicar ao R que diretório da sessão de trabalho seja o diretório aberto na aba Files. Para isso:
 
 1.  clique em `Session` (no menu do RStudio)
 2.  Em seguida em `Set Working Directory`
@@ -75,12 +75,12 @@ knitr::include_graphics("images/RStudio_Project.png")
 
 Antes de criar um projeto, é necessário criar primeiro a pasta que servirá de diretório de trabalho em seu computador e salvar nessa pasta os arquivos com os dados a serem analisados.
 
-Para criar um projeto (project) clique em `Project` (na parte superior à direta do RStudio) e em seguida em `New Project`.
+Para criar um projeto (project) clique em `Project` (na parte superior à direita do RStudio) e em seguida em `New Project`.
 
 A seguir, escolha a opção `Existing Directory - Associate a project with an existing directory`.\
 Em seguida, clique em `Browse` para encontrar a pasta existente e associá-la ao seu projeto.
 
-**Video de Criação de Projetos no RStudio** <https://youtu.be/YYRb_7yJSlQ>
+**Vídeo de Criação de Projetos no RStudio** <https://youtu.be/YYRb_7yJSlQ>
 
 ### Estrutura de pastas de um projeto
 
@@ -94,7 +94,7 @@ Um projeto no R geralmente inclui:
 
 -   **Dados**: arquivos de dados que você está analisando (por exemplo, arquivos .csv, .xlsx).
 
--   **Resultados**: resultados das análise, gráficos e tabelas, criadas pelo seus scripts.
+-   **Resultados**: resultados das análises, gráficos e tabelas, criadas pelos seus scripts.
 
 -   **Documentação**: arquivos de texto ou markdown documentando seu trabalho.
 

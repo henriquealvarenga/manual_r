@@ -12,23 +12,23 @@ library(psych)
 
 O R possui diversas funções para resumir dados. As funções `summarise()` ou `summarize()` do pacote `dplyr` são sinônimas e servem para criar um novo dataframe com informações resumidas, ou seja, estatísticas de um conjunto de dados. A diferença entre essas funções e a função `summary` do R é que precisamos especificar quais medidas estatísticas serão calculadas. Apesar de dar um trabalho a mais escrever o código, você tem muito mais flexibilidade, podendo criar um novo dataframe com qualquer medida de interesse.
 
-O pacote `skimr` possui também algumas funções interessantes para resumir dados. A função `skim()` é uma delas. Ela fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `skim()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa funcção é necessário que você já tenha instalado o pacote skimr. Se ainda não tiver feito isso, use o comando `install.packages("skimr")` para instalar o pacote. Depois será necessário usar o comando `library(skimr)` para carregar esse pacote.
+O pacote `skimr` possui também algumas funções interessantes para resumir dados. A função `skim()` é uma delas. Ela fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `skim()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa função é necessário que você já tenha instalado o pacote skimr. Se ainda não tiver feito isso, use o comando `install.packages("skimr")` para instalar o pacote. Depois será necessário usar o comando `library(skimr)` para carregar esse pacote.
 
-do pacote `psych` possui a função `describe()` que fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `describe()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa funcção é necessário que você já tenha instalado o pacote psych. Se ainda não tiver feito isso, use o comando `install.packages("psych")` para instalar o pacote. Depois será necessário usar o comando `library(psych)` para carregar esse pacote.
+O pacote `psych` possui a função `describe()` que fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `describe()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa função é necessário que você já tenha instalado o pacote psych. Se ainda não tiver feito isso, use o comando `install.packages("psych")` para instalar o pacote. Depois será necessário usar o comando `library(psych)` para carregar esse pacote.
 
 ### Resumindo dados com `summary()` {#sec-summary}
 
 Podemos resumir um conjunto de dados com a função `summary()`. O argumento dessa função é um data frame.
 
-Essa função cria tabelas de todas as variáveis categóricas de um conjunto de dados de uma só vez e também calcula as medidas de mínimo, máximo, media, mediana e quartis de medidas numéricas.
+Essa função cria tabelas de todas as variáveis categóricas de um conjunto de dados de uma só vez e também calcula as medidas de mínimo, máximo, média, mediana e quartis de medidas numéricas.
 
-Veja essa função aplicada no dataset `esoph` do R, que contém dados de um estudo de caso controle de câncer de esôfago na frança.
+Veja essa função aplicada no dataset `esoph` do R, que contém dados de um estudo de caso controle de câncer de esôfago na França.
 
 ```{r}
 str(esoph)
 ```
 
-Podemos ver acima que o dataset espoa contém 5 variáveis, 3 delas categóricas ordinais (chamadas no R de Ordered factor) e 2 numéricas.
+Podemos ver acima que o dataset esoph contém 5 variáveis, 3 delas categóricas ordinais (chamadas no R de Ordered factor) e 2 numéricas.
 
 ```{r}
 summary(esoph)
@@ -72,13 +72,13 @@ mtcars$am <- as.factor(mtcars$am)
 mtcars$vs <- as.factor(mtcars$vs)
 ```
 
-Agora a função `summary()` irá corretamente fazer as tabelas das variáveis `vs` e `am`, pois já estão configuradas como sendo categóricas. Podemos ver no código abaixo que existem 19 carros com cambio automático (am=0), e 13 carros com cambio manual (am=1).
+Agora a função `summary()` irá corretamente fazer as tabelas das variáveis `vs` e `am`, pois já estão configuradas como sendo categóricas. Podemos ver no código abaixo que existem 19 carros com câmbio automático (am=0), e 13 carros com câmbio manual (am=1).
 
 ```{r}
 summary(mtcars)
 ```
 
-Vejamos alguns outros exemplos dessa funcão aplicada a alguns outros data frames.
+Vejamos alguns outros exemplos dessa função aplicada a alguns outros data frames.
 
 ```{r}
 summary(USArrests)
@@ -95,7 +95,7 @@ Veja que essa função resolve muitas de nossas necessidades no processo de aná
 Vamos usar como exemplo o dataset `diabetes` disponível no site da Vanderbilt University School of Medicine:\
 <https://hbiostat.org/data/repo/diabetes.csv>
 
-Esse dataset contém dados de 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhas e 19 colunas. O dicionário de variáveis desse datase pode ser obtido no link a seguir: <https://hbiostat.org/data/repo/Cdiabetes.html>
+Esse dataset contém dados de 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhas e 19 colunas. O dicionário de variáveis desse dataset pode ser obtido no link a seguir: <https://hbiostat.org/data/repo/Cdiabetes.html>
 
 ```{r diabetes-dictionary, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='diabetes dictionary'}
 knitr::include_graphics("images/diabetes-dictionary.png")
@@ -111,7 +111,7 @@ diabetes <- read_csv("dataset/diabetes_hbiostat.csv")
 str(diabetes)
 ```
 
-Lembre-se que será sempre util recodificar as variáveis categóricas como factor usando `as.factor()`
+Lembre-se que será sempre útil recodificar as variáveis categóricas como factor usando `as.factor()`
 
 ```{r}
 diabetes$gender   <- as.factor(diabetes$gender)
@@ -153,7 +153,7 @@ diabetes |>
             n             = n())
 ```
 
-Como várias das estatísticas retornaram com valores NA, é preciso incluir o argumento na.rm=TRUE, como faremos a seguir. Podemos também ordenar o data frame criado conforme desajarmos. Por exemplo, vou colocar a quantidade de participantes como a primeira coluna.
+Como várias das estatísticas retornaram com valores NA, é preciso incluir o argumento na.rm=TRUE, como faremos a seguir. Podemos também ordenar o data frame criado conforme desejarmos. Por exemplo, vou colocar a quantidade de participantes como a primeira coluna.
 
 ```{r}
 diabetes |> 
@@ -191,7 +191,7 @@ Vamos usar agora a função `skim` do pacote `skimr` para resumir os dados. Veja
 skim(diabetes)
 ```
 
-Observe que a função `skim()` reconheceu corretamente as variáveis location, gender e frame como categóricas, e as variáveis age, height, weight, bmi, waist, hip, time.ppn, and stab.glu como numéricas. A função `skim()` fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais, sendo útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões.
+Observe que a função `skim()` reconheceu corretamente as variáveis location, gender e frame como categóricas, e as variáveis age, height, weight, bmi, waist, hip, time.ppn e stab.glu como numéricas. A função `skim()` fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais, sendo útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões.
 
 ### Resumindo dados com `describe()` do pacote `psych`
 
