@@ -42,7 +42,7 @@ qqline(dados_nao_normais) # Adiciona a linha de referência
 
 ### Teste de Shapiro-Wilk
 
-O teste de Shapiro-Wilk é um teste estatístico utilizado para avaliar a normalidade dos dados. A hipótese nula do teste é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.
+O teste de Shapiro-Wilk é um teste estatístico utilizado para avaliar a normalidade dos dados. A hipótese nula do teste é que os dados seguem uma distribuição normal. Ou seja, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada: não encontramos evidência contra a normalidade. Note a diferença: o teste não prova que os dados são normais, apenas não detectou um desvio da normalidade, o que é mais fácil de acontecer em amostras pequenas.
 
 O argumento principal do teste de Shapiro-Wilk é o conjunto de dados que queremos testar. O resultado do teste é a estatística $W$ e o valor-p. $W$ indica o quão bem os dados se ajustam a uma distribuição normal. O valor $W$ próximo a 1 indica que os dados provavelmente serão distribuídos normalmente, enquanto um valor significativamente menor que 1 sugere afastamento da normalidade. O valor-p é a probabilidade de obter um valor de W tão extremo quanto o observado, sob a hipótese nula de que os dados seguem uma distribuição normal.
 
@@ -59,7 +59,7 @@ dados <- rnorm(100)
 shapiro.test(dados)
 
 ```
-Observe que o valor-p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.
+Observe que o valor-p foi realmente maior que o nível de significância: não há evidência contra a normalidade, como esperado.
 
 Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Shapiro-Wilk. Observe que o valor-p desse teste deve ser menor que o nível de significância.
 
@@ -84,7 +84,7 @@ Como previsto, o valor-p foi menor que o nível de significância, indicando que
 
 ### Teste de Kolmogorov-Smirnov
 
-O teste de Kolmogorov-Smirnov é um outro teste estatístico utilizado para avaliar a normalidade dos dados. Da mesma forma que o teste de Shapiro-Wilki, a hipótese nula do teste de de Kolmogorov-Smirnov é que os dados seguem uma distribuição normal. Ou sejam, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada, indicando que os dados seguem uma distribuição normal.
+O teste de Kolmogorov-Smirnov é um outro teste estatístico utilizado para avaliar a normalidade dos dados. Da mesma forma que o teste de Shapiro-Wilki, a hipótese nula do teste de de Kolmogorov-Smirnov é que os dados seguem uma distribuição normal. Ou seja, se o valor-p do teste for menor que o nível de significância, a hipótese nula é rejeitada, indicando que os dados não seguem uma distribuição normal. Por outro lado, se o valor-p for maior que o nível de significância, a hipótese nula não é rejeitada: não encontramos evidência contra a normalidade. Note a diferença: o teste não prova que os dados são normais, apenas não detectou um desvio da normalidade, o que é mais fácil de acontecer em amostras pequenas.
 
 O teste te Kolmorov-Smirnov também pode ser usado para testar se os dados vem de outras distribuições, pois o teste na verdade verifica se duas distribuições são iguais, ou seja, se uma amostra vem de uma distribuição em particular. Quando desejamos saber se a amostra tem uma distribuiçao normal, o teste de Kolmogorov-Smirnov compara a distribuição empírica dos dados com a distribuição teórica normal.
 
@@ -104,7 +104,9 @@ dados <- rnorm(100)
 # Teste de Kolmogorov-Smirnov
 ks.test(dados, "pnorm", mean = mean(dados), sd = sd(dados))
 ```
-Observe que o valor de p foi realmente maior que o nível de significância, indicando que os dados seguem uma distribuição normal.
+Observe que o valor de p foi realmente maior que o nível de significância: não há evidência contra a normalidade, como esperado.
+
+Um detalhe importante: aqui informamos ao teste a média e o desvio padrão calculados da própria amostra. A rigor, o teste de Kolmogorov-Smirnov supõe que esses parâmetros sejam conhecidos de antemão; quando são estimados dos dados, o teste fica conservador (o valor-p sai maior do que deveria). A versão corrigida para esse caso é o teste de Lilliefors, disponível na função `lillie.test()` do pacote `nortest`. Na prática, para avaliar normalidade o teste de Shapiro-Wilk é preferível.
 
 Vamos criar agora um conjunto de dados que não segue uma distribuição normal e fazer o teste de Kolmogorov-Smirnov. Observe que o valor-p desse teste deve ser menor que o nível de significância.
 

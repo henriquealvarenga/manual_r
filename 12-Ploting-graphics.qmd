@@ -653,9 +653,9 @@ ggplot(diamonds, aes(x=carat, y=price)) +
   geom_smooth(method='lm', formula= y~x)
 ```
 
-### Conclusão
+### Resumo: o que vimos sobre o ggplot2
 
-Neste capítulo, exploramos a poderosa funcionalidade do pacote `ggplot2` para a criação de gráficos no R. Aprendemos sobre a gramática dos gráficos proposta por Leland Wilkinson e como essa gramática é implementada no `ggplot2` para permitir a construção de visualizações complexas e customizáveis.
+Até aqui exploramos a poderosa funcionalidade do pacote `ggplot2` para a criação de gráficos no R. Aprendemos sobre a gramática dos gráficos proposta por Leland Wilkinson e como essa gramática é implementada no `ggplot2` para permitir a construção de visualizações complexas e customizáveis.
 
 Vimos como definir um conjunto de dados, mapear variáveis estéticas e adicionar diferentes camadas geométricas para criar uma variedade de gráficos, incluindo gráficos de barras, histogramas, gráficos de densidade, boxplots e scatter plots. Também abordamos como personalizar esses gráficos, ajustando cores, títulos, legendas e temas, para que eles possam ser adaptados às necessidades específicas de análise e apresentação.
 

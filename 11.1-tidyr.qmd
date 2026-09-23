@@ -314,7 +314,7 @@ pacientes3
 
 #### A função `replace_na()`
 
-Nem sempre deletar da análise os valores `NA` é a melhor solução. Ao deletar um dado `NA` da amostra, podemos estar aumentando artificialmente o desvio padrão. Algumas vezes pode ser interessante substituir os valores NA por outro valor. Por exemplo, no caso de dados numéricos, é uma técnica comum substituir os valores NA pela média. Isso não modifica a média do conjunto, e evita que o desvio padrão seja artificialmente aumentado.
+Nem sempre deletar da análise os valores `NA` é a melhor solução. Ao deletar as linhas com `NA`, perdemos tamanho de amostra e, se os dados faltantes não forem aleatórios, podemos introduzir viés. Algumas vezes pode ser interessante substituir os valores NA por outro valor (imputação). Por exemplo, no caso de dados numéricos, uma técnica simples é substituir os valores NA pela média. Isso não modifica a média do conjunto, mas tem um efeito colateral: reduz artificialmente o desvio padrão e enfraquece as correlações com outras variáveis, porque os valores imputados não têm variabilidade. Por isso essa técnica serve para ilustrar a função, mas em análises reais são preferíveis métodos como a imputação múltipla (pacote `mice`).
 
 Para substituir um valor numérico faltante pela média dos dados utilizando a função `replace_na()` do pacote `tidyr`, você pode seguir os passos abaixo. Primeiro, calcule a média dos valores existentes na coluna, ignorando os valores ausentes (NA). Em seguida, utilize `replace_na()` para substituir os valores ausentes pela média calculada.
 
@@ -358,7 +358,7 @@ mean(pacientes$idade)
 sd(pacientes$idade)
 ```
 
-Veja que a média não foi alterada após a substituição dos valores faltantes pela própria média. O desvio padrão, por outro lado fica um pouco menor.
+Veja que a média não foi alterada após a substituição dos valores faltantes pela própria média. O desvio padrão, por outro lado, fica menor: é o efeito colateral descrito acima.
 
 Podemos usar `replace_na()` também para substituir o texto de variáveis. Por exemplo, podemos colocar o texto "Não informado" ou "Desconhecido" em campos onde havia NAs.
 

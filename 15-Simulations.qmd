@@ -250,7 +250,7 @@ Ou usando o pipe:
 rnorm(100) |> sample(5)
 ```
 
-Finalmente, a função sample não se limita a números. Podemos criar conjuntos de texto para serem sorteados. Por exemplos, nomes de pessoas ou cores. Podemos simular a jogada de uma moeda, com valores sendo nesse caso `cara` ou `coroa.`
+Como já vimos no exemplo da moeda, a função `sample()` não se limita a números: podemos sortear textos, como nomes de pessoas ou cores. Aqui sorteamos um único lançamento:
 
 ```{r}
 moeda <- c("cara", "coroa")

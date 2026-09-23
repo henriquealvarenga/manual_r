@@ -76,7 +76,7 @@ hist(ru4)
 
 ### `dunif`
 
-A função `dunif()` calcula a função de densidade de probabilidade (PDF) da distribuição uniforme, ou seja, a probabilidade de que uma variável aleatória seja igual a um determinado valor. A função `dunif()` tem três argumentos:
+A função `dunif()` calcula a função de densidade de probabilidade (PDF) da distribuição uniforme. Atenção: numa distribuição contínua, a probabilidade de a variável ser exatamente igual a um valor é zero; a densidade mede o quanto a probabilidade se concentra em torno daquele valor, e é a área sob a curva de densidade (calculada por `punif()`, logo abaixo) que dá probabilidades. A função `dunif()` tem três argumentos:
 
 -   x: o valor no qual calcular o PDF
 -   min: o limite inferior da distribuição
@@ -88,7 +88,7 @@ Veja como usar a função `dunif()` para calcular o PDF de uma distribuição un
 dunif(x=5, min=0, max=100)
 ```
 
-Isso significa que a probabilidade de uma variável aleatória dessa distribuição ser igual a 5 é 0.01.
+A densidade é 0.01 em qualquer ponto entre 0 e 100, porque na distribuição uniforme ela é constante e igual a 1/(max − min) = 1/100. Como consequência, a probabilidade de a variável cair num intervalo qualquer é o comprimento do intervalo vezes 0.01: por exemplo, entre 5 e 15 é 0.10.
 
 ### `punif`
 

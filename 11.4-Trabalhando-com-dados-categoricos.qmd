@@ -28,6 +28,10 @@ Quando lidamos com variáveis categóricas, usar números para identificar os ti
 
 Vamos usar como exemplo ainda o dataset `mtcars`. Inicialmente usaremos a função `str()` para verificar a estrutura desse arquivo e verificar como o R está interpretando os tipos de cada variável. O comando "`?mtcars`" digitado no console mostrará no painel help as informações sobre esse dataset.
 
+```{r mtcars, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mtcars dictionary'}
+knitr::include_graphics("images/mtcars.png")
+```
+
 ```{r}
 data(mtcars)
 str(mtcars)
@@ -220,17 +224,7 @@ A função `count()` do pacote `dplyr` é uma ferramenta poderosa para contar ob
 
 Vamos explorar o uso de `count()` com o exemplo do dataset mtcars e discutir as diferenças e vantagens em relação à função `table()` do R base.
 
-**Vantagens do `count()`**
-
-*Clareza e Consistência*: A função count() é mais intuitiva e consistente com outras funções do dplyr, proporcionando uma curva de aprendizado mais suave para os usuários do tidyverse. Tem sintaxe mais legível e intuitiva, especialmente para quem já está familiarizado com o estilo de manipulação de dados do `dplyr.`
-
-*Integração com o tidyverse*: Permite encadear operações de forma clara e eficiente, melhorando a legibilidade e a manutenção do código.
-
-*Flexibilidade*: Facilita operações adicionais como agrupamentos complexos e filtros dentro da mesma cadeia de operações. Integra-se perfeitamente com outras funções do `dplyr`, permitindo operações adicionais como filtragem, agrupamento e mutação de dados em uma sequência fluida de comandos.
-
-*Resultado*: A função `count()` retorna um tibble, que é um tipo de dataframe moderno e mais amigável para manipulação subsequente dentro do universo tidyverse. Por outro lado, a função `table()` retorna um objeto de classe table, que pode exigir conversão adicional para se integrar com outras funções de manipulação de dados.
-
-Em resumo, a função `count()` do `dplyr` oferece uma abordagem moderna e integrada para contar dados categóricos em dataframes, proporcionando vantagens significativas em termos de sintaxe, flexibilidade e integração com outras funções do tidyverse. Embora `table()` do R base seja útil e eficiente para contagens rápidas, `count()` é preferível em contextos onde a manipulação e análise de dados complexos são necessárias.
+A função `count()` foi apresentada na seção sobre o `dplyr` (@sec-count). Em relação à `table()` do R base, ela tem duas diferenças práticas: devolve uma tibble, com uma coluna `n` para as contagens, o que facilita continuar a manipulação com as demais funções do `dplyr`; e se encaixa numa cadeia de operações com o pipe, permitindo filtrar e agrupar antes de contar.
 
 ##### Tabulando uma variável com count()
 

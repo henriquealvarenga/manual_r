@@ -77,7 +77,7 @@ knitr::include_graphics("images/arguments.png")
 
 ## Criando suas próprias funções
 
-O R permite que você crie também suas próprias funções. Isso será útil quando uma determinada análise tem de ser feita diversas vezes, evitando que você precise reescrever o código dessa análise toda vez que tiver de fazê-la novamente.
+Vamos agora criar nossas próprias funções.
 
 Para criar uma função precisamos: 1. Dar um nome para a função a ser criada. 2. Definir os argumentos da função. 3. Definir o que a função irá *retornar*, seu *ouput*.
 

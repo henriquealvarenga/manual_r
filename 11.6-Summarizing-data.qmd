@@ -16,7 +16,7 @@ O pacote `skimr` possui também algumas funções interessantes para resumir dad
 
 do pacote `psych` possui a função `describe()` que fornece um resumo estatístico de um conjunto de dados, incluindo medidas de tendência central, dispersão, distribuição e muito mais. A função `describe()` é útil para obter uma visão geral rápida dos dados e identificar possíveis problemas ou padrões. Lembre-se que para usar essa funcção é necessário que você já tenha instalado o pacote psych. Se ainda não tiver feito isso, use o comando `install.packages("psych")` para instalar o pacote. Depois será necessário usar o comando `library(psych)` para carregar esse pacote.
 
-### Resumindo dados com `summary()`
+### Resumindo dados com `summary()` {#sec-summary}
 
 Podemos resumir um conjunto de dados com a função `summary()`. O argumento dessa função é um data frame.
 
@@ -55,6 +55,7 @@ Frequentemente variáveis categóricas são representadas por algum valor numér
 Veja por exemplo o data frame `mtcars` no qual a variável `am` representa a marcha do carro, sendo 0 = câmbio automático, 1 = câmbio manual. Como os valores dessa variável são números (`0` e `1`), o R os interpreta como numéricos. O mesmo acontece na variável `vs`.
 
 ```{r}
+data(mtcars)
 str(mtcars)
 ```
 

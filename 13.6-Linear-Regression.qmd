@@ -43,9 +43,9 @@ graph TD
     B --> D[Regressão Linear]
     B --> E[Regressão Não Linear]
     D --> F[Univariada]
-    D --> G[Multivariada]
+    D --> G[Múltipla]
     E --> H[Univariada]
-    E --> I[Multivariada]
+    E --> I[Múltipla]
     C --> J[Regressão Logística]
     J --> K[Binária]
     J --> L[Multinomial]
@@ -85,7 +85,7 @@ A correlação entre duas variáveis numéricas analisa se há alguma associaç�
 
 O objetivo da análise de regressão é encontrar os coeficientes ($a$ e $b$) dessa reta. Com isso poderemos saber o valor da variável de desfecho, dado um valor qualquer da variável preditora.
 
-Podemos inserir nesse modelo mais de uma variável preditora, transformando uma regressão univariada em uma regressão multivariada, e nesse caso nossa equação teria mais de um parâmetro de inclinação: $\color{blue}{y = a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4 + b}$. Aqui, cada variável preditora ($\color{blue} {x_1, x_2, x_3, x_4}$) tem seu próprio coeficiente ($\color{blue}{a_1, a_2, a_3, a_4}$). A regressão multivariada envolve descobrir os melhores valores desses coeficientes.
+Podemos inserir nesse modelo mais de uma variável preditora, transformando uma regressão simples em uma regressão múltipla (também chamada de multivariável; o termo "multivariada" é reservado aos modelos com mais de um desfecho), e nesse caso nossa equação teria mais de um parâmetro de inclinação: $\color{blue}{y = a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4 + b}$. Aqui, cada variável preditora ($\color{blue} {x_1, x_2, x_3, x_4}$) tem seu próprio coeficiente ($\color{blue}{a_1, a_2, a_3, a_4}$). A regressão múltipla envolve descobrir os melhores valores desses coeficientes.
 
 A análise de regressão linear é usada quando a variável de resposta é numérica, ou seja, quando pretendemos criar um modelo matemático para prever um valor numérico a partir de uma ou mais variáveis. Por exemplo, podemos criar um modelo linear para prever o quanto a glicemia aumenta de acordo com a quantidade calórica ingerida, ou podemos criar modelos lineares complexos, com mais de uma variável preditora, tal como para analisar o quanto a pressão arterial depende do peso, do sexo e da idade.
 
@@ -426,7 +426,7 @@ O **R-quadrado ajustado** (Adjusted R-squared), localizado abaixo dos coeficient
 
 Em resumo, os dados apresentados no modelo de regressão mostram claramente que, conforme aumenta o consumo semanal de drinks, há um aumento significativo nos níveis séricos de GGT. Essa relação é estatisticamente significativa e está evidenciada nos coeficientes e nos indicadores de ajuste do modelo fornecidos no resultado.
 
-### Regressão Linear multivariada no R
+### Regressão Linear múltipla no R
 
 Frequentemente uma única variável preditora não será capaz de explicar toda variação da variável de desfecho. Na verdade, na medicina é raro que uma resposta dependa de apenas uma única variável. Com o R podemos facilmente inserir mais de uma variável preditora em nosso modelo de regressão linear.
 

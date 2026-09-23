@@ -123,13 +123,13 @@ head(SAheart) |>  kbl(caption = "Primeiras linhas do Dataset SAheart antes da no
 
 #### Preparação dos dados
 
-Na regressão logística, a normalização dos dados é um passo crucial no pré-processamento que garante que todas as variáveis do conjunto de dados contribuam de maneira equilibrada para o modelo. A função sigmoide utilizada na regressão logística é **sensível às escalas das variáveis de entrada**; variáveis com valores numéricos maiores podem ter um impacto desproporcional no processo de otimização, influenciando a convergência e o ajuste dos coeficientes.
+A normalização das variáveis numéricas é um passo comum de pré-processamento, mas é preciso ser claro sobre o que ela faz e o que não faz. A função `glm()` do R estima os coeficientes da regressão logística por um algoritmo que **não depende da escala das variáveis**: normalizar ou não, as previsões e os valores-p saem iguais, e só os coeficientes mudam de unidade. A normalização passa a ser importante em dois casos: quando queremos **comparar a magnitude dos coeficientes** entre variáveis medidas em unidades diferentes, e quando usamos algoritmos que dependem da escala, como os métodos com regularização (lasso, ridge) e as redes neurais, muito usados em aprendizado de máquina.
 
-Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de **0 a 15**, enquanto o consumo de álcool varia de **0 a 147 gramas por dia**. Se essas variáveis forem usadas diretamente no modelo sem normalização, o consumo de álcool, por ter uma escala numérica significativamente maior, pode **dominar o processo de ajuste**, ofuscando o efeito da LDL e de outras variáveis com escalas menores.
+Por exemplo, no nosso conjunto de dados, os valores de LDL dos pacientes variam de **0 a 15**, enquanto o consumo de álcool varia de **0 a 147 gramas por dia**. Sem normalização, o coeficiente do álcool corresponde ao efeito de **1 grama** a mais por dia, e o do LDL ao efeito de **1 unidade** a mais: os dois números não são comparáveis entre si. Depois da normalização, cada coeficiente passa a representar o efeito de **1 desvio padrão** a mais da variável, o que permite compará-los.
 
-A normalização ajusta os valores para uma escala comum—geralmente entre 0 e 1 ou com média zero e desvio padrão um—permitindo que todas as variáveis tenham um **impacto equilibrado** no modelo. Isso melhora a eficiência do algoritmo de otimização e ajuda a garantir que o modelo capture de forma adequada as relações entre as variáveis independentes e a variável dependente.
+A normalização ajusta os valores para uma escala comum, geralmente entre 0 e 1 ou com média zero e desvio padrão um. O preço a pagar é a interpretação: os coeficientes deixam de estar nas unidades originais das variáveis.
 
-Em contraste, na regressão linear, a normalização dos dados **geralmente não é necessária**. Isso ocorre porque os coeficientes estimados na regressão linear se ajustam proporcionalmente às escalas das variáveis, e a interpretação dos coeficientes permanece direta: cada coeficiente representa a variação esperada na variável dependente para uma unidade de variação na variável independente correspondente. Normalizar as variáveis na regressão linear pode até dificultar a interpretação prática dos coeficientes, já que as unidades originais das variáveis são perdidas.
+O mesmo raciocínio vale para a regressão linear do capítulo anterior: lá também os coeficientes se ajustam à escala das variáveis, e preferimos mantê-los nas unidades originais, em que cada coeficiente representa a variação esperada no desfecho para uma unidade a mais do preditor. Neste capítulo vamos normalizar para mostrar a técnica e para poder comparar os coeficientes.
 
 Existem várias formas de fazer a normalização dos dados, vamos usar aqui a técnica de normalização Z-score às variáveis numéricas.
 
@@ -221,7 +221,7 @@ Nesse modelo de regressão logística, conforme indicado pelos seus coeficientes
 
 ### Calculando a acurácia do modelo
 
-Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma e não há como calcular o valor de $r$ ou $r^2$.
+Na regressão linear usamos os resíduos (ou erros) para calcular a acurácia do modelo. Ou seja, calculamos o quanto o valor real se desviava do valor predito. Na regressão logística não podemos calcular os resíduos dessa forma, e não existe um $r^2$ com a mesma interpretação. Há medidas análogas, chamadas de pseudo-$R^2$ (como as de McFadden e de Nagelkerke), mas elas são menos usadas; o mais comum é avaliar o modelo pela sua capacidade de classificar corretamente, como faremos a seguir.
 
 Para calcular a **acurácia** de um modelo de regressão logística, seguimos um processo que nos ajuda a entender quão bem o modelo está prevendo os resultados. A regressão logística é usada quando queremos prever resultados que se enquadram em duas categorias distintas, como "sim" ou "não", "positivo" ou "negativo".
 

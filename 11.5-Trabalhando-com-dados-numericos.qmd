@@ -184,22 +184,7 @@ Frequentemente precisamos agrupar dados numéricos com base em variáveis categ�
 
 A linguagem R possui funções criadas especialmente para esse fim: a função `by()` do R base e a função `group_by()` do `tidyverse` são as mais importantes para essa finalidade.
 
-A função `by()` do R base é usada para aplicar uma função a subconjuntos de um data frame, organizados por um fator ou combinação de fatores. Aqui estão algumas vantagens de usar `by()`:
-
--   *Simplicidade*: Uma solução base do R, sem necessidade de carregar pacotes adicionais.
--   *Flexibilidade*: Pode ser usada com qualquer função que aceite data frames como input, o que permite operações complexas nos subconjuntos de dados.
--   *Compatibilidade*: Por ser parte do R base, não depende de pacotes externos e é garantido funcionar em qualquer instalação do R.
--   *Resulta em listas*: O output é uma lista, que pode ser útil para manipulações subsequentes.
-
-A função `group_by()` do pacote `dplyr`, que faz parte do `tidyverse`, é usada para agrupar dados em um data frame. Aqui estão algumas das vantagens de usar `group_by()`:
-
--   *Facilidade de uso*: A sintaxe é intuitiva e fácil de usar, especialmente quando combinada com outras funções do `dplyr` como `summarise`, `mutate`, etc.
--   *Integração com a pipe* (\|\>): Permite a construção de pipelines de manipulação de dados de maneira clara e legível.
--   *Flexibilidade*: Pode ser usada com múltiplas colunas para criar grupos mais complexos.
--   *Performance*: Otimizado para grandes conjuntos de dados, especialmente quando combinado com outras operações do `dplyr.`
--   *Compatibilidade*: Facilmente combinado com outros pacotes do `tidyverse`, como `ggplot2` para visualização de dados, `tidyr` para transformação, entre outros.
-
-A função `group_by()` é geralmente mais fácil de ler e entender, especialmente em pipelines de dados, se integra perfeitamente com outras funções do `tidyverse`, proporcionando uma maneira coesa e eficiente de manipulação de dados. Por outro lado, `by()` é útil quando não se deseja depender de pacotes externos e quando se trabalha em um ambiente onde a simplicidade é essencial. Ambas as funções têm suas vantagens e a escolha entre elas pode depender do contexto específico e das necessidades do seu projeto.
+As vantagens de cada uma foram discutidas na seção sobre o `dplyr` (@sec-dplyr). Aqui vamos aplicá-las a dados numéricos.
 
 #### Agrupando com `by()`
 
@@ -223,41 +208,7 @@ Podemos usar a função by inserindo os argumentos na ordem, sem necessidade de 
 by(mtcars, mtcars$am, summary)
 ```
 
-Como os valores dessa `am` variável são números (`0` e `1`), o R os interpreta como numéricos. O mesmo acontece nas variáveis `cyl`, `vs`, `gear` e `carb`, que na verdade são categóricas. A tabela abaixo descreve as variáveis desse conjunto de dados.
-
-```{r mtcars, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='mtcars dictionary'}
-knitr::include_graphics("images/mtcars.png")
-```
-
-Vamos verificar como essas variáveis estão sendo interpretadas no R usando a função `str()`, que verifica a estrutura dos dados.
-
-```{r}
-str(mtcars)
-```
-
-Observe que `cyl`, `am`, `vs`, `gear` e `carb` foram interpretadas como numéricas. Nesse caso, a função `summary()` irá erroneamente calcular medidas numéricas nas nessas variáveis, que na verdade são categóricas.
-
-```{r}
-summary(mtcars)
-```
-
-Para resolver esse problema precisamos informar ao R que as variáveis `cyl`, `am`, `vs`, `gear` e `carb` são categóricas com a função `as.factor()` como mostrado a seguir.
-
-```{r}
-mtcars$cyl  <- as.factor(mtcars$cyl)
-mtcars$am   <- as.factor(mtcars$am)
-mtcars$vs   <- as.factor(mtcars$vs)
-mtcars$gear <- as.factor(mtcars$gear)
-mtcars$carb <- as.factor(mtcars$carb)
-```
-
-Agora a função `summary()` irá corretamente fazer as tabelas, pois já estão configuradas como sendo categóricas. Podemos ver no código abaixo que existem 19 carros com cambio automático (am=0), e 13 carros com cambio manual (am=1).
-
-```{r}
-summary(mtcars)
-```
-
-Veja que essa função resolve muitas de nossas necessidades no processo de análise de dados, porém, como já dito, é comum que uma variável categórica seja codificada com números, nesse caso, temos de fazer o ajuste antes de usar a função `summary()`, como fizemos antes de usar a função `summary()` com o dataset `mtcars` em seções anteriores.
+Note que a variável `am` (e também `cyl`, `vs`, `gear` e `carb`) está codificada com números, embora seja categórica. Por isso o `summary()` acima calculou média e quartis para elas. Veremos na seção sobre `summary()` (@sec-summary) como convertê-las em factor com `as.factor()`, para que os resumos saiam como tabelas de contagem.
 
 #### Agrupando com `group_by()`
 
@@ -326,7 +277,7 @@ Para verificar novamente como usar essa função veja o capítulo sobre o pacote
 
 ### Categorizando variáveis numéricas
 
-#### Categorizando com a função `cut( )`
+#### Categorizando com a função `cut( )` {#sec-cut}
 
 A função `cut()` nos permite criar uma variável categórica a partir de uma variável numérica. A forma dessa função é:
 
