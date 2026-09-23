@@ -749,7 +749,7 @@ Como podemos ver acima a função `str()` mostrou a estrutura desse data frame. 
 
 Usando o comando `?esoph` podemos descobrir o significado exato de cada variável.
 
-```{r}
+```{r, eval=FALSE}
 # use esse comando no console e veja o significado de cada elemento do data frame na aba help no painel à direita inferior do Rstudio.
 ?esoph
 ```

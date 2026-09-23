@@ -144,15 +144,15 @@ Vamos criar um objeto simulando uma moeda e usar a função `sample()` para sort
 # cria o objeto moeda
 moeda <- c("cara","coroa")
 
-# Simular o lançamento de uma moeda 3 vezes
-sample(moeda,2, replace = TRUE)
+# Simular o lançamento de uma moeda 2 vezes
+sample(moeda, 2, replace = TRUE)
 ```
 
 Agora que entendemos o funcionamento de `sample()`, podemos replicar esses dois lançamentos várias vezes com a função `replicate()`.
 
 ```{r}
 # replicando 5 vezes os dois lançamentos
-replicate(n=5, sample(moeda, 2))
+replicate(n = 5, sample(moeda, 2, replace = TRUE))
 ```
 
 
@@ -212,20 +212,20 @@ A função `replicate()` nos permite repetir uma expressão várias vezes. Isso 
 ```{r}
 # Replicando 10 vezes a amostragem de 2 números entre 1 e 6
 x <- 1:6
-replicate(n=10, sample(x, 2))
+replicate(n = 10, sample(x, 2, replace = TRUE))
 ```
 
 O código acima pode ser escrito de forma mais suscinta como abaixo, sem a criação de uma variável intermediária.
 
 ```{r}
-replicate(10, sample(1:6, 2))
+replicate(10, sample(1:6, 2, replace = TRUE))
 ```
 
 O código acima pode ser escrito de forma mais elegante com o uso do operador pipe:
 
 ```{r}
-sample(1:6, 2) |>
-  replicate(n=10)
+sample(1:6, 2, replace = TRUE) |>
+  replicate(n = 10)
 ```
 
 Podemos associar as funções de geração de números aleatórios para criar o conjunto de dados a ser usado na função `sample()` como a seguir:
@@ -337,7 +337,7 @@ ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
   geom_ribbon(data = data.frame(x = x_area, ymin = 0, ymax = y_area),
               aes(x = x, ymin = ymin, ymax = ymax),
               fill = "red", alpha = 0.5) +  # Área sob a curva
-  geom_rect(aes(xmin = x_min, xmax = x_max, ymin = 0, ymax = y_max), color = "black", fill = NA, linetype = "dashed") +
+  annotate("rect", xmin = x_min, xmax = x_max, ymin = 0, ymax = y_max, color = "black", fill = NA, linetype = "dashed") +
   scale_x_continuous(limits = c(2, 8), breaks = seq(2, 8, by = 2)) +  # Limitar o eixo x de 0 a 10 com marcações nos números pares
   labs(title = expression("Área sob a curva " * y == x^2),
        x = "x",
@@ -389,7 +389,7 @@ ggplot() +
   geom_point(data = data.frame(x = x_pontos[!abaixo_da_curva], y = y_pontos[!abaixo_da_curva]),
              aes(x = x, y = y), color = "red", size = 0.1) +
   # Adicionando o retângulo
-  geom_rect(aes(xmin = x_min, xmax = x_max, ymin = 0, ymax = y_max), color = "black", fill = NA, linetype = "dashed") +
+  annotate("rect", xmin = x_min, xmax = x_max, ymin = 0, ymax = y_max, color = "black", fill = NA, linetype = "dashed") +
   # Configurando o eixo x para mostrar números pares
   scale_x_continuous(limits = x_range, breaks = seq(0, 10, by = 2)) +
   labs(title = expression("Simulação de Monte Carlo para " * y == x^2),
@@ -568,7 +568,7 @@ t.test(OriginalSample)
 Agora vamos calcular o intervalo de confiança da média da população e da amostra usando o método de bootstrap. Primeiro vamos criar 1000 amostras de bootstrap.
 
 ```{r}
-bootSamples <- replicate(1000, sample(OriginalSample, size = 100, replace = TRUE))
+bootSamples <- replicate(1000, sample(OriginalSample, size = length(OriginalSample), replace = TRUE))
 ```
 
 Agora vamos calcular a média de cada uma das amostras de bootstrap e então calcular o intervalo de confiança.

@@ -178,10 +178,9 @@ ggplot(dados, aes(x = x, y = y)) +
        subtitle = "Método dos Quadrados Mínimos",
        x = "x",
        y = "y") +
-  theme_minimal() +
+  theme_classic() +
   theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5)) +
-  theme_classic()
+        plot.subtitle = element_text(hjust = 0.5))
 
 ```
 
@@ -501,7 +500,7 @@ library(gridExtra)
 library(grid)
 
 r1 <- cor(df$drinks, df$ggt) 
-r2 <- cor(df$drinks, df$tobacco)
+r2 <- cor(df$tobacco, df$ggt)
 
 
 p1 <- ggplot(df, aes(x = drinks, y = ggt)) +
@@ -512,7 +511,7 @@ p1 <- ggplot(df, aes(x = drinks, y = ggt)) +
              subtitle = "Reta de Regressão Calculada com a função lm()") +
         annotate("text", x = 5, y = 70, label = paste0("Intercept (a): ", round(a1, 6), 
                                                        "\nSlope (b): ", round(b1, 4)), hjust = 0, vjust = 1, size = 4) +
-        annotate("text", x = 5, y = 60, label = paste0("r: ", round(r1, 2),  hjust = 0, vjust = 1, size = 4)) + 
+        annotate("text", x = 5, y = 60, label = paste0("r: ", round(r1, 2)), hjust = 0, vjust = 1, size = 4) + 
         scale_x_continuous(expand = c(0, 0), limits = c(0, NA)) + 
         scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
         theme_classic()
@@ -525,7 +524,7 @@ p2 <- ggplot(df, aes(x = tobacco, y = ggt)) +
              subtitle = "Reta de Regressão Calculada com a função lm()") +
         annotate("text", x = 5, y = 70, label = paste0("Intercept (a): ", round(a2, 6), 
                                                        "\nSlope (b): ", round(b2, 4)), hjust = 0, vjust = 1, size = 4) + 
-        annotate("text", x = 5, y = 60, label = paste0("r: ", round(r2, 2),  hjust = 0, vjust = 1, size = 4)) + 
+        annotate("text", x = 5, y = 60, label = paste0("r: ", round(r2, 2)), hjust = 0, vjust = 1, size = 4) + 
         scale_x_continuous(expand = c(0, 0), limits = c(0, NA)) + 
         scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
         theme_classic()

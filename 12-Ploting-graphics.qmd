@@ -25,6 +25,10 @@ Antes de usar o conjunto de dados do mpg, vamos ver primeiro lembrar o que exist
 ```{r}
 # carregando o pacote ggplot2, necessário para usar o dataset mpg
 library(ggplot2)
+```
+
+```{r, eval=FALSE}
+# use esse comando no console para abrir a documentação do dataset
 ?mpg
 ```
 
@@ -842,7 +846,7 @@ Para ajustar o tamanho, forma e cores dos pontos de um gráfico do R base, podem
 ```{r}
 # Criando um scatter plot
 plot(diamonds$price, diamonds$carat, 
-     pch=6,                                           # altera o tipo de ponto
+     pch=20,                                          # altera o tipo de ponto
      cex = 0.5,                                       # ajusta o tamanho dos pontos
      col = "blue",                                    # altera a cor dos pontos para azul
      main = "Relação entre preço e peso do diamante", # adiciona um título
@@ -876,22 +880,21 @@ plot(y ~ x,
 Para adicionar legendas e ajustar as margens de um gráfico do R base, podemos usar as funções `legend()` e `par()`. A função `legend()` é usada para adicionar uma legenda ao gráfico, enquanto a função `par()` é usada para ajustar os parâmetros gráficos, como as margens internas e externas do gráfico. Por exemplo, vamos adicionar uma legenda ao canto superior direito de um scatter plot e ajustar as margens do gráfico.
 
 ```{r}
+# Ajustando as margens do gráfico (precisa vir ANTES do plot)
+par(mar = c(5, 5, 4, 2) + 0.1)
+
 # Criando um scatter plot
 plot(diamonds$price, diamonds$carat, 
-     pch=20,                                           # altera o tipo de ponto
+     pch=20,                                          # altera o tipo de ponto
      cex = 0.5,                                       # ajusta o tamanho dos pontos
      col = "blue",                                    # altera a cor dos pontos para azul
      main = "Relação entre preço e peso do diamante", # adiciona um título
-     sub = "usando dataset diamond do ggpplot2",      # adiciona um subtítulo
+     sub = "usando dataset diamonds do ggplot2",      # adiciona um subtítulo
      xlab="Preço do diamante",                        # adiciona um nome ao eixo x
      ylab="Peso do diamante")                         # adiciona um nome ao eixo y
 
 # Adicionando uma legenda ao canto superior direito
-legend("topright", legend = "Diamantes", col = "black", pch = 20)
-
-# Ajustando as margens do gráfico
-par(mar = c(5, 5, 4, 2) + 0.1)
-
+legend("topright", legend = "Diamantes", col = "blue", pch = 20)
 ```
 
 #### Estratificando os dados de acordo com uma variável categórica

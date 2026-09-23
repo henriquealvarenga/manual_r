@@ -84,10 +84,10 @@ Se o data frame com os dados está no formaro wide (tidy format), ou seja, se h�
 t.test(result$controle, result$experimental)
 ```
 
-Podemos também informar o dataset primeiro e depois incluir os nomes das colunas/variáveis.
+A função `t.test()` não tem o argumento `data` (ao contrário de `lm()`, que veremos adiante). Para não repetir o nome do data frame a cada variável, podemos usar a função `with()`, que avalia a expressão dentro do data frame informado.
 
 ```{r}
-t.test(data=result, controle,experimental)
+with(result, t.test(controle, experimental))
 ```
 
 **3. Teste t com data frame long**
@@ -124,10 +124,10 @@ Para esse exemplo, vamos usar o dataset wide, chamado result, criado acima, e us
 t.test(result$experimental, mu= 30)
 ```
 
-Podemos também informar o dataset primeiro e depois incluir o nome da coluna/variável.
+Ou, com a função `with()`, informando o data frame primeiro e depois o nome da coluna/variável.
 
 ```{r}
-t.test(data = result, experimental, mu= 30)
+with(result, t.test(experimental, mu = 30))
 ```
 
 ### Extraindo os resultados do teste t

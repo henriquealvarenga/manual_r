@@ -189,6 +189,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
   ggtitle("Distribuição Normal") +
   xlab("x") + 
   ylab("density") +
+  theme_classic() +
   theme(plot.title = element_text(size = 16, face = "bold"),
         plot.subtitle = element_text(size = 12, face = "bold"),
         axis.text.x   = element_text(colour="grey20",size=12)) +
@@ -211,8 +212,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
             size = 2, 
             fontface ="bold", 
             hjust=1, 
-            label=paste(round(density.value,5))) +
-    theme_classic()
+            label=paste(round(density.value,5)))
 ```
 
 A função `dnorm(x)` pode ser usada também para gerar todos os pontos da curva normal. Isso pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função `curve()`, como mostrado nos códigos abaixo.
@@ -297,10 +297,10 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
              fontface ="bold", 
              hjust=0.5, 
              label=left.area.text) +
+    theme_classic() +
     theme(plot.title = element_text(size = 16, face = "bold"),
                        plot.subtitle = element_text(size = 12, face = "bold"),
-                       axis.text.x   = element_text(colour="grey20",size=12)) +
-  theme_classic()
+                       axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
 Observe que a função `pnorm(x)` usou os valores padrões de media = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().
@@ -374,10 +374,10 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
              label=left.area.text) +
     annotate("text", x = h, y = -0.001, size = 3, fontface ="bold", hjust=0.5, label=h) +
     annotate("text", x = x, y = -0.001, size = 3, fontface ="bold", hjust=0.5, label=x) +
+    theme_classic() +
     theme(plot.title = element_text(size = 16, face = "bold"),
                        plot.subtitle = element_text(size = 12, face = "bold"),
-                       axis.text.x   = element_text(colour="grey20",size=12)) +
-  theme_classic()
+                       axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
 ### `qnorm`
@@ -448,11 +448,10 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
              label=left.area.text) +
     annotate("text", x = h, y = -0.001, size = 3, fontface ="bold", hjust=0.5, label=h) +
     annotate("text", x = x, y = -0.001, size = 3, fontface ="bold", hjust=0.5, label=x) +
+    theme_classic() +
     theme(plot.title = element_text(size = 16, face = "bold"),
                        plot.subtitle = element_text(size = 12, face = "bold"),
-                       axis.text.x   = element_text(colour="grey20",size=12)) +
-  theme_classic()
-
+                       axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
 ## Distribuiçao t de Student
@@ -504,6 +503,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
   ggtitle(label = "Distribuição t", subtitle = "x=2, df=5") +
   xlab("x") + 
   ylab("density") +
+  theme_classic() +
   theme(plot.title = element_text(size = 16, face = "bold"),
         plot.subtitle = element_text(size = 12, face = "bold"),
         axis.text.x   = element_text(colour="grey20",size=12)) +
@@ -526,8 +526,7 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
             size = 5, 
             fontface ="bold", 
             hjust=1, 
-            label=paste(round(density.value,5))) +
-    theme_classic()
+            label=paste(round(density.value,5)))
 ```
 
 A função `dt()` pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função `curve()`, como mostrado nos códigos abaixo.
@@ -622,10 +621,11 @@ ggplot(NULL, aes(c(lim.inf,lim.sup))) +
              hjust=0.5, 
              label=left.area.text) +
   
+      theme_classic() +
+  
       theme(plot.title = element_text(size = 16, face = "bold"),
                        plot.subtitle = element_text(size = 12, face = "bold"),
-                       axis.text.x   = element_text(colour="grey20",size=12)) +
-  theme_classic()
+                       axis.text.x   = element_text(colour="grey20",size=12))
 ```
 
 ### `qt()`

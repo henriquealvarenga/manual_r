@@ -117,13 +117,13 @@ Com os dados lidos, podemos agora verificar as primeiras linhas com a função `
 head(diabetes)
 ```
 
-Agora sim, estamos prontos para usar a função `summarise()` do `dplyr`. Vamos usar a função `summarise()` para calcular a média e o desvio padrão da glicose, que está na variável denominada `stab.glu`. Vou precisar usar as funções `mean(stab.glu))` e `sd(stab.glu))`. Essas funções serão os argumentos da função `summarise()`.
+Agora sim, estamos prontos para usar a função `summarise()` do `dplyr`. Vamos usar a função `summarise()` para calcular a média e o desvio padrão da glicose, que está na variável denominada `stab.glu`. Vou precisar usar as funções `mean(stab.glu)` e `sd(stab.glu)`. Essas funções serão os argumentos da função `summarise()`.
 
 1º - Indicar o data frame a ser usado (`diabetes`);\
 2º - usar o operador pipe para passar esse data frame adiante;\
 3º - agrupar os dados de acordo com o sexo (`gender`);\
-3º - chamar a função `summarise()`;\
-4º - definir os argumentos da função `summarise()`: a média (usando a função `mean()`) e o desvio padrão (usando a função `sd()`)
+4º - chamar a função `summarise()`;\
+5º - definir os argumentos da função `summarise()`: a média (usando a função `mean()`) e o desvio padrão (usando a função `sd()`)
 
 ```{r}
 diabetes |> 

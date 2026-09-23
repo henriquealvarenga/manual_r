@@ -41,7 +41,7 @@ O conjunto de dados "`mtcars`" do R base contém 32 observações de modelos de 
 
 ```{r}
 # código para acessar o dataset mtcars
-data(mpg)
+data(mtcars)
 ```
 
 ## Arthritis
