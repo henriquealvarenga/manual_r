@@ -132,14 +132,20 @@ Mas podemos automatizar esse processo inserindo o endereço exato do banco de da
 
 Veja o código abaixo:
 
-```{r}
+```{r, eval=FALSE}
 mydata <- read.csv(file = "https://hbiostat.org/data/repo/diabetes.csv")
 ```
 
 Na verdade nem precisamos explicitar o argumento `file`, podemos inserir apenas o endereço e obteremos o mesmo resultado. Lembre-se que é preciso colocar o endereço entre aspas.
 
-```{r}
+```{r, eval=FALSE}
 mydata <- read.csv("https://hbiostat.org/data/repo/diabetes.csv")
+```
+
+Ler da internet tem um inconveniente: o código só funciona com conexão, e para de funcionar se o site mudar de endereço. Por isso, neste livro, o arquivo original foi baixado uma única vez e guardado na pasta `dataset` do projeto com o nome `diabetes_hbiostat.csv`. É dessa cópia que os capítulos seguintes leem os dados:
+
+```{r}
+mydata <- read.csv("dataset/diabetes_hbiostat.csv")
 ```
 
 ## Lendo dados com `readr`
@@ -226,16 +232,16 @@ O arquivo `diabetes.csv` que eu tenho em meu computador está salvo na pasta `da
 
 É necessário também armazenar os dados lidos num objeto, que irei chamar de `diabetes`. Obs: eu poderia escolher outro nome, não é necessário que o objeto que irá armazenar os dados tenha o mesmo nome que o arquivo com os dados.
 
-Eu fiz o o download dos dados (<https://hbiostat.org/data/repo/diabetes.csv>) e e salvei esses dados numa pasta chamada `dataset` em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para portugues.
+Eu fiz o download dos dados (<https://hbiostat.org/data/repo/diabetes.csv>) e salvei esses dados numa pasta chamada `dataset` em meu projeto, então o código para ler esses dados é o seguinte. Nesse meu arquivo eu já modifiquei alguns dos nomes das variáveis para portugues.
 
 ```{r}
 diabetes <- read_csv("dataset/diabetes.csv")
 ```
 
-Podemos ler esses dados diretamente do site, como já fizemos anteriormente, nesse arquivo os nomes das variáveis ainda estão com os nomes originais em inglês.
+A cópia do arquivo original, com os nomes das variáveis ainda em inglês, é a que fica em `dataset/diabetes_hbiostat.csv`. É essa versão que usaremos daqui em diante.
 
 ```{r}
-diabetes <- read_csv(file = "https://hbiostat.org/data/repo/diabetes.csv")
+diabetes <- read_csv(file = "dataset/diabetes_hbiostat.csv")
 ```
 
 Para mostrar a `tibble` basta digitar no console o nome da `tibble`:
@@ -308,7 +314,7 @@ str(diabetes)
 Podemos usar o argumento `col_types` da função `read_csv()` para indicarmos qual o tipo correto da variável de cada coluna ou de algumas colunas em particular. No código abaixo foi indicado que as colunas (variáveis) `sexo`, `cidade` e `biotipo` deveriam ser interpretadas como `factor`.
 
 ```{r}
-diabetes <- read_csv(file = "https://hbiostat.org/data/repo/diabetes.csv", 
+diabetes <- read_csv(file = "dataset/diabetes_hbiostat.csv", 
                      col_types = list(gender   = col_factor(), 
                                       location = col_factor(),
                                       frame    = col_factor()))

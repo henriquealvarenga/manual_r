@@ -94,16 +94,16 @@ Veja que essa função resolve muitas de nossas necessidades no processo de aná
 Vamos usar como exemplo o dataset `diabetes` disponível no site da Vanderbilt University School of Medicine:\
 <https://hbiostat.org/data/repo/diabetes.csv>
 
-Esse dataset contém dados de 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhasa e 19 colunas. O dicionário de variáveis desse datase pode ser obtido no link a seguir: <https://hbiostat.org/data/repo/Cdiabetes.html>
+Esse dataset contém dados de 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhas e 19 colunas. O dicionário de variáveis desse datase pode ser obtido no link a seguir: <https://hbiostat.org/data/repo/Cdiabetes.html>
 
 ```{r diabetes-dictionary, echo=FALSE, out.width='100%', fig.show='hold', fig.cap='diabetes dictionary'}
 knitr::include_graphics("images/diabetes-dictionary.png")
 ```
 
-Para usar esse dataset é necessário fazer o download desse arquivo e depois carregar esse arquivo no R ou então podemos criar um código para ler os dados diretamente do site, como abaixo
+Para usar esse dataset é necessário fazer o download desse arquivo e depois carregar esse arquivo no R. Neste livro o arquivo foi baixado uma vez para `dataset/diabetes_hbiostat.csv` (ver o capítulo sobre leitura de dados, @sec-reading), e é dessa cópia que o código lê:
 
-```{r reading-diabetes-from-site}
-diabetes <- read_csv("https://hbiostat.org/data/repo/diabetes.csv")
+```{r reading-diabetes}
+diabetes <- read_csv("dataset/diabetes_hbiostat.csv")
 ```
 
 ```{r}

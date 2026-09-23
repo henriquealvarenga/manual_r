@@ -4,14 +4,22 @@ Lista dos datasets usados nesse manual
 
 ## diabetes
 
-O dataset com dados de diabetes foi obtido no site do departamento de bio estatística da universidade de Vanderbilt no link abaixo. Consistem em 19 variáveis de 403 indivíduos, selecionados de um total de 1046 entrevistados, em um estudo sobre a prevalência de obesidade, diabetes e outros fatores de risco cardiovascular na população afro-americana da região central da Virgínia.
-
-```{r}
-# Código para ler o dataset diabetes do site da Universidade de Vanderbilt
-diabetes <- read.csv(file = "https://hbiostat.org/data/repo/diabetes.csv")
-```
+O dataset com dados de diabetes foi obtido no site do departamento de bioestatística da Universidade de Vanderbilt, no link abaixo. Consiste em 19 variáveis de 403 indivíduos, selecionados de um total de 1046 entrevistados, em um estudo sobre a prevalência de obesidade, diabetes e outros fatores de risco cardiovascular na população afro-americana da região central da Virgínia.
 
 <https://hbiostat.org/data>
+
+O livro guarda duas versões desse arquivo na pasta `dataset`:
+
+- `diabetes_hbiostat.csv`: o arquivo original, baixado uma vez do site, com 403 linhas e 19 colunas e os nomes das variáveis em inglês (`chol`, `stab.glu`, `gender`, `location`, `frame`...). É a versão usada nos capítulos de leitura de dados (@sec-reading) e de resumo de dados.
+- `diabetes.csv`: uma versão traduzida, com 18 colunas: os nomes estão em português (`colesterol`, `glicose`, `sexo`, `cidade`, `biotipo`...), a altura e o peso foram convertidos para centímetros e quilogramas, as colunas `bp.2s` e `bp.2d` foram retiradas e há uma coluna `n` com o número da linha. É a versão usada no capítulo sobre data frames (@sec-dataframes).
+
+```{r}
+# Código para ler a versão original (nomes em inglês)
+diabetes <- read.csv(file = "dataset/diabetes_hbiostat.csv")
+
+# Código para ler a versão traduzida (nomes em português)
+diabetes_pt <- read.csv(file = "dataset/diabetes.csv")
+```
 
 ## iris
 

@@ -43,7 +43,7 @@ Você verá que o dataset `USArrests` é um data frame com 50 observações (50 
 str(USArrests)
 ```
 
-Vejamos a estrutura de um dataset com 403 pacientes e 19 variáveis num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. O data frame contém então 403 linhasa e 19 colunas. Esse dataset foi obtido no site da universidade de Vanderbilt no link a seguir:
+Vejamos a estrutura de um dataset com 403 pacientes num estudo sobre diabetes, obesidade e outros fatores de risco para doenças coronarianas. Esse dataset foi obtido no site da universidade de Vanderbilt, no link a seguir, onde tem 19 variáveis. A versão usada neste capítulo é uma cópia guardada na pasta `dataset` do projeto, com os nomes das variáveis traduzidos para o português e 18 colunas (ver a lista de datasets no final do livro). O data frame contém então 403 linhas e 18 colunas.
 
 <https://hbiostat.org/data/repo/diabetes.csv>
 
