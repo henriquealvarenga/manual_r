@@ -449,8 +449,11 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="rnotebook"><span class="header-section-number">3.4.2</span> RNotebook</h3>
 <p>O R Notebook é um documento de texto mais sofisticado que um R Script. Um documento do tipo R Notebook é um misto de texto e códigos. O texto de um R Notebook é escrito no formato mais usado em ciência chamado de Markdown, intercalado com trechos de código (chamados de code chunks). Essa mistura de texto com código proporciona criar documentos com toda nossa análise estatística de forma muito mais simples. Além disso, um R Notebook pode ser gravado em diferentes formatos (word, pdf ou html) o que simplifica os processos de transferência de arquivos entre colaboradores.</p>
 <p>Veja na imagem abaixo que um trecho de código vem dentro de um campo (code chunk) delimitado por</p>
-<p>’’’{r}</p>
-<p>’’’’</p>
+<pre><code>
+::: {.cell}
+
+:::
+</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

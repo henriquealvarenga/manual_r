@@ -434,31 +434,36 @@ div.csl-indent {
 <p>Lista dos datasets usados nesse manual</p>
 <section id="diabetes" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="diabetes"><span class="header-section-number">16.1</span> diabetes</h2>
-<p>O dataset com dados de diabetes foi obtido no site do departamento de bio estatística da universidade de Vanderbilt no link abaixo. Consistem em 19 variáveis de 403 indivíduos, selecionados de um total de 1046 entrevistados, em um estudo sobre a prevalência de obesidade, diabetes e outros fatores de risco cardiovascular na população afro-americana da região central da Virgínia.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Código para ler o dataset diabetes do site da Universidade de Vanderbilt</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"https://hbiostat.org/data/repo/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>O dataset com dados de diabetes foi obtido no site do departamento de bioestatística da Universidade de Vanderbilt, no link abaixo. Consiste em 19 variáveis de 403 indivíduos, selecionados de um total de 1046 entrevistados, em um estudo sobre a prevalência de obesidade, diabetes e outros fatores de risco cardiovascular na população afro-americana da região central da Virgínia.</p>
 <p><a href="https://hbiostat.org/data" class="uri">https://hbiostat.org/data</a></p>
+<p>O livro guarda duas versões desse arquivo na pasta <code>dataset</code>:</p>
+<ul>
+<li><code>diabetes_hbiostat.csv</code>: o arquivo original, baixado uma vez do site, com 403 linhas e 19 colunas e os nomes das variáveis em inglês (<code>chol</code>, <code>stab.glu</code>, <code>gender</code>, <code>location</code>, <code>frame</code>…). É a versão usada nos capítulos de leitura de dados (<a href="10-Reading-data.html" class="quarto-xref"><span>Capítulo 10</span></a>) e de resumo de dados.</li>
+<li><code>diabetes.csv</code>: uma versão traduzida, com 18 colunas: os nomes estão em português (<code>colesterol</code>, <code>glicose</code>, <code>sexo</code>, <code>cidade</code>, <code>biotipo</code>…), a altura e o peso foram convertidos para centímetros e quilogramas, as colunas <code>bp.2s</code> e <code>bp.2d</code> foram retiradas e há uma coluna <code>n</code> com o número da linha. É a versão usada no capítulo sobre data frames (<a href="06-Dataframes-and-Tibbles.html" class="quarto-xref"><span>Capítulo 6</span></a>).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Código para ler a versão original (nomes em inglês)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"dataset/diabetes_hbiostat.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Código para ler a versão traduzida (nomes em português)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>diabetes_pt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"dataset/diabetes.csv"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="iris" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="iris"><span class="header-section-number">16.2</span> iris</h2>
 <p>O conjunto de dados “<code>iris</code>” do <code>ggplot2</code> contém 150 observações de três espécies de íris (Setosa, Versicolor, Virginica), com medições de comprimento e largura das sépalas e pétalas, em centímetros. É amplamente utilizado para demonstrações de técnicas de análise de dados e aprendizado de máquina.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset iris do ggplot2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lembre-se que será primeiro necessário instalar o pacote ggplot2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset iris, que faz parte do R base</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris, <span class="at">package =</span> <span class="st">"datasets"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="mpg" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="mpg"><span class="header-section-number">16.3</span> mpg</h2>
 <p>O conjunto de dados “<code>mpg</code>” do <code>ggplot2</code> contém 234 observações de veículos, com informações detalhadas sobre consumo de combustível, características do motor e especificações do carro. As variáveis incluem fabricante, modelo, cilindrada, ano, número de cilindros, tipo de transmissão, tipo de tração, consumo na cidade e na estrada, tipo de combustível e classe do veículo. Este conjunto de dados é amplamente utilizado para análises e visualizações relacionadas ao desempenho de veículos em termos de eficiência de combustível.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset mpg do ggplot2</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lembre-se que será primeiro necessário instalar o pacote ggplot2</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset mpg, que vem com o pacote ggplot2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (o pacote precisa estar instalado, mas não precisa estar carregado)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="mtcars" class="level2" data-number="16.4">
@@ -466,52 +471,39 @@ div.csl-indent {
 <p>O conjunto de dados “<code>mtcars</code>” do R base contém 32 observações de modelos de carros, com informações detalhadas sobre eficiência de combustível, características do motor, e especificações do veículo. As variáveis incluem milhas por galão, número de cilindros, deslocamento, potência, relação do eixo traseiro, peso, tempo para percorrer um quarto de milha, tipo de motor, tipo de transmissão, número de marchas e número de carburadores. Este conjunto de dados é amplamente utilizado para análises estatísticas e visualizações relacionadas ao desempenho e características dos veículos. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset mtcars</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="arthritis" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="arthritis"><span class="header-section-number">16.5</span> Arthritis</h2>
 <p>O conjunto de dados “Arthritis” do pacote <code>vcd</code> do R contém 84 observações de pacientes de um estudo clínico sobre o tratamento da artrite. As variáveis incluem a identificação do paciente, tipo de tratamento (Placebo ou Tratamento), sexo, idade e grau de melhora dos sintomas (Nenhuma, Alguma, Marcante). Este conjunto de dados é amplamente utilizado para analisar a eficácia de tratamentos de artrite e explorar como fatores como idade e sexo podem influenciar os resultados do tratamento.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset Arthritis</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lembre-se que será primeiro necessário instalar o pacote vcd</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'vcd' was built under R version 4.6.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Arthritis"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset Arthritis, que vem com o pacote vcd</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Arthritis"</span>, <span class="at">package =</span> <span class="st">"vcd"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="airquality" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="airquality"><span class="header-section-number">16.6</span> airquality</h2>
 <p>O conjunto de dados “airquality” em R contém 153 observações de medições diárias de qualidade do ar na cidade de Nova York, durante os meses de maio a setembro de 1973. As variáveis incluem concentração de ozônio, radiação solar, velocidade do vento, temperatura, mês e dia da medição. Este conjunto de dados é amplamente utilizado para análises ambientais e de séries temporais, apesar de conter alguns valores faltantes. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset airquality</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airquality)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset airquality</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airquality)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plantgrowth" class="level2" data-number="16.7">
 <h2 data-number="16.7" class="anchored" data-anchor-id="plantgrowth"><span class="header-section-number">16.7</span> PlantGrowth</h2>
 <p>O conjunto de dados “PlantGrowth” em R contém 30 observações de pesos de plantas submetidas a três diferentes tratamentos (controle, tratamento 1 e tratamento 2). Cada grupo possui 10 plantas. Este conjunto de dados é utilizado principalmente para realizar análises estatísticas, como ANOVA, para investigar o efeito dos tratamentos no crescimento das plantas. Não é necessário carregar nenhum pacote para ter acesso a esse dataset que faz parte do R base.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset PlantGrowth</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PlantGrowth)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset PlantGrowth</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PlantGrowth)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="saheart" class="level2" data-number="16.8">
 <h2 data-number="16.8" class="anchored" data-anchor-id="saheart"><span class="header-section-number">16.8</span> SAheart</h2>
 <p>dataset <code>SAheart</code> do pacote <code>bestglm</code>. Esse dados foram coletados como parte de um estudo para entender os fatores de risco associados à doença cardíaca coronariana (CHD - Coronary Heart Disease) em uma população sul-africana, para identificar os fatores que podem contribuir para a incidência de doenças coronarianas <span class="citation" data-cites="Rossouw1983">(<a href="references.html#ref-Rossouw1983" role="doc-biblioref">Rossouw et al. 1983</a>)</span>. É um conjunto de dados frequentemente utilizado para ilustrar análises estatísticas e técnicas de aprendizado de máquina, especialmente no contexto de predição de doenças cardíacas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset SAheart</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lembre-se que será primeiro necessário instalar o pacote bestglm</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bestglm)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: leaps</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"SAheart"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># código para acessar o dataset SAheart, que vem com o pacote bestglm</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"SAheart"</span>, <span class="at">package =</span> <span class="st">"bestglm"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

@@ -466,7 +466,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="distribuicoes" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></span></h1>
+<h1 class="title"><span id="sec-distribuicoes" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Distribuições de Probabilidade</span></span></h1>
 </div>
 
 
@@ -484,6 +484,10 @@ window.Quarto = {
 
 
 <p>Distribuições teóricas são modelos matemáticos que descrevem como os dados se comportam. Elas são importantes porque permitem a modelagem e previsão de fenômenos naturais, fazendo inferências sobre uma população a partir de uma amostra e testando hipóteses para determinar a significância dos resultados observados.</p>
+<p>Pacotes usados neste capítulo, carregados uma única vez no início, como recomendado no capítulo sobre pacotes (<a href="09-R-Packages.html" class="quarto-xref"><span>Capítulo 9</span></a>):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Na medicina, esses conceitos são aplicados de várias maneiras. Ensaios clínicos utilizam distribuições teóricas para determinar a significância dos resultados dos testes de tratamento, por exemplo, modelando a distribuição dos resultados com a distribuição normal. Estudos epidemiológicos usam distribuições para modelar a incidência e prevalência de doenças, como a distribuição de Poisson para modelar o número de novos casos em um determinado período. A análise de sobrevivência utiliza a distribuição exponencial para modelar o tempo de sobrevivência dos pacientes após um tratamento ou o tempo até a ocorrência de um evento específico, como a recaída de uma doença. Distribuições teóricas de probabilidade são, portanto, elementos fundamentais da análise estatística.</p>
 <p>O R, sendo uma linguagem estatística, naturalmente possui diversos comandos para criar conjuntos de números aleatórios com distribuições de diversos tipos. Para cada distribuição o R possui 4 funções principais: densidade de probabilidade (d), probabilidade cumulativa (p), quantiles (q) e números randomizados (r). Cada uma dessas funções é obtida colocando-se a letra correspondente (d, p, q, r) como prefixo do nome da distribuição no R. A tabela abaixo mostra algumas das distribuições e as funções associadas.</p>
 <p><img src="images/distributions_table.png" class="img-fluid"></p>
@@ -492,17 +496,17 @@ window.Quarto = {
 <p>A função <code>set.seed()</code> do R é utilizada para definir a semente (ou seed, em inglês) de geração de números aleatórios, ou seja, o ponto de partida para a geração de números aleatórios. Isso é particularmente útil quando você precisa garantir que seus resultados sejam reprodutíveis. Ao definir uma semente específica, qualquer operação subsequente que envolva a geração de números aleatórios produzirá os mesmos resultados em diferentes execuções, desde que a mesma semente seja usada.</p>
 <p>Sem definir uma semente, os resultados da simulação mudarão a cada execução. No entanto, ao usar <code>set.seed()</code>, você pode garantir que os resultados sejam consistentes.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará em uma sequência diferente de 5 números.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará em uma sequência diferente de 5 números.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.2432937  0.5469740 -1.7061587 -0.1341251 -1.4421344</code></pre>
+<pre><code>[1]  0.8092981 -1.9263744 -0.3317427 -0.2912367 -1.1799787</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará sempre em na mesma sequencia de 5 números.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterar o argumento da função set.seed irá mudar a sequencia de números.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada execução desse código resultará sempre em na mesma sequencia de 5 números.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterar o argumento da função set.seed irá mudar a sequencia de números.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
 </div>
@@ -516,8 +520,8 @@ window.Quarto = {
 <p>A função <code>runif()</code> gera um conjunto randomizado de números a partir de um distribuição uniforme. Os argumentos dessa função são: a quantidade de números, o valor mínimo e o valor máximo.</p>
 <p>Veja abaixo como criar um conjunto randomizado de 20 números distribuídos de forma uniforme entre 0 e 1.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ru1</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ru1</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 0.20597457 0.17655675 0.68702285 0.38410372 0.76984142 0.49769924
  [7] 0.71761851 0.99190609 0.38003518 0.77744522 0.93470523 0.21214252
@@ -527,8 +531,8 @@ window.Quarto = {
 </div>
 <p>podemos arrendondar esses valores com a função round().</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arredondando para 2 casas decimais</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ru1, <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arredondando para 2 casas decimais</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ru1, <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 0.21 0.18 0.69 0.38 0.77 0.50 0.72 0.99 0.38 0.78 0.93 0.21 0.65 0.13 0.27
 [16] 0.39 0.01 0.38 0.87 0.34</code></pre>
@@ -536,30 +540,30 @@ window.Quarto = {
 </div>
 <p>Podemos visualizar um histograma dessa distribuição com a função <code>hist()</code>. Veja que com poucos elementos a distribuição ainda não parece uniforme.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Entretanto, a medida que aumentando o número de elementos, a forma da distribuição se parece cada vez mais com uma distribuição uniforme. Veja no código abaixo um conjunto randomizado de 10, 100, 1000 e 10.000 elementos criados com a função <code>runif(</code>) e os histogramas dessas distribuições.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ru2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ru3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ru4 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># cria uma matrix 2x2 para plotar os gráficos</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru2)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru3)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru4)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ru1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ru2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ru3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ru4 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># cria uma matrix 2x2 para plotar os gráficos</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru1)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru2)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru3)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ru4)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -573,9 +577,9 @@ window.Quarto = {
 <li>min: o limite inferior da distribuição</li>
 <li>max: o limite superior da distribuição</li>
 </ul>
-<p>Veja como usar a função <code>dunif()</code> para calcular o PDF de uma distribuição uniforme entre 0 e 100 no valor 2:</p>
+<p>Veja como usar a função <code>dunif()</code> para calcular o PDF de uma distribuição uniforme entre 0 e 100 no valor 5:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunif</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01</code></pre>
 </div>
@@ -595,7 +599,7 @@ window.Quarto = {
 </ul>
 <p>Veja um exemplo de como usar a função <code>punif()</code> para calcular o CDF de uma distribuição uniforme entre 0 e 100 no valor 5:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">5</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.05</code></pre>
 </div>
@@ -603,8 +607,8 @@ window.Quarto = {
 </section>
 <section id="qunif" class="level3" data-number="14.2.4">
 <h3 data-number="14.2.4" class="anchored" data-anchor-id="qunif"><span class="header-section-number">14.2.4</span> <code>qunif</code></h3>
-<p>A função <code>quinf()</code> calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.</p>
-<p>A função <code>quinf()</code> requer três argumentos:</p>
+<p>A função <code>qunif()</code> calcula a função quantil da distribuição uniforme. A função quantil é o inverso do CDF. Dada um probabilidade como entrada, a função retorna o valor que tem essa probabilidade.</p>
+<p>A função <code>qunif()</code> requer três argumentos:</p>
 <ul>
 <li>p: a probabilidade<br>
 </li>
@@ -612,9 +616,9 @@ window.Quarto = {
 </li>
 <li>max: o limite superior da distribuição</li>
 </ul>
-<p>Veja exemplo de como usar a função <code>quinf()</code> para calcular o quantil de uma distribuição uniforme entre 0 e 100 na probabilidade de 0.05:</p>
+<p>Veja exemplo de como usar a função <code>qunif()</code> para calcular o quantil de uma distribuição uniforme entre 0 e 100 na probabilidade de 0.05:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qunif</span>(<span class="fl">0.05</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qunif</span>(<span class="fl">0.05</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -629,21 +633,8 @@ window.Quarto = {
 <p>A função <code>rnorm()</code> gera um conjunto de números randomizados a partir de um distribuição normal. Os argumentos dessa função são: a quantidade de números, a média e o desvio padrão. Se introduzirmos apenas a quantidade de números, a função <code>rnorm()</code> utiliza a distribuição normal padrão, com média = 0 e desvio padrão = 1.</p>
 <p>Gerando um conjunto randomizado de 1000 números distribuídos de forma normal com média = 0 e desvio padrão = 1.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Poderíamos também escrever a função acima com os argumentos pela ordem:</p>
-<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
@@ -653,17 +644,30 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>Poderíamos também escrever a função acima com os argumentos pela ordem:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserindo apenas o número de valores a serem gerados</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nesse caso a função rnorm usa os valores default para media e desvio padrão</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># media = 0 e desvio padrão = 1 (curva normal padrão)</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="14-Distributions_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserindo apenas o número de valores a serem gerados</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nesse caso a função rnorm usa os valores default para media e desvio padrão</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># media = 0 e desvio padrão = 1 (curva normal padrão)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>rn1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(rn1)) </span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -674,30 +678,19 @@ window.Quarto = {
 <p>A função <code>dnorm()</code> é a função de densidade de probabilidade (PDF) de uma distribuição normal e retorna o valor da densidade de probabilidade de um valor x, ou seja, a altura da curva normal naquele ponto. Tem como argumentos o valor x e a média e o desvio padrão da curva. O primeiro argumento é o ponto no eixo x do qual se pretende saber o valor da densidade de probabilidade, o segundo argumento é a média e o terceiro argumento é o desvio padrão.</p>
 <p>Por exemplo, para saber o valor da densidade de probabilidade de x=2, numa curva normal padrão (média =0 e desvio padrão =1), o código seria:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.05399097</code></pre>
 </div>
 </div>
 <p>Numa curva normal padrão não precisamos informar os valores da média e do desvio padrão, bastando inserir o ponto do eixo x.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.05399097</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>A função <code>dnorm(x)</code> pode ser usada também para gerar todos os pontos da curva normal. Isso pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -706,8 +699,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>A função <code>dnorm(x)</code> pode ser usada também para gerar todos os pontos da curva normal. Isso pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">16</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -717,7 +711,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean=</span> <span class="dv">100</span>, <span class="at">sd=</span> <span class="dv">10</span>), <span class="dv">50</span>, <span class="dv">150</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">16</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -726,20 +720,30 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Podemos inserir várias curvas num mesmo gráfico com o argumento <code>add=TRUE</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"brown"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">3</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">4</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"σ = 1"</span>,   <span class="st">"σ = 2"</span>,   <span class="st">"σ = 3"</span>,  <span class="st">"σ = 4"</span>,  <span class="st">"σ = 5"</span>),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(<span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,   <span class="st">"red"</span>,    <span class="st">"green"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean=</span> <span class="dv">100</span>, <span class="at">sd=</span> <span class="dv">10</span>), <span class="dv">50</span>, <span class="dv">150</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="14-Distributions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos inserir várias curvas num mesmo gráfico com o argumento <code>add=TRUE</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"brown"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">3</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">4</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">sd=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"σ = 1"</span>,   <span class="st">"σ = 2"</span>,   <span class="st">"σ = 3"</span>,  <span class="st">"σ = 4"</span>,  <span class="st">"σ = 5"</span>),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(<span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,   <span class="st">"red"</span>,    <span class="st">"green"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -749,8 +753,8 @@ window.Quarto = {
 <h3 data-number="14.3.3" class="anchored" data-anchor-id="pnorm"><span class="header-section-number">14.3.3</span> <code>pnorm</code></h3>
 <p>A função <code>pnorm(x)</code> é utilizada para calcular a função de distribuição acumulada (CDF) de uma distribuição normal. Em outras palavras, ela fornece a probabilidade de que uma variável aleatória com distribuição normal padrão seja menor ou igual a um determinado valor x. Do ponto de vista gráfico, essa função calcula área abaixo da curva normal, à esquerda de x, ou seja, a probabilidade de dados menores que x. O gráfico abaixo mostra a interpretação visual da função <code>pnorm(x)</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculando pnorm de x=2 na curva normal padrão</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculando pnorm de x=2 na curva normal padrão</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9772499</code></pre>
 </div>
@@ -759,7 +763,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -767,14 +771,14 @@ window.Quarto = {
 <p>Observe que a função <code>pnorm(x)</code> usou os valores padrões de media = 0 e desvio padrão = 1. Caso seja necessário usar outros valores, basta inserir esses argumentos na função pnorm().</p>
 <p>Vamos usar um estudo da ANAC (Agência Nacional de Aviação Civil) <span class="citation" data-cites="Silva2009">(<a href="references.html#ref-Silva2009" role="doc-biblioref">Silva e Monteiro 2009</a>)</span> como exemplo. Nesse estudo foi a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm. Usando esses dados como exemplo, podemos calcular qual o percentual de homens dessa amostra com altura inferior a 190cm.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9896954</code></pre>
 </div>
 </div>
 <p>A função <code>pnorm(x)</code> calcula a área abaixo da curva À ESQUERDA do ponto x. Como a área total abaixo de uma curva normal é 1, Para saber a área à direita basta subtrair o resultado de 1, como feito abaixo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01030459</code></pre>
 </div>
@@ -784,7 +788,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -795,7 +799,7 @@ window.Quarto = {
 <p>A função <code>qnorm()</code> faz o calculo inverso da função <code>pnorm()</code>. é utilizada para calcular o quantil (ou percentil) de uma distribuição normal. Isso significa que ela fornece o valor x tal que a área sob a curva normal à esquerda de x é igual a uma probabilidade especificada p.&nbsp;O argumento da função <code>qnorm(p)</code> é extamente essa probabilidade, o percentual abaixo da curva à esquerda do ponto x. O resultado dessa função é o valor no eixo x que delimita essa área.</p>
 <p>Com essa função podemos nos perguntar qual deve ser a altura das portas de um avião para que 99% dos brasileiros usuários dos aeroportos possam passar pela porta de um avião sem ter de se abaixar? Ou seja, qual a medida da estatura abaixo do qual estão 99% dos brasileiros dessa amostra? Lembrando que a média da altura dos homens brasileiros usuários do sistema de aviação foi estimada em 173,1 cm com um desvio padrão de 7,3cm, o código fica assim:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.99</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.99</span>, <span class="at">mean=</span><span class="fl">173.1</span>, <span class="at">sd=</span><span class="fl">7.3</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 190.0823</code></pre>
 </div>
@@ -805,7 +809,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -819,13 +823,13 @@ window.Quarto = {
 <h3 data-number="14.4.1" class="anchored" data-anchor-id="rt"><span class="header-section-number">14.4.1</span> <code>rt()</code></h3>
 <p>A função <code>rt()</code> cria conjunto randomizado de números a partir de um distribuição t de Student. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (<em>degrees of freedom</em> - df).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(x))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(x))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -837,7 +841,7 @@ window.Quarto = {
 <p>A função <code>dt()</code> é a função de densidade de probabilidade (PDF) na curva de distribuição t. Tem como argumento o ponto no eixo x e os graus de liberdade e seu resultado é o valor da densidade de probabilidade, ou a altura da curva t nesse ponto.</p>
 <p>Por exemplo, para saber o valor da densidade de probabilidade de x=2, numa curva de distribuição t com 5 graus de liberdade (df = 5), o código seria:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">df=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dt</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">df=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.06509031</code></pre>
 </div>
@@ -846,37 +850,37 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>A função <code>dt()</code> pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva normal com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
+<p>A função <code>dt()</code> pode ser usada também para gerar todos os pontos da curva, o que pode ser útil para desenhar gráficos da curva t com códigos bem curtos, quando a associamos à função <code>curve()</code>, como mostrado nos códigos abaixo.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">5</span>), </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>) )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">5</span>), </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>) )</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Podemos inserir várias curvas num mesmo gráfico, usando o argumento add=TRUE.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),   <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">20</span>),<span class="at">col=</span><span class="st">"brown"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"normal curve"</span>,<span class="st">"t, df=20"</span>,<span class="st">"t, df=5"</span>,<span class="st">"t, df=2"</span>,<span class="st">"t, df=1"</span>),</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(       <span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,    <span class="st">"red"</span>,  <span class="st">"green"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),   <span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>), <span class="at">ylab=</span><span class="st">"Densidade"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">20</span>),<span class="at">col=</span><span class="st">"brown"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"blue"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"red"</span>,   <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,<span class="at">df=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"green"</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.41</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"normal curve"</span>,<span class="st">"t, df=20"</span>,<span class="st">"t, df=5"</span>,<span class="st">"t, df=2"</span>,<span class="st">"t, df=1"</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span>    <span class="fu">c</span>(       <span class="st">"black"</span>,   <span class="st">"brown"</span>,   <span class="st">"blue"</span>,    <span class="st">"red"</span>,  <span class="st">"green"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -887,7 +891,7 @@ window.Quarto = {
 <p>A função <code>pt(q)</code> é utilizada para calcular a função de distribuição acumulada (CDF) da distribuição t de Student. Ela fornece a probabilidade de que uma variável aleatória com uma distribuição t de Student seja menor ou igual a um determinado valor x. Ou seja, calcula área abaixo da curva de distribuição t, à esquerda de q (quantile).</p>
 <p>Os argumentos dessa função são o quantile (q) e os graus de liberdade da curva t (df). O código e o gráfico abaixo mostram o resultado da função <code>pt()</code> e a a interpretação visual da função.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9490303</code></pre>
 </div>
@@ -896,7 +900,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -905,8 +909,9 @@ window.Quarto = {
 <section id="qt" class="level3" data-number="14.4.4">
 <h3 data-number="14.4.4" class="anchored" data-anchor-id="qt"><span class="header-section-number">14.4.4</span> <code>qt()</code></h3>
 <p>A função <code>qt()</code>, faz o inverso da função <code>pt()</code>: dada uma área abaixo da curva de distribuição t, a função retorna o quantile (q) que delimita essa área à esquerda. Os argumentos dessa função são a área em decimais (p) e os graus de liberdade da curva t (df). O resultado da função é o quantile.</p>
+<p>Como exemplo, usamos a probabilidade 0.9490303, que é justamente o resultado de <code>pt(q = 2, df = 5)</code> calculado acima. A função devolve então o quantil 2.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.9490303</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.9490303</span>, <span class="at">df =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.000001</code></pre>
 </div>
@@ -920,13 +925,13 @@ window.Quarto = {
 <h3 data-number="14.5.1" class="anchored" data-anchor-id="rchisq"><span class="header-section-number">14.5.1</span> <code>rchisq()</code></h3>
 <p>A função <code>rchisq()</code> cria conjunto randomizado de números a partir de um distribuição Chi quadrado. Os argumentos dessa função são: a quantidade de números e os graus de liberdade (degrees of freedom - df).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(y))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(y))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -937,34 +942,34 @@ window.Quarto = {
 <p>A função <code>dchisq()</code> é utilizada para calcular a função densidade de probabilidade (PDF) de uma distribuição qui-quadrado (<span class="math inline">\(\chi^2\)</span>). Ela retorna a densidade da função qui-quadrado para um dado valor x, ou seja, a altura da curva de densidade qui-quadrado naquele ponto específico.</p>
 <p>Podemos usar a função <code>dchisq()</code> para construir gráficos da distribuição chi-quadrado, da mesma forma como fizemos com a curva normal.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span>), </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"black"</span>,</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), </span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span>), </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"black"</span>,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>E também podemos usar a o argumento add=TRUE para inserir várias curvas no mesmo gráfico.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">1</span> ),<span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">2</span> ),<span class="at">col=</span><span class="st">"red"</span>,         <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span> ),<span class="at">col=</span><span class="st">"blue"</span>,        <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">5</span> ),<span class="at">col=</span><span class="st">"dark green"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">10</span>),<span class="at">col=</span><span class="st">"brown"</span>,       <span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="fl">0.55</span>, </span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"df=1"</span>,<span class="st">"df=2"</span>,<span class="st">"df=3"</span>,<span class="st">"df=5"</span>,<span class="st">"df=10"</span>),</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col    =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"dark green"</span>,<span class="st">"brown"</span>),</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">1</span> ),<span class="at">col=</span><span class="st">"black"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="at">ylab=</span><span class="st">"Chi Square Density"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">2</span> ),<span class="at">col=</span><span class="st">"red"</span>,         <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">3</span> ),<span class="at">col=</span><span class="st">"blue"</span>,        <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">5</span> ),<span class="at">col=</span><span class="st">"dark green"</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df=</span><span class="dv">10</span>),<span class="at">col=</span><span class="st">"brown"</span>,       <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="fl">0.55</span>, </span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"df=1"</span>,<span class="st">"df=2"</span>,<span class="st">"df=3"</span>,<span class="st">"df=5"</span>,<span class="st">"df=10"</span>),</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col    =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"dark green"</span>,<span class="st">"brown"</span>),</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -979,19 +984,19 @@ window.Quarto = {
 <li><code>df</code> é o número de graus de liberdade da distribuição.</li>
 </ul>
 <p>Por padrão a funçõa retorna probabilidade acumulada do valor da estatística ser menor ou igual a <code>q</code>. Caso deseje a probabilidade de ser <strong>maior ou igual</strong> a <code>q</code> é necessário acrescentar o argumento <code>lower.tail=FALSE</code></p>
-<p>Suponha que você tenha uma estatística qui-quadrado de 5.991 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 5.991)</p>
+<p>Suponha que você tenha uma estatística qui-quadrado de 6 e 2 graus de liberdade e queira calcular a probabilidade acumulada P(x ≤ 6)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="at">q =</span> <span class="dv">6</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="at">q =</span> <span class="dv">6</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9502129</code></pre>
 </div>
 </div>
-<p>O gráfico abaixo visualiza o uso da função <code>pchisq(q = 5.991, df = 2)</code></p>
+<p>O gráfico abaixo visualiza o uso da função <code>pchisq(q = 6, df = 2)</code></p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="14-Distributions_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="14-Distributions_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1000,8 +1005,9 @@ window.Quarto = {
 <section id="qchisq" class="level3" data-number="14.5.4">
 <h3 data-number="14.5.4" class="anchored" data-anchor-id="qchisq"><span class="header-section-number">14.5.4</span> <code>qchisq()</code></h3>
 <p>A função <code>qchisq()</code> é o oposto da <code>pchisq()</code>. É usada para calcular o quantil da distribuição qui-quadrado. Em outras palavras, ela encontra o valor <code>q</code> tal que a probabilidade acumulada até <code>q</code> seja igual a um dado valor de probabilidade <code>p</code>. Isso é útil em testes de hipóteses e intervalos de confiança onde se deseja encontrar os pontos críticos da distribuição qui-quadrado.</p>
+<p>Como exemplo, usamos a probabilidade 0.9502129, que é o resultado de <code>pchisq(q = 6, df = 2)</code> calculado acima. A função devolve então o quantil 6.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="at">p =</span><span class="fl">0.9502129</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="at">p =</span> <span class="fl">0.9502129</span>, <span class="at">df =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.999999</code></pre>
 </div>
@@ -1160,10 +1166,10 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td>Beta-Binomial</td>
-<td><code>dbetabinom</code> (MASS)</td>
-<td><code>pbetabinom</code> (MASS)</td>
-<td><code>qbetabinom</code> (MASS)</td>
-<td><code>rbetabinom</code> (MASS)</td>
+<td><code>dbetabinom</code> (VGAM)</td>
+<td><code>pbetabinom</code> (VGAM)</td>
+<td><code>qbetabinom</code> (VGAM)</td>
+<td><code>rbetabinom</code> (VGAM)</td>
 </tr>
 <tr class="odd">
 <td>Normal Inversa</td>

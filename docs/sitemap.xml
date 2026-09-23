@@ -2,90 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://henriquealvarenga.com/manual_r/index.html</loc>
-    <lastmod>2026-08-09T08:25:17.876Z</lastmod>
+    <lastmod>2026-09-23T15:12:16.025Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/00-prefacio.html</loc>
-    <lastmod>2024-06-14T13:58:57.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:15.958Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/01-intro.html</loc>
-    <lastmod>2026-04-29T15:30:01.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:15.962Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/02-Instalation.html</loc>
-    <lastmod>2024-05-21T14:14:48.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:15.963Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/03-RStudio.html</loc>
-    <lastmod>2024-06-14T13:13:59.000Z</lastmod>
+    <lastmod>2026-09-23T15:18:54.200Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/04-R-Projects.html</loc>
-    <lastmod>2024-06-14T13:17:53.000Z</lastmod>
+    <lastmod>2026-09-23T15:17:25.794Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/05-R-Objects-Variables-Vectors.html</loc>
-    <lastmod>2026-08-08T14:22:37.905Z</lastmod>
+    <lastmod>2026-09-23T15:19:37.753Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/06-Dataframes-and-Tibbles.html</loc>
-    <lastmod>2024-06-23T11:15:21.000Z</lastmod>
+    <lastmod>2026-09-23T15:15:48.455Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/07-Operators.html</loc>
-    <lastmod>2024-06-23T11:17:49.000Z</lastmod>
+    <lastmod>2026-09-23T15:15:48.457Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/08-R-Functions.html</loc>
-    <lastmod>2024-06-23T11:17:58.000Z</lastmod>
+    <lastmod>2026-09-23T15:17:25.787Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/09-R-Packages.html</loc>
-    <lastmod>2024-06-16T00:04:09.000Z</lastmod>
+    <lastmod>2026-09-23T15:17:25.792Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/10-Reading-data.html</loc>
-    <lastmod>2024-06-16T00:06:25.000Z</lastmod>
+    <lastmod>2026-09-23T15:15:48.462Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/11-Manipulating-data.html</loc>
-    <lastmod>2024-11-10T18:59:07.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:15.977Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/12-Ploting-graphics.html</loc>
-    <lastmod>2024-10-11T12:32:44.000Z</lastmod>
+    <lastmod>2026-09-23T15:18:54.191Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/13-Statistical-Analysis.html</loc>
-    <lastmod>2024-11-10T22:20:36.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:15.997Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/14-Distributions.html</loc>
-    <lastmod>2024-06-10T13:42:15.000Z</lastmod>
+    <lastmod>2026-09-23T15:18:54.195Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/15-Simulations.html</loc>
-    <lastmod>2024-06-08T21:56:46.000Z</lastmod>
+    <lastmod>2026-09-23T15:18:54.198Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/16-Datasets.html</loc>
-    <lastmod>2024-07-31T16:50:46.000Z</lastmod>
+    <lastmod>2026-09-23T15:13:26.334Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/17-Conclusion.html</loc>
-    <lastmod>2024-05-25T17:44:19.000Z</lastmod>
+    <lastmod>2026-09-23T15:12:16.023Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/references.html</loc>
-    <lastmod>2026-08-09T08:41:08.288Z</lastmod>
+    <lastmod>2026-09-23T15:12:16.026Z</lastmod>
   </url>
   <url>
     <loc>https://henriquealvarenga.com/manual_r/creditos.html</loc>
-    <lastmod>2026-08-09T09:23:25.499Z</lastmod>
-  </url>
-  <url>
-    <loc>https://henriquealvarenga.com/manual_r/Manual-Básico-da-Linguagem-R.pdf</loc>
-    <lastmod>2026-09-16T15:40:41.674Z</lastmod>
+    <lastmod>2026-09-23T15:12:16.023Z</lastmod>
   </url>
 </urlset>

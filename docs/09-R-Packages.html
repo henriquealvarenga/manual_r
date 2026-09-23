@@ -400,7 +400,7 @@ div.csl-indent {
   <ul>
   <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link active" data-scroll-target="#tidyverse"><span class="header-section-number">9.1</span> Tidyverse</a></li>
   <li><a href="#instalando-o-tidyverse" id="toc-instalando-o-tidyverse" class="nav-link" data-scroll-target="#instalando-o-tidyverse"><span class="header-section-number">9.2</span> Instalando o tidyverse</a></li>
-  <li><a href="#carrregando-pacotes" id="toc-carrregando-pacotes" class="nav-link" data-scroll-target="#carrregando-pacotes"><span class="header-section-number">9.3</span> Carrregando pacotes</a></li>
+  <li><a href="#carregando-pacotes" id="toc-carregando-pacotes" class="nav-link" data-scroll-target="#carregando-pacotes"><span class="header-section-number">9.3</span> Carregando pacotes</a></li>
   <li><a href="#datasets-do-ggplot2" id="toc-datasets-do-ggplot2" class="nav-link" data-scroll-target="#datasets-do-ggplot2"><span class="header-section-number">9.4</span> Datasets do ggplot2</a></li>
   </ul>
 </nav>
@@ -442,7 +442,7 @@ O pacote <code>tibble</code> atualiza o objeto data frame para a <code>tibble</c
 <p><strong>3.tidyr</strong><br>
 O pacote <code>tidyr</code> fornece um conjunto de funções que ajudam você a organizar os dados. Veremos como transformar data frames no formato wide em formato long e vice versa com as funções <code>pivot_longer()</code> e <code>pivot_wider()</code>; veremos como retirar observações com valores <code>NA</code> com a função <code>drop_na()</code> e como substituir observações com valores <code>NA</code> com a função <code>replace_na()</code>.</p>
 <p><strong>4.dplyr</strong><br>
-O pacote <code>dplyr</code> fornece uma gramática de manipulação de dados, fornecendo um conjunto consistente de funções que resolvem os desafios mais comuns de manipulação de dados. Veremos como extrair linhas que preencham certos critérios com a função <code>filter()</code>; selecionar uma ou um conjunto de colunas (variáveis) com a função <code>select()</code>; extrair os valores de uma coluna na forma de um vetor com a função <code>pull()</code>; agrupar dados segundo as categorias de uma variável categórica com a função <code>group_by()</code>; criar novas colunas (variáveis) a partir de outras já existentes com a função <code>mutate()</code> e como modificar valores de variáveis, numérica ou categóricas com a função <code>recode()</code>.</p>
+O pacote <code>dplyr</code> fornece uma gramática de manipulação de dados, fornecendo um conjunto consistente de funções que resolvem os desafios mais comuns de manipulação de dados. Veremos como extrair linhas que preencham certos critérios com a função <code>filter()</code>; selecionar uma ou um conjunto de colunas (variáveis) com a função <code>select()</code>; extrair os valores de uma coluna na forma de um vetor com a função <code>pull()</code>; agrupar dados segundo as categorias de uma variável categórica com a função <code>group_by()</code>; criar novas colunas (variáveis) a partir de outras já existentes com a função <code>mutate()</code> e como modificar valores de variáveis, numéricas ou categóricas, com as funções <code>recode_values()</code> e <code>replace_values()</code>.</p>
 <p><strong>5.forcats</strong><br>
 O pacote <code>forcats</code> fornecer um conjunto de ferramentas que resolve problemas comuns com variáveis categóricas.</p>
 <p><strong>6.ggplot2</strong><br>
@@ -460,7 +460,7 @@ O pacote <code>ggplot2</code> é um sistema para criação declarativa de gráfi
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Install-tidyverse.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Installing the tidyvese package</figcaption>
+<figcaption>Installing the tidyverse package</figcaption>
 </figure>
 </div>
 </div>
@@ -470,8 +470,8 @@ O pacote <code>ggplot2</code> é um sistema para criação declarativa de gráfi
 <p>Atenção, isso só precisa ser feito uma vez!! Se você já instalou esse pacote, passe para a próxima etapa. Lembre-se, que um pacote só precisa ser instalado uma única vez.</p>
 </blockquote>
 </section>
-<section id="carrregando-pacotes" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="carrregando-pacotes"><span class="header-section-number">9.3</span> Carrregando pacotes</h2>
+<section id="carregando-pacotes" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="carregando-pacotes"><span class="header-section-number">9.3</span> Carregando pacotes</h2>
 <p>A segunda etapa é carregar o pacote na sessão. Isso é feito com o comando <code>library()</code>. O carregamento dos pacotes necessários deve ser feito sempre no início de seu código.</p>
 <p>Para carregar o pacote tidyverse em sua sessão R, use o comando <code>library()</code> no início de seu script ou de seu R Notebook ou documento Quarto, como mostrado abaixo.</p>
 <div class="cell">
@@ -479,7 +479,7 @@ O pacote <code>ggplot2</code> é um sistema para criação declarativa de gráfi
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Libray-at-begining.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Loading the tidyvese package</figcaption>
+<figcaption>Loading the tidyverse package</figcaption>
 </figure>
 </div>
 </div>
@@ -512,8 +512,8 @@ O pacote <code>ggplot2</code> é um sistema para criação declarativa de gráfi
  $ class       : chr [1:234] "compact" "compact" "compact" "compact" ...</code></pre>
 </div>
 </div>
-<p>O acrônimo <code>mpg</code> significa <strong>Miles Per Gallon</strong> - uma medida de quantas milhas um carro pode viajar se você colocar apenas um galão de gasolina ou diesel em seu tanque (1 galão equivale a 3.79 litros e uma milha equivale a 1.6km). Esta medida padronizada serve comparar carros com base na sua eficiência. O conjunto de dados <code>mpg</code> que vem junto com o <code>ggplot2</code> é apenas um subconjunto dos dados de economia de combustível que a EPA (Enviroment Protection Agency - USA) disponibiliza em <a href="http://fueleconomy.gov." class="uri">http://fueleconomy.gov.</a> O conjunto completo dos dados podem ser obtidos nesse site, no link seguir: <a href="http://fueleconomy.gov/feg/download.shtml" class="uri">http://fueleconomy.gov/feg/download.shtml</a>.</p>
-<p>Esse dataset possui 243 linhas (observações) com 11 variáveis. O significado de cada variável está descrito na documentação de ajuda do dataset mpg e pode ser visualizado com o comando <code>?mpg</code> no console. A tabela a seguir mostra o significado de cada variável desse dataset.</p>
+<p>O acrônimo <code>mpg</code> significa <strong>Miles Per Gallon</strong> - uma medida de quantas milhas um carro pode viajar se você colocar apenas um galão de gasolina ou diesel em seu tanque (1 galão equivale a 3.79 litros e uma milha equivale a 1.6km). Esta medida padronizada serve comparar carros com base na sua eficiência. O conjunto de dados <code>mpg</code> que vem junto com o <code>ggplot2</code> é apenas um subconjunto dos dados de economia de combustível que a EPA (Enviroment Protection Agency - USA) disponibiliza em <a href="https://fueleconomy.gov" class="uri">https://fueleconomy.gov</a>. O conjunto completo dos dados podem ser obtidos nesse site, no link seguir: <a href="https://fueleconomy.gov/feg/download.shtml" class="uri">https://fueleconomy.gov/feg/download.shtml</a>.</p>
+<p>Esse dataset possui 234 linhas (observações) com 11 variáveis. O significado de cada variável está descrito na documentação de ajuda do dataset mpg e pode ser visualizado com o comando <code>?mpg</code> no console. A tabela a seguir mostra o significado de cada variável desse dataset.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
